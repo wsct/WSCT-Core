@@ -1,0 +1,10 @@
+
+*.pdb
+bin
+obj
+*.suo
+*.pidb
+*.userprefs
+/Documentation/Help
+
+*.shfbproj_*

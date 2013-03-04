@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace WSCT.Wrapper
+{
+    /// <summary>
+    /// Enumeration for transport protocols
+    /// </summary>
+    public enum Protocol
+    {
+        /// <summary>Unknown protocol</summary>
+        SCARD_PROTOCOL_UNSET = 0x0000,
+        /// <summary>The ISO 7816/3 T=0 protocol is in use.</summary>
+        SCARD_PROTOCOL_T0 = 0x0001,
+        /// <summary>The ISO 7816/3 T=1 protocol is in use.</summary>
+        SCARD_PROTOCOL_T1 = 0x0002,
+        /// <summary>The Raw Transfer protocol is in use.</summary>
+        SCARD_PROTOCOL_RAW = 0x0004,
+        /// <summary></summary>
+        SCARD_PROTOCOL_T15 = 0x0008,
+        /// <summary>T=0 or T=1 protocol</summary>
+        SCARD_PROTOCOL_ANY = (SCARD_PROTOCOL_T0 | SCARD_PROTOCOL_T1)
+    }
+}
