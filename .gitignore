@@ -6,5 +6,4 @@ obj
 *.pidb
 *.userprefs
 /Documentation/Help
-
 *.shfbproj_*
