@@ -323,7 +323,9 @@ namespace WSCT.ISO7816
             this.p2 = p2;
             this.udc = udc;
             this.lc = lc;
+            this.hasLc = true;
             this.le = le;
+            this.hasLe = true;
         }
         /// <summary>
         /// Constructor for arbitrary C-APDU
@@ -449,7 +451,7 @@ namespace WSCT.ISO7816
 
         /// <inheritdoc />
         public void WriteXml(XmlWriter writer)
-        {   
+        {
             writer.WriteAttributeString("cla", String.Format("{0:X2}", cla));
             writer.WriteAttributeString("ins", String.Format("{0:X2}", ins));
             writer.WriteAttributeString("p1", String.Format("{0:X2}", p1));

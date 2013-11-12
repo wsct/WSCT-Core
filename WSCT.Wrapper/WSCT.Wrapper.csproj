@@ -68,6 +68,12 @@
     <Compile Include="EventState.cs" />
     <Compile Include="IPrimitives.cs" />
     <Compile Include="AbstractReaderState.cs" />
+    <Compile Include="MacOSX\IORequest.cs" />
+    <Compile Include="MacOSX\Primitives.cs" />
+    <Compile Include="MacOSX\ReaderState.cs" />
+    <Compile Include="MacOSX\SCARD_IO_REQUEST.cs" />
+    <Compile Include="MacOSX\SCARD_READERSTATE.cs" />
+    <Compile Include="MacOSX\UnsafePrimitives.cs" />
     <Compile Include="PCSCLite32\IoRequest.cs" />
     <Compile Include="PCSCLite32\Primitives.cs" />
     <Compile Include="PCSCLite32\ReaderState.cs" />
@@ -99,6 +105,7 @@
       <Name>WSCT.Helpers</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

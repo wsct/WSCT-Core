@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -26,10 +27,22 @@ namespace WSCT.Wrapper
         {
             if (Environment.OSVersion.Platform == PlatformID.Unix)
             {
-                if (Environment.Is64BitProcess)
-                    api = new PCSCLite64.Primitives();
+                // As MacOS often pretends to be Unix, this basic hack allows to detect MacOS from some of its specific directories.
+                if (Directory.Exists("/Applications") & Directory.Exists("/System") & Directory.Exists("/Users") & Directory.Exists("/Volumes"))
+                {
+                    api = new MacOSX.Primitives();
+                }
                 else
-                    api = new PCSCLite32.Primitives();
+                {
+                    if (Environment.Is64BitProcess)
+                        api = new PCSCLite64.Primitives();
+                    else
+                        api = new PCSCLite32.Primitives();
+                }
+            }
+            else if (Environment.OSVersion.Platform == PlatformID.MacOSX)
+            {
+                api = new MacOSX.Primitives();
             }
             else
             {
