@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace WSCT.Wrapper.PCSCLite64
+namespace WSCT.Wrapper.PCSCLite32
 {
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-    struct SCARD_READERSTATE
+    struct ScardReaderState
     {
         [MarshalAs(UnmanagedType.LPTStr)]
         public String readerName;
         public IntPtr userData;
-        public UInt64 currentState;
-        public UInt64 eventState;
-        public UInt64 atrSize;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x21)]
+        public UInt32 currentState;
+        public UInt32 eventState;
+        public UInt32 atrSize;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x24)]
         public byte[] atr;
     }
 }

@@ -3,50 +3,59 @@ using System.Runtime.InteropServices;
 
 namespace WSCT.Wrapper.PCSCLite64
 {
-    class IoRequest : AbstractIoRequest
+    sealed class IoRequest : AbstractIoRequest
     {
         #region >> Properties
 
-        public override UInt32 protocol
+        /// <inheritdoc />
+        public override UInt32 Protocol
         {
             get
             {
-                return (uint)scIoRequest.protocol;
+                return (uint)ScIoRequest.protocol;
             }
             set
             {
-                scIoRequest.protocol = value;
+                ScIoRequest.protocol = value;
             }
         }
 
-        public override UInt32 pciLength
+        /// <inheritdoc />
+        public override UInt32 PciLength
         {
             get
             {
-                return (uint)scIoRequest.pciLength;
+                return (uint)ScIoRequest.pciLength;
             }
             set
             {
-                scIoRequest.pciLength = value;
+                ScIoRequest.pciLength = value;
             }
         }
 
-        public SCARD_IO_REQUEST scIoRequest;
+        public ScardIoRequest ScIoRequest;
 
         #endregion
 
         #region >> Constructors
 
+        /// <summary>
+        /// Initializes a new <see cref="IoRequest"/> instance.
+        /// </summary>
         public IoRequest()
         {
-            this.scIoRequest = new SCARD_IO_REQUEST();
+            ScIoRequest = new ScardIoRequest();
         }
 
+        /// <summary>
+        /// Initializes a new <see cref="IoRequest"/> instance.
+        /// </summary>
+        /// <param name="protocol">Transmission protocol.</param>
         public IoRequest(UInt32 protocol)
             : this()
         {
-            this.protocol = protocol;
-            this.pciLength = (uint)Marshal.SizeOf(scIoRequest);
+            Protocol = protocol;
+            PciLength = (uint)Marshal.SizeOf(ScIoRequest);
         }
 
         #endregion

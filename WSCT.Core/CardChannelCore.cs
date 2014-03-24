@@ -1,9 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Security.Permissions;
-
 using WSCT.Wrapper;
 using WSCT.Core.APDU;
 
@@ -16,7 +11,7 @@ namespace WSCT.Core
     {
         #region >> Fields
 
-        private Core.ICardContext _context;
+        private ICardContext _context;
 
         private String _readerName;
 
@@ -40,7 +35,7 @@ namespace WSCT.Core
         /// </summary>
         /// <param name="context">Resource manager context to attach</param>
         /// <param name="readerName">Name of the reader to use</param>
-        public CardChannelCore(Core.ICardContext context, String readerName)
+        public CardChannelCore(ICardContext context, String readerName)
             : this()
         {
             attach(context, readerName);
@@ -69,34 +64,34 @@ namespace WSCT.Core
         }
 
         /// <inheritdoc />
-        public virtual void attach(Core.ICardContext context, String readerName)
+        public virtual void attach(ICardContext context, String readerName)
         {
-            this._context = context;
-            this._readerName = readerName;
-            this._card = IntPtr.Zero;
-            this._protocol = Protocol.SCARD_PROTOCOL_T0;
+            _context = context;
+            _readerName = readerName;
+            _card = IntPtr.Zero;
+            _protocol = Protocol.T0;
         }
 
         /// <inheritdoc />
         public virtual ErrorCode connect(ShareMode shareMode, Protocol preferedProtocol)
         {
-            this._protocol = preferedProtocol;
-            ErrorCode ret = Primitives.api.SCardConnect(this._context.context, this._readerName, shareMode, preferedProtocol, ref this._card, ref this._protocol);
+            _protocol = preferedProtocol;
+            var ret = Primitives.Api.SCardConnect(_context.context, _readerName, shareMode, preferedProtocol, ref _card, ref _protocol);
             return ret;
         }
 
         /// <inheritdoc />
         public virtual ErrorCode disconnect(Disposition disposition)
         {
-            ErrorCode ret = Primitives.api.SCardDisconnect(_card, disposition);
+            var ret = Primitives.Api.SCardDisconnect(_card, disposition);
             return ret;
         }
 
         /// <inheritdoc />
         public virtual ErrorCode getAttrib(Attrib attrib, ref Byte[] buffer)
         {
-            UInt32 bufferSize = Primitives.api.SCARD_AUTOALLOCATE;
-            ErrorCode ret = Primitives.api.SCardGetAttrib(this._card, (uint)attrib, ref buffer, ref bufferSize);
+            var bufferSize = Primitives.Api.AutoAllocate;
+            var ret = Primitives.Api.SCardGetAttrib(_card, (uint)attrib, ref buffer, ref bufferSize);
             return ret;
         }
 
@@ -104,27 +99,27 @@ namespace WSCT.Core
         public virtual State getStatus()
         {
             String readerName = null;
-            State state = new State();
-            Protocol protocol = new Protocol();
+            var state = new State();
+            var protocol = new Protocol();
             Byte[] atr = null;
-            Primitives.api.SCardStatus(this._card, ref readerName, ref state, ref protocol, ref atr);
+            Primitives.Api.SCardStatus(_card, ref readerName, ref state, ref protocol, ref atr);
             return state;
         }
 
         /// <inheritdoc />
         public virtual ErrorCode reconnect(ShareMode shareMode, Protocol preferedProtocol, Disposition initialization)
         {
-            this._protocol = preferedProtocol;
-            ErrorCode ret = Primitives.api.SCardReconnect(_card, shareMode, preferedProtocol, initialization, ref this._protocol);
+            _protocol = preferedProtocol;
+            var ret = Primitives.Api.SCardReconnect(_card, shareMode, preferedProtocol, initialization, ref _protocol);
             return ret;
         }
 
         /// <inheritdoc />
         public virtual ErrorCode transmit(ICardCommand command, ICardResponse response)
         {
-            UInt32 recvSize = Primitives.api.SCARD_AUTOALLOCATE;
+            var recvSize = Primitives.Api.AutoAllocate;
             Byte[] recvBuffer = null;
-            ErrorCode ret = __transmit(command, ref recvBuffer, ref recvSize);
+            var ret = __transmit(command, ref recvBuffer, ref recvSize);
             response.parse(recvBuffer, recvSize);
             return ret;
         }
@@ -135,11 +130,11 @@ namespace WSCT.Core
 
         ErrorCode __transmit(ICardCommand command, ref Byte[] recvBuffer, ref UInt32 recvSize)
         {
-            AbstractIoRequest sendPci = Primitives.api.createIoRequestInstance(this._protocol);
-            AbstractIoRequest recvPci = Primitives.api.createIoRequestInstance(this._protocol);
+            var sendPci = Primitives.Api.CreateIoRequestInstance(_protocol);
+            var recvPci = Primitives.Api.CreateIoRequestInstance(_protocol);
 
-            ErrorCode ret = Primitives.api.SCardTransmit(
-                this._card,
+            var ret = Primitives.Api.SCardTransmit(
+                _card,
                 ref sendPci,
                 command.binaryCommand,
                 (UInt32)command.binaryCommand.Length,

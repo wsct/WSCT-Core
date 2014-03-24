@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using WSCT.Wrapper;
 using WSCT.Core.APDU;
+using WSCT.Wrapper;
 
 namespace WSCT.Core
 {
@@ -61,7 +58,7 @@ namespace WSCT.Core
         {
             if (beforeConnectEvent != null) beforeConnectEvent(this, shareMode, preferedProtocol);
 
-            ErrorCode ret = _cardChannel.connect(shareMode, preferedProtocol);
+            var ret = _cardChannel.connect(shareMode, preferedProtocol);
 
             if (afterConnectEvent != null) afterConnectEvent(this, shareMode, preferedProtocol, ret);
 
@@ -73,7 +70,7 @@ namespace WSCT.Core
         {
             if (beforeDisconnectEvent != null) beforeDisconnectEvent(this, disposition);
 
-            ErrorCode ret = _cardChannel.disconnect(disposition);
+            var ret = _cardChannel.disconnect(disposition);
 
             if (afterDisconnectEvent != null) afterDisconnectEvent(this, disposition, ret);
 
@@ -85,7 +82,7 @@ namespace WSCT.Core
         {
             if (beforeGetAttribEvent != null) beforeGetAttribEvent(this, attrib, buffer);
 
-            ErrorCode ret = _cardChannel.getAttrib(attrib, ref buffer);
+            var ret = _cardChannel.getAttrib(attrib, ref buffer);
 
             if (afterGetAttribEvent != null) afterGetAttribEvent(this, attrib, buffer, ret);
 
@@ -97,7 +94,7 @@ namespace WSCT.Core
         {
             if (beforeGetStatusEvent != null) beforeGetStatusEvent(this);
 
-            State ret = _cardChannel.getStatus();
+            var ret = _cardChannel.getStatus();
 
             if (afterGetStatusEvent != null) afterGetStatusEvent(this, ret);
 
@@ -109,7 +106,7 @@ namespace WSCT.Core
         {
             if (beforeReconnectEvent != null) beforeReconnectEvent(this, shareMode, preferedProtocol, initialization);
 
-            ErrorCode ret = _cardChannel.reconnect(shareMode, preferedProtocol, initialization);
+            var ret = _cardChannel.reconnect(shareMode, preferedProtocol, initialization);
 
             if (afterReconnectEvent != null) afterReconnectEvent(this, shareMode, preferedProtocol, initialization, ret);
 
@@ -117,11 +114,11 @@ namespace WSCT.Core
         }
 
         /// <inheritdoc />
-        public ErrorCode transmit(APDU.ICardCommand command, APDU.ICardResponse response)
+        public ErrorCode transmit(ICardCommand command, ICardResponse response)
         {
             if (beforeTransmitEvent != null) beforeTransmitEvent(this, command, response);
 
-            ErrorCode ret = _cardChannel.transmit(command, response);
+            var ret = _cardChannel.transmit(command, response);
 
             if (afterTransmitEvent != null) afterTransmitEvent(this, command, response, ret);
 

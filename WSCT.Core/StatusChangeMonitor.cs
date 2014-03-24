@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
-
 using WSCT.Wrapper;
-using WSCT.Helpers;
 
 namespace WSCT.Core
 {
@@ -20,22 +16,22 @@ namespace WSCT.Core
         /// Delegate for event sent when a card is inserted a reader in the system
         /// </summary>
         /// <param name="readerState"></param>
-        public delegate void onCardInsertionEventHandler(AbstractReaderState readerState);
+        public delegate void OnCardInsertionEventHandler(AbstractReaderState readerState);
         /// <summary>
         /// Delegate for event sent when a card is removed from a reader in the system
         /// </summary>
         /// <param name="readerState"></param>
-        public delegate void onCardRemovalEventHandler(AbstractReaderState readerState);
+        public delegate void OnCardRemovalEventHandler(AbstractReaderState readerState);
         /// <summary>
         /// Delegate for event sent when a reader is inserted in the system
         /// </summary>
         /// <param name="insertedReaders"></param>
-        public delegate void onReaderInsertionEventHandler(String[] insertedReaders);
+        public delegate void OnReaderInsertionEventHandler(String[] insertedReaders);
         /// <summary>
         /// Delegate for event sent when a reader is removed from the system
         /// </summary>
         /// <param name="removedReaders"></param>
-        public delegate void onReaderRemovalEventHandler(String[] removedReaders);
+        public delegate void OnReaderRemovalEventHandler(String[] removedReaders);
 
         #endregion
 
@@ -44,11 +40,11 @@ namespace WSCT.Core
         /// <summary>
         /// 
         /// </summary>
-        public onCardInsertionEventHandler onCardInsertionEvent;
+        public OnCardInsertionEventHandler OnCardInsertionEvent;
         /// <summary>
         /// 
         /// </summary>
-        public onCardRemovalEventHandler onCardRemovalEvent;
+        public OnCardRemovalEventHandler OnCardRemovalEvent;
 
         #endregion
 
@@ -68,7 +64,7 @@ namespace WSCT.Core
         /// <summary>
         /// 
         /// </summary>
-        public ICardContext context
+        public ICardContext Context
         {
             get { return _context; }
             set
@@ -76,8 +72,8 @@ namespace WSCT.Core
                 _context = value;
                 _readerNames = new String[_context.readersCount];
                 _readerStates = new AbstractReaderState[_readerNames.Length];
-                for (int i = 0; i < context.readersCount; i++)
-                    _readerNames[i] = context.readers[i];
+                for (var i = 0; i < Context.readersCount; i++)
+                    _readerNames[i] = Context.readers[i];
                 _initDone = false;
             }
         }
@@ -104,7 +100,7 @@ namespace WSCT.Core
             _context = context;
             _readerNames = readerNames;
             _readerStates = new AbstractReaderState[_readerNames.Length];
-            _thread = new Thread(this.waitForChanges);
+            _thread = new Thread(WaitForChanges);
             _initDone = false;
             _threadContinue = false;
         }
@@ -125,17 +121,17 @@ namespace WSCT.Core
         /// <summary>
         /// Start the monitoring thread
         /// </summary>
-        public void start()
+        public void Start()
         {
             _threadContinue = true;
-            _thread = new Thread(this.waitForChanges);
+            _thread = new Thread(WaitForChanges);
             _thread.Start();
         }
 
         /// <summary>
         /// Stop the monitoring thread
         /// </summary>
-        public void stop()
+        public void Stop()
         {
             if (_threadContinue)
             {
@@ -151,24 +147,26 @@ namespace WSCT.Core
         /// </summary>
         /// <param name="timeout">Maximum wait time (ms)</param>
         /// <returns>Informations about the change, or null if no card is present when the <paramref name="timeout"/>.</returns>
-        public AbstractReaderState waitForCardPresence(uint timeout)
+        public AbstractReaderState WaitForCardPresence(uint timeout)
         {
             waitForChange(0);
 
-            AbstractReaderState readerState = _readerStates.ToList<AbstractReaderState>().Find(
-                delegate(AbstractReaderState rs) { return ((rs.eventState & EventState.SCARD_STATE_PRESENT) != 0); }
+            var readerState = _readerStates.ToList().Find(
+                rs => ((rs.EventState & EventState.StatePresent) != 0)
                 );
 
             // Fire the insertion event, because waitForChange only fire the event on change detection
             if (readerState != null)
-                if (onCardInsertionEvent != null) onCardInsertionEvent(readerState);
+            {
+                if (OnCardInsertionEvent != null) OnCardInsertionEvent(readerState);
+            }
 
             if (readerState == null)
             {
                 waitForChange(timeout);
 
                 readerState = _readerStates.ToList<AbstractReaderState>().Find(
-                    delegate(AbstractReaderState rs) { return ((rs.eventState & EventState.SCARD_STATE_PRESENT) != 0); }
+                    delegate(AbstractReaderState rs) { return ((rs.EventState & EventState.StatePresent) != 0); }
                     );
             }
 
@@ -184,26 +182,26 @@ namespace WSCT.Core
         public void waitForChange(uint timeout)
         {
             if (!_initDone)
-                _initDone = (updateInitialStates() == ErrorCode.SCARD_S_SUCCESS);
+                _initDone = (UpdateInitialStates() == ErrorCode.Success);
 
-            foreach (AbstractReaderState readerState in _readerStates)
+            foreach (var readerState in _readerStates)
             {
-                readerState.eventState &= ~EventState.SCARD_STATE_CHANGED;
-                readerState.currentState = readerState.eventState;
+                readerState.EventState &= ~EventState.StateChanged;
+                readerState.CurrentState = readerState.EventState;
             }
 
-            ErrorCode result = _context.getStatusChange(timeout, _readerStates);
+            var result = _context.getStatusChange(timeout, _readerStates);
 
             switch (result)
             {
-                case ErrorCode.SCARD_S_SUCCESS: // Change occured
-                    fireChangeEvents();
+                case ErrorCode.Success: // Change occured
+                    FireChangeEvents();
                     break;
-                case ErrorCode.SCARD_E_TIMEOUT: // Nothing changed
+                case ErrorCode.Timeout: // Nothing changed
                     break;
-                case ErrorCode.ERROR_INVALID_HANDLE: // Context has been lost
-                case ErrorCode.SCARD_E_INVALID_PARAMETER:
-                case ErrorCode.SCARD_E_CANCELLED:
+                case ErrorCode.ErrorInvalidHandle: // Context has been lost
+                case ErrorCode.InvalidParameter:
+                case ErrorCode.Cancelled:
                     _threadContinue = false;
                     break;
                 default:
@@ -216,12 +214,12 @@ namespace WSCT.Core
         /// <summary>
         /// Waits for changes of state of any of the monitored readers. (for use by monitor thread only)
         /// Events are fired when catched.
-        /// Loop until thread is stopped by using <see cref="stop"/> method
+        /// Loop until thread is stopped by using <see cref="Stop"/> method
         /// </summary>
-        void waitForChanges()
+        void WaitForChanges()
         {
             if (!_initDone)
-                _initDone = (updateInitialStates() == ErrorCode.SCARD_S_SUCCESS);
+                _initDone = (UpdateInitialStates() == ErrorCode.Success);
 
             _threadContinue = true;
 
@@ -236,19 +234,19 @@ namespace WSCT.Core
         /// Initializes <see cref="_readerStates"/>
         /// </summary>
         /// <returns></returns>
-        ErrorCode updateInitialStates()
+        ErrorCode UpdateInitialStates()
         {
-            for (int i = 0; i < _readerNames.Length; i++)
+            for (var i = 0; i < _readerNames.Length; i++)
             {
-                _readerStates[i] = Primitives.api.createReaderStateInstance(_readerNames[i], EventState.SCARD_STATE_UNAWARE, EventState.SCARD_STATE_UNAWARE);
+                _readerStates[i] = Primitives.Api.CreateReaderStateInstance(_readerNames[i], EventState.StateUnaware, EventState.StateUnaware);
             }
 
-            ErrorCode result = _context.getStatusChange(0, _readerStates);
+            var result = _context.getStatusChange(0, _readerStates);
 
             switch (result)
             {
-                case ErrorCode.SCARD_S_SUCCESS:
-                case ErrorCode.SCARD_E_TIMEOUT:
+                case ErrorCode.Success:
+                case ErrorCode.Timeout:
                     break;
                 default:
                     throw new Exception(String.Format("Error occured in getStatusChange() {0}", result));
@@ -260,22 +258,22 @@ namespace WSCT.Core
         /// <summary>
         /// Fire events for states that changed
         /// </summary>
-        void fireChangeEvents()
+        void FireChangeEvents()
         {
-            foreach (AbstractReaderState readerState in _readerStates)
+            foreach (var readerState in _readerStates)
             {
-                if ((readerState.eventState & EventState.SCARD_STATE_CHANGED) != 0)
+                if ((readerState.EventState & EventState.StateChanged) != 0)
                 {
-                    AbstractReaderState publishedReaderState = readerState;
-                    if ((readerState.eventState & EventState.SCARD_STATE_PRESENT) != (readerState.currentState & EventState.SCARD_STATE_PRESENT))
+                    var publishedReaderState = readerState;
+                    if ((readerState.EventState & EventState.StatePresent) != (readerState.CurrentState & EventState.StatePresent))
                     {
-                        if ((readerState.eventState & EventState.SCARD_STATE_PRESENT) != 0)
+                        if ((readerState.EventState & EventState.StatePresent) != 0)
                         {
-                            if (onCardInsertionEvent != null) onCardInsertionEvent(publishedReaderState);
+                            if (OnCardInsertionEvent != null) OnCardInsertionEvent(publishedReaderState);
                         }
                         else
                         {
-                            if (onCardRemovalEvent != null) onCardRemovalEvent(publishedReaderState);
+                            if (OnCardRemovalEvent != null) OnCardRemovalEvent(publishedReaderState);
                         }
                     }
                 }

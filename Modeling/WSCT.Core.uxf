@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="12.1">
+<diagram program="umlet" version="12.2">
   <zoom_level>10</zoom_level>
   <element>
     <type>com.umlet.element.Class</type>
@@ -145,7 +145,7 @@ parse()
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>500</x>
+      <x>490</x>
       <y>450</y>
       <w>200</w>
       <h>90</h>
@@ -157,7 +157,7 @@ fg=red</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>510</x>
+      <x>500</x>
       <y>480</y>
       <w>180</w>
       <h>50</h>
@@ -170,13 +170,13 @@ _api_</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>570</x>
+      <x>560</x>
       <y>390</y>
-      <w>280</w>
+      <w>290</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;</panel_attributes>
-    <additional_attributes>30;90;30;50;260;50;260;30</additional_attributes>
+    <additional_attributes>30;90;30;50;270;50;270;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
@@ -285,11 +285,11 @@ fg=red</panel_attributes>
     <coordinates>
       <x>320</x>
       <y>390</y>
-      <w>300</w>
+      <w>290</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>280;90;280;50;30;50;30;30</additional_attributes>
+    <additional_attributes>270;90;270;50;30;50;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>

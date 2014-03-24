@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace WSCT.Wrapper
 {
@@ -15,9 +12,9 @@ namespace WSCT.Wrapper
         #region >> Properties
 
         /// <summary>
-        /// accessor to concrete API for current Operating System
+        /// accessor to concrete API for current Operating System.
         /// </summary>
-        public static IPrimitives api;
+        public static IPrimitives Api;
 
         #endregion
 
@@ -30,23 +27,23 @@ namespace WSCT.Wrapper
                 // As MacOS often pretends to be Unix, this basic hack allows to detect MacOS from some of its specific directories.
                 if (Directory.Exists("/Applications") & Directory.Exists("/System") & Directory.Exists("/Users") & Directory.Exists("/Volumes"))
                 {
-                    api = new MacOSX.Primitives();
+                    Api = new MacOSX.Primitives();
                 }
                 else
                 {
                     if (Environment.Is64BitProcess)
-                        api = new PCSCLite64.Primitives();
+                        Api = new PCSCLite64.Primitives();
                     else
-                        api = new PCSCLite32.Primitives();
+                        Api = new PCSCLite32.Primitives();
                 }
             }
             else if (Environment.OSVersion.Platform == PlatformID.MacOSX)
             {
-                api = new MacOSX.Primitives();
+                Api = new MacOSX.Primitives();
             }
             else
             {
-                api = new WinSCard.Primitives();
+                Api = new WinSCard.Primitives();
             }
         }
 

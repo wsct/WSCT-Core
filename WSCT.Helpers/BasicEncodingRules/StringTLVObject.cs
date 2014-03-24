@@ -9,11 +9,20 @@ namespace WSCT.Helpers.BasicEncodingRules
         #region >> Constructors
 
         /// <summary>
-        /// Default constructor
+        /// Initializes a new <see cref="StringTLVObject"/> instance.
         /// </summary>
         public StringTLVObject()
-            : base()
         {
+        }
+
+        /// <summary>
+        /// Initializes a new <see cref="StringTLVObject"/> instance.
+        /// </summary>
+        /// <param name="tag">Tag of the object.</param>
+        /// <param name="text">Text value.</param>
+        public StringTLVObject(uint tag, string text)
+        {
+            tlv = new TLVData(tag, (uint)text.Length, text.fromString());
         }
 
         #endregion

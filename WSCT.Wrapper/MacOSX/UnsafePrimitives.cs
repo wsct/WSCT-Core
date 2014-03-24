@@ -7,13 +7,13 @@ namespace WSCT.Wrapper.MacOSX
     /// Unsafe api coming from Apple pcsclite library.
     /// Note: strictly the same implementation as PCSCLite32 but the library name/path.
     /// </summary>
-    class UnsafePrimitives 
+    class UnsafePrimitives
     {
-        internal const string PCSC_LIB = "/System/Library/Frameworks/PCSC.framework/PCSC";
+        internal const string PcscLib = "/System/Library/Frameworks/PCSC.framework/PCSC";
 
         #region SCardCancel
 
-        [DllImport(PCSC_LIB, CharSet = CharSet.Auto)]
+        [DllImport(PcscLib, CharSet = CharSet.Auto)]
         public static extern unsafe ErrorCode SCardCancel(
             [In] void* context
             );
@@ -22,7 +22,7 @@ namespace WSCT.Wrapper.MacOSX
 
         #region SCardConnect
 
-        [DllImport(PCSC_LIB, CharSet = CharSet.Auto)]
+        [DllImport(PcscLib, CharSet = CharSet.Auto)]
         public static extern unsafe ErrorCode SCardConnect(
             [In] void* context,
             [In] char* readerName,
@@ -36,7 +36,7 @@ namespace WSCT.Wrapper.MacOSX
 
         #region SCardControl
 
-        [DllImport(PCSC_LIB, CharSet = CharSet.Auto)]
+        [DllImport(PcscLib, CharSet = CharSet.Auto)]
         public static extern ErrorCode SCardControl(
             [In] IntPtr card,
             [In] UInt32 controlCode,
@@ -53,7 +53,7 @@ namespace WSCT.Wrapper.MacOSX
 
         #region SCardDisconnect
 
-        [DllImport(PCSC_LIB, CharSet = CharSet.Auto)]
+        [DllImport(PcscLib, CharSet = CharSet.Auto)]
         public static extern unsafe ErrorCode SCardDisconnect(
             [In] void* card,
             [In] uint disposition
@@ -63,7 +63,7 @@ namespace WSCT.Wrapper.MacOSX
 
         #region SCardEstablishContext
 
-        [DllImport(PCSC_LIB)]
+        [DllImport(PcscLib)]
         public static extern unsafe ErrorCode SCardEstablishContext(
             [In] uint scope,
             [In] void* notUsed1,
@@ -75,7 +75,7 @@ namespace WSCT.Wrapper.MacOSX
 
         #region SCardFreeMemory
 
-        [DllImport(PCSC_LIB, CharSet = CharSet.Auto)]
+        [DllImport(PcscLib, CharSet = CharSet.Auto)]
         public static extern unsafe ErrorCode SCardFreeMemory(
             void* context,
             void* resourceToFree
@@ -85,7 +85,7 @@ namespace WSCT.Wrapper.MacOSX
 
         #region SCardGetAttrib
 
-        [DllImport(PCSC_LIB, CharSet = CharSet.Auto)]
+        [DllImport(PcscLib, CharSet = CharSet.Auto)]
         public static extern unsafe ErrorCode SCardGetAttrib(
             [In] void* card,
             [In] uint attributeId,
@@ -97,12 +97,12 @@ namespace WSCT.Wrapper.MacOSX
 
         #region SCardGetStatusChange
 
-        [DllImport(PCSC_LIB, CharSet = CharSet.Auto)]
+        [DllImport(PcscLib, CharSet = CharSet.Auto)]
         public static extern unsafe ErrorCode SCardGetStatusChange(
             void* hContext,
             uint dwTimeout,
             [In, Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)]
-            SCARD_READERSTATE[] rgReaderStates,
+            ScardReaderState[] rgReaderStates,
             uint cReaders
             );
 
@@ -110,7 +110,7 @@ namespace WSCT.Wrapper.MacOSX
 
         #region SCardIsValidContext
 
-        [DllImport(PCSC_LIB, CharSet = CharSet.Auto)]
+        [DllImport(PcscLib, CharSet = CharSet.Auto)]
         public static extern unsafe ErrorCode SCardIsValidContext(
             [In] void* context
             );
@@ -119,7 +119,7 @@ namespace WSCT.Wrapper.MacOSX
 
         #region SCardListReaders
 
-        [DllImport(PCSC_LIB, CharSet = CharSet.Auto)]
+        [DllImport(PcscLib, CharSet = CharSet.Auto)]
         public static extern unsafe ErrorCode SCardListReaders(
             [In] void* context,
             [In] char* groups,
@@ -131,7 +131,7 @@ namespace WSCT.Wrapper.MacOSX
 
         #region SCardListReaderGroups
 
-        [DllImport(PCSC_LIB, CharSet = CharSet.Auto)]
+        [DllImport(PcscLib, CharSet = CharSet.Auto)]
         public static extern unsafe ErrorCode SCardListReaderGroups(
             [In] void* context,
             [In, Out] char* groups,
@@ -142,7 +142,7 @@ namespace WSCT.Wrapper.MacOSX
 
         #region SCardReconnect
 
-        [DllImport(PCSC_LIB, CharSet = CharSet.Auto)]
+        [DllImport(PcscLib, CharSet = CharSet.Auto)]
         public static extern unsafe ErrorCode SCardReconnect(
             [In] void* card,
             [In] uint shareMode,
@@ -155,7 +155,7 @@ namespace WSCT.Wrapper.MacOSX
 
         #region SCardReleaseContext
 
-        [DllImport(PCSC_LIB, CharSet = CharSet.Auto)]
+        [DllImport(PcscLib, CharSet = CharSet.Auto)]
         public static extern unsafe ErrorCode SCardReleaseContext(
             void* context
             );
@@ -164,7 +164,7 @@ namespace WSCT.Wrapper.MacOSX
 
         #region SCardSetAttrib
 
-        [DllImport(PCSC_LIB, CharSet = CharSet.Auto)]
+        [DllImport(PcscLib, CharSet = CharSet.Auto)]
         public static extern ErrorCode SCardSetAttrib(
             [In] IntPtr card,
             [In] UInt32 attributeId,
@@ -173,7 +173,7 @@ namespace WSCT.Wrapper.MacOSX
             [In] UInt32 newAttributeSize
             );
 
-        [DllImport(PCSC_LIB, CharSet = CharSet.Auto)]
+        [DllImport(PcscLib, CharSet = CharSet.Auto)]
         public static extern unsafe ErrorCode SCardSetAttrib(
             [In] void* card,
             [In] uint attributeId,
@@ -185,7 +185,7 @@ namespace WSCT.Wrapper.MacOSX
 
         #region SCardStatus
 
-        [DllImport(PCSC_LIB, CharSet = CharSet.Auto)]
+        [DllImport(PcscLib, CharSet = CharSet.Auto)]
         public static extern unsafe ErrorCode SCardStatus(
             [In] void* card,
             [In, Out] char* readerName,
@@ -196,8 +196,8 @@ namespace WSCT.Wrapper.MacOSX
             [In, Out] uint* atrSize
             );
 
-        [DllImport(PCSC_LIB, CharSet = CharSet.Auto)]
-        public static extern unsafe ErrorCode SCardStatus(
+        [DllImport(PcscLib, CharSet = CharSet.Auto)]
+        public static extern ErrorCode SCardStatus(
             [In] IntPtr card,
             [In, Out] ref IntPtr readerName,
             [In, Out] ref UInt32 readerNameSize,
@@ -211,7 +211,7 @@ namespace WSCT.Wrapper.MacOSX
 
         #region SCardTransmit
 
-        [DllImport(PCSC_LIB)]
+        [DllImport(PcscLib)]
         public static extern unsafe ErrorCode SCardTransmit(
             [In] void* card,
             [In] /*SCARD_IO_REQUEST*/ void* sendPci,

@@ -127,7 +127,7 @@ namespace WSCT.Core.ConsoleTests
                 // As an example, direct use of the layer to transmit the command
                 ret = _stack.requestLayer(this, SearchMode.next).transmit(command, response);
                 ResponseAPDU rAPDU = (ResponseAPDU)response;
-                if ((ret == ErrorCode.SCARD_S_SUCCESS) && (rAPDU.sw1 == 0x61))
+                if ((ret == ErrorCode.Success) && (rAPDU.sw1 == 0x61))
                 {
                     if (le > rAPDU.sw2)
                         le = rAPDU.sw2;

@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
-
-using WSCT.Helpers;
 
 namespace WSCT.Wrapper
 {
     /// <summary>
-    /// Interface to be implemented by all PC/SC API wrappers
+    /// Interface to be implemented by all PC/SC API wrappers.
     /// </summary>
     public interface IPrimitives
     {
         /// <summary>
-        /// Value used by PC/SC API to ask for auto allocation
+        /// Value used by PC/SC API to ask for auto allocation.
         /// </summary>
-        UInt32 SCARD_AUTOALLOCATE { get; }
+        UInt32 AutoAllocate { get; }
         /// <summary>
-        /// Default maximum buffer size used to fetch PC/SC responses
+        /// Default maximum buffer size used to fetch PC/SC responses.
         /// </summary>
-        UInt32 defaultBufferSize { get; set; }
+        UInt32 DefaultBufferSize { get; set; }
 
         #region >> PC/SC functions
 
@@ -30,7 +26,7 @@ namespace WSCT.Wrapper
         /// This is especially useful to force outstanding <see cref="SCardGetStatusChange"/> calls to terminate.</para>
         /// </summary>
         /// <param name="context">A handle that identifies the resource manager context.</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded.</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
         ErrorCode SCardCancel(
             [In] IntPtr context
             );
@@ -45,7 +41,7 @@ namespace WSCT.Wrapper
         /// <param name="preferedProtocol">A bitmask of acceptable protocols for the connection. Possible values may be combined with the OR operation.</param>
         /// <param name="card">A handle that identifies the connection to the smart card in the designated reader.</param>
         /// <param name="activeProtocol">A flag that indicates the established active protocol.</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded.</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
         /// <remarks>
         /// PC/SC: class <c>SCARDCOMM</c>
         /// <code lang="none">
@@ -77,7 +73,7 @@ namespace WSCT.Wrapper
         /// <param name="recvBuffer">Buffer that receives the operation's output data. This parameter can be <c>null</c> if the <c>ControlCode</c> parameter specifies an operation that does not produce output data.</param>
         /// <param name="recvSize">Size, in bytes, of the buffer pointed to by <paramref name="recvBuffer"/>. (<c>SCARD_AUTOALLOCATE</c> not allowed)</param>
         /// <param name="returnedSize">Size, in bytes, of the data stored into the buffer pointed to by <c>recvBuffer</c>.</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded.</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
         /// <remarks>
         /// PC/SC: class <c>SCARDCOMM</c>
         /// <code lang="none">
@@ -104,7 +100,7 @@ namespace WSCT.Wrapper
         /// </summary>
         /// <param name="card">Connection made from SCardConnect</param>
         /// <param name="disposition">Reader function to execute</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded.</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
         /// <remarks>
         /// PC/SC: class <c>SCARDCOMM</c>
         /// <code lang="none">
@@ -126,7 +122,7 @@ namespace WSCT.Wrapper
         /// <param name="notUsed2">Reserved for future use and must be <c>null</c>.</param>
         /// <param name="context">Handle to the established resource manager context.
         /// This handle can now be supplied to other functions attempting to do work within this context.</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded.</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
         /// <remarks>
         /// PC/SC: class <c>RESOURCEMANAGER</c>
         /// <code lang="none">
@@ -151,8 +147,8 @@ namespace WSCT.Wrapper
         /// <param name="card">Reference value returned from <see cref="SCardConnect"/>.</param>
         /// <param name="attributeId">Identifier for the attribute to get. Note that vendors may not support all attributes.</param>
         /// <param name="recvAttribute">R-APDU from the card. <paramref name="recvAttribute"/> should be <c>null</c> as the allocation will be automatic (otherwise initial instance will be lost).</param>
-        /// <param name="recvAttributeSize">On input, can be <see cref="SCARD_AUTOALLOCATE"/>, or the size allocated in <paramref name="recvAttribute"/>. On output, receives the number of bytes in <paramref name="recvAttribute"/>.</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded.</returns>
+        /// <param name="recvAttributeSize">On input, can be <see cref="AutoAllocate"/>, or the size allocated in <paramref name="recvAttribute"/>. On output, receives the number of bytes in <paramref name="recvAttribute"/>.</param>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
         ErrorCode SCardGetAttrib(
             [In] IntPtr card,
             [In] UInt32 attributeId,
@@ -172,7 +168,7 @@ namespace WSCT.Wrapper
         /// <param name="timeout">Maximum amount of time (in milliseconds) to wait for an action. A value of zero causes the function to return immediately. A value of INFINITE causes this function never to time out.</param>
         /// <param name="readerStates">Array of <c>SCARD_READERSTATE_x32OS</c> structures that specify the readers to watch, and receives the result.</param>
         /// <param name="readers">Number of elements in the <c>readerStates</c> array.</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded.</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
         /// <remarks>
         /// PC/SC: class <c>SCARDTRACK</c>
         /// <code lang="none">
@@ -193,7 +189,7 @@ namespace WSCT.Wrapper
         /// Determines whether a smart card context handle is valid.
         /// </summary>
         /// <param name="context">Handle that identifies the resource manager context.</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if the context is valid.</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if the context is valid.</returns>
         ErrorCode SCardIsValidContext(
             [In] IntPtr context
             );
@@ -206,8 +202,8 @@ namespace WSCT.Wrapper
         /// <param name="context">Connection context to the PC/SC Resource Manager</param>
         /// <param name="groups">List of groups to list readers</param>
         /// <param name="readers">Multi-string buffer (NULL separated) containing list of readers</param>
-        /// <param name="size">On input, can be <see cref="SCARD_AUTOALLOCATE"/> to autoallocate <paramref name="readers"/>, or the size allocated in <paramref name="readers"/>. On output, receives the number of bytes in <paramref name="groups"/> including NULL's</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded.</returns>
+        /// <param name="size">On input, can be <see cref="AutoAllocate"/> to autoallocate <paramref name="readers"/>, or the size allocated in <paramref name="readers"/>. On output, receives the number of bytes in <paramref name="groups"/> including NULL's</param>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
         /// <remarks>
         /// PC/SC: class <c>RESOURCEQUERY</c>
         /// <code lang="none">
@@ -231,8 +227,8 @@ namespace WSCT.Wrapper
         /// </summary>
         /// <param name="context">Connection context to the PC/SC Resource Manager</param>
         /// <param name="groups">Multi-string buffer (NULL separated) containing list of groups of readers</param>
-        /// <param name="size">On input, can be <see cref="SCARD_AUTOALLOCATE"/> to autoallocate <paramref name="groups"/>, or the size allocated in <paramref name="groups"/>. On output, receives the number of bytes in <paramref name="groups"/> including NULL's</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded.</returns>
+        /// <param name="size">On input, can be <see cref="AutoAllocate"/> to autoallocate <paramref name="groups"/>, or the size allocated in <paramref name="groups"/>. On output, receives the number of bytes in <paramref name="groups"/> including NULL's</param>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
         /// <remarks>
         /// PC/SC: class <c>RESOURCEQUERY</c>
         /// <code lang="none">
@@ -250,7 +246,7 @@ namespace WSCT.Wrapper
         /// <summary>
         /// Reestablishes a connection to a reader that was previously connected to using SCardConnect().
         /// In a multi application environment it is possible for an application to reset the card in shared mode.
-        /// When this occurs any other application trying to access certain commands will be returned the value <see cref="ErrorCode.SCARD_W_RESET_CARD"/>.
+        /// When this occurs any other application trying to access certain commands will be returned the value <see cref="ErrorCode.ResetCard"/>.
         /// When this occurs <c>SCardReconnect()</c> must be called in order to acknowledge that the card was reset and allow it to change it's state accordingly.
         /// </summary>
         /// <param name="card">Handle to a previous call to connect</param>
@@ -258,7 +254,7 @@ namespace WSCT.Wrapper
         /// <param name="preferedProtocol">Desired protocol use</param>
         /// <param name="initialisation">Desired action taken on the card/reader</param>
         /// <param name="activeProtocol">Established protocol to this connection</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded.</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
         /// <remarks>
         /// PC/SC: class <c>SCARDCOMM</c>
         /// <code lang="none">
@@ -283,7 +279,7 @@ namespace WSCT.Wrapper
         /// This must be the last function called in a PC/SC application.
         /// </summary>
         /// <param name="context">Reference value returned from <see cref="SCardEstablishContext"/></param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded.</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
         /// <remarks>
         /// PC/SC: class <c>RESOURCEMANAGER</c>
         /// <code lang="none">
@@ -303,7 +299,7 @@ namespace WSCT.Wrapper
         /// <param name="attributeId">Specifies the identifier for the attribute to set.</param>
         /// <param name="newAttribute">Pointer to a buffer that supplies the attribute whose identifier is supplied in dwAttrId.</param>
         /// <param name="newAttributeSize">Count of bytes that represent the length of the attribute value in the pbAttr  buffer.</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded.</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
         ErrorCode SCardSetAttrib(
             [In] IntPtr card,
             [In] UInt32 attributeId,
@@ -315,7 +311,7 @@ namespace WSCT.Wrapper
         /// Provides the current status of a smart card in a reader.
         /// You can call it any time after a successful call to <see cref="SCardConnect"/> and before a successful call to <see cref="SCardDisconnect"/>.
         /// It does not affect the state of the reader or reader driver.
-        /// <para>Use only WITH <paramref name="atrSize"/>=<see cref="SCARD_AUTOALLOCATE"/></para>
+        /// <para>Use only WITH <paramref name="atrSize"/>=<see cref="AutoAllocate"/></para>
         /// </summary>
         /// <param name="card">Reference value returned from SCardConnect.</param>
         /// <param name="readerName">List of friendly names (multiple string) by which the currently connected reader is known.</param>
@@ -323,8 +319,8 @@ namespace WSCT.Wrapper
         /// <param name="status">One of <see name="State">State</see> enumeration</param>
         /// <param name="protocol">Current protocol, if any. The returned value is meaningful only if the returned value of pdwState is SCARD_SPECIFICMODE.</param>
         /// <param name="atr">ATR originally returned by the card</param>
-        /// <param name="atrSize">On input, MUST be <see cref="SCARD_AUTOALLOCATE"/>, or this method will fail. On output, receives the number of bytes in the ATR string (32 bytes maximum).</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded.</returns>
+        /// <param name="atrSize">On input, MUST be <see cref="AutoAllocate"/>, or this method will fail. On output, receives the number of bytes in the ATR string (32 bytes maximum).</param>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
         /// <remarks>
         /// PC/SC: class <c>SCARDCOMM</c>
         /// <code lang="none">
@@ -356,7 +352,7 @@ namespace WSCT.Wrapper
         /// <param name="state">One of <see name="State">State</see> enumeration</param>
         /// <param name="protocol">Current protocol, if any. The returned value is meaningful only if the returned value of pdwState is SCARD_SPECIFICMODE.</param>
         /// <param name="atr">ATR originally returned by the card</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded.</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
         /// <remarks>
         /// PC/SC: class <c>SCARDCOMM</c>
         /// <code lang="none">
@@ -383,7 +379,7 @@ namespace WSCT.Wrapper
         /// <param name="card">Reference value returned from SCardConnect.</param>
         /// <param name="status">One of <see name="State">State</see> enumeration</param>
         /// <param name="protocol">Current protocol, if any. The returned value is meaningful only if the returned value of pdwState is SCARD_SPECIFICMODE.</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded.</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
         /// <remarks>
         /// PC/SC: class <c>SCARDCOMM</c>
         /// <code lang="none">
@@ -404,7 +400,7 @@ namespace WSCT.Wrapper
         /// <summary>
         /// Sends a C-APDU to the smart card contained in the reader connected to by <see cref="SCardConnect"/>.
         /// The card responds and stores this R-APDU in <paramref name="recvBuffer"/> and it's length in <paramref name="recvSize"/>.
-        /// <para>Use only WITH <paramref name="recvSize"/>=<see cref="SCARD_AUTOALLOCATE"/></para>
+        /// <para>Use only WITH <paramref name="recvSize"/>=<see cref="AutoAllocate"/></para>
         /// <para><b>WARNING</b>: SCARD_AUTOALLOCATE is NOT supported on Windows XP and below (<c>winscard.dll</c> limitation)</para>
         /// </summary>
         /// <param name="card">Connection made from SCardConnect</param>
@@ -413,8 +409,8 @@ namespace WSCT.Wrapper
         /// <param name="sendSize">Length of the C-APDU</param>
         /// <param name="recvPci">Structure of protocol information</param>
         /// <param name="recvBuffer">R-APDU from the card. <paramref name="recvBuffer"/> should be <c>null</c> as the allocation will be automatic (otherwise initial instance will be lost).</param>
-        /// <param name="recvSize">On input, <para>MUST be <see cref="SCARD_AUTOALLOCATE"/>, or this method will fail. On output, receives the number of bytes in <paramref name="recvBuffer"/>.</para></param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded.</returns>
+        /// <param name="recvSize">On input, <para>MUST be <see cref="AutoAllocate"/>, or this method will fail. On output, receives the number of bytes in <paramref name="recvBuffer"/>.</para></param>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
         /// <remarks>
         /// PC/SC: class <c>SCARDCOMM</c>
         /// <code lang="none">
@@ -501,26 +497,25 @@ namespace WSCT.Wrapper
         #endregion
 
         /// <summary>
-        /// Build an <see cref="AbstractReaderState"/> for the current OS
+        /// Build an <see cref="AbstractReaderState"/> for the current OS.
         /// </summary>
-        /// <param name="readerName">Name of the reader</param>
-        /// <param name="currentState">Current state</param>
-        /// <param name="eventState">Expected state</param>
-        /// <returns>The concrete <see cref="AbstractReaderState"/> object</returns>
-        AbstractReaderState createReaderStateInstance(
+        /// <param name="readerName">Name of the reader.</param>
+        /// <param name="currentState">Current state.</param>
+        /// <param name="eventState">Expected state.</param>
+        /// <returns>The concrete <see cref="AbstractReaderState"/> object.</returns>
+        AbstractReaderState CreateReaderStateInstance(
             String readerName,
             EventState currentState,
             EventState eventState
             );
 
         /// <summary>
-        /// Build an <see cref="AbstractIoRequest"/> for the current OS
+        /// Builds an <see cref="AbstractIoRequest"/> for the current OS.
         /// </summary>
-        /// <param name="protocol">T Protocol</param>
-        /// <returns>The concrete <see cref="AbstractIoRequest"/> object</returns>
-        AbstractIoRequest createIoRequestInstance(
+        /// <param name="protocol">T Protocol.</param>
+        /// <returns>The concrete <see cref="AbstractIoRequest"/> object.</returns>
+        AbstractIoRequest CreateIoRequestInstance(
             Protocol protocol
             );
-
     }
 }

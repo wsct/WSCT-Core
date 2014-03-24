@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-
 using WSCT.Wrapper;
 
 namespace WSCT.Core
@@ -69,7 +66,7 @@ namespace WSCT.Core
         public ErrorCode cancel()
         {
             if (beforeCancelEvent != null) beforeCancelEvent(this);
-            ErrorCode ret = _cardContext.cancel();
+            var ret = _cardContext.cancel();
             if (afterCancelEvent != null) afterCancelEvent(this, ret);
             return ret;
         }
@@ -78,7 +75,7 @@ namespace WSCT.Core
         public ErrorCode establish()
         {
             if (beforeEstablishEvent != null) beforeEstablishEvent(this);
-            ErrorCode ret = _cardContext.establish();
+            var ret = _cardContext.establish();
             if (afterEstablishEvent != null) afterEstablishEvent(this, ret);
             return ret;
         }
@@ -87,7 +84,7 @@ namespace WSCT.Core
         public ErrorCode getStatusChange(uint timeout, AbstractReaderState[] readerStates)
         {
             if (beforeGetStatusChangeEvent != null) beforeGetStatusChangeEvent(this, timeout, readerStates);
-            ErrorCode ret = _cardContext.getStatusChange(timeout, readerStates);
+            var ret = _cardContext.getStatusChange(timeout, readerStates);
             if (afterGetStatusChangeEvent != null) afterGetStatusChangeEvent(this, timeout, readerStates, ret);
             return ret;
         }
@@ -96,7 +93,7 @@ namespace WSCT.Core
         public ErrorCode isValid()
         {
             if (beforeIsValidEvent != null) beforeIsValidEvent(this);
-            ErrorCode ret = _cardContext.isValid();
+            var ret = _cardContext.isValid();
             if (afterIsValidEvent != null) afterIsValidEvent(this, ret);
             return ret;
         }
@@ -105,7 +102,7 @@ namespace WSCT.Core
         public ErrorCode listReaderGroups()
         {
             if (beforeListReaderGroupsEvent != null) beforeListReaderGroupsEvent(this);
-            ErrorCode ret = _cardContext.listReaderGroups();
+            var ret = _cardContext.listReaderGroups();
             if (afterListReaderGroupsEvent != null) afterListReaderGroupsEvent(this, ret);
             return ret;
         }
@@ -114,7 +111,7 @@ namespace WSCT.Core
         public ErrorCode listReaders(String group)
         {
             if (beforeListReadersEvent != null) beforeListReadersEvent(this, group);
-            ErrorCode ret = _cardContext.listReaders(group);
+            var ret = _cardContext.listReaders(group);
             if (afterListReadersEvent != null) afterListReadersEvent(this, group, ret);
             return ret;
         }
@@ -123,7 +120,7 @@ namespace WSCT.Core
         public ErrorCode release()
         {
             if (beforeReleaseEvent != null) beforeReleaseEvent(this);
-            ErrorCode ret = _cardContext.release();
+            var ret = _cardContext.release();
             if (afterReleaseEvent != null) afterReleaseEvent(this, ret);
             return ret;
         }

@@ -2,7 +2,7 @@
 
 namespace WSCT.Wrapper.WinSCard
 {
-    class ReaderState : AbstractReaderState
+    sealed class ReaderState : AbstractReaderState
     {
         #region >> Properties
 
@@ -10,15 +10,15 @@ namespace WSCT.Wrapper.WinSCard
         /// Name of the reader being monitored.
         /// Set the value of this member to "\\\\?PnP?\\Notification" and the values of all other members to zero to be notified of the arrival of a new smart card reader.
         /// </summary>
-        public override String readerName
+        public override String ReaderName
         {
             get
             {
-                return scReaderState.readerName;
+                return ScReaderState.readerName;
             }
             set
             {
-                scReaderState.readerName = value;
+                ScReaderState.readerName = value;
             }
         }
 
@@ -26,15 +26,15 @@ namespace WSCT.Wrapper.WinSCard
         /// Current state of the reader, as seen by the application.
         /// This field can take on any of EventState values, in combination, as a bitmask.
         /// </summary>
-        public override EventState currentState
+        public override EventState CurrentState
         {
             get
             {
-                return (EventState)scReaderState.currentState;
+                return (EventState)ScReaderState.currentState;
             }
             set
             {
-                scReaderState.currentState = (uint)value;
+                ScReaderState.currentState = (uint)value;
             }
         }
 
@@ -42,57 +42,56 @@ namespace WSCT.Wrapper.WinSCard
         /// Current state of the reader, as known by the smart card resource manager.
         /// This field can take on any of EventState values, in combination, as a bitmask.
         /// </summary>
-        public override EventState eventState
+        public override EventState EventState
         {
             get
             {
-                return (EventState)scReaderState.eventState;
+                return (EventState)ScReaderState.eventState;
             }
             set
             {
-                scReaderState.eventState = (uint)value;
+                ScReaderState.eventState = (uint)value;
             }
         }
 
         /// <summary>Number of bytes in the returned ATR.</summary>
-        public override byte[] atr
+        public override byte[] Atr
         {
             get
             {
-                if ((scReaderState.atr != null) && (scReaderState.atr.Length > scReaderState.atrSize))
-                    Array.Resize<Byte>(ref scReaderState.atr, (int)scReaderState.atrSize);
-                return scReaderState.atr;
+                if ((ScReaderState.atr != null) && (ScReaderState.atr.Length > ScReaderState.atrSize))
+                    Array.Resize(ref ScReaderState.atr, (int)ScReaderState.atrSize);
+                return ScReaderState.atr;
             }
             set
             {
-                scReaderState.atr = value;
+                ScReaderState.atr = value;
             }
         }
 
-        public SCARD_READERSTATE scReaderState;
+        public ScardReaderState ScReaderState;
 
         #endregion
 
         #region >> Constructors
 
         public ReaderState()
-            : base()
         {
-            scReaderState = new SCARD_READERSTATE();
+            ScReaderState = new ScardReaderState();
         }
 
         public ReaderState(String readerName)
             : this()
         {
-            this.readerName = readerName;
+            ReaderName = readerName;
         }
 
         public ReaderState(String readerName, EventState currentState, EventState eventState)
             : this()
         {
-            this.readerName = readerName;
-            this.currentState = currentState;
-            this.eventState = eventState;
+            ReaderName = readerName;
+            CurrentState = currentState;
+            EventState = eventState;
         }
 
         #endregion

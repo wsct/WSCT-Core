@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace WSCT.Wrapper.MacOSX
 {
     [StructLayout(LayoutKind.Sequential)]
-    struct SCARD_IO_REQUEST
+    struct ScardIoRequest
     {
         /// <summary>Protocol (see <see cref="Protocol"/>)</summary>
         public UInt32 protocol;

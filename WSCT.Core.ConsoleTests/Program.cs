@@ -72,12 +72,12 @@ namespace WSCT.Core.ConsoleTests
 
             logger.observeMonitor(monitor);
 
-            AbstractReaderState readerState = monitor.waitForCardPresence(0);
+            AbstractReaderState readerState = monitor.WaitForCardPresence(0);
             if (readerState == null)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(">> Insert a card in one of the {0} readers (time out in 15s)", context.readersCount);
-                readerState = monitor.waitForCardPresence(15000);
+                readerState = monitor.WaitForCardPresence(15000);
             }
 
             if (readerState == null)
@@ -93,23 +93,23 @@ namespace WSCT.Core.ConsoleTests
 
             #region >> CardChannel
 
-            ICardChannel cardChannel = new Core.CardChannel(context, readerState.readerName);
+            ICardChannel cardChannel = new Core.CardChannel(context, readerState.ReaderName);
             logger.observeChannel((Core.CardChannelObservable)cardChannel);
 
-            cardChannel.connect(ShareMode.SCARD_SHARE_SHARED, Protocol.SCARD_PROTOCOL_ANY);
+            cardChannel.connect(ShareMode.Shared, Protocol.Any);
 
             //Console.WriteLine(cardChannel.getStatus());
 
             Byte[] recvBuffer = null;
-            cardChannel.getAttrib(Attrib.SCARD_ATTR_ATR_STRING, ref recvBuffer);
+            cardChannel.getAttrib(Attrib.AtrString, ref recvBuffer);
 
             recvBuffer = null;
-            cardChannel.getAttrib(Attrib.SCARD_ATTR_DEVICE_FRIENDLY_NAME, ref recvBuffer);
+            cardChannel.getAttrib(Attrib.DeviceFriendlyName, ref recvBuffer);
 
             recvBuffer = null;
-            cardChannel.getAttrib(Attrib.SCARD_ATTR_ATR_STRING, ref recvBuffer);
+            cardChannel.getAttrib(Attrib.AtrString, ref recvBuffer);
 
-            cardChannel.reconnect(ShareMode.SCARD_SHARE_SHARED, Protocol.SCARD_PROTOCOL_ANY, Disposition.SCARD_RESET_CARD);
+            cardChannel.reconnect(ShareMode.Shared, Protocol.Any, Disposition.ResetCard);
 
             Console.WriteLine();
 
@@ -146,7 +146,7 @@ namespace WSCT.Core.ConsoleTests
                 cardChannel.transmit(cAPDU, rAPDU);
             }
 
-            cardChannel.disconnect(Disposition.SCARD_UNPOWER_CARD);
+            cardChannel.disconnect(Disposition.UnpowerCard);
 
             #endregion
 
@@ -166,18 +166,18 @@ namespace WSCT.Core.ConsoleTests
             logger.observeChannel((ICardChannelObservable)cardLayer);
             cardStack.addLayer(cardLayer);
 
-            cardStack.attach(context, readerState.readerName);
+            cardStack.attach(context, readerState.ReaderName);
 
-            cardStack.connect(ShareMode.SCARD_SHARE_SHARED, Protocol.SCARD_PROTOCOL_ANY);
+            cardStack.connect(ShareMode.Shared, Protocol.Any);
 
-            cardStack.reconnect(ShareMode.SCARD_SHARE_SHARED, Protocol.SCARD_PROTOCOL_ANY, Disposition.SCARD_RESET_CARD);
+            cardStack.reconnect(ShareMode.Shared, Protocol.Any, Disposition.ResetCard);
 
             // Use of a CommandResponsePair object to manage the dialog
             cAPDU = new SelectCommand(SelectCommand.SelectionMode.SELECT_DF_NAME, SelectCommand.FileOccurrence.FIRST_OR_ONLY, SelectCommand.FileControlInformation.RETURN_FCI, "A000000069".fromHexa(), 0xFF);
             CommandResponsePair crp = new CommandResponsePair(cAPDU);
             crp.transmit(cardStack);
 
-            cardStack.disconnect(Disposition.SCARD_UNPOWER_CARD);
+            cardStack.disconnect(Disposition.UnpowerCard);
 
             #endregion
 
@@ -192,7 +192,7 @@ namespace WSCT.Core.ConsoleTests
             monitor.waitForChange(10000);
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(">> Remove the card in one of the readers {0} (time out in 10s)", readerState.readerName);
+            Console.WriteLine(">> Remove the card in one of the readers {0} (time out in 10s)", readerState.ReaderName);
             // Wait for another change
             monitor.waitForChange(10000);
 

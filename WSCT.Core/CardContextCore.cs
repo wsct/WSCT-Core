@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Runtime.InteropServices;
 
 using WSCT.Wrapper;
@@ -84,40 +82,40 @@ namespace WSCT.Core
         /// <inheritdoc />
         public ErrorCode cancel()
         {
-            return Primitives.api.SCardCancel(_context);
+            return Primitives.Api.SCardCancel(_context);
         }
 
         /// <inheritdoc />
         public virtual ErrorCode establish()
         {
-            return Primitives.api.SCardEstablishContext((int)Scope.SCARD_SCOPE_SYSTEM, null, null, ref _context);
+            return Primitives.Api.SCardEstablishContext((int)Scope.System, null, null, ref _context);
         }
 
         /// <inheritdoc />
         public ErrorCode getStatusChange(uint timeout, AbstractReaderState[] readerStates)
         {
-            return Primitives.api.SCardGetStatusChange(context, timeout, readerStates, (uint)readerStates.Length);
+            return Primitives.Api.SCardGetStatusChange(context, timeout, readerStates, (uint)readerStates.Length);
         }
 
         /// <inheritdoc />
         public ErrorCode isValid()
         {
-            return Primitives.api.SCardIsValidContext(_context);
+            return Primitives.Api.SCardIsValidContext(_context);
         }
 
         /// <inheritdoc />
         public virtual ErrorCode listReaders(String group)
         {
-            IntPtr zStringPtr = IntPtr.Zero;
-            UInt32 zStringSize = Primitives.api.SCARD_AUTOALLOCATE;
-            ErrorCode ret = Primitives.api.SCardListReaders(context, group, ref zStringPtr, ref zStringSize);
+            var zStringPtr = IntPtr.Zero;
+            var zStringSize = Primitives.Api.AutoAllocate;
+            var ret = Primitives.Api.SCardListReaders(context, group, ref zStringPtr, ref zStringSize);
             if (zStringPtr == IntPtr.Zero)
             {
                 _readers = new String[0];
             }
             else
             {
-                String readersStr = Marshal.PtrToStringAuto(zStringPtr, (int)zStringSize);
+                var readersStr = Marshal.PtrToStringAuto(zStringPtr, (int)zStringSize);
                 _readers = readersStr.ToString().Split(new char[] { '\0' }, StringSplitOptions.RemoveEmptyEntries);
             }
             return ret;
@@ -126,16 +124,16 @@ namespace WSCT.Core
         /// <inheritdoc />
         public virtual ErrorCode listReaderGroups()
         {
-            IntPtr zStringPtr = IntPtr.Zero;
-            UInt32 zStringSize = Primitives.api.SCARD_AUTOALLOCATE;
-            ErrorCode ret = Primitives.api.SCardListReaderGroups(context, ref zStringPtr, ref zStringSize);
+            var zStringPtr = IntPtr.Zero;
+            var zStringSize = Primitives.Api.AutoAllocate;
+            var ret = Primitives.Api.SCardListReaderGroups(context, ref zStringPtr, ref zStringSize);
             if (zStringPtr == IntPtr.Zero)
             {
                 _groups = new String[0];
             }
             else
             {
-                String groupsStr = Marshal.PtrToStringAuto(zStringPtr, (int)zStringSize);
+                var groupsStr = Marshal.PtrToStringAuto(zStringPtr, (int)zStringSize);
                 _groups = groupsStr.ToString().Split(new char[] { '\0' }, StringSplitOptions.RemoveEmptyEntries);
             }
             return ret;
@@ -144,7 +142,7 @@ namespace WSCT.Core
         /// <inheritdoc />
         public virtual ErrorCode release()
         {
-            return Primitives.api.SCardReleaseContext(_context);
+            return Primitives.Api.SCardReleaseContext(_context);
         }
 
         #endregion

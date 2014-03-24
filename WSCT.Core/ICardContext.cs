@@ -48,13 +48,13 @@ namespace WSCT.Core
         /// This function terminates all outstanding actions within a specific resource manager context.
         /// <seealso cref="IPrimitives.SCardCancel"/>
         /// </summary>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded</returns>
         ErrorCode cancel();
 
         /// <summary>
         /// Establishes the resource manager context.
         /// </summary>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded</returns>
         ErrorCode establish();
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace WSCT.Core
         /// that it is willing to wait for an action to occur on one of the listed readers.
         /// Note that <see cref="getStatusChange"/> uses the user-supplied value in the currentState members of the <paramref name="readerStates"/> <see cref="AbstractReaderState"/> array 
         /// as the definition of the current state of the readers.
-        /// The function returns when there is a change in availability, having filled in the <see cref="AbstractReaderState.eventState"/> members of <paramref name="readerStates"/> appropriately.
+        /// The function returns when there is a change in availability, having filled in the <see cref="AbstractReaderState.EventState"/> members of <paramref name="readerStates"/> appropriately.
         /// </summary>
         /// <param name="timeout">The maximum amount of time, in milliseconds, to wait for an action. A value of zero causes the function to return immediately. A value of INFINITE causes this function never to time out.</param>
         /// <param name="readerStates">
@@ -77,26 +77,26 @@ namespace WSCT.Core
         /// <summary>
         /// Determines whether a smart card context handle is valid.
         /// </summary>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if context is valid</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if context is valid</returns>
         ErrorCode isValid();
 
         /// <summary>
         /// Provides the list of readers within a set of named reader groups.
         /// </summary>
         /// <param name="group">Name of the reader group</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded</returns>
         ErrorCode listReaders(String group);
 
         /// <summary>
         /// Provides the list of groups of readers available on the system.
         /// </summary>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded</returns>
         ErrorCode listReaderGroups();
 
         /// <summary>
         /// Closes the resource manager context.
         /// </summary>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded</returns>
         ErrorCode release();
 
         #endregion

@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-using WSCT;
 using WSCT.Wrapper;
 using WSCT.Core.APDU;
 
@@ -37,21 +33,21 @@ namespace WSCT.Core
         /// </summary>
         /// <param name="context">Context of the resource manager</param>
         /// <param name="readerName">Name of the reader to use for this instance</param>
-        void attach(Core.ICardContext context, String readerName);
+        void attach(ICardContext context, String readerName);
 
         /// <summary>
         /// Establishes a connection with the smartcard contained by the reader
         /// </summary>
         /// <param name="shareMode">Shared access mode</param>
         /// <param name="preferedProtocol">Protocol T to use</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded</returns>
         ErrorCode connect(ShareMode shareMode, Protocol preferedProtocol);
 
         /// <summary>
         /// Terminates the connection with the smartcard in the reader
         /// </summary>
         /// <param name="disposition">What to do with the card after disconnection</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded</returns>
         ErrorCode disconnect(Disposition disposition);
 
         /// <summary>
@@ -59,13 +55,13 @@ namespace WSCT.Core
         /// </summary>
         /// <param name="attrib">Identifier to the attrib to retrieve</param>
         /// <param name="buffer">Buffer that will be set to the value of the attrib</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded</returns>
         ErrorCode getAttrib(Attrib attrib, ref Byte[] buffer);
 
         /// <summary>
         /// Retrieves current status of the smartcard in the reader
         /// </summary>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded</returns>
         State getStatus();
 
         /// <summary>
@@ -74,7 +70,7 @@ namespace WSCT.Core
         /// <param name="shareMode">Shared access mode</param>
         /// <param name="preferedProtocol">Protocol T to use</param>
         /// <param name="initialization">Reconnection mode</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded</returns>
         ErrorCode reconnect(ShareMode shareMode, Protocol preferedProtocol, Disposition initialization);
 
         /// <summary>
@@ -82,7 +78,7 @@ namespace WSCT.Core
         /// </summary>
         /// <param name="command">Command to send to the smartcard</param>
         /// <param name="response">Response received from the smartcard</param>
-        /// <returns><see cref="ErrorCode.SCARD_S_SUCCESS"/> if succeeded</returns>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded</returns>
         ErrorCode transmit(ICardCommand command, ICardResponse response);
 
         #endregion
