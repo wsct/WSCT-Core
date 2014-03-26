@@ -12,6 +12,7 @@ namespace WSCT.Wrapper
         /// Value used by PC/SC API to ask for auto allocation.
         /// </summary>
         UInt32 AutoAllocate { get; }
+
         /// <summary>
         /// Default maximum buffer size used to fetch PC/SC responses.
         /// </summary>
@@ -428,10 +429,11 @@ namespace WSCT.Wrapper
             [In] ref AbstractIoRequest sendPci,
             [In] Byte[] sendBuffer,
             [In] UInt32 sendSize,
-            [In, Out] ref  AbstractIoRequest recvPci,
+            [In, Out] ref AbstractIoRequest recvPci,
             [In, Out] ref Byte[] recvBuffer,
             [In, Out] ref UInt32 recvSize
             );
+
         /*        {
                     ErrorCode ret;
 

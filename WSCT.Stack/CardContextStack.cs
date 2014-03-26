@@ -1,29 +1,26 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
-
 using WSCT.Wrapper;
 
 namespace WSCT.Stack
 {
     /// <summary>
-    /// Implements <c>CardContextStackCore</c> as an <c>CardContextObservable</c> layerDescriptions
+    /// Reference implementation of <see cref="ICardContextStack"/>.
     /// </summary>
     public class CardContextStack : ICardContextStack
     {
         #region >> Attributes
 
-        List<ICardContextLayer> _layers;
+        private readonly List<ICardContextLayer> _layers;
 
         #endregion
 
         #region >> Constructors
 
         /// <summary>
-        /// Default constructor
+        /// Initializes a new instance.
         /// </summary>
         public CardContextStack()
-            : base()
         {
             _layers = new List<ICardContextLayer>();
         }
@@ -33,15 +30,19 @@ namespace WSCT.Stack
         #region >> Methods
 
         /// <summary>
-        /// Returns index of a <see cref="ICardContextLayer"/> instance in the layerDescriptions
+        /// Returns index of a <see cref="ICardContextLayer"/> instance in the stack.
         /// </summary>
-        /// <param name="layer">Layer instance to find</param>
-        /// <returns>The index of the layer in the layerDescriptions</returns>
-        int getIndex(ICardContextLayer layer)
+        /// <param name="layer">Layer instance to find.</param>
+        /// <returns>The index of the layer in the stack.</returns>
+        private int GetIndex(ICardContextLayer layer)
         {
-            for (int index = 0; index < _layers.Count; index++)
+            for (var index = 0; index < _layers.Count; index++)
+            {
                 if (_layers[index] == layer)
+                {
                     return index;
+                }
+            }
             throw new Exception("CardContextStack: layer not descriptionFound in the stack");
         }
 
@@ -50,48 +51,54 @@ namespace WSCT.Stack
         #region >> ICardContextStack Membres
 
         /// <inheritdoc />
-        public List<ICardContextLayer> layers
+        public List<ICardContextLayer> Layers
         {
             get { return _layers; }
         }
 
         /// <inheritdoc />
-        public void addLayer(ICardContextLayer layer)
+        public void AddLayer(ICardContextLayer layer)
         {
             _layers.Add(layer);
         }
 
         /// <inheritdoc />
-        public void releaseLayer(ICardContextLayer layer)
+        public void ReleaseLayer(ICardContextLayer layer)
         {
             _layers.Remove(layer);
         }
 
         /// <inheritdoc />
-        public ICardContextLayer requestLayer(ICardContextLayer layer, SearchMode mode)
+        public ICardContextLayer RequestLayer(ICardContextLayer layer, SearchMode mode)
         {
             ICardContextLayer newLayer;
             int index;
             if (_layers.Count == 0)
+            {
                 throw new Exception("CardContextStack.requestLayer(): no layers defined in the stack");
+            }
             switch (mode)
             {
-                case SearchMode.bottom:
+                case SearchMode.Bottom:
                     newLayer = _layers[_layers.Count - 1];
                     break;
-                case SearchMode.next:
-                    index = getIndex(layer);
+                case SearchMode.Next:
+                    index = GetIndex(layer);
                     if (index >= _layers.Count)
+                    {
                         throw new Exception("CardContextStack.requestLayer(): Seek next failed");
+                    }
                     newLayer = _layers[index + 1];
                     break;
-                case SearchMode.previous:
-                    index = getIndex(layer);
+                case SearchMode.Previous:
+                    index = GetIndex(layer);
                     if (index <= 0)
+                    {
                         throw new Exception("CardContextStack.requestLayer(): Seek previous failed");
+                    }
                     newLayer = _layers[index - 1];
                     break;
-                case SearchMode.top:
+                case SearchMode.Top:
                     newLayer = _layers[0];
                     break;
                 default:
@@ -107,73 +114,73 @@ namespace WSCT.Stack
         /// <inheritdoc />
         public IntPtr context
         {
-            get { return requestLayer(null, SearchMode.top).context; }
+            get { return RequestLayer(null, SearchMode.Top).context; }
         }
 
         /// <inheritdoc />
         public string[] groups
         {
-            get { return requestLayer(null, SearchMode.top).groups; }
+            get { return RequestLayer(null, SearchMode.Top).groups; }
         }
 
         /// <inheritdoc />
         public int groupsCount
         {
-            get { return requestLayer(null, SearchMode.top).groupsCount; }
+            get { return RequestLayer(null, SearchMode.Top).groupsCount; }
         }
 
         /// <inheritdoc />
         public string[] readers
         {
-            get { return requestLayer(null, SearchMode.top).readers; }
+            get { return RequestLayer(null, SearchMode.Top).readers; }
         }
 
         /// <inheritdoc />
         public int readersCount
         {
-            get { return requestLayer(null, SearchMode.top).readersCount; }
+            get { return RequestLayer(null, SearchMode.Top).readersCount; }
         }
 
         /// <inheritdoc />
         public ErrorCode cancel()
         {
-            return requestLayer(null, SearchMode.top).cancel();
+            return RequestLayer(null, SearchMode.Top).cancel();
         }
 
         /// <inheritdoc />
         public ErrorCode establish()
         {
-            return requestLayer(null, SearchMode.top).establish();
+            return RequestLayer(null, SearchMode.Top).establish();
         }
 
         /// <inheritdoc />
         public ErrorCode getStatusChange(uint timeout, AbstractReaderState[] readerStates)
         {
-            return requestLayer(null, SearchMode.top).getStatusChange(timeout, readerStates);
+            return RequestLayer(null, SearchMode.Top).getStatusChange(timeout, readerStates);
         }
 
         /// <inheritdoc />
         public ErrorCode isValid()
         {
-            return requestLayer(null, SearchMode.top).isValid();
+            return RequestLayer(null, SearchMode.Top).isValid();
         }
 
         /// <inheritdoc />
         public ErrorCode listReaders(string group)
         {
-            return requestLayer(null, SearchMode.top).listReaders(group);
+            return RequestLayer(null, SearchMode.Top).listReaders(group);
         }
 
         /// <inheritdoc />
         public ErrorCode listReaderGroups()
         {
-            return requestLayer(null, SearchMode.top).listReaderGroups();
+            return RequestLayer(null, SearchMode.Top).listReaderGroups();
         }
 
         /// <inheritdoc />
         public ErrorCode release()
         {
-            return requestLayer(null, SearchMode.top).release();
+            return RequestLayer(null, SearchMode.Top).release();
         }
 
         #endregion

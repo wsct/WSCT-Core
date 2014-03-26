@@ -161,10 +161,10 @@ namespace WSCT.Core.ConsoleTests
             ICardChannelLayer cardLayer61 = new CardChannelLayer61xx();
 
             logger61xx.observeChannel((ICardChannelObservable)cardLayer61);
-            cardStack.addLayer(cardLayer61);
+            cardStack.AddLayer(cardLayer61);
 
             logger.observeChannel((ICardChannelObservable)cardLayer);
-            cardStack.addLayer(cardLayer);
+            cardStack.AddLayer(cardLayer);
 
             cardStack.attach(context, readerState.ReaderName);
 

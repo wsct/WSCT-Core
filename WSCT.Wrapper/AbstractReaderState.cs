@@ -31,6 +31,8 @@ namespace WSCT.Wrapper
         /// </summary>
         public abstract string ReaderName { get; set; }
 
+        #region >> Object
+
         /// <inheritdoc />
         public override string ToString()
         {
@@ -77,5 +79,7 @@ namespace WSCT.Wrapper
             }
             return String.Format("Events:{0} on reader {1}", sEvent, ReaderName);
         }
+
+        #endregion
     }
 }

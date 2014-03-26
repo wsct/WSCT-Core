@@ -1,74 +1,71 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace WSCT.Stack.Generic
 {
     /// <summary>
-    /// 
+    /// Generic layer description (by its name, assembly and class name) for dynamic load.
     /// </summary>
     public abstract class GenericLayerDescription
     {
         #region >> Fields
 
-        String _name;
-        String _dllName;
-        String _className;
-        String _pathToDll;
+        private String _className;
+        private String _dllName;
+        private String _name;
+        private String _pathToDll;
 
         #endregion
 
         #region >> Properties
 
         /// <summary>
-        /// 
+        /// Name of the layer.
         /// </summary>
         [XmlAttribute("name")]
-        public String name
+        public String Name
         {
             get { return _name; }
             set { _name = (value == "" ? null : value); }
         }
 
         /// <summary>
-        /// 
+        /// Name of the assembly (without path).
         /// </summary>
         [XmlElement("dll")]
-        public String dllName
+        public String DllName
         {
             get { return _dllName; }
             set { _dllName = (value == "" ? null : value); }
         }
 
         /// <summary>
-        /// 
+        /// Canonical name of the class.
         /// </summary>
         [XmlElement("className")]
-        public String className
+        public String ClassName
         {
             get { return _className; }
-            set { _className = (value == null ? "" : value); }
+            set { _className = (value ?? ""); }
         }
 
         /// <summary>
-        /// 
+        /// Path to the assembly (directory only).
         /// </summary>
         [XmlElement("pathToDll")]
-        public String pathToDll
+        public String PathToDll
         {
             get { return _pathToDll; }
-            set { _pathToDll = (value == null ? "" : value); }
+            set { _pathToDll = (value ?? ""); }
         }
 
         /// <summary>
         /// 
         /// </summary>
         [XmlIgnore]
-        public Boolean isValid
+        public Boolean IsValid
         {
-            get { return (name != null && _dllName != null); }
+            get { return (Name != null && _dllName != null); }
         }
 
         #endregion
@@ -76,9 +73,9 @@ namespace WSCT.Stack.Generic
         #region >> Constructors
 
         /// <summary>
-        /// 
+        /// Initializes a new instance.
         /// </summary>
-        public GenericLayerDescription()
+        protected GenericLayerDescription()
         {
             _pathToDll = "";
         }

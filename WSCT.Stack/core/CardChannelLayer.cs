@@ -1,37 +1,26 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-
 using WSCT.Core;
 
 namespace WSCT.Stack.Core
 {
-
     /// <summary>
-    /// Implements <see cref="CardChannel"/> as a <see cref="CardChannelLayer"/>
+    /// Implements <see cref="CardChannel"/> as a <see cref="CardChannelLayer"/>.
     /// </summary>
     /// <remarks>
     /// This layer is the terminal (top) layer by design.
     /// </remarks>
     public class CardChannelLayer : CardChannel, ICardChannelLayer
     {
-        #region >> Fields
-
-        ICardChannelStack _stack;
-
-        #endregion
-
         #region >> Constructors
 
         /// <summary>
-        /// Default constructor
+        /// Initializes a new instance.
         /// </summary>
         public CardChannelLayer()
-            : base()
         {
         }
 
-        /// <inheritdoc cref="CardChannel(ICardContext,String)"/>
+        /// <inheritdoc cref="CardChannel(ICardContext,string)"/>
         public CardChannelLayer(ICardContext context, String readerName)
             : base(context, readerName)
         {
@@ -42,9 +31,9 @@ namespace WSCT.Stack.Core
         #region >> ICardChannelLayer Membres
 
         /// <inheritdoc />
-        public void setStack(ICardChannelStack stack)
+        public void SetStack(ICardChannelStack stack)
         {
-            _stack = stack;
+            // Nothing to do here.
         }
 
         #endregion

@@ -35,7 +35,7 @@ namespace WSCT.Core.ConsoleTests
         #region >> ICardChannelLayer Membres
 
         /// <inheritdoc />
-        public void setStack(ICardChannelStack stack)
+        public void SetStack(ICardChannelStack stack)
         {
             _stack = stack;
         }
@@ -46,24 +46,24 @@ namespace WSCT.Core.ConsoleTests
 
         public Protocol protocol
         {
-            get { return _stack.requestLayer(this, SearchMode.next).protocol; }
+            get { return _stack.RequestLayer(this, SearchMode.Next).protocol; }
         }
 
         public string readerName
         {
-            get { return _stack.requestLayer(this, SearchMode.next).readerName; }
+            get { return _stack.RequestLayer(this, SearchMode.Next).readerName; }
         }
 
         public void attach(ICardContext context, string readerName)
         {
-            _stack.requestLayer(this, SearchMode.next).attach(context, readerName);
+            _stack.RequestLayer(this, SearchMode.Next).attach(context, readerName);
         }
 
         public ErrorCode connect(ShareMode shareMode, Protocol preferedProtocol)
         {
             if (beforeConnectEvent != null) beforeConnectEvent(this, shareMode, preferedProtocol);
 
-            ErrorCode ret = _stack.requestLayer(this, SearchMode.next).connect(shareMode, preferedProtocol);
+            ErrorCode ret = _stack.RequestLayer(this, SearchMode.Next).connect(shareMode, preferedProtocol);
 
             if (afterConnectEvent != null) afterConnectEvent(this, shareMode, preferedProtocol, ret);
 
@@ -74,7 +74,7 @@ namespace WSCT.Core.ConsoleTests
         {
             if (beforeDisconnectEvent != null) beforeDisconnectEvent(this, disposition);
 
-            ErrorCode ret = _stack.requestLayer(this, SearchMode.next).disconnect(disposition);
+            ErrorCode ret = _stack.RequestLayer(this, SearchMode.Next).disconnect(disposition);
 
             if (afterDisconnectEvent != null) afterDisconnectEvent(this, disposition, ret);
 
@@ -85,7 +85,7 @@ namespace WSCT.Core.ConsoleTests
         {
             if (beforeGetAttribEvent != null) beforeGetAttribEvent(this, attrib, buffer);
 
-            ErrorCode ret = _stack.requestLayer(this, SearchMode.next).getAttrib(attrib, ref buffer);
+            ErrorCode ret = _stack.RequestLayer(this, SearchMode.Next).getAttrib(attrib, ref buffer);
 
             if (afterGetAttribEvent != null) afterGetAttribEvent(this, attrib, buffer, ret);
 
@@ -96,7 +96,7 @@ namespace WSCT.Core.ConsoleTests
         {
             if (beforeGetStatusEvent != null) beforeGetStatusEvent(this);
 
-            State ret = _stack.requestLayer(this, SearchMode.next).getStatus();
+            State ret = _stack.RequestLayer(this, SearchMode.Next).getStatus();
 
             if (afterGetStatusEvent != null) afterGetStatusEvent(this, ret);
 
@@ -107,7 +107,7 @@ namespace WSCT.Core.ConsoleTests
         {
             if (beforeReconnectEvent != null) beforeReconnectEvent(this, shareMode, preferedProtocol, initialization);
 
-            ErrorCode ret = _stack.requestLayer(this, SearchMode.next).reconnect(shareMode, preferedProtocol, initialization);
+            ErrorCode ret = _stack.RequestLayer(this, SearchMode.Next).reconnect(shareMode, preferedProtocol, initialization);
 
             if (afterReconnectEvent != null) afterReconnectEvent(this, shareMode, preferedProtocol, initialization, ret);
 
@@ -125,7 +125,7 @@ namespace WSCT.Core.ConsoleTests
                 UInt32 le = cAPDU.le;
                 cAPDU.hasLe = false;
                 // As an example, direct use of the layer to transmit the command
-                ret = _stack.requestLayer(this, SearchMode.next).transmit(command, response);
+                ret = _stack.RequestLayer(this, SearchMode.Next).transmit(command, response);
                 ResponseAPDU rAPDU = (ResponseAPDU)response;
                 if ((ret == ErrorCode.Success) && (rAPDU.sw1 == 0x61))
                 {
@@ -134,12 +134,12 @@ namespace WSCT.Core.ConsoleTests
                     // As an example, use of a CommandResponsePair object to manage the dialog
                     CommandResponsePair crpGetResponse = new CommandResponsePair(new GetResponseCommand(le));
                     crpGetResponse.rAPDU = rAPDU;
-                    ret = crpGetResponse.transmit(_stack.requestLayer(this, SearchMode.next));
+                    ret = crpGetResponse.transmit(_stack.RequestLayer(this, SearchMode.Next));
                 }
             }
             else
             {
-                ret = _stack.requestLayer(this, SearchMode.next).transmit(command, response);
+                ret = _stack.RequestLayer(this, SearchMode.Next).transmit(command, response);
             }
 
             if (afterTransmitEvent != null) afterTransmitEvent(this, command, response, ret);

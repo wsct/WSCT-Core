@@ -3,34 +3,22 @@ using System.Runtime.InteropServices;
 
 namespace WSCT.Wrapper.PCSCLite64
 {
-    sealed class IoRequest : AbstractIoRequest
+    internal sealed class IoRequest : AbstractIoRequest
     {
         #region >> Properties
 
         /// <inheritdoc />
         public override UInt32 Protocol
         {
-            get
-            {
-                return (uint)ScIoRequest.protocol;
-            }
-            set
-            {
-                ScIoRequest.protocol = value;
-            }
+            get { return (uint)ScIoRequest.protocol; }
+            set { ScIoRequest.protocol = value; }
         }
 
         /// <inheritdoc />
         public override UInt32 PciLength
         {
-            get
-            {
-                return (uint)ScIoRequest.pciLength;
-            }
-            set
-            {
-                ScIoRequest.pciLength = value;
-            }
+            get { return (uint)ScIoRequest.pciLength; }
+            set { ScIoRequest.pciLength = value; }
         }
 
         public ScardIoRequest ScIoRequest;

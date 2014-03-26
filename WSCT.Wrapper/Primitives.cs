@@ -22,28 +22,24 @@ namespace WSCT.Wrapper
 
         static Primitives()
         {
-            if (Environment.OSVersion.Platform == PlatformID.Unix)
+            switch (Environment.OSVersion.Platform)
             {
-                // As MacOS often pretends to be Unix, this basic hack allows to detect MacOS from some of its specific directories.
-                if (Directory.Exists("/Applications") & Directory.Exists("/System") & Directory.Exists("/Users") & Directory.Exists("/Volumes"))
-                {
-                    Api = new MacOSX.Primitives();
-                }
-                else
-                {
-                    if (Environment.Is64BitProcess)
-                        Api = new PCSCLite64.Primitives();
+                case PlatformID.Unix:
+                    if (Directory.Exists("/Applications") & Directory.Exists("/System") & Directory.Exists("/Users") & Directory.Exists("/Volumes"))
+                    {
+                        Api = new MacOSX.Primitives();
+                    }
                     else
-                        Api = new PCSCLite32.Primitives();
-                }
-            }
-            else if (Environment.OSVersion.Platform == PlatformID.MacOSX)
-            {
-                Api = new MacOSX.Primitives();
-            }
-            else
-            {
-                Api = new WinSCard.Primitives();
+                    {
+                        Api = Environment.Is64BitProcess ? (IPrimitives)new PCSCLite64.Primitives() : new PCSCLite32.Primitives();
+                    }
+                    break;
+                case PlatformID.MacOSX:
+                    Api = new MacOSX.Primitives();
+                    break;
+                default:
+                    Api = new WinSCard.Primitives();
+                    break;
             }
         }
 

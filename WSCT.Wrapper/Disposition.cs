@@ -9,6 +9,7 @@
         /// Do not do anything special on reconnect.
         /// </summary>
         LeaveCard = 0,
+
         /// <summary>
         /// Reset the card.
         /// </summary>
@@ -16,6 +17,7 @@
         /// Used to do a warm reset with SCardReconnect.
         /// </remarks>
         ResetCard = 1,
+
         /// <summary>
         /// Power down the card.
         /// </summary>
@@ -23,6 +25,7 @@
         /// Used to do a cold reset with SCardReconnect.
         /// </remarks>
         UnpowerCard = 2,
+
         /// <summary>
         /// Eject.
         /// </summary>

@@ -1,25 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml.Serialization;
+using WSCT.Stack.Generic;
 
 namespace WSCT.Stack
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class CardChannelLayerDescription : Generic.GenericLayerDescription
+    /// <inheritdoc />
+    public class CardChannelLayerDescription : GenericLayerDescription
     {
-        #region >> Constructors
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public CardChannelLayerDescription()
-            : base()
-        {
-        }
-
-        #endregion
     }
 }

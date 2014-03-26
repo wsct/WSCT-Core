@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Xml.Serialization;
-using System.IO;
+using WSCT.Stack.Generic;
 
 namespace WSCT.Stack
 {
@@ -10,18 +7,7 @@ namespace WSCT.Stack
     /// 
     /// </summary>
     [XmlRoot("ChannelStack")]
-    public class CardChannelStackDescription : Generic.GenericStackDescription<CardChannelLayerDescription, ICardChannelLayer>
+    public class CardChannelStackDescription : GenericStackDescription<CardChannelLayerDescription, ICardChannelLayer>
     {
-        #region >> Constructors
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public CardChannelStackDescription()
-            : base()
-        {
-        }
-
-        #endregion
     }
 }

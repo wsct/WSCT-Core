@@ -7,17 +7,16 @@ namespace WSCT.Wrapper.MacOSX
     /// <summary>
     /// Wrapper of PC/SC (pcsclite) for MacOS.
     /// </summary>
-    class Primitives : IPrimitives
+    internal class Primitives : IPrimitives
     {
         #region >> Fields
-
 
         /// <summary>
         /// PC/SC resources management
         /// </summary>
         internal static IntPtr ActiveContext;
 
-        UInt32 _defaultBufferSize = 1024;
+        private UInt32 _defaultBufferSize = 1024;
 
         #endregion
 
@@ -31,14 +30,8 @@ namespace WSCT.Wrapper.MacOSX
 
         public uint DefaultBufferSize
         {
-            get
-            {
-                return _defaultBufferSize;
-            }
-            set
-            {
-                _defaultBufferSize = value;
-            }
+            get { return _defaultBufferSize; }
+            set { _defaultBufferSize = value; }
         }
 
         /// <inheritdoc />
@@ -64,17 +57,19 @@ namespace WSCT.Wrapper.MacOSX
                 var def = Encoding.Default.GetBytes(readerName);
                 var utf8ReaderName = Encoding.Convert(Encoding.Default, Encoding.UTF8, def);
                 fixed (byte* preaderName = utf8ReaderName)
-                fixed (void* pcard = &card)
                 {
-                    ret = UnsafePrimitives.SCardConnect(
-                        (void*)context,
-                        (char*)preaderName,
-                        (uint)shareMode,
-                        (uint)preferedProtocol,
-                        (void**)pcard,
-                        &uactiveProtocol
-                    );
-                    activeProtocol = (Protocol)uactiveProtocol;
+                    fixed (void* pcard = &card)
+                    {
+                        ret = UnsafePrimitives.SCardConnect(
+                            (void*)context,
+                            (char*)preaderName,
+                            (uint)shareMode,
+                            (uint)preferedProtocol,
+                            (void**)pcard,
+                            &uactiveProtocol
+                            );
+                        activeProtocol = (Protocol)uactiveProtocol;
+                    }
                 }
             }
 
@@ -95,7 +90,7 @@ namespace WSCT.Wrapper.MacOSX
                 return UnsafePrimitives.SCardDisconnect(
                     (void*)card,
                     (uint)disposition
-                );
+                    );
             }
         }
 
@@ -113,10 +108,12 @@ namespace WSCT.Wrapper.MacOSX
                         null,
                         null,
                         (void**)pcontext
-                    );
+                        );
                 }
                 if (ret == ErrorCode.Success)
+                {
                     ActiveContext = context;
+                }
             }
 
             return ret;
@@ -140,7 +137,7 @@ namespace WSCT.Wrapper.MacOSX
                                 attributeId,
                                 precvAttribute,
                                 precvAttributeSize
-                            );
+                                );
                         }
                         if (ret == ErrorCode.Success)
                         {
@@ -152,7 +149,7 @@ namespace WSCT.Wrapper.MacOSX
                                     attributeId,
                                     precvAttribute,
                                     precvAttributeSize
-                                );
+                                    );
                             }
                         }
                         else
@@ -165,15 +162,16 @@ namespace WSCT.Wrapper.MacOSX
                 else
                 {
                     fixed (uint* precvAttributeSize = &recvAttributeSize)
-                    fixed (byte* precvAttribute = recvAttribute)
                     {
-                        ret = UnsafePrimitives.SCardGetAttrib(
-                            (void*)card,
-                            attributeId,
-                            precvAttribute,
-                            precvAttributeSize
-                        );
-
+                        fixed (byte* precvAttribute = recvAttribute)
+                        {
+                            ret = UnsafePrimitives.SCardGetAttrib(
+                                (void*)card,
+                                attributeId,
+                                precvAttribute,
+                                precvAttributeSize
+                                );
+                        }
                     }
                 }
             }
@@ -213,7 +211,7 @@ namespace WSCT.Wrapper.MacOSX
             {
                 return UnsafePrimitives.SCardIsValidContext(
                     (void*)context
-                );
+                    );
             }
         }
 
@@ -230,41 +228,43 @@ namespace WSCT.Wrapper.MacOSX
                 var utf8Groups = Encoding.Convert(Encoding.Default, Encoding.UTF8, def);
 
                 fixed (uint* psize = &size)
-                fixed (byte* pgroups = utf8Groups)
                 {
-                    if (size == AutoAllocate)
+                    fixed (byte* pgroups = utf8Groups)
                     {
-                        err = UnsafePrimitives.SCardListReaders(
-                            (void*)context,
-                            (char*)pgroups,
-                            (char*)readers,
-                            psize
-                        );
-                        if (err == ErrorCode.Success)
+                        if (size == AutoAllocate)
                         {
-                            var creaders = new char[*psize];
-                            fixed (char* pcreaders = creaders)
+                            err = UnsafePrimitives.SCardListReaders(
+                                (void*)context,
+                                (char*)pgroups,
+                                (char*)readers,
+                                psize
+                                );
+                            if (err == ErrorCode.Success)
                             {
-                                err = UnsafePrimitives.SCardListReaders(
-                                    (void*)context,
-                                    (char*)pgroups,
-                                    pcreaders,
-                                    psize
-                                    );
-                                readers = (IntPtr)pcreaders;
+                                var creaders = new char[*psize];
+                                fixed (char* pcreaders = creaders)
+                                {
+                                    err = UnsafePrimitives.SCardListReaders(
+                                        (void*)context,
+                                        (char*)pgroups,
+                                        pcreaders,
+                                        psize
+                                        );
+                                    readers = (IntPtr)pcreaders;
+                                }
                             }
                         }
+                        else
+                        {
+                            err = UnsafePrimitives.SCardListReaders(
+                                (void*)context,
+                                (char*)pgroups,
+                                (char*)readers,
+                                psize
+                                );
+                        }
+                        size = *psize;
                     }
-                    else
-                    {
-                        err = UnsafePrimitives.SCardListReaders(
-                            (void*)context,
-                            (char*)pgroups,
-                            (char*)readers,
-                            psize
-                        );
-                    }
-                    size = *psize;
                 }
             }
 
@@ -286,16 +286,19 @@ namespace WSCT.Wrapper.MacOSX
                             (void*)context,
                             (char*)groups,
                             psize
-                        );
-                        var cgroups = new char[*psize];
-                        fixed (char* pcgroups = cgroups)
-                        {
-                            err = UnsafePrimitives.SCardListReaderGroups(
-                                (void*)context,
-                                pcgroups,
-                                psize
                             );
-                            groups = (IntPtr)pcgroups;
+                        if (err == ErrorCode.Success)
+                        {
+                            var cgroups = new char[*psize];
+                            fixed (char* pcgroups = cgroups)
+                            {
+                                err = UnsafePrimitives.SCardListReaderGroups(
+                                    (void*)context,
+                                    pcgroups,
+                                    psize
+                                    );
+                                groups = (IntPtr)pcgroups;
+                            }
                         }
                     }
                     else
@@ -304,7 +307,7 @@ namespace WSCT.Wrapper.MacOSX
                             (void*)context,
                             (char*)groups,
                             psize
-                        );
+                            );
                     }
                     size = *psize;
                 }
@@ -343,9 +346,11 @@ namespace WSCT.Wrapper.MacOSX
             {
                 ret = UnsafePrimitives.SCardReleaseContext(
                     (void*)context
-                );
+                    );
                 if (ret == ErrorCode.Success)
+                {
                     ActiveContext = IntPtr.Zero;
+                }
             }
 
             return ret;
@@ -367,36 +372,31 @@ namespace WSCT.Wrapper.MacOSX
                 var ustatus = (uint)status;
                 var uprotocol = (uint)protocol;
                 fixed (uint* preaderNameSize = &readerNameSize)
-                fixed (uint* patrSize = &atrSize)
                 {
-                    if (readerNameSize == AutoAllocate && atrSize == AutoAllocate)
+                    fixed (uint* patrSize = &atrSize)
                     {
-                        //TODO
+                        if (readerNameSize != AutoAllocate && atrSize != AutoAllocate)
+                        {
+                            ret = UnsafePrimitives.SCardStatus(
+                                (void*)card,
+                                (char*)readerName,
+                                (uint*)readerNameSize,
+                                &ustatus,
+                                &uprotocol,
+                                (byte*)atr,
+                                (uint*)atrSize
+                                );
+                        }
+                        else
+                        {
+                            //TODO
+                            throw new NotImplementedException();
+                        }
+                        status = (State)ustatus;
+                        protocol = (Protocol)uprotocol;
+                        readerNameSize = *preaderNameSize;
+                        atrSize = *patrSize;
                     }
-                    else if (readerNameSize == AutoAllocate && atrSize != AutoAllocate)
-                    {
-                        //TODO
-                    }
-                    else if (readerNameSize != AutoAllocate && atrSize == AutoAllocate)
-                    {
-                        //TODO
-                    }
-                    else
-                    {
-                        ret = UnsafePrimitives.SCardStatus(
-                            (void*)card,
-                            (char*)readerName,
-                            (uint*)readerNameSize,
-                            &ustatus,
-                            &uprotocol,
-                            (byte*)atr,
-                            (uint*)atrSize
-                        );
-                    }
-                    status = (State)ustatus;
-                    protocol = (Protocol)uprotocol;
-                    readerNameSize = *preaderNameSize;
-                    atrSize = *patrSize;
                 }
             }
 
@@ -426,7 +426,7 @@ namespace WSCT.Wrapper.MacOSX
             else
             {
                 var readerStr = Marshal.PtrToStringAuto(zReaderNamePtr, (int)zReaderNameSize - 2);
-                readerName = readerStr.Split(new[] { '\0' })[0];
+                readerName = readerStr.Split(new[] {'\0'})[0];
             }
             if (atrPtr == IntPtr.Zero)
             {
@@ -449,11 +449,9 @@ namespace WSCT.Wrapper.MacOSX
             {
                 var ustatus = (uint)status;
                 var uprotocol = (uint)protocol;
-                char* readerName = null;
                 uint readerNameSize = 0;
-                byte* atr = null;
                 uint atrSize = 0;
-                ret = UnsafePrimitives.SCardStatus((void*)card, readerName, &readerNameSize, &ustatus, &uprotocol, atr, &atrSize);
+                ret = UnsafePrimitives.SCardStatus((void*)card, null, &readerNameSize, &ustatus, &uprotocol, null, &atrSize);
                 status = (State)ustatus;
                 protocol = (Protocol)uprotocol;
             }
@@ -481,18 +479,22 @@ namespace WSCT.Wrapper.MacOSX
                     recvSize = DefaultBufferSize;
                     recvBuffer = new byte[recvSize];
                     fixed (byte* psendBuffer = sendBuffer)
-                    fixed (uint* precvSize = &recvSize)
-                    fixed (byte* precvBuffer = recvBuffer)
                     {
-                        ret = UnsafePrimitives.SCardTransmit(
-                            (void*)card,
-                            (void*)ptrsendPci,
-                            psendBuffer,
-                            sendSize,
-                            (void*)ptrrecvPci,
-                            precvBuffer,
-                            precvSize
-                        );
+                        fixed (uint* precvSize = &recvSize)
+                        {
+                            fixed (byte* precvBuffer = recvBuffer)
+                            {
+                                ret = UnsafePrimitives.SCardTransmit(
+                                    (void*)card,
+                                    (void*)ptrsendPci,
+                                    psendBuffer,
+                                    sendSize,
+                                    (void*)ptrrecvPci,
+                                    precvBuffer,
+                                    precvSize
+                                    );
+                            }
+                        }
                     }
                     if (ret == ErrorCode.Success)
                     {
@@ -503,18 +505,22 @@ namespace WSCT.Wrapper.MacOSX
                 {
                     //TODO Seems to be problems with pcsclite in this case...
                     fixed (byte* psendBuffer = sendBuffer)
-                    fixed (uint* precvSize = &recvSize)
-                    fixed (byte* precvBuffer = recvBuffer)
                     {
-                        ret = UnsafePrimitives.SCardTransmit(
-                            (void*)card,
-                            (void*)ptrsendPci,
-                            psendBuffer,
-                            sendSize,
-                            (void*)ptrrecvPci,
-                            precvBuffer,
-                            precvSize
-                        );
+                        fixed (uint* precvSize = &recvSize)
+                        {
+                            fixed (byte* precvBuffer = recvBuffer)
+                            {
+                                ret = UnsafePrimitives.SCardTransmit(
+                                    (void*)card,
+                                    (void*)ptrsendPci,
+                                    psendBuffer,
+                                    sendSize,
+                                    (void*)ptrrecvPci,
+                                    precvBuffer,
+                                    precvSize
+                                    );
+                            }
+                        }
                     }
                 }
             }

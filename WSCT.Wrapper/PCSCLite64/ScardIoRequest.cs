@@ -7,12 +7,13 @@ namespace WSCT.Wrapper.PCSCLite64
     /// PCSCLite x64 native structure ported for .NET.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    struct ScardIoRequest
+    internal struct ScardIoRequest
     {
         /// <summary>
         /// Protocol (see <see cref="Protocol"/>).
         /// </summary>
         public UInt64 protocol;
+
         /// <summary>
         /// PCI length.
         /// </summary>

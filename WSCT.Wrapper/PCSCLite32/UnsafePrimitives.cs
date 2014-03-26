@@ -6,7 +6,7 @@ namespace WSCT.Wrapper.PCSCLite32
     /// <summary>
     /// Unsafe api coming from winscard.dll library
     /// </summary>
-    class UnsafePrimitives
+    internal class UnsafePrimitives
     {
         internal const string PcscLib = "libpcsclite.so.1";
 
@@ -39,11 +39,9 @@ namespace WSCT.Wrapper.PCSCLite32
         public static extern ErrorCode SCardControl(
             [In] IntPtr card,
             [In] UInt32 controlCode,
-            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)]
-            [In] Byte[] sendBuffer,
+            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] [In] Byte[] sendBuffer,
             [In] UInt32 sendSize,
-            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 5)]
-            [In, Out] ref Byte[] recvBuffer,
+            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 5)] [In, Out] ref Byte[] recvBuffer,
             [In] UInt32 recvSize,
             [In, Out] ref UInt32 returnedSize
             );
@@ -100,8 +98,7 @@ namespace WSCT.Wrapper.PCSCLite32
         public static extern unsafe ErrorCode SCardGetStatusChange(
             void* hContext,
             uint dwTimeout,
-            [In, Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)]
-            ScardReaderState[] rgReaderStates,
+            [In, Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] ScardReaderState[] rgReaderStates,
             uint cReaders
             );
 
@@ -167,8 +164,7 @@ namespace WSCT.Wrapper.PCSCLite32
         public static extern ErrorCode SCardSetAttrib(
             [In] IntPtr card,
             [In] UInt32 attributeId,
-            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)]
-            [In] Byte[] newAttribute,
+            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] [In] Byte[] newAttribute,
             [In] UInt32 newAttributeSize
             );
 

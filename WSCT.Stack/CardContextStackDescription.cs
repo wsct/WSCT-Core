@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
-
 using System.Xml.Serialization;
+using WSCT.Stack.Generic;
 
 namespace WSCT.Stack
 {
@@ -11,18 +7,7 @@ namespace WSCT.Stack
     /// 
     /// </summary>
     [XmlRoot("ContextStack")]
-    public class CardContextStackDescription : Generic.GenericStackDescription<CardContextLayerDescription, ICardContextLayer>
+    public class CardContextStackDescription : GenericStackDescription<CardContextLayerDescription, ICardContextLayer>
     {
-        #region >> Constructors
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public CardContextStackDescription()
-            : base()
-        {
-        }
-
-        #endregion
     }
 }

@@ -3,32 +3,20 @@ using System.Runtime.InteropServices;
 
 namespace WSCT.Wrapper.WinSCard
 {
-    sealed class IoRequest : AbstractIoRequest
+    internal sealed class IoRequest : AbstractIoRequest
     {
         #region >> Properties
 
         public override UInt32 Protocol
         {
-            get
-            {
-                return ScIoRequest.protocol;
-            }
-            set
-            {
-                ScIoRequest.protocol = value;
-            }
+            get { return ScIoRequest.protocol; }
+            set { ScIoRequest.protocol = value; }
         }
 
         public override UInt32 PciLength
         {
-            get
-            {
-                return ScIoRequest.pciLength;
-            }
-            set
-            {
-                ScIoRequest.pciLength = value;
-            }
+            get { return ScIoRequest.pciLength; }
+            set { ScIoRequest.pciLength = value; }
         }
 
         public ScardIoRequest ScIoRequest;

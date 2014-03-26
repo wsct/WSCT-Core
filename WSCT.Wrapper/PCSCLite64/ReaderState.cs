@@ -2,47 +2,29 @@
 
 namespace WSCT.Wrapper.PCSCLite64
 {
-    sealed class ReaderState : AbstractReaderState
+    internal sealed class ReaderState : AbstractReaderState
     {
         #region >> Properties
 
         /// <inheritdoc />
         public override String ReaderName
         {
-            get
-            {
-                return ScReaderState.readerName;
-            }
-            set
-            {
-                ScReaderState.readerName = value;
-            }
+            get { return ScReaderState.readerName; }
+            set { ScReaderState.readerName = value; }
         }
 
         /// <inheritdoc />
         public override EventState CurrentState
         {
-            get
-            {
-                return (EventState)ScReaderState.currentState;
-            }
-            set
-            {
-                ScReaderState.currentState = (uint)value;
-            }
+            get { return (EventState)ScReaderState.currentState; }
+            set { ScReaderState.currentState = (uint)value; }
         }
 
         /// <inheritdoc />
         public override EventState EventState
         {
-            get
-            {
-                return (EventState)ScReaderState.eventState;
-            }
-            set
-            {
-                ScReaderState.eventState = (uint)value;
-            }
+            get { return (EventState)ScReaderState.eventState; }
+            set { ScReaderState.eventState = (uint)value; }
         }
 
         /// <inheritdoc />
@@ -56,10 +38,7 @@ namespace WSCT.Wrapper.PCSCLite64
                 }
                 return ScReaderState.atr;
             }
-            set
-            {
-                ScReaderState.atr = value;
-            }
+            set { ScReaderState.atr = value; }
         }
 
         /// <inheritdoc />

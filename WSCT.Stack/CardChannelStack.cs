@@ -1,28 +1,26 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
-
-using WSCT.Wrapper;
-using WSCT.Core.APDU;
 using WSCT.Core;
+using WSCT.Core.APDU;
+using WSCT.Wrapper;
 
 namespace WSCT.Stack
 {
     /// <summary>
-    /// Represents a layerDescriptions of <see cref="ICardChannelLayer"/>s.
+    /// Reference implementation of <see cref="ICardChannelStack"/>.
     /// </summary>
     public class CardChannelStack : ICardChannelStack
     {
         #region >> Attributes
 
-        List<ICardChannelLayer> _layers;
+        private readonly List<ICardChannelLayer> _layers;
 
         #endregion
 
         #region >> Constructors
 
         /// <summary>
-        /// Default constructor
+        /// Initializes a new instance.
         /// </summary>
         public CardChannelStack()
         {
@@ -34,15 +32,19 @@ namespace WSCT.Stack
         #region >> Methods
 
         /// <summary>
-        /// Returns index of a <see cref="ICardChannelLayer"/> instance in the layerDescriptions
+        /// Returns index of a <see cref="ICardChannelLayer"/> instance in the stack.
         /// </summary>
-        /// <param name="layer">Layer instance to find</param>
-        /// <returns>The index of the layer in the layerDescriptions</returns>
-        int getIndex(ICardChannelLayer layer)
+        /// <param name="layer">Layer instance to find.</param>
+        /// <returns>The index of the layer in the stack.</returns>
+        private int GetIndex(ICardChannelLayer layer)
         {
-            for (int index = 0; index < _layers.Count; index++)
-                if ((ICardChannelLayer)_layers[index] == (ICardChannelLayer)layer)
+            for (var index = 0; index < _layers.Count; index++)
+            {
+                if (_layers[index] == layer)
+                {
                     return index;
+                }
+            }
             throw new Exception("CardChannelStack: layer not descriptionFound in the stack");
         }
 
@@ -51,49 +53,55 @@ namespace WSCT.Stack
         #region >> ICardChannelStack Membres
 
         /// <inheritdoc />
-        public List<ICardChannelLayer> layers
+        public List<ICardChannelLayer> Layers
         {
             get { return _layers; }
         }
 
         /// <inheritdoc />
-        public void addLayer(ICardChannelLayer layer)
+        public void AddLayer(ICardChannelLayer layer)
         {
-            _layers.Add((ICardChannelLayer)layer);
-            layer.setStack(this);
+            _layers.Add(layer);
+            layer.SetStack(this);
         }
 
         /// <inheritdoc />
-        public void releaseLayer(ICardChannelLayer layer)
+        public void ReleaseLayer(ICardChannelLayer layer)
         {
             _layers.Remove(layer);
         }
 
         /// <inheritdoc />
-        public ICardChannelLayer requestLayer(ICardChannelLayer layer, SearchMode mode)
+        public ICardChannelLayer RequestLayer(ICardChannelLayer layer, SearchMode mode)
         {
             ICardChannelLayer newLayer;
             int index;
             if (_layers.Count == 0)
+            {
                 throw new Exception("CardChannelStack.requestLayer(): no layers defined in the stack");
+            }
             switch (mode)
             {
-                case SearchMode.bottom:
+                case SearchMode.Bottom:
                     newLayer = _layers[_layers.Count - 1];
                     break;
-                case SearchMode.next:
-                    index = getIndex(layer);
+                case SearchMode.Next:
+                    index = GetIndex(layer);
                     if (index >= _layers.Count)
+                    {
                         throw new Exception("CardChannelStack.requestLayer(): Seek next failed");
+                    }
                     newLayer = _layers[index + 1];
                     break;
-                case SearchMode.previous:
-                    index = getIndex(layer);
+                case SearchMode.Previous:
+                    index = GetIndex(layer);
                     if (index <= 0)
+                    {
                         throw new Exception("CardChannelStack.requestLayer(): Seek previous failed");
+                    }
                     newLayer = _layers[index - 1];
                     break;
-                case SearchMode.top:
+                case SearchMode.Top:
                     newLayer = _layers[0];
                     break;
                 default:
@@ -109,55 +117,55 @@ namespace WSCT.Stack
         /// <inheritdoc />
         public Protocol protocol
         {
-            get { return requestLayer(null, SearchMode.top).protocol; }
+            get { return RequestLayer(null, SearchMode.Top).protocol; }
         }
 
         /// <inheritdoc />
         public string readerName
         {
-            get { return requestLayer(null, SearchMode.top).readerName; }
+            get { return RequestLayer(null, SearchMode.Top).readerName; }
         }
 
         /// <inheritdoc />
         public void attach(ICardContext context, string readerName)
         {
-            requestLayer(null, SearchMode.top).attach(context, readerName);
+            RequestLayer(null, SearchMode.Top).attach(context, readerName);
         }
 
         /// <inheritdoc />
         public ErrorCode connect(ShareMode shareMode, Protocol preferedProtocol)
         {
-            return requestLayer(null, SearchMode.top).connect(shareMode, preferedProtocol);
+            return RequestLayer(null, SearchMode.Top).connect(shareMode, preferedProtocol);
         }
 
         /// <inheritdoc />
         public ErrorCode disconnect(Disposition disposition)
         {
-            return requestLayer(null, SearchMode.top).disconnect(disposition);
+            return RequestLayer(null, SearchMode.Top).disconnect(disposition);
         }
 
         /// <inheritdoc />
         public ErrorCode getAttrib(Attrib attrib, ref byte[] buffer)
         {
-            return requestLayer(null, SearchMode.top).getAttrib(attrib, ref buffer);
+            return RequestLayer(null, SearchMode.Top).getAttrib(attrib, ref buffer);
         }
 
         /// <inheritdoc />
         public State getStatus()
         {
-            return requestLayer(null, SearchMode.top).getStatus();
+            return RequestLayer(null, SearchMode.Top).getStatus();
         }
 
         /// <inheritdoc />
         public ErrorCode reconnect(ShareMode shareMode, Protocol preferedProtocol, Disposition initialization)
         {
-            return requestLayer(null, SearchMode.top).reconnect(shareMode, preferedProtocol, initialization);
+            return RequestLayer(null, SearchMode.Top).reconnect(shareMode, preferedProtocol, initialization);
         }
 
         /// <inheritdoc />
         public ErrorCode transmit(ICardCommand command, ICardResponse response)
         {
-            return requestLayer(null, SearchMode.top).transmit(command, response);
+            return RequestLayer(null, SearchMode.Top).transmit(command, response);
         }
 
         #endregion

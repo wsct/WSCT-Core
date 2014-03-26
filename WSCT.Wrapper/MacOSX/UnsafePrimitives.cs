@@ -7,7 +7,7 @@ namespace WSCT.Wrapper.MacOSX
     /// Unsafe api coming from Apple pcsclite library.
     /// Note: strictly the same implementation as PCSCLite32 but the library name/path.
     /// </summary>
-    class UnsafePrimitives
+    internal class UnsafePrimitives
     {
         internal const string PcscLib = "/System/Library/Frameworks/PCSC.framework/PCSC";
 
@@ -40,11 +40,9 @@ namespace WSCT.Wrapper.MacOSX
         public static extern ErrorCode SCardControl(
             [In] IntPtr card,
             [In] UInt32 controlCode,
-            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)]
-            [In] Byte[] sendBuffer,
+            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] [In] Byte[] sendBuffer,
             [In] UInt32 sendSize,
-            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 5)]
-            [In, Out] ref Byte[] recvBuffer,
+            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 5)] [In, Out] ref Byte[] recvBuffer,
             [In] UInt32 recvSize,
             [In, Out] ref UInt32 returnedSize
             );
@@ -101,8 +99,7 @@ namespace WSCT.Wrapper.MacOSX
         public static extern unsafe ErrorCode SCardGetStatusChange(
             void* hContext,
             uint dwTimeout,
-            [In, Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)]
-            ScardReaderState[] rgReaderStates,
+            [In, Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] ScardReaderState[] rgReaderStates,
             uint cReaders
             );
 
@@ -168,8 +165,7 @@ namespace WSCT.Wrapper.MacOSX
         public static extern ErrorCode SCardSetAttrib(
             [In] IntPtr card,
             [In] UInt32 attributeId,
-            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)]
-            [In] Byte[] newAttribute,
+            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] [In] Byte[] newAttribute,
             [In] UInt32 newAttributeSize
             );
 

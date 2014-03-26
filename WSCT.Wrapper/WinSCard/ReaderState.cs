@@ -2,7 +2,7 @@
 
 namespace WSCT.Wrapper.WinSCard
 {
-    sealed class ReaderState : AbstractReaderState
+    internal sealed class ReaderState : AbstractReaderState
     {
         #region >> Properties
 
@@ -12,14 +12,8 @@ namespace WSCT.Wrapper.WinSCard
         /// </summary>
         public override String ReaderName
         {
-            get
-            {
-                return ScReaderState.readerName;
-            }
-            set
-            {
-                ScReaderState.readerName = value;
-            }
+            get { return ScReaderState.readerName; }
+            set { ScReaderState.readerName = value; }
         }
 
         /// <summary>
@@ -28,14 +22,8 @@ namespace WSCT.Wrapper.WinSCard
         /// </summary>
         public override EventState CurrentState
         {
-            get
-            {
-                return (EventState)ScReaderState.currentState;
-            }
-            set
-            {
-                ScReaderState.currentState = (uint)value;
-            }
+            get { return (EventState)ScReaderState.currentState; }
+            set { ScReaderState.currentState = (uint)value; }
         }
 
         /// <summary>
@@ -44,14 +32,8 @@ namespace WSCT.Wrapper.WinSCard
         /// </summary>
         public override EventState EventState
         {
-            get
-            {
-                return (EventState)ScReaderState.eventState;
-            }
-            set
-            {
-                ScReaderState.eventState = (uint)value;
-            }
+            get { return (EventState)ScReaderState.eventState; }
+            set { ScReaderState.eventState = (uint)value; }
         }
 
         /// <summary>Number of bytes in the returned ATR.</summary>
@@ -60,13 +42,12 @@ namespace WSCT.Wrapper.WinSCard
             get
             {
                 if ((ScReaderState.atr != null) && (ScReaderState.atr.Length > ScReaderState.atrSize))
+                {
                     Array.Resize(ref ScReaderState.atr, (int)ScReaderState.atrSize);
+                }
                 return ScReaderState.atr;
             }
-            set
-            {
-                ScReaderState.atr = value;
-            }
+            set { ScReaderState.atr = value; }
         }
 
         public ScardReaderState ScReaderState;

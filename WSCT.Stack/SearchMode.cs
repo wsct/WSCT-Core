@@ -1,34 +1,28 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-using WSCT.Wrapper;
-using WSCT.Core;
-using WSCT.Core.APDU;
-
 namespace WSCT.Stack
 {
-
     /// <summary>
-    /// Enumeration defining different modes of going through the layerDescriptions
+    /// Enumeration defining different modes of going through the stack.
     /// </summary>
     public enum SearchMode : byte
     {
         /// <summary>
-        /// Seek next layer in the layerDescriptions
+        /// Seek next layer in the stack.
         /// </summary>
-        next,
+        Next,
+
         /// <summary>
-        /// Seek previous layer in the layerDescriptions
+        /// Seek previous layer in the stack.
         /// </summary>
-        previous,
+        Previous,
+
         /// <summary>
-        /// Seek top (first) layer in the layerDescriptions
+        /// Seek top (first) layer in the stack.
         /// </summary>
-        top,
+        Top,
+
         /// <summary>
-        /// Seek bottom (last) layer in the layerDescriptions
+        /// Seek bottom (last) layer in the stack.
         /// </summary>
-        bottom
+        Bottom
     }
 }
