@@ -9,6 +9,8 @@ namespace WSCT.Wrapper.MacOSX
     {
         #region >> Properties
 
+        public ScardReaderState ScReaderState;
+
         /// <inheritdoc />
         public override String ReaderName
         {
@@ -43,8 +45,6 @@ namespace WSCT.Wrapper.MacOSX
             }
             set { ScReaderState.atr = value; }
         }
-
-        public ScardReaderState ScReaderState;
 
         #endregion
 

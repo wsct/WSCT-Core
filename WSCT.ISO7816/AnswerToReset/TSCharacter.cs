@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WSCT.ISO7816.AnswerToReset
+﻿namespace WSCT.ISO7816.AnswerToReset
 {
     /// <summary>
-    /// ISO/IEC 7816 TS character
+    /// ISO/IEC 7816-3 TS character.
     /// </summary>
-    public class TSCharacter
+    public class TsCharacter
     {
         #region >> Properties
 
         /// <summary>
-        /// Raw value
+        /// Raw value.
         /// </summary>
-        public byte ts;
+        public byte Ts { get; set; }
 
         #endregion
 
@@ -25,9 +20,9 @@ namespace WSCT.ISO7816.AnswerToReset
         /// Constructor
         /// </summary>
         /// <param name="ts">Value of TS character</param>
-        public TSCharacter(Byte ts)
+        public TsCharacter(byte ts)
         {
-            this.ts = ts;
+            Ts = ts;
         }
 
         #endregion

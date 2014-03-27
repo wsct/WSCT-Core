@@ -1,39 +1,36 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 using WSCT.Core;
+using WSCT.Core.APDU;
+using WSCT.Wrapper;
 
 namespace WSCT.ISO7816
 {
     /// <summary>
     /// 
     /// </summary>
-    public class CardChannelISO7816 : ICardChannel
+    public class CardChannelIso7816 : ICardChannel
     {
-        ICardChannel _cardChannel;
-        ProtocolT _protocolT;
+        private readonly ICardChannel _cardChannel;
 
         #region >> Construtors
 
         /// <summary>
-        /// 
+        /// Initializes a new instance.
         /// </summary>
         /// <param name="cardChannel"></param>
-        public CardChannelISO7816(ICardChannel cardChannel)
-            : this(cardChannel, ProtocolT.T_0)
+        public CardChannelIso7816(ICardChannel cardChannel)
+            : this(cardChannel, ProtocolT.T0)
         {
         }
 
         /// <summary>
-        /// 
+        /// Initializes a new instance.
         /// </summary>
         /// <param name="cardChannel"></param>
         /// <param name="protocolT"></param>
-        public CardChannelISO7816(ICardChannel cardChannel, ProtocolT protocolT)
+        public CardChannelIso7816(ICardChannel cardChannel, ProtocolT protocolT)
         {
             _cardChannel = cardChannel;
-            _protocolT = protocolT;
+            ProtocolT = protocolT;
         }
 
         #endregion
@@ -43,84 +40,64 @@ namespace WSCT.ISO7816
         /// <summary>
         /// 
         /// </summary>
-        public ProtocolT protocolT
-        {
-            get { return _protocolT; }
-            set { _protocolT = value; }
-        }
+        public ProtocolT ProtocolT { get; set; }
 
         #endregion
 
         #region >> ICardChannel Membres
 
         /// <inheritdoc/>
-        public Wrapper.Protocol protocol
+        public Protocol Protocol
         {
-            get { return _cardChannel.protocol; }
+            get { return _cardChannel.Protocol; }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public string readerName
+        /// <inheritdoc/>
+        public string ReaderName
         {
-            get { return _cardChannel.readerName; }
+            get { return _cardChannel.ReaderName; }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public void attach(ICardContext context, string readerName)
+        /// <inheritdoc/>
+        public void Attach(ICardContext context, string readerName)
         {
-            _cardChannel.attach(context, readerName);
+            _cardChannel.Attach(context, readerName);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public Wrapper.ErrorCode connect(Wrapper.ShareMode shareMode, Wrapper.Protocol preferedProtocol)
+        /// <inheritdoc/>
+        public ErrorCode Connect(ShareMode shareMode, Protocol preferedProtocol)
         {
-            return _cardChannel.connect(shareMode, preferedProtocol);
+            return _cardChannel.Connect(shareMode, preferedProtocol);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public Wrapper.ErrorCode disconnect(Wrapper.Disposition disposition)
+        /// <inheritdoc/>
+        public ErrorCode Disconnect(Disposition disposition)
         {
-            return _cardChannel.disconnect(disposition);
+            return _cardChannel.Disconnect(disposition);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public Wrapper.ErrorCode getAttrib(Wrapper.Attrib attrib, ref byte[] buffer)
+        /// <inheritdoc/>
+        public ErrorCode GetAttrib(Attrib attrib, ref byte[] buffer)
         {
-            return _cardChannel.getAttrib(attrib, ref buffer);
+            return _cardChannel.GetAttrib(attrib, ref buffer);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public Wrapper.State getStatus()
+        /// <inheritdoc/>
+        public State GetStatus()
         {
-            return _cardChannel.getStatus();
+            return _cardChannel.GetStatus();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public Wrapper.ErrorCode reconnect(Wrapper.ShareMode shareMode, Wrapper.Protocol preferedProtocol, Wrapper.Disposition initialization)
+        /// <inheritdoc/>
+        public ErrorCode Reconnect(ShareMode shareMode, Protocol preferedProtocol, Disposition initialization)
         {
-            return _cardChannel.reconnect(shareMode, preferedProtocol, initialization);
+            return _cardChannel.Reconnect(shareMode, preferedProtocol, initialization);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public Wrapper.ErrorCode transmit(Core.APDU.ICardCommand command, Core.APDU.ICardResponse response)
+        /// <inheritdoc/>
+        public ErrorCode Transmit(ICardCommand command, ICardResponse response)
         {
-            Wrapper.ErrorCode errorCode = _cardChannel.transmit(command, response);
+            var errorCode = _cardChannel.Transmit(command, response);
             return errorCode;
         }
 

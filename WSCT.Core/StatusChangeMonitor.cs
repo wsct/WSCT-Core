@@ -6,32 +6,35 @@ using WSCT.Wrapper;
 namespace WSCT.Core
 {
     /// <summary>
-    /// 
+    /// Object monitoring status change (see <see cref="ICardContext.GetStatusChange"/>).
     /// </summary>
     public class StatusChangeMonitor
     {
         #region >> Delegates
 
         /// <summary>
-        /// Delegate for event sent when a card is inserted a reader in the system
+        /// Delegate for event sent when a card is inserted a reader in the system.
         /// </summary>
         /// <param name="readerState"></param>
         public delegate void OnCardInsertionEventHandler(AbstractReaderState readerState);
+
         /// <summary>
-        /// Delegate for event sent when a card is removed from a reader in the system
+        /// Delegate for event sent when a card is removed from a reader in the system.
         /// </summary>
         /// <param name="readerState"></param>
         public delegate void OnCardRemovalEventHandler(AbstractReaderState readerState);
+
         /// <summary>
-        /// Delegate for event sent when a reader is inserted in the system
+        /// Delegate for event sent when a reader is inserted in the system.
         /// </summary>
         /// <param name="insertedReaders"></param>
-        public delegate void OnReaderInsertionEventHandler(String[] insertedReaders);
+        public delegate void OnReaderInsertionEventHandler(string[] insertedReaders);
+
         /// <summary>
-        /// Delegate for event sent when a reader is removed from the system
+        /// Delegate for event sent when a reader is removed from the system.
         /// </summary>
         /// <param name="removedReaders"></param>
-        public delegate void OnReaderRemovalEventHandler(String[] removedReaders);
+        public delegate void OnReaderRemovalEventHandler(string[] removedReaders);
 
         #endregion
 
@@ -41,6 +44,7 @@ namespace WSCT.Core
         /// 
         /// </summary>
         public OnCardInsertionEventHandler OnCardInsertionEvent;
+
         /// <summary>
         /// 
         /// </summary>
@@ -50,12 +54,12 @@ namespace WSCT.Core
 
         #region >> Fields
 
-        ICardContext _context;
-        String[] _readerNames;
-        AbstractReaderState[] _readerStates;
-        Boolean _initDone;
-        Thread _thread;
-        Boolean _threadContinue;
+        private ICardContext _context;
+        private Boolean _initDone;
+        private string[] _readerNames;
+        private AbstractReaderState[] _readerStates;
+        private Thread _thread;
+        private Boolean _threadContinue;
 
         #endregion
 
@@ -70,10 +74,12 @@ namespace WSCT.Core
             set
             {
                 _context = value;
-                _readerNames = new String[_context.readersCount];
+                _readerNames = new string[_context.ReadersCount];
                 _readerStates = new AbstractReaderState[_readerNames.Length];
-                for (var i = 0; i < Context.readersCount; i++)
-                    _readerNames[i] = Context.readers[i];
+                for (var i = 0; i < Context.ReadersCount; i++)
+                {
+                    _readerNames[i] = Context.Readers[i];
+                }
                 _initDone = false;
             }
         }
@@ -83,19 +89,19 @@ namespace WSCT.Core
         #region >> Constructors
 
         /// <summary>
-        /// 
+        /// Initializes a new instance.
         /// </summary>
         public StatusChangeMonitor() :
-            this(null, new String[0])
+            this(null, new string[0])
         {
         }
 
         /// <summary>
-        /// 
+        /// Initializes a new instance.
         /// </summary>
         /// <param name="context"></param>
         /// <param name="readerNames"></param>
-        public StatusChangeMonitor(ICardContext context, String[] readerNames)
+        public StatusChangeMonitor(ICardContext context, string[] readerNames)
         {
             _context = context;
             _readerNames = readerNames;
@@ -106,11 +112,11 @@ namespace WSCT.Core
         }
 
         /// <summary>
-        /// 
+        /// Initializes a new instance.
         /// </summary>
         /// <param name="context"></param>
         public StatusChangeMonitor(ICardContext context) :
-            this(context, context.readers)
+            this(context, context.Readers)
         {
         }
 
@@ -119,7 +125,7 @@ namespace WSCT.Core
         #region >> Members
 
         /// <summary>
-        /// Start the monitoring thread
+        /// Start the monitoring thread.
         /// </summary>
         public void Start()
         {
@@ -129,7 +135,7 @@ namespace WSCT.Core
         }
 
         /// <summary>
-        /// Stop the monitoring thread
+        /// Stop the monitoring thread.
         /// </summary>
         public void Stop()
         {
@@ -142,14 +148,14 @@ namespace WSCT.Core
         }
 
         /// <summary>
-        /// Waits for the presence of a card in one of the monitored readers
-        /// and returns the information about the change
+        /// Waits for the presence of a card in one of the monitored readers.
+        /// and returns the information about the change.
         /// </summary>
-        /// <param name="timeout">Maximum wait time (ms)</param>
+        /// <param name="timeout">Maximum wait time (ms).</param>
         /// <returns>Informations about the change, or null if no card is present when the <paramref name="timeout"/>.</returns>
         public AbstractReaderState WaitForCardPresence(uint timeout)
         {
-            waitForChange(0);
+            WaitForChange(0);
 
             var readerState = _readerStates.ToList().Find(
                 rs => ((rs.EventState & EventState.StatePresent) != 0)
@@ -158,15 +164,18 @@ namespace WSCT.Core
             // Fire the insertion event, because waitForChange only fire the event on change detection
             if (readerState != null)
             {
-                if (OnCardInsertionEvent != null) OnCardInsertionEvent(readerState);
+                if (OnCardInsertionEvent != null)
+                {
+                    OnCardInsertionEvent(readerState);
+                }
             }
 
             if (readerState == null)
             {
-                waitForChange(timeout);
+                WaitForChange(timeout);
 
-                readerState = _readerStates.ToList<AbstractReaderState>().Find(
-                    delegate(AbstractReaderState rs) { return ((rs.EventState & EventState.StatePresent) != 0); }
+                readerState = _readerStates.ToList().Find(
+                    rs => ((rs.EventState & EventState.StatePresent) != 0)
                     );
             }
 
@@ -177,12 +186,14 @@ namespace WSCT.Core
         /// Waits for a change of state of one of the monitored readers, and returns details.
         /// Events are fired when catched.
         /// </summary>
-        /// <param name="timeout">Maximum wait time (ms)</param>
+        /// <param name="timeout">Maximum wait time (ms).</param>
         /// <returns>Informations about the change, or null if no change occured until the <paramref name="timeout"/>.</returns>
-        public void waitForChange(uint timeout)
+        public void WaitForChange(uint timeout)
         {
             if (!_initDone)
+            {
                 _initDone = (UpdateInitialStates() == ErrorCode.Success);
+            }
 
             foreach (var readerState in _readerStates)
             {
@@ -190,7 +201,7 @@ namespace WSCT.Core
                 readerState.CurrentState = readerState.EventState;
             }
 
-            var result = _context.getStatusChange(timeout, _readerStates);
+            var result = _context.GetStatusChange(timeout, _readerStates);
 
             switch (result)
             {
@@ -205,43 +216,44 @@ namespace WSCT.Core
                     _threadContinue = false;
                     break;
                 default:
-                    throw new Exception(String.Format("Error occured in getStatusChange() {0}", result));
+                    throw new Exception(string.Format("Error occured in getStatusChange() {0}", result));
             }
         }
 
         #endregion
 
         /// <summary>
-        /// Waits for changes of state of any of the monitored readers. (for use by monitor thread only)
+        /// Waits for changes of state of any of the monitored readers. (for use by monitor thread only).
         /// Events are fired when catched.
-        /// Loop until thread is stopped by using <see cref="Stop"/> method
+        /// Loop until thread is stopped by using <see cref="Stop"/> method.
         /// </summary>
-        void WaitForChanges()
+        private void WaitForChanges()
         {
             if (!_initDone)
+            {
                 _initDone = (UpdateInitialStates() == ErrorCode.Success);
+            }
 
             _threadContinue = true;
 
             do
             {
-                waitForChange(250);
-            }
-            while (_threadContinue);
+                WaitForChange(250);
+            } while (_threadContinue);
         }
 
         /// <summary>
-        /// Initializes <see cref="_readerStates"/>
+        /// Initializes internal reader state.
         /// </summary>
         /// <returns></returns>
-        ErrorCode UpdateInitialStates()
+        private ErrorCode UpdateInitialStates()
         {
             for (var i = 0; i < _readerNames.Length; i++)
             {
                 _readerStates[i] = Primitives.Api.CreateReaderStateInstance(_readerNames[i], EventState.StateUnaware, EventState.StateUnaware);
             }
 
-            var result = _context.getStatusChange(0, _readerStates);
+            var result = _context.GetStatusChange(0, _readerStates);
 
             switch (result)
             {
@@ -249,16 +261,16 @@ namespace WSCT.Core
                 case ErrorCode.Timeout:
                     break;
                 default:
-                    throw new Exception(String.Format("Error occured in getStatusChange() {0}", result));
+                    throw new Exception(string.Format("Error occured in getStatusChange() {0}", result));
             }
 
             return result;
         }
 
         /// <summary>
-        /// Fire events for states that changed
+        /// Fire events for states that changed.
         /// </summary>
-        void FireChangeEvents()
+        private void FireChangeEvents()
         {
             foreach (var readerState in _readerStates)
             {
@@ -269,11 +281,17 @@ namespace WSCT.Core
                     {
                         if ((readerState.EventState & EventState.StatePresent) != 0)
                         {
-                            if (OnCardInsertionEvent != null) OnCardInsertionEvent(publishedReaderState);
+                            if (OnCardInsertionEvent != null)
+                            {
+                                OnCardInsertionEvent(publishedReaderState);
+                            }
                         }
                         else
                         {
-                            if (OnCardRemovalEvent != null) OnCardRemovalEvent(publishedReaderState);
+                            if (OnCardRemovalEvent != null)
+                            {
+                                OnCardRemovalEvent(publishedReaderState);
+                            }
                         }
                     }
                 }

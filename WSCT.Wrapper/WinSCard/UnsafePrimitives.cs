@@ -39,9 +39,9 @@ namespace WSCT.Wrapper.WinSCard
         public static extern ErrorCode SCardControl(
             [In] IntPtr card,
             [In] UInt32 controlCode,
-            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] [In] Byte[] sendBuffer,
+            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] [In] byte[] sendBuffer,
             [In] UInt32 sendSize,
-            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 5)] [In, Out] ref Byte[] recvBuffer,
+            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 5)] [In, Out] ref byte[] recvBuffer,
             [In] UInt32 recvSize,
             [In, Out] ref UInt32 returnedSize
             );
@@ -164,7 +164,7 @@ namespace WSCT.Wrapper.WinSCard
         public static extern ErrorCode SCardSetAttrib(
             [In] IntPtr card,
             [In] UInt32 attributeId,
-            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] [In] Byte[] newAttribute,
+            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] [In] byte[] newAttribute,
             [In] UInt32 newAttributeSize
             );
 
@@ -228,7 +228,7 @@ namespace WSCT.Wrapper.WinSCard
         public static unsafe IntPtr BytePointerToIntPtr(byte* p, uint size)
         {
             var b = new byte[size];
-            fixed (byte* pb = b)
+            fixed(byte* pb = b)
             {
                 for (var i = 0; i < size; i++)
                 {
@@ -247,7 +247,7 @@ namespace WSCT.Wrapper.WinSCard
         public static unsafe IntPtr CharPointerToIntPtr(char* p, uint size)
         {
             var c = new char[size];
-            fixed (char* pc = c)
+            fixed(char* pc = c)
             {
                 for (var i = 0; i < size; i++)
                 {

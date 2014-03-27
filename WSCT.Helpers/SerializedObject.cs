@@ -1,28 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Serialization;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace WSCT.Helpers
 {
     /// <summary>
-    /// Helper class to manage serialization
+    /// Helper class to manage serialization.
     /// </summary>
-    /// <typeparam name="T">Type of object to be used</typeparam>
+    /// <typeparam name="T">Type of object to be used.</typeparam>
     public class SerializedObject<T>
     {
         #region >> Static members
 
         /// <summary>
-        /// Unserializes an object from an XML file
+        /// Unserializes an object from an XML file.
         /// </summary>
-        /// <param name="xmlFileName">Name of the XML file</param>
-        /// <returns>The deserialized object</returns>
-        public static T loadFromXml(String xmlFileName)
+        /// <param name="xmlFileName">Name of the XML file.</param>
+        /// <returns>The deserialized object.</returns>
+        public static T LoadFromXml(String xmlFileName)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(T));
+            var serializer = new XmlSerializer(typeof(T));
             T t;
 
             using (TextReader textReader = new StreamReader(xmlFileName))
@@ -34,13 +31,13 @@ namespace WSCT.Helpers
         }
 
         /// <summary>
-        /// Serializes an object from an XML file
+        /// Serializes an object from an XML file.
         /// </summary>
-        /// <param name="t">Object to save</param>
-        /// <param name="xmlFileName">Name of the XML file</param>
-        public static void saveToXml(T t, String xmlFileName)
+        /// <param name="t">Object to save.</param>
+        /// <param name="xmlFileName">Name of the XML file.</param>
+        public static void SaveToXml(T t, String xmlFileName)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(T));
+            var serializer = new XmlSerializer(typeof(T));
 
             using (TextWriter textWriter = new StreamWriter(xmlFileName))
             {

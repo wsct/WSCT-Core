@@ -4,9 +4,9 @@ using WSCT.Wrapper;
 namespace WSCT.Core
 {
     /// <summary>
-    /// Allows an existing <see cref="ICardContext"/> instance to be observed by using delegates and wrapping it
+    /// Allows an existing <see cref="ICardContext"/> instance to be observed by using delegates and wrapping it.
     /// </summary>
-    public class CardContextObservable : ICardContext, ICardContextObservable
+    public class CardContextObservable : ICardContextObservable
     {
         #region >> Fields
 
@@ -20,9 +20,9 @@ namespace WSCT.Core
         #region >> Constructors
 
         /// <summary>
-        /// Constructor
+        /// Initializes a new instance.
         /// </summary>
-        /// <param name="context"><b>ICardContext</b> instance to wrap</param>
+        /// <param name="context"><b>ICardContext</b> instance to wrap.</param>
         public CardContextObservable(ICardContext context)
         {
             _cardContext = context;
@@ -33,95 +33,137 @@ namespace WSCT.Core
         #region >> ICardContext Membres
 
         /// <inheritdoc />
-        public IntPtr context
+        public IntPtr Context
         {
-            get { return _cardContext.context; }
+            get { return _cardContext.Context; }
         }
 
         /// <inheritdoc />
-        public string[] groups
+        public string[] Groups
         {
-            get { return _cardContext.groups; }
+            get { return _cardContext.Groups; }
         }
 
         /// <inheritdoc />
-        public int groupsCount
+        public int GroupsCount
         {
-            get { return _cardContext.groupsCount; }
+            get { return _cardContext.GroupsCount; }
         }
 
         /// <inheritdoc />
-        public string[] readers
+        public string[] Readers
         {
-            get { return _cardContext.readers; }
+            get { return _cardContext.Readers; }
         }
 
         /// <inheritdoc />
-        public int readersCount
+        public int ReadersCount
         {
-            get { return _cardContext.readersCount; }
+            get { return _cardContext.ReadersCount; }
         }
 
         /// <inheritdoc />
-        public ErrorCode cancel()
+        public ErrorCode Cancel()
         {
-            if (beforeCancelEvent != null) beforeCancelEvent(this);
-            var ret = _cardContext.cancel();
-            if (afterCancelEvent != null) afterCancelEvent(this, ret);
+            if (BeforeCancelEvent != null)
+            {
+                BeforeCancelEvent(this);
+            }
+            var ret = _cardContext.Cancel();
+            if (AfterCancelEvent != null)
+            {
+                AfterCancelEvent(this, ret);
+            }
             return ret;
         }
 
         /// <inheritdoc />
-        public ErrorCode establish()
+        public ErrorCode Establish()
         {
-            if (beforeEstablishEvent != null) beforeEstablishEvent(this);
-            var ret = _cardContext.establish();
-            if (afterEstablishEvent != null) afterEstablishEvent(this, ret);
+            if (BeforeEstablishEvent != null)
+            {
+                BeforeEstablishEvent(this);
+            }
+            var ret = _cardContext.Establish();
+            if (AfterEstablishEvent != null)
+            {
+                AfterEstablishEvent(this, ret);
+            }
             return ret;
         }
 
         /// <inheritdoc />
-        public ErrorCode getStatusChange(uint timeout, AbstractReaderState[] readerStates)
+        public ErrorCode GetStatusChange(uint timeout, AbstractReaderState[] readerStates)
         {
-            if (beforeGetStatusChangeEvent != null) beforeGetStatusChangeEvent(this, timeout, readerStates);
-            var ret = _cardContext.getStatusChange(timeout, readerStates);
-            if (afterGetStatusChangeEvent != null) afterGetStatusChangeEvent(this, timeout, readerStates, ret);
+            if (BeforeGetStatusChangeEvent != null)
+            {
+                BeforeGetStatusChangeEvent(this, timeout, readerStates);
+            }
+            var ret = _cardContext.GetStatusChange(timeout, readerStates);
+            if (AfterGetStatusChangeEvent != null)
+            {
+                AfterGetStatusChangeEvent(this, timeout, readerStates, ret);
+            }
             return ret;
         }
 
         /// <inheritdoc />
-        public ErrorCode isValid()
+        public ErrorCode IsValid()
         {
-            if (beforeIsValidEvent != null) beforeIsValidEvent(this);
-            var ret = _cardContext.isValid();
-            if (afterIsValidEvent != null) afterIsValidEvent(this, ret);
+            if (BeforeIsValidEvent != null)
+            {
+                BeforeIsValidEvent(this);
+            }
+            var ret = _cardContext.IsValid();
+            if (AfterIsValidEvent != null)
+            {
+                AfterIsValidEvent(this, ret);
+            }
             return ret;
         }
 
         /// <inheritdoc />
-        public ErrorCode listReaderGroups()
+        public ErrorCode ListReaderGroups()
         {
-            if (beforeListReaderGroupsEvent != null) beforeListReaderGroupsEvent(this);
-            var ret = _cardContext.listReaderGroups();
-            if (afterListReaderGroupsEvent != null) afterListReaderGroupsEvent(this, ret);
+            if (BeforeListReaderGroupsEvent != null)
+            {
+                BeforeListReaderGroupsEvent(this);
+            }
+            var ret = _cardContext.ListReaderGroups();
+            if (AfterListReaderGroupsEvent != null)
+            {
+                AfterListReaderGroupsEvent(this, ret);
+            }
             return ret;
         }
 
         /// <inheritdoc />
-        public ErrorCode listReaders(String group)
+        public ErrorCode ListReaders(string group)
         {
-            if (beforeListReadersEvent != null) beforeListReadersEvent(this, group);
-            var ret = _cardContext.listReaders(group);
-            if (afterListReadersEvent != null) afterListReadersEvent(this, group, ret);
+            if (BeforeListReadersEvent != null)
+            {
+                BeforeListReadersEvent(this, group);
+            }
+            var ret = _cardContext.ListReaders(group);
+            if (AfterListReadersEvent != null)
+            {
+                AfterListReadersEvent(this, group, ret);
+            }
             return ret;
         }
 
         /// <inheritdoc />
-        public ErrorCode release()
+        public ErrorCode Release()
         {
-            if (beforeReleaseEvent != null) beforeReleaseEvent(this);
-            var ret = _cardContext.release();
-            if (afterReleaseEvent != null) afterReleaseEvent(this, ret);
+            if (BeforeReleaseEvent != null)
+            {
+                BeforeReleaseEvent(this);
+            }
+            var ret = _cardContext.Release();
+            if (AfterReleaseEvent != null)
+            {
+                AfterReleaseEvent(this, ret);
+            }
             return ret;
         }
 
@@ -130,39 +172,46 @@ namespace WSCT.Core
         #region >> ICardContextObservable Membres
 
         /// <inheritdoc />
-        public event beforeCancel beforeCancelEvent;
-        /// <inheritdoc />
-        public event afterCancel afterCancelEvent;
+        public event BeforeCancel BeforeCancelEvent;
 
         /// <inheritdoc />
-        public event beforeEstablish beforeEstablishEvent;
-        /// <inheritdoc />
-        public event afterEstablish afterEstablishEvent;
+        public event AfterCancel AfterCancelEvent;
 
         /// <inheritdoc />
-        public event beforeGetStatusChange beforeGetStatusChangeEvent;
-        /// <inheritdoc />
-        public event afterGetStatusChange afterGetStatusChangeEvent;
+        public event BeforeEstablish BeforeEstablishEvent;
 
         /// <inheritdoc />
-        public event beforeIsValid beforeIsValidEvent;
-        /// <inheritdoc />
-        public event afterIsValid afterIsValidEvent;
+        public event AfterEstablish AfterEstablishEvent;
 
         /// <inheritdoc />
-        public event beforeListReaderGroups beforeListReaderGroupsEvent;
-        /// <inheritdoc />
-        public event afterListReaderGroups afterListReaderGroupsEvent;
+        public event BeforeGetStatusChange BeforeGetStatusChangeEvent;
 
         /// <inheritdoc />
-        public event beforeListReaders beforeListReadersEvent;
-        /// <inheritdoc />
-        public event afterListReaders afterListReadersEvent;
+        public event AfterGetStatusChange AfterGetStatusChangeEvent;
 
         /// <inheritdoc />
-        public event beforeRelease beforeReleaseEvent;
+        public event BeforeIsValid BeforeIsValidEvent;
+
         /// <inheritdoc />
-        public event afterRelease afterReleaseEvent;
+        public event AfterIsValid AfterIsValidEvent;
+
+        /// <inheritdoc />
+        public event BeforeListReaderGroups BeforeListReaderGroupsEvent;
+
+        /// <inheritdoc />
+        public event AfterListReaderGroups AfterListReaderGroupsEvent;
+
+        /// <inheritdoc />
+        public event BeforeListReaders BeforeListReadersEvent;
+
+        /// <inheritdoc />
+        public event AfterListReaders AfterListReadersEvent;
+
+        /// <inheritdoc />
+        public event BeforeRelease BeforeReleaseEvent;
+
+        /// <inheritdoc />
+        public event AfterRelease AfterReleaseEvent;
 
         #endregion
     }

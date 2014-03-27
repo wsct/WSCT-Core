@@ -7,6 +7,8 @@ namespace WSCT.Wrapper.WinSCard
     {
         #region >> Properties
 
+        public ScardIoRequest ScIoRequest;
+
         public override UInt32 Protocol
         {
             get { return ScIoRequest.protocol; }
@@ -18,8 +20,6 @@ namespace WSCT.Wrapper.WinSCard
             get { return ScIoRequest.pciLength; }
             set { ScIoRequest.pciLength = value; }
         }
-
-        public ScardIoRequest ScIoRequest;
 
         #endregion
 

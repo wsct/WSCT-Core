@@ -1,6 +1,5 @@
-using System;
-using WSCT.Wrapper;
 using WSCT.Core.APDU;
+using WSCT.Wrapper;
 
 namespace WSCT.Core
 {
@@ -8,159 +7,171 @@ namespace WSCT.Core
     #region >> Delegates
 
     /// <summary>
-    /// Delegate for event sent before execution of a <see cref="ICardChannel.connect"/>
+    /// Delegate for event sent before execution of a <see cref="ICardChannel.Connect"/>.
     /// </summary>
-    /// <param name="channel">Caller instance</param>
-    /// <param name="shareMode"><inheritdoc cref="ICardChannel.connect"/></param>
-    /// <param name="preferedProtocol"><inheritdoc cref="ICardChannel.connect"/></param>
-    public delegate void beforeConnect(ICardChannel channel, ShareMode shareMode, Protocol preferedProtocol);
-    /// <summary>
-    /// Delegate for event sent after execution of a <see cref="ICardChannel.connect"/>
-    /// </summary>
-    /// <param name="channel">Caller instance</param>
-    /// <param name="shareMode"><inheritdoc cref="ICardChannel.connect"/></param>
-    /// <param name="preferedProtocol"><inheritdoc cref="ICardChannel.connect"/></param>
-    /// <param name="error">Return value of the caller</param>
-    public delegate void afterConnect(ICardChannel channel, ShareMode shareMode, Protocol preferedProtocol, ErrorCode error);
+    /// <param name="channel">Caller instance.</param>
+    /// <param name="shareMode"><inheritdoc cref="ICardChannel.Connect"/>.</param>
+    /// <param name="preferedProtocol"><inheritdoc cref="ICardChannel.Connect"/>.</param>
+    public delegate void BeforeConnect(ICardChannel channel, ShareMode shareMode, Protocol preferedProtocol);
 
     /// <summary>
-    /// Delegate for event sent before execution of a <see cref="ICardChannel.disconnect"/>
+    /// Delegate for event sent after execution of a <see cref="ICardChannel.Connect"/>.
     /// </summary>
-    /// <param name="channel">Caller instance</param>
-    /// <param name="disposition"><inheritdoc cref="ICardChannel.disconnect"/></param>
-    public delegate void beforeDisconnect(ICardChannel channel, Disposition disposition);
-    /// <summary>
-    /// Delegate for event sent after execution of a <see cref="ICardChannel.disconnect"/>
-    /// </summary>
-    /// <param name="channel">Caller instance</param>
-    /// <param name="disposition"><inheritdoc cref="ICardChannel.disconnect"/></param>
-    /// <param name="error">Return value of the caller</param>
-    public delegate void afterDisconnect(ICardChannel channel, Disposition disposition, ErrorCode error);
+    /// <param name="channel">Caller instance.</param>
+    /// <param name="shareMode"><inheritdoc cref="ICardChannel.Connect"/>.</param>
+    /// <param name="preferedProtocol"><inheritdoc cref="ICardChannel.Connect"/>.</param>
+    /// <param name="error">Return value of the caller.</param>
+    public delegate void AfterConnect(ICardChannel channel, ShareMode shareMode, Protocol preferedProtocol, ErrorCode error);
 
     /// <summary>
-    /// Delegate for event sent before execution of a <see cref="ICardChannel.getAttrib"/>
+    /// Delegate for event sent before execution of a <see cref="ICardChannel.Disconnect"/>.
     /// </summary>
-    /// <param name="channel">Caller instance</param>
-    /// <param name="attrib"><inheritdoc cref="ICardChannel.getAttrib"/></param>
-    /// <param name="buffer"><inheritdoc cref="ICardChannel.getAttrib"/></param>
-    public delegate void beforeGetAttrib(ICardChannel channel, Attrib attrib, Byte[] buffer);
-    /// <summary>
-    /// Delegate for event sent after execution of a <see cref="ICardChannel.getAttrib"/>
-    /// </summary>
-    /// <param name="channel">Caller instance</param>
-    /// <param name="attrib"><inheritdoc cref="ICardChannel.getAttrib"/></param>
-    /// <param name="buffer"><inheritdoc cref="ICardChannel.getAttrib"/></param>
-    /// <param name="error">Return value of the caller</param>
-    public delegate void afterGetAttrib(ICardChannel channel, Attrib attrib, Byte[] buffer, ErrorCode error);
+    /// <param name="channel">Caller instance.</param>
+    /// <param name="disposition"><inheritdoc cref="ICardChannel.Disconnect"/>.</param>
+    public delegate void BeforeDisconnect(ICardChannel channel, Disposition disposition);
 
     /// <summary>
-    /// Delegate for event sent before execution of a <see cref="ICardChannel.getStatus"/>
+    /// Delegate for event sent after execution of a <see cref="ICardChannel.Disconnect"/>.
     /// </summary>
-    /// <param name="channel">Caller instance</param>
-    public delegate void beforeGetStatus(ICardChannel channel);
-    /// <summary>
-    /// Delegate for event sent after execution of a <see cref="ICardChannel.getStatus"/>
-    /// </summary>
-    /// <param name="channel">Caller instance</param>
-    /// <param name="state">Return value of the caller</param>
-    public delegate void afterGetStatus(ICardChannel channel, State state);
+    /// <param name="channel">Caller instance.</param>
+    /// <param name="disposition"><inheritdoc cref="ICardChannel.Disconnect"/>.</param>
+    /// <param name="error">Return value of the caller.</param>
+    public delegate void AfterDisconnect(ICardChannel channel, Disposition disposition, ErrorCode error);
 
     /// <summary>
-    /// Delegate for event sent before execution of a <see cref="ICardChannel.reconnect"/>
+    /// Delegate for event sent before execution of a <see cref="ICardChannel.GetAttrib"/>.
     /// </summary>
-    /// <param name="channel">Caller instance</param>
-    /// <param name="shareMode"><inheritdoc cref="ICardChannel.getAttrib"/></param>
-    /// <param name="preferedProtocol"><inheritdoc cref="ICardChannel.reconnect"/></param>
-    /// <param name="initialization"><inheritdoc cref="ICardChannel.reconnect"/></param>
-    public delegate void beforeReconnect(ICardChannel channel, ShareMode shareMode, Protocol preferedProtocol, Disposition initialization);
-    /// <summary>
-    /// Delegate for event sent after execution of a <see cref="ICardChannel.reconnect"/>
-    /// </summary>
-    /// <param name="channel">Caller instance</param>
-    /// <param name="shareMode"><inheritdoc cref="ICardChannel.getAttrib"/></param>
-    /// <param name="preferedProtocol"><inheritdoc cref="ICardChannel.reconnect"/></param>
-    /// <param name="initialization"><inheritdoc cref="ICardChannel.reconnect"/></param>
-    /// <param name="error">Return value of the caller</param>
-    public delegate void afterReconnect(ICardChannel channel, ShareMode shareMode, Protocol preferedProtocol, Disposition initialization, ErrorCode error);
+    /// <param name="channel">Caller instance.</param>
+    /// <param name="attrib"><inheritdoc cref="ICardChannel.GetAttrib"/>.</param>
+    /// <param name="buffer"><inheritdoc cref="ICardChannel.GetAttrib"/>.</param>
+    public delegate void BeforeGetAttrib(ICardChannel channel, Attrib attrib, byte[] buffer);
 
     /// <summary>
-    /// Delegate for event sent before execution of a <see cref="ICardChannel.transmit"/>
+    /// Delegate for event sent after execution of a <see cref="ICardChannel.GetAttrib"/>.
     /// </summary>
-    /// <param name="channel">Caller instance</param>
-    /// <param name="command"><inheritdoc cref="ICardChannel.transmit"/></param>
-    /// <param name="response"><inheritdoc cref="ICardChannel.transmit"/></param>
-    public delegate void beforeTransmit(ICardChannel channel, ICardCommand command, ICardResponse response);
+    /// <param name="channel">Caller instance.</param>
+    /// <param name="attrib"><inheritdoc cref="ICardChannel.GetAttrib"/>.</param>
+    /// <param name="buffer"><inheritdoc cref="ICardChannel.GetAttrib"/>.</param>
+    /// <param name="error">Return value of the caller.</param>
+    public delegate void AfterGetAttrib(ICardChannel channel, Attrib attrib, byte[] buffer, ErrorCode error);
+
     /// <summary>
-    /// Delegate for event sent after execution of a <see cref="ICardChannel.transmit"/>
+    /// Delegate for event sent before execution of a <see cref="ICardChannel.GetStatus"/>.
     /// </summary>
-    /// <param name="channel">Caller instance</param>
-    /// <param name="command"><inheritdoc cref="ICardChannel.transmit"/></param>
-    /// <param name="response"><inheritdoc cref="ICardChannel.transmit"/></param>
-    /// <param name="error">Return value of the caller</param>
-    public delegate void afterTransmit(ICardChannel channel, ICardCommand command, ICardResponse response, ErrorCode error);
+    /// <param name="channel">Caller instance.</param>
+    public delegate void BeforeGetStatus(ICardChannel channel);
+
+    /// <summary>
+    /// Delegate for event sent after execution of a <see cref="ICardChannel.GetStatus"/>.
+    /// </summary>
+    /// <param name="channel">Caller instance.</param>
+    /// <param name="state">Return value of the caller.</param>
+    public delegate void AfterGetStatus(ICardChannel channel, State state);
+
+    /// <summary>
+    /// Delegate for event sent before execution of a <see cref="ICardChannel.Reconnect"/>.
+    /// </summary>
+    /// <param name="channel">Caller instance.</param>
+    /// <param name="shareMode"><inheritdoc cref="ICardChannel.GetAttrib"/>.</param>
+    /// <param name="preferedProtocol"><inheritdoc cref="ICardChannel.Reconnect"/>.</param>
+    /// <param name="initialization"><inheritdoc cref="ICardChannel.Reconnect"/>.</param>
+    public delegate void BeforeReconnect(ICardChannel channel, ShareMode shareMode, Protocol preferedProtocol, Disposition initialization);
+
+    /// <summary>
+    /// Delegate for event sent after execution of a <see cref="ICardChannel.Reconnect"/>.
+    /// </summary>
+    /// <param name="channel">Caller instance.</param>
+    /// <param name="shareMode"><inheritdoc cref="ICardChannel.GetAttrib"/>.</param>
+    /// <param name="preferedProtocol"><inheritdoc cref="ICardChannel.Reconnect"/>.</param>
+    /// <param name="initialization"><inheritdoc cref="ICardChannel.Reconnect"/>.</param>
+    /// <param name="error">Return value of the caller.</param>
+    public delegate void AfterReconnect(ICardChannel channel, ShareMode shareMode, Protocol preferedProtocol, Disposition initialization, ErrorCode error);
+
+    /// <summary>
+    /// Delegate for event sent before execution of a <see cref="ICardChannel.Transmit"/>.
+    /// </summary>
+    /// <param name="channel">Caller instance.</param>
+    /// <param name="command"><inheritdoc cref="ICardChannel.Transmit"/>.</param>
+    /// <param name="response"><inheritdoc cref="ICardChannel.Transmit"/>.</param>
+    public delegate void BeforeTransmit(ICardChannel channel, ICardCommand command, ICardResponse response);
+
+    /// <summary>
+    /// Delegate for event sent after execution of a <see cref="ICardChannel.Transmit"/>.
+    /// </summary>
+    /// <param name="channel">Caller instance.</param>
+    /// <param name="command"><inheritdoc cref="ICardChannel.Transmit"/>.</param>
+    /// <param name="response"><inheritdoc cref="ICardChannel.Transmit"/>.</param>
+    /// <param name="error">Return value of the caller.</param>
+    public delegate void AfterTransmit(ICardChannel channel, ICardCommand command, ICardResponse response, ErrorCode error);
 
     #endregion
 
     /// <summary>
-    /// Interface to be implemented by all observable <see cref="ICardChannel"/> instance
+    /// Interface to be implemented by all observable <see cref="ICardChannel"/> instance.
     /// </summary>
     public interface ICardChannelObservable : ICardChannel
     {
         #region >> Events
 
         /// <summary>
-        /// Event sent before execution of a <see cref="ICardChannel.connect"/>
+        /// Event sent before execution of a <see cref="ICardChannel.Connect"/>.
         /// </summary>
-        event beforeConnect beforeConnectEvent;
-        /// <summary>
-        /// Event sent after execution of a <see cref="ICardChannel.connect"/>
-        /// </summary>
-        event afterConnect afterConnectEvent;
+        event BeforeConnect BeforeConnectEvent;
 
         /// <summary>
-        /// Event sent before execution of a <see cref="ICardChannel.disconnect"/>
+        /// Event sent after execution of a <see cref="ICardChannel.Connect"/>.
         /// </summary>
-        event beforeDisconnect beforeDisconnectEvent;
-        /// <summary>
-        /// Event sent after execution of a <see cref="ICardChannel.disconnect"/>
-        /// </summary>
-        event afterDisconnect afterDisconnectEvent;
+        event AfterConnect AfterConnectEvent;
 
         /// <summary>
-        /// Event sent before execution of a <see cref="ICardChannel.getAttrib"/>
+        /// Event sent before execution of a <see cref="ICardChannel.Disconnect"/>.
         /// </summary>
-        event beforeGetAttrib beforeGetAttribEvent;
-        /// <summary>
-        /// Event sent after execution of a <see cref="ICardChannel.getAttrib"/>
-        /// </summary>
-        event afterGetAttrib afterGetAttribEvent;
+        event BeforeDisconnect BeforeDisconnectEvent;
 
         /// <summary>
-        /// Event sent before execution of a <see cref="ICardChannel.getStatus"/>
+        /// Event sent after execution of a <see cref="ICardChannel.Disconnect"/>.
         /// </summary>
-        event beforeGetStatus beforeGetStatusEvent;
-        /// <summary>
-        /// Event sent after execution of a <see cref="ICardChannel.getStatus"/>
-        /// </summary>
-        event afterGetStatus afterGetStatusEvent;
+        event AfterDisconnect AfterDisconnectEvent;
 
         /// <summary>
-        /// Event sent before execution of a <see cref="ICardChannel.reconnect"/>
+        /// Event sent before execution of a <see cref="ICardChannel.GetAttrib"/>.
         /// </summary>
-        event beforeReconnect beforeReconnectEvent;
-        /// <summary>
-        /// Event sent after execution of a <see cref="ICardChannel.reconnect"/>
-        /// </summary>
-        event afterReconnect afterReconnectEvent;
+        event BeforeGetAttrib BeforeGetAttribEvent;
 
         /// <summary>
-        /// Event sent before execution of a <see cref="ICardChannel.transmit(ICardCommand, ICardResponse)"/>
+        /// Event sent after execution of a <see cref="ICardChannel.GetAttrib"/>.
         /// </summary>
-        event beforeTransmit beforeTransmitEvent;
+        event AfterGetAttrib AfterGetAttribEvent;
+
         /// <summary>
-        /// Event sent after execution of a <see cref="ICardChannel.transmit(ICardCommand, ICardResponse)"/>
+        /// Event sent before execution of a <see cref="ICardChannel.GetStatus"/>.
         /// </summary>
-        event afterTransmit afterTransmitEvent;
+        event BeforeGetStatus BeforeGetStatusEvent;
+
+        /// <summary>
+        /// Event sent after execution of a <see cref="ICardChannel.GetStatus"/>.
+        /// </summary>
+        event AfterGetStatus AfterGetStatusEvent;
+
+        /// <summary>
+        /// Event sent before execution of a <see cref="ICardChannel.Reconnect"/>.
+        /// </summary>
+        event BeforeReconnect BeforeReconnectEvent;
+
+        /// <summary>
+        /// Event sent after execution of a <see cref="ICardChannel.Reconnect"/>.
+        /// </summary>
+        event AfterReconnect AfterReconnectEvent;
+
+        /// <summary>
+        /// Event sent before execution of a <see cref="ICardChannel.Transmit"/>.
+        /// </summary>
+        event BeforeTransmit BeforeTransmitEvent;
+
+        /// <summary>
+        /// Event sent after execution of a <see cref="ICardChannel.Transmit"/>.
+        /// </summary>
+        event AfterTransmit AfterTransmitEvent;
 
         #endregion
     }

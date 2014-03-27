@@ -1,27 +1,18 @@
-
 namespace WSCT.Helpers.BasicEncodingRules
 {
     /// <summary>
     /// Represents a TLV object where the value is binary data
     /// </summary>
-    public class BinaryTLVObject : AbstractTLVObject
+    public class BinaryTlvObject : AbstractTlvObject
     {
-        #region >> Constructors
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public BinaryTLVObject()
-            : base()
-        {
-        }
-
-        #endregion
+        #region >> Object
 
         /// <inheritdoc />
         public override string ToString()
         {
-            return tlv.value.toHexa(); ;
+            return Tlv.Value.ToHexa();
         }
+
+        #endregion
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WSCT.ISO7816.Commands
+﻿namespace WSCT.ISO7816.Commands
 {
     /// <summary>
     /// 
@@ -15,36 +10,27 @@ namespace WSCT.ISO7816.Commands
         /// <summary>
         /// 
         /// </summary>
-        public enum SelectionMode
+        public enum FileControlInformation
         {
             /// <summary>
             /// 
             /// </summary>
-            MF_DF_EF = 0x00,
+            ReturnFci = 0x00,
+
             /// <summary>
             /// 
             /// </summary>
-            CHILD_DF = 0x01,
+            ReturnFcp = 0x04,
+
             /// <summary>
             /// 
             /// </summary>
-            CHILD_EF = 0x02,
+            ReturnFmd = 0x08,
+
             /// <summary>
             /// 
             /// </summary>
-            PARENT_DF = 0x03,
-            /// <summary>
-            /// 
-            /// </summary>
-            SELECT_DF_NAME = 0x04,
-            /// <summary>
-            /// 
-            /// </summary>
-            SELECT_FROM_MF = 0x08,
-            /// <summary>
-            /// 
-            /// </summary>
-            SELECT_FROM_CURRENT_DF = 0x09
+            NoResponseOrProprietary = 0x0C
         }
 
         /// <summary>
@@ -55,42 +41,63 @@ namespace WSCT.ISO7816.Commands
             /// <summary>
             /// 
             /// </summary>
-            FIRST_OR_ONLY = 0x00,
+            FirstOrOnly = 0x00,
+
             /// <summary>
             /// 
             /// </summary>
-            LAST = 0x01,
+            Last = 0x01,
+
             /// <summary>
             /// 
             /// </summary>
-            NEXT = 0x02,
+            Next = 0x02,
+
             /// <summary>
             /// 
             /// </summary>
-            PREVIOUS = 0x03
+            Previous = 0x03
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public enum FileControlInformation
+        public enum SelectionMode
         {
             /// <summary>
             /// 
             /// </summary>
-            RETURN_FCI = 0x00,
+            File = 0x00,
+
             /// <summary>
             /// 
             /// </summary>
-            RETURN_FCP = 0x04,
+            ChildDF = 0x01,
+
             /// <summary>
             /// 
             /// </summary>
-            RETURN_FMD = 0x08,
+            ChildEF = 0x02,
+
             /// <summary>
             /// 
             /// </summary>
-            NORESPONSE_OR_PROPRIETARY = 0x0C
+            ParentDF = 0x03,
+
+            /// <summary>
+            /// 
+            /// </summary>
+            SelectDFName = 0x04,
+
+            /// <summary>
+            /// 
+            /// </summary>
+            SelectFromMF = 0x08,
+
+            /// <summary>
+            /// 
+            /// </summary>
+            SelectFromCurrentDF = 0x09
         }
 
         #endregion
@@ -100,28 +107,28 @@ namespace WSCT.ISO7816.Commands
         /// <summary>
         /// 
         /// </summary>
-        public SelectionMode selectionMode
+        public SelectionMode Selection
         {
-            set { p1 = (Byte)value; }
-            get { return (SelectionMode)p1; }
+            set { P1 = (byte)value; }
+            get { return (SelectionMode)P1; }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public FileOccurrence fileOccurence
+        public FileOccurrence Occurence
         {
-            set { p2 = (Byte)((p2 & 0xFC) | (int)value); }
-            get { return (FileOccurrence)(p2 & 0x03); }
+            set { P2 = (byte)((P2 & 0xFC) | (int)value); }
+            get { return (FileOccurrence)(P2 & 0x03); }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public FileControlInformation fileControlInformation
+        public FileControlInformation Information
         {
-            set { p2 = (Byte)((p2 & 0x03) | (int)value); }
-            get { return (FileControlInformation)(p2 & 0xFC); }
+            set { P2 = (byte)((P2 & 0x03) | (int)value); }
+            get { return (FileControlInformation)(P2 & 0xFC); }
         }
 
         #endregion
@@ -129,42 +136,41 @@ namespace WSCT.ISO7816.Commands
         #region >> Constructors
 
         /// <summary>
-        /// Default Constructor
+        /// Initializes a new instance.
         /// </summary>
         public SelectCommand()
-            : base()
         {
-            ins = 0xA4;
+            Ins = 0xA4;
         }
 
         /// <summary>
-        /// 
+        /// Initializes a new instance.
         /// </summary>
-        /// <param name="selectionMode"></param>
-        /// <param name="fileOccurence"></param>
+        /// <param name="selection"></param>
+        /// <param name="occurence"></param>
         /// <param name="fci"></param>
         /// <param name="udc"></param>
-        public SelectCommand(SelectionMode selectionMode, FileOccurrence fileOccurence, FileControlInformation fci, Byte[] udc) :
+        public SelectCommand(SelectionMode selection, FileOccurrence occurence, FileControlInformation fci, byte[] udc) :
             this()
         {
-            this.selectionMode = selectionMode;
-            this.fileControlInformation = fci;
-            this.fileOccurence = fileOccurence;
-            this.udc = udc;
+            Selection = selection;
+            Information = fci;
+            Occurence = occurence;
+            Udc = udc;
         }
 
         /// <summary>
-        /// 
+        /// Initializes a new instance.
         /// </summary>
-        /// <param name="selectionMode"></param>
-        /// <param name="fileOccurence"></param>
+        /// <param name="selection"></param>
+        /// <param name="occurence"></param>
         /// <param name="fci"></param>
         /// <param name="udc"></param>
         /// <param name="le"></param>
-        public SelectCommand(SelectionMode selectionMode, FileOccurrence fileOccurence, FileControlInformation fci, Byte[] udc, uint le) :
-            this(selectionMode, fileOccurence, fci, udc)
+        public SelectCommand(SelectionMode selection, FileOccurrence occurence, FileControlInformation fci, byte[] udc, uint le) :
+            this(selection, occurence, fci, udc)
         {
-            this.le = le;
+            Le = le;
         }
 
         #endregion

@@ -89,9 +89,9 @@ namespace WSCT.Wrapper
         ErrorCode SCardControl(
             [In] IntPtr card,
             [In] UInt32 controlCode,
-            [In, Out] Byte[] sendBuffer,
+            [In, Out] byte[] sendBuffer,
             [In] UInt32 sendSize,
-            [In, Out] ref Byte[] recvBuffer,
+            [In, Out] ref byte[] recvBuffer,
             [In] UInt32 recvSize,
             [In, Out] ref UInt32 returnedSize
             );
@@ -153,7 +153,7 @@ namespace WSCT.Wrapper
         ErrorCode SCardGetAttrib(
             [In] IntPtr card,
             [In] UInt32 attributeId,
-            [In, Out] ref Byte[] recvAttribute,
+            [In, Out] ref byte[] recvAttribute,
             [In, Out] ref UInt32 recvAttributeSize
             );
 
@@ -304,7 +304,7 @@ namespace WSCT.Wrapper
         ErrorCode SCardSetAttrib(
             [In] IntPtr card,
             [In] UInt32 attributeId,
-            [In] Byte[] newAttribute,
+            [In] byte[] newAttribute,
             [In] UInt32 newAttributeSize
             );
 
@@ -370,7 +370,7 @@ namespace WSCT.Wrapper
             [In, Out] ref String readerName,
             [In, Out] ref State state,
             [In, Out] ref Protocol protocol,
-            [In, Out] ref Byte[] atr);
+            [In, Out] ref byte[] atr);
 
         /// <summary>
         /// Provides the current status of a smart card in a reader.
@@ -427,10 +427,10 @@ namespace WSCT.Wrapper
         ErrorCode SCardTransmit(
             [In] IntPtr card,
             [In] ref AbstractIoRequest sendPci,
-            [In] Byte[] sendBuffer,
+            [In] byte[] sendBuffer,
             [In] UInt32 sendSize,
             [In, Out] ref AbstractIoRequest recvPci,
-            [In, Out] ref Byte[] recvBuffer,
+            [In, Out] ref byte[] recvBuffer,
             [In, Out] ref UInt32 recvSize
             );
 
@@ -467,7 +467,7 @@ namespace WSCT.Wrapper
                             }
                             if (ret == ErrorCode.SCARD_S_SUCCESS)
                             {
-                                Array.Resize<Byte>(ref recvBuffer, (int)recvSize);
+                                Array.Resize<byte>(ref recvBuffer, (int)recvSize);
                             }
                         }
                         else

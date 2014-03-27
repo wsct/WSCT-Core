@@ -1,58 +1,46 @@
 using WSCT.Core.APDU;
+using WSCT.ISO7816;
+using WSCT.ISO7816.Commands;
+using WSCT.Stack;
 using WSCT.Wrapper;
 
-namespace WSCT.Core
+namespace WSCT.Core.ConsoleTests
 {
-    /// <summary>
-    /// Allows an existing <see cref="ICardChannel"/> instance to be observed by using delegates and wrapping it.
-    /// </summary>
-    public class CardChannelObservable : ICardChannelObservable
+    internal class CardChannelLayer61 : ICardChannelLayer, ICardChannelObservable
     {
-        #region >> Fields
+        #region >> Properties
 
-        /// <summary>
-        /// Wrapped <see cref="ICardChannel"/> instance.
-        /// </summary>
-        protected ICardChannel _cardChannel;
+        private ICardChannelStack _stack;
 
         #endregion
 
-        #region >> Constructors
+        #region >> ICardChannelLayer Membres
 
-        /// <summary>
-        /// Initializes a new instance.
-        /// </summary>
-        /// <param name="channel"><c>ICardChannel</c> instance to wrap.</param>
-        public CardChannelObservable(ICardChannel channel)
+        /// <inheritdoc />
+        public void SetStack(ICardChannelStack stack)
         {
-            _cardChannel = channel;
+            _stack = stack;
         }
 
         #endregion
 
         #region >> ICardChannel Membres
 
-        /// <summary>
-        /// Protocol T
-        /// </summary>
         public Protocol Protocol
         {
-            get { return _cardChannel.Protocol; }
+            get { return _stack.RequestLayer(this, SearchMode.Next).Protocol; }
         }
 
-        /// <inheritdoc />
         public string ReaderName
         {
-            get { return _cardChannel.ReaderName; }
+            get { return _stack.RequestLayer(this, SearchMode.Next).ReaderName; }
         }
 
-        /// <inheritdoc />
         public void Attach(ICardContext context, string readerName)
         {
-            _cardChannel.Attach(context, readerName);
+            _stack.RequestLayer(this, SearchMode.Next).Attach(context, readerName);
         }
 
-        /// <inheritdoc />
         public ErrorCode Connect(ShareMode shareMode, Protocol preferedProtocol)
         {
             if (BeforeConnectEvent != null)
@@ -60,7 +48,7 @@ namespace WSCT.Core
                 BeforeConnectEvent(this, shareMode, preferedProtocol);
             }
 
-            var ret = _cardChannel.Connect(shareMode, preferedProtocol);
+            var ret = _stack.RequestLayer(this, SearchMode.Next).Connect(shareMode, preferedProtocol);
 
             if (AfterConnectEvent != null)
             {
@@ -70,7 +58,6 @@ namespace WSCT.Core
             return ret;
         }
 
-        /// <inheritdoc />
         public ErrorCode Disconnect(Disposition disposition)
         {
             if (BeforeDisconnectEvent != null)
@@ -78,7 +65,7 @@ namespace WSCT.Core
                 BeforeDisconnectEvent(this, disposition);
             }
 
-            var ret = _cardChannel.Disconnect(disposition);
+            var ret = _stack.RequestLayer(this, SearchMode.Next).Disconnect(disposition);
 
             if (AfterDisconnectEvent != null)
             {
@@ -88,7 +75,6 @@ namespace WSCT.Core
             return ret;
         }
 
-        /// <inheritdoc />
         public ErrorCode GetAttrib(Attrib attrib, ref byte[] buffer)
         {
             if (BeforeGetAttribEvent != null)
@@ -96,7 +82,7 @@ namespace WSCT.Core
                 BeforeGetAttribEvent(this, attrib, buffer);
             }
 
-            var ret = _cardChannel.GetAttrib(attrib, ref buffer);
+            var ret = _stack.RequestLayer(this, SearchMode.Next).GetAttrib(attrib, ref buffer);
 
             if (AfterGetAttribEvent != null)
             {
@@ -106,7 +92,6 @@ namespace WSCT.Core
             return ret;
         }
 
-        /// <inheritdoc />
         public State GetStatus()
         {
             if (BeforeGetStatusEvent != null)
@@ -114,7 +99,7 @@ namespace WSCT.Core
                 BeforeGetStatusEvent(this);
             }
 
-            var ret = _cardChannel.GetStatus();
+            var ret = _stack.RequestLayer(this, SearchMode.Next).GetStatus();
 
             if (AfterGetStatusEvent != null)
             {
@@ -124,7 +109,6 @@ namespace WSCT.Core
             return ret;
         }
 
-        /// <inheritdoc />
         public ErrorCode Reconnect(ShareMode shareMode, Protocol preferedProtocol, Disposition initialization)
         {
             if (BeforeReconnectEvent != null)
@@ -132,7 +116,7 @@ namespace WSCT.Core
                 BeforeReconnectEvent(this, shareMode, preferedProtocol, initialization);
             }
 
-            var ret = _cardChannel.Reconnect(shareMode, preferedProtocol, initialization);
+            var ret = _stack.RequestLayer(this, SearchMode.Next).Reconnect(shareMode, preferedProtocol, initialization);
 
             if (AfterReconnectEvent != null)
             {
@@ -142,7 +126,6 @@ namespace WSCT.Core
             return ret;
         }
 
-        /// <inheritdoc />
         public ErrorCode Transmit(ICardCommand command, ICardResponse response)
         {
             if (BeforeTransmitEvent != null)
@@ -150,7 +133,30 @@ namespace WSCT.Core
                 BeforeTransmitEvent(this, command, response);
             }
 
-            var ret = _cardChannel.Transmit(command, response);
+            ErrorCode ret;
+            var cAPDU = (CommandAPDU)command;
+            if ((cAPDU.Ins == 0xA4) && cAPDU.IsCc4)
+            {
+                var le = cAPDU.Le;
+                cAPDU.HasLe = false;
+                // As an example, direct use of the layer to transmit the command
+                ret = _stack.RequestLayer(this, SearchMode.Next).Transmit(command, response);
+                var rAPDU = (ResponseAPDU)response;
+                if ((ret == ErrorCode.Success) && (rAPDU.Sw1 == 0x61))
+                {
+                    if (le > rAPDU.Sw2)
+                    {
+                        le = rAPDU.Sw2;
+                    }
+                    // As an example, use of a CommandResponsePair object to manage the dialog
+                    var crpGetResponse = new CommandResponsePair(new GetResponseCommand(le)) { RApdu = rAPDU };
+                    ret = crpGetResponse.Transmit(_stack.RequestLayer(this, SearchMode.Next));
+                }
+            }
+            else
+            {
+                ret = _stack.RequestLayer(this, SearchMode.Next).Transmit(command, response);
+            }
 
             if (AfterTransmitEvent != null)
             {
@@ -164,40 +170,28 @@ namespace WSCT.Core
 
         #region >> ICardChannelObservable Membres
 
-        /// <inheritdoc />
         public event BeforeConnect BeforeConnectEvent;
 
-        /// <inheritdoc />
         public event AfterConnect AfterConnectEvent;
 
-        /// <inheritdoc />
         public event BeforeDisconnect BeforeDisconnectEvent;
 
-        /// <inheritdoc />
         public event AfterDisconnect AfterDisconnectEvent;
 
-        /// <inheritdoc />
         public event BeforeGetAttrib BeforeGetAttribEvent;
 
-        /// <inheritdoc />
         public event AfterGetAttrib AfterGetAttribEvent;
 
-        /// <inheritdoc />
         public event BeforeGetStatus BeforeGetStatusEvent;
 
-        /// <inheritdoc />
         public event AfterGetStatus AfterGetStatusEvent;
 
-        /// <inheritdoc />
         public event BeforeReconnect BeforeReconnectEvent;
 
-        /// <inheritdoc />
         public event AfterReconnect AfterReconnectEvent;
 
-        /// <inheritdoc />
         public event BeforeTransmit BeforeTransmitEvent;
 
-        /// <inheritdoc />
         public event AfterTransmit AfterTransmitEvent;
 
         #endregion

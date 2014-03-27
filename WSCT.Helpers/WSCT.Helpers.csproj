@@ -46,15 +46,15 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArrayOfBytes.cs" />
-    <Compile Include="BasicEncodingRules\AbstractTLVObject.cs" />
-    <Compile Include="BasicEncodingRules\BCDTLVObject.cs" />
-    <Compile Include="BasicEncodingRules\BinaryTLVObject.cs" />
-    <Compile Include="BasicEncodingRules\StringTLVObject.cs" />
-    <Compile Include="BasicEncodingRules\TLVDataHelper.cs" />
-    <Compile Include="BasicEncodingRules\TLVDescription.cs" />
-    <Compile Include="BasicEncodingRules\TLVDictionary.cs" />
-    <Compile Include="BasicEncodingRules\TLVData.cs" />
+    <Compile Include="BytesHelpers.cs" />
+    <Compile Include="BasicEncodingRules\AbstractTlvObject.cs" />
+    <Compile Include="BasicEncodingRules\BcdTlvObject.cs" />
+    <Compile Include="BasicEncodingRules\BinaryTlvObject.cs" />
+    <Compile Include="BasicEncodingRules\StringTlvObject.cs" />
+    <Compile Include="BasicEncodingRules\TlvDataHelper.cs" />
+    <Compile Include="BasicEncodingRules\TlvDescription.cs" />
+    <Compile Include="BasicEncodingRules\TlvDictionary.cs" />
+    <Compile Include="BasicEncodingRules\TlvData.cs" />
     <Compile Include="Reflection\AssemblyLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializedObject.cs" />

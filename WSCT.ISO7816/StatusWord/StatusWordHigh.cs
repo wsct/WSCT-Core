@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Xml;
+using System.Xml.Schema;
 using System.Xml.Serialization;
-
 using WSCT.Helpers;
 
 namespace WSCT.ISO7816.StatusWord
@@ -15,8 +15,8 @@ namespace WSCT.ISO7816.StatusWord
     {
         #region >> Fields
 
-        List<StatusWordLow> _sw2List;
-        Byte _sw1;
+        private byte _sw1;
+        private List<StatusWordLow> _sw2List;
 
         #endregion
 
@@ -25,7 +25,7 @@ namespace WSCT.ISO7816.StatusWord
         /// <summary>
         /// List of known SW2 values
         /// </summary>
-        public List<StatusWordLow> sw2List
+        public List<StatusWordLow> Sw2List
         {
             get { return _sw2List; }
             set { _sw2List = value; }
@@ -53,15 +53,17 @@ namespace WSCT.ISO7816.StatusWord
         /// <param name="sw1"></param>
         /// <param name="sw2"></param>
         /// <returns></returns>
-        public String getDescription(Byte sw1, Byte sw2)
+        public String GetDescription(byte sw1, byte sw2)
         {
-            String description = "";
+            var description = "";
             if (_sw1 == sw1)
             {
-                foreach (StatusWordLow sw2Element in _sw2List)
+                foreach (var sw2Element in _sw2List)
                 {
-                    if (sw2Element.contains(sw2))
-                        description = sw2Element.description;
+                    if (sw2Element.Contains(sw2))
+                    {
+                        description = sw2Element.Description;
+                    }
                 }
             }
             return description;
@@ -72,7 +74,7 @@ namespace WSCT.ISO7816.StatusWord
         #region >> IXmlSerializable Members
 
         /// <inheritdoc />
-        public System.Xml.Schema.XmlSchema GetSchema()
+        public XmlSchema GetSchema()
         {
             return null;
         }
@@ -80,15 +82,15 @@ namespace WSCT.ISO7816.StatusWord
         /// <inheritdoc />
         public void ReadXml(XmlReader reader)
         {
-            _sw1 = reader.GetAttribute("value").fromHexa()[0];
+            _sw1 = reader.GetAttribute("value").FromHexa()[0];
             reader.ReadStartElement();
-            XmlSerializer serializer = new XmlSerializer(typeof(StatusWordLow));
+            var serializer = new XmlSerializer(typeof(StatusWordLow));
             while (reader.NodeType != XmlNodeType.EndElement)
             {
                 switch (reader.NodeType)
                 {
                     case XmlNodeType.Element:
-                        StatusWordLow sw2 = (StatusWordLow)serializer.Deserialize(reader);
+                        var sw2 = (StatusWordLow)serializer.Deserialize(reader);
                         _sw2List.Add(sw2);
                         break;
                     case XmlNodeType.Comment:
@@ -103,8 +105,8 @@ namespace WSCT.ISO7816.StatusWord
         public void WriteXml(XmlWriter writer)
         {
             writer.WriteAttributeString("value", String.Format("{0:X2}", _sw1));
-            XmlSerializer serializer = new XmlSerializer(typeof(StatusWordLow));
-            foreach (StatusWordLow sw2 in _sw2List)
+            var serializer = new XmlSerializer(typeof(StatusWordLow));
+            foreach (var sw2 in _sw2List)
             {
                 serializer.Serialize(writer, sw2);
             }

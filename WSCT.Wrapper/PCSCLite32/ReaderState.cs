@@ -6,6 +6,8 @@ namespace WSCT.Wrapper.PCSCLite32
     {
         #region >> Properties
 
+        public ScardReaderState ScReaderState;
+
         public override String ReaderName
         {
             get { return ScReaderState.readerName; }
@@ -36,8 +38,6 @@ namespace WSCT.Wrapper.PCSCLite32
             }
             set { ScReaderState.atr = value; }
         }
-
-        public ScardReaderState ScReaderState;
 
         #endregion
 

@@ -1,12 +1,12 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // Les informations générales relatives à un assembly dépendent de 
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
+
 [assembly: AssemblyTitle("WSCT.Core.ConsoleTests")]
-[assembly: AssemblyDescription("Simple WinSCard Tools API tests")]
+[assembly: AssemblyDescription("Simple WSCT API tests")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Sylvain Vernois")]
 [assembly: AssemblyProduct("WSCT Core :: Command Line Tests")]
@@ -17,9 +17,11 @@ using System.Runtime.InteropServices;
 // L'affectation de la valeur false à ComVisible rend les types invisibles dans cet assembly 
 // aux composants COM. Si vous devez accéder à un type dans cet assembly à partir de 
 // COM, affectez la valeur true à l'attribut ComVisible sur ce type.
+
 [assembly: ComVisible(false)]
 
 // Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
+
 [assembly: Guid("44213f45-7207-431c-8d27-dea820c2e78e")]
 
 // Les informations de version pour un assembly se composent des quatre valeurs suivantes :
@@ -29,5 +31,6 @@ using System.Runtime.InteropServices;
 //      Numéro de build
 //      Révision
 //
-[assembly: AssemblyVersion("2.0.0.0")]
-[assembly: AssemblyFileVersion("2.0.0.0")]
+
+[assembly: AssemblyVersion("3.0.0.*")]
+[assembly: AssemblyFileVersion("3.0.0.0")]

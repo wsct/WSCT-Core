@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
 
@@ -89,16 +90,7 @@ namespace WSCT.Stack.Generic
         /// <returns></returns>
         public Boolean IsValid(string layerName)
         {
-            var found = false;
-            foreach (var contextLayer in _layerDescriptions)
-            {
-                if (contextLayer.Name == layerName)
-                {
-                    found = true;
-                    break;
-                }
-            }
-            return found;
+            return _layerDescriptions.Any(contextLayer => contextLayer.Name == layerName);
         }
 
         /// <summary>
@@ -108,16 +100,7 @@ namespace WSCT.Stack.Generic
         /// <returns>The CardStackDescriptor instance or null if not find.</returns>
         private TLayerDescription Get(string layerName)
         {
-            TLayerDescription descriptionFound = null;
-            foreach (var layerDesc in _layerDescriptions)
-            {
-                if (layerDesc.Name == layerName && layerDesc.IsValid)
-                {
-                    descriptionFound = layerDesc;
-                    break;
-                }
-            }
-            return descriptionFound;
+            return _layerDescriptions.FirstOrDefault(layerDesc => layerDesc.Name == layerName && layerDesc.IsValid);
         }
 
         #endregion

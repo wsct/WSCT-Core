@@ -7,6 +7,9 @@ namespace WSCT.Wrapper.PCSCLite64
         #region >> Properties
 
         /// <inheritdoc />
+        public ScardReaderState ScReaderState;
+
+        /// <inheritdoc />
         public override String ReaderName
         {
             get { return ScReaderState.readerName; }
@@ -40,9 +43,6 @@ namespace WSCT.Wrapper.PCSCLite64
             }
             set { ScReaderState.atr = value; }
         }
-
-        /// <inheritdoc />
-        public ScardReaderState ScReaderState;
 
         #endregion
 

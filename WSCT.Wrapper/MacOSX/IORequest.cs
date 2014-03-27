@@ -7,6 +7,8 @@ namespace WSCT.Wrapper.MacOSX
     {
         #region >> Properties
 
+        public ScardIoRequest ScIoRequest;
+
         /// <inheritdoc />
         public override UInt32 Protocol
         {
@@ -20,8 +22,6 @@ namespace WSCT.Wrapper.MacOSX
             get { return ScIoRequest.pciLength; }
             set { ScIoRequest.pciLength = value; }
         }
-
-        public ScardIoRequest ScIoRequest;
 
         #endregion
 

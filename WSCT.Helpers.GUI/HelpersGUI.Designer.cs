@@ -1,6 +1,6 @@
 ﻿namespace WSCT.Helpers.GUI
 {
-    partial class HelpersGUI
+    partial class HelpersGui
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -266,7 +266,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 444);
             this.Controls.Add(this.tabTLV);
-            this.Name = "HelpersGUI";
+            this.Name = "HelpersGui";
             this.Text = "Helpers GUI";
             this.tabTLV.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

@@ -6,6 +6,8 @@ namespace WSCT.Wrapper.WinSCard
     {
         #region >> Properties
 
+        public ScardReaderState ScReaderState;
+
         /// <summary>
         /// Name of the reader being monitored.
         /// Set the value of this member to "\\\\?PnP?\\Notification" and the values of all other members to zero to be notified of the arrival of a new smart card reader.
@@ -49,8 +51,6 @@ namespace WSCT.Wrapper.WinSCard
             }
             set { ScReaderState.atr = value; }
         }
-
-        public ScardReaderState ScReaderState;
 
         #endregion
 

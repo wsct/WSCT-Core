@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WSCT.ISO7816.Commands
+﻿namespace WSCT.ISO7816.Commands
 {
     /// <summary>
     /// Wrapper for ISO/IEC 7816 GET RESPONSE C-APDU
@@ -16,9 +11,8 @@ namespace WSCT.ISO7816.Commands
         /// Default constructor
         /// </summary>
         public GetResponseCommand()
-            : base()
         {
-            ins = 0xC0;
+            Ins = 0xC0;
         }
 
         /// <summary>
@@ -28,9 +22,9 @@ namespace WSCT.ISO7816.Commands
         public GetResponseCommand(uint le)
             : this()
         {
-            this.p1 = 0x00;
-            this.p2 = 0x00;
-            this.le = le;
+            P1 = 0x00;
+            P2 = 0x00;
+            Le = le;
         }
 
         #endregion

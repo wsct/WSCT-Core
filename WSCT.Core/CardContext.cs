@@ -1,14 +1,14 @@
 namespace WSCT.Core
 {
     /// <summary>
-    /// Represents an enhanced <see cref="CardContextCore"/> allowing to observe activity by using delegates
+    /// Represents an enhanced <see cref="CardContextCore"/> allowing to observe activity by using delegates.
     /// </summary>
     public class CardContext : CardContextObservable
     {
         #region >> Constructors
 
         /// <summary>
-        /// Default constructor
+        /// Initializes a new instance.
         /// </summary>
         public CardContext()
             : base(new CardContextCore())

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace WSCT.ISO7816.Commands
 {
@@ -21,11 +18,12 @@ namespace WSCT.ISO7816.Commands
             /// <summary>
             /// 
             /// </summary>
-            CC2_B2 = 0xB2,
+            CC2B2 = 0xB2,
+
             /// <summary>
             /// 
             /// </summary>
-            CC4_B3 = 0xB3
+            CC4B3 = 0xB3
         }
 
         /// <summary>
@@ -36,36 +34,42 @@ namespace WSCT.ISO7816.Commands
             /// <summary>
             /// 
             /// </summary>
-            READ_FIRST_OCCURENCE = 0x00,
-            /// <summary>
-            /// 
-            /// </summary>
-            READ_LAST_OCCURENCE = 0x01,
-            /// <summary>
-            /// 
-            /// </summary>
-            READ_NEXT_OCCURENCE = 0x02,
-            /// <summary>
-            /// 
-            /// </summary>
-            READ_PREVIOUS_OCCURENCE = 0x03,
+            ReadFirstOccurence = 0x00,
 
             /// <summary>
             /// 
             /// </summary>
-            READ_RECORD_P1 = 0x04,
+            ReadLastOccurence = 0x01,
+
             /// <summary>
             /// 
             /// </summary>
-            READ_RECORD_FROM_P1_UP_TO_LAST = 0x05,
+            ReadNextOccurence = 0x02,
+
             /// <summary>
             /// 
             /// </summary>
-            READ_RECORD_FROM_LAST_UP_TO_P1 = 0x06,
+            ReadPreviousOccurence = 0x03,
+
             /// <summary>
             /// 
             /// </summary>
-            RUF = 0x07
+            ReadRecordP1 = 0x04,
+
+            /// <summary>
+            /// 
+            /// </summary>
+            ReadRecordFromP1UpToLast = 0x05,
+
+            /// <summary>
+            /// 
+            /// </summary>
+            ReadRecordFromLastUpToP1 = 0x06,
+
+            /// <summary>
+            /// 
+            /// </summary>
+            Ruf = 0x07
         }
 
         #endregion
@@ -75,28 +79,28 @@ namespace WSCT.ISO7816.Commands
         /// <summary>
         /// 
         /// </summary>
-        public Byte sfi
+        public byte Sfi
         {
-            set { p2 = (Byte)((value << 3) | (p2 & 0x07)); }
-            get { return (Byte)((p2 & 0xF8) >> 3); }
+            set { P2 = (byte)((value << 3) | (P2 & 0x07)); }
+            get { return (byte)((P2 & 0xF8) >> 3); }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public SearchMode searchMode
+        public SearchMode Search
         {
-            set { p2 = (Byte)((p2 & 0xFC) | (int)value); }
-            get { return (SearchMode)(p2 & 0x03); }
+            set { P2 = (byte)((P2 & 0xFC) | (int)value); }
+            get { return (SearchMode)(P2 & 0x03); }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public Byte record
+        public byte Record
         {
-            set { p1 = value; }
-            get { return p1; }
+            set { P1 = value; }
+            get { return P1; }
         }
 
         #endregion
@@ -107,9 +111,8 @@ namespace WSCT.ISO7816.Commands
         /// Default constructor
         /// </summary>
         public ReadRecordCommand()
-            : base()
         {
-            ins = 0xB2;
+            Ins = 0xB2;
         }
 
         /// <summary>
@@ -117,15 +120,15 @@ namespace WSCT.ISO7816.Commands
         /// </summary>
         /// <param name="record"></param>
         /// <param name="sfi"></param>
-        /// <param name="searchMode"></param>
+        /// <param name="search"></param>
         /// <param name="le"></param>
-        public ReadRecordCommand(Byte record, Byte sfi, SearchMode searchMode, UInt32 le)
+        public ReadRecordCommand(byte record, byte sfi, SearchMode search, UInt32 le)
             : this()
         {
-            this.record = record;
-            this.sfi = sfi;
-            this.searchMode = searchMode;
-            this.le = le;
+            Record = record;
+            Sfi = sfi;
+            Search = search;
+            Le = le;
         }
 
         /// <summary>
@@ -133,14 +136,14 @@ namespace WSCT.ISO7816.Commands
         /// </summary>
         /// <param name="record"></param>
         /// <param name="sfi"></param>
-        /// <param name="searchMode"></param>
+        /// <param name="search"></param>
         /// <param name="udc"></param>
         /// <param name="le"></param>
-        public ReadRecordCommand(Byte record, Byte sfi, SearchMode searchMode, Byte[] udc, UInt32 le)
-            : this(record, sfi, searchMode, le)
+        public ReadRecordCommand(byte record, byte sfi, SearchMode search, byte[] udc, UInt32 le)
+            : this(record, sfi, search, le)
         {
-            this.ins = 0xB3;
-            this.udc = udc;
+            Ins = 0xB3;
+            Udc = udc;
         }
 
         #endregion
