@@ -39,9 +39,9 @@ namespace WSCT.Wrapper.PCSCLite64
         public static extern ErrorCode SCardControl(
             [In] IntPtr card,
             [In] ulong controlCode,
-            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] [In] Byte[] sendBuffer,
+            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] [In] byte[] sendBuffer,
             [In] ulong sendSize,
-            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 5)] [In, Out] ref Byte[] recvBuffer,
+            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 5)] [In, Out] ref byte[] recvBuffer,
             [In] ulong recvSize,
             [In, Out] ref ulong returnedSize
             );
@@ -164,7 +164,7 @@ namespace WSCT.Wrapper.PCSCLite64
         public static extern ErrorCode SCardSetAttrib(
             [In] IntPtr card,
             [In] UInt64 attributeId,
-            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] [In] Byte[] newAttribute,
+            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] [In] byte[] newAttribute,
             [In] UInt64 newAttributeSize
             );
 

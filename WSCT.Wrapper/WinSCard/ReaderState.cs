@@ -6,11 +6,13 @@ namespace WSCT.Wrapper.WinSCard
     {
         #region >> Properties
 
+        public ScardReaderState ScReaderState;
+
         /// <summary>
         /// Name of the reader being monitored.
         /// Set the value of this member to "\\\\?PnP?\\Notification" and the values of all other members to zero to be notified of the arrival of a new smart card reader.
         /// </summary>
-        public override String ReaderName
+        public override string ReaderName
         {
             get { return ScReaderState.readerName; }
             set { ScReaderState.readerName = value; }
@@ -50,8 +52,6 @@ namespace WSCT.Wrapper.WinSCard
             set { ScReaderState.atr = value; }
         }
 
-        public ScardReaderState ScReaderState;
-
         #endregion
 
         #region >> Constructors
@@ -61,13 +61,13 @@ namespace WSCT.Wrapper.WinSCard
             ScReaderState = new ScardReaderState();
         }
 
-        public ReaderState(String readerName)
+        public ReaderState(string readerName)
             : this()
         {
             ReaderName = readerName;
         }
 
-        public ReaderState(String readerName, EventState currentState, EventState eventState)
+        public ReaderState(string readerName, EventState currentState, EventState eventState)
             : this()
         {
             ReaderName = readerName;

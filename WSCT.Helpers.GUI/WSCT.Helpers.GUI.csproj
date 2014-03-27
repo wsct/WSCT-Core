@@ -47,17 +47,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HelpersGUI.cs">
+    <Compile Include="HelpersGui.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HelpersGUI.Designer.cs">
-      <DependentUpon>HelpersGUI.cs</DependentUpon>
+    <Compile Include="HelpersGui.Designer.cs">
+      <DependentUpon>HelpersGui.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="HelpersGUI.resx">
+    <EmbeddedResource Include="HelpersGui.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>HelpersGUI.cs</DependentUpon>
+      <DependentUpon>HelpersGui.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

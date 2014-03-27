@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APDU\ICardCommand.cs" />
+    <Compile Include="APDU\ICardResponse.cs" />
     <Compile Include="CardChannel.cs" />
     <Compile Include="CardContext.cs" />
     <Compile Include="CardContextObservable.cs" />
@@ -52,9 +54,7 @@
     <Compile Include="ICardContextObservable.cs" />
     <Compile Include="CardChannelObservable.cs" />
     <Compile Include="ICardContext.cs" />
-    <Compile Include="ICardResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ICardCommand.cs" />
     <Compile Include="ICardChannel.cs" />
     <Compile Include="CardChannelCore.cs" />
     <Compile Include="CardContextCore.cs" />

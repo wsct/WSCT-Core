@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WSCT.ISO7816.Commands
+﻿namespace WSCT.ISO7816.Commands
 {
     /// <summary>
     /// 
@@ -15,28 +10,32 @@ namespace WSCT.ISO7816.Commands
         /// <summary>
         /// 
         /// </summary>
-        public enum Target
+        public enum TargetType
         {
             /// <summary>
             /// 
             /// </summary>
-            FIRST_RECORD = 0x00,
+            FirstRecord = 0x00,
+
             /// <summary>
             /// 
             /// </summary>
-            LAST_RECORD = 0x01,
+            LastRecord = 0x01,
+
             /// <summary>
             /// 
             /// </summary>
-            NEXT_RECORD = 0x02,
+            NextRecord = 0x02,
+
             /// <summary>
             /// 
             /// </summary>
-            PREVIOUS_RECORD = 0x03,
+            PreviousRecord = 0x03,
+
             /// <summary>
             /// 
             /// </summary>
-            RECORD_NUMBER_IN_P1 = 0x04
+            RecordNumberInP1 = 0x04
         }
 
         #endregion
@@ -44,35 +43,35 @@ namespace WSCT.ISO7816.Commands
         #region >> Properties
 
         /// <summary>
-        /// Accessor to "record number" information
-        /// Write access: <see cref="target"/> is updated
+        /// Accessor to "record number" information.
+        /// Write access: <see cref="Target"/> is updated.
         /// </summary>
-        public Byte record
+        public byte Record
         {
             set
             {
-                p1 = value;
-                target = Target.RECORD_NUMBER_IN_P1;
+                P1 = value;
+                Target = TargetType.RecordNumberInP1;
             }
-            get { return p1; }
+            get { return P1; }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public Target target
+        public TargetType Target
         {
-            set { p2 = (Byte)((p2 & 0xFC) | (int)value); }
-            get { return (Target)(p2 & 0x03); }
+            set { P2 = (byte)((P2 & 0xFC) | (int)value); }
+            get { return (TargetType)(P2 & 0x03); }
         }
 
         /// <summary>
-        /// 
+        /// Short File Identifier value.
         /// </summary>
-        public Byte sfi
+        public byte Sfi
         {
-            set { p2 = (Byte)((value << 3) | (p2 & 0x03)); }
-            get { return (Byte)(p2 & 0xFC); }
+            set { P2 = (byte)((value << 3) | (P2 & 0x03)); }
+            get { return (byte)(P2 & 0xFC); }
         }
 
         #endregion
@@ -80,31 +79,34 @@ namespace WSCT.ISO7816.Commands
         #region >> Constructors
 
         /// <summary>
-        /// Default constructor
+        /// Initializes a new instance.
         /// </summary>
         public WriteRecordCommand()
-            : base()
         {
-            ins = 0xD2;
+            Ins = 0xD2;
         }
 
         /// <summary>
-        /// 
+        /// Initializes a new instance.
         /// </summary>
         /// <param name="recordNumber"></param>
         /// <param name="sfi"></param>
         /// <param name="target"></param>
         /// <param name="udc"></param>
-        public WriteRecordCommand(Byte recordNumber, Byte sfi, Target target, Byte[] udc)
+        public WriteRecordCommand(byte recordNumber, byte sfi, TargetType target, byte[] udc)
             : this()
         {
-            if (target == Target.RECORD_NUMBER_IN_P1)
-                this.record = recordNumber;
+            if (target == TargetType.RecordNumberInP1)
+            {
+                Record = recordNumber;
+            }
             else
-                this.p1 = 0x00;
-            this.target = target;
-            this.sfi = sfi;
-            this.udc = udc;
+            {
+                P1 = 0x00;
+            }
+            Target = target;
+            Sfi = sfi;
+            Udc = udc;
         }
 
         #endregion

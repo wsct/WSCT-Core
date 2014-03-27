@@ -9,8 +9,10 @@ namespace WSCT.Wrapper.MacOSX
     {
         #region >> Properties
 
+        public ScardReaderState ScReaderState;
+
         /// <inheritdoc />
-        public override String ReaderName
+        public override string ReaderName
         {
             get { return ScReaderState.readerName; }
             set { ScReaderState.readerName = value; }
@@ -44,8 +46,6 @@ namespace WSCT.Wrapper.MacOSX
             set { ScReaderState.atr = value; }
         }
 
-        public ScardReaderState ScReaderState;
-
         #endregion
 
         #region >> Constructors
@@ -55,13 +55,13 @@ namespace WSCT.Wrapper.MacOSX
             ScReaderState = new ScardReaderState();
         }
 
-        public ReaderState(String readerName)
+        public ReaderState(string readerName)
             : this()
         {
             ReaderName = readerName;
         }
 
-        public ReaderState(String readerName, EventState currentState, EventState eventState)
+        public ReaderState(string readerName, EventState currentState, EventState eventState)
             : this()
         {
             ReaderName = readerName;

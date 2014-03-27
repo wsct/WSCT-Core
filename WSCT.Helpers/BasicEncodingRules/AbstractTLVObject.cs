@@ -1,30 +1,26 @@
 using System;
 
-
 namespace WSCT.Helpers.BasicEncodingRules
 {
     /// <summary>
-    /// Base abstract class of all TLV data interpretation
-    /// It allows to bind a <see cref="TLVData"/> object with the associated <see cref="TLVDescription"/> object describing it.
+    /// Base abstract class of all TLV data interpretation.
+    /// It allows to bind a <see cref="TlvData"/> object with the associated <see cref="BasicEncodingRules.TlvDescription"/> object describing it.
     /// </summary>
-    public class AbstractTLVObject : IFormattable
+    public abstract class AbstractTlvObject : IFormattable
     {
         #region >> Fields
-
-        private TLVData _tlv;
-        private TLVDescription _tagDescription;
 
         #endregion
 
         #region >> Constructors
 
         /// <summary>
-        /// Défault constructor
+        /// Initializes a new instance.
         /// </summary>
-        public AbstractTLVObject()
+        protected AbstractTlvObject()
         {
-            _tlv = null;
-            _tagDescription = null;
+            Tlv = null;
+            TlvDescription = null;
         }
 
         #endregion
@@ -32,59 +28,68 @@ namespace WSCT.Helpers.BasicEncodingRules
         #region >> Properties
 
         /// <summary>
-        /// <see cref="TLVDescription"/> used with this object
+        /// <see cref="BasicEncodingRules.TlvDescription"/> used with this object.
         /// </summary>
-        public TLVDescription tlvDescription
-        {
-            get { return _tagDescription; }
-            set { _tagDescription = value; }
-        }
+        public TlvDescription TlvDescription { get; set; }
 
         /// <summary>
-        /// <c>TLVData</c> associated with the object
+        /// <c>TLVData</c> associated with the object.
         /// </summary>
-        public TLVData tlv
-        {
-            get { return _tlv; }
-            set { _tlv = value; }
-        }
+        public TlvData Tlv { get; set; }
 
         #endregion
 
-        /// <summary>
-        /// Returns a String that represents the nested <see cref="TLVData"/> using the nested <see cref="TLVDescription"/>
-        /// </summary>
-        /// <returns>A String that represents the <see cref="TLVData"/> Object.</returns>
-        public override string ToString()
-        {
-            if (_tagDescription.value.format == "b")
-                return tlv.value.toHexa();
-            if (_tagDescription.value.format == "ans")
-                return tlv.value.toString();
-            return base.ToString();
-        }
+        #region >> Object
 
         /// <inheritdoc cref="ToString()" />
         /// <inheritdoc select="param|returns" />
-        public String ToString(String format, IFormatProvider formatProvider)
+        public string ToString(string format, IFormatProvider formatProvider)
         {
-            if (format != "" && format != null)
+            if (!String.IsNullOrEmpty(format))
             {
                 if (format == "N")
-                    return tlvDescription.longName;
+                {
+                    return TlvDescription.LongName;
+                }
                 if (format == "n")
-                    return tlvDescription.name;
+                {
+                    return TlvDescription.Name;
+                }
                 if (format == "H")
-                    return tlv.value.toHexa();
+                {
+                    return Tlv.Value.ToHexa();
+                }
                 if (format == "s")
-                    return tlv.value.toString();
+                {
+                    return Tlv.Value.ToAsciiString();
+                }
                 if (format == "tlv")
-                    return tlv.ToString();
-                return null;
+                {
+                    return Tlv.ToString();
+                }
+                return String.Empty;
             }
-            else
-                return ToString();
+
+            return ToString();
         }
 
+        /// <summary>
+        /// Returns a string that represents the nested <see cref="TlvData"/> using the nested <see cref="BasicEncodingRules.TlvDescription"/>.
+        /// </summary>
+        /// <returns>A string that represents the <see cref="TlvData"/> Object.</returns>
+        public override string ToString()
+        {
+            if (TlvDescription.Value.Format == "b")
+            {
+                return Tlv.Value.ToHexa();
+            }
+            if (TlvDescription.Value.Format == "ans")
+            {
+                return Tlv.Value.ToAsciiString();
+            }
+            return base.ToString();
+        }
+
+        #endregion
     }
 }

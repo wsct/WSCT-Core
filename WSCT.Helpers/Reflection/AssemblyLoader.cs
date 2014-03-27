@@ -1,26 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace WSCT.Helpers.Reflection
 {
     /// <summary>
-    /// Allow to load objects from an external assembly by using reflection
+    /// Allow to load objects from an external assembly by using reflection.
     /// </summary>
     public class AssemblyLoader
     {
         #region >> Static members
 
         /// <summary>
-        /// Create a new instance of a <c>T</c> object 
+        /// Create a new instance of a <typeparamref name="T"/> object .
         /// </summary>
-        /// <typeparam name="T">Type of object to be created</typeparam>
-        /// <param name="assemblyFileName">Path and filename to the assembly (if <c>null</c> or <c>Empty</c>, <paramref name="typeName"/> is supposed to be accessible</param>
-        /// <param name="typeName">Type name of the instance to create from the assembly</param>
-        /// <returns>A new instance of the <c>T</c> object, or <c>null</c> if the <paramref name="typeName"/> class could not be found</returns>
-        public static T createInstance<T>(String assemblyFileName, String typeName)
+        /// <typeparam name="T">Type of object to be created.</typeparam>
+        /// <param name="assemblyFileName">Path and filename to the assembly (if <c>null</c> or <c>Empty</c>, <paramref name="typeName"/> is supposed to be accessible.</param>
+        /// <param name="typeName">Type name of the instance to create from the assembly.</param>
+        /// <returns>A new instance of the <c>T</c> object, or <c>null</c> if the <paramref name="typeName"/> class could not be found.</returns>
+        public static T CreateInstance<T>(string assemblyFileName, string typeName)
         {
-            T instance = default(T);
+            var instance = default(T);
             Type type;
             if (String.IsNullOrEmpty(assemblyFileName))
             {
@@ -28,7 +29,7 @@ namespace WSCT.Helpers.Reflection
             }
             else
             {
-                Assembly assembly = Assembly.LoadFrom(assemblyFileName);
+                var assembly = Assembly.LoadFrom(assemblyFileName);
                 type = assembly.GetType(typeName);
             }
             if (type != null)
@@ -39,34 +40,23 @@ namespace WSCT.Helpers.Reflection
         }
 
         /// <summary>
-        /// Retrieve a list of <c>Type</c>s from an external assembly, implementing a given <c>T</c> type (class or interface)
+        /// Retrieve a list of <c>Type</c>s from an external assembly, implementing a given <c>T</c> type (class or interface).
         /// </summary>
-        /// <typeparam name="T">Type to be searched</typeparam>
-        /// <param name="assemblyFileName">Path and filename to the assembly</param>
-        /// <returns>A list of <c>Type</c> implementing <c>T</c></returns>
-        public static List<Type> getTypesByInterface<T>(String assemblyFileName)
+        /// <typeparam name="T">Type to be searched.</typeparam>
+        /// <param name="assemblyFileName">Path and filename to the assembly.</param>
+        /// <returns>A list of <c>Type</c> implementing <typeparamref name="T"/>.</returns>
+        public static List<Type> GetTypesByInterface<T>(string assemblyFileName)
         {
-            List<Type> result = new List<Type>();
+            var assembly = Assembly.LoadFrom(assemblyFileName);
+            var types = assembly.GetExportedTypes();
 
-            Assembly assembly = Assembly.LoadFrom(assemblyFileName);
-            Type[] types = assembly.GetExportedTypes();
+            var typeFilter = new TypeFilter(
+                (typeFiltered, filterCriteria) => typeFiltered.Equals(filterCriteria)
+                );
 
-            TypeFilter typeFilter = new TypeFilter(
-                delegate(Type typeFiltered, Object filterCriteria)
-                {
-                    return typeFiltered.Equals(filterCriteria);
-                }
-            );
-
-            for (int i = 0; i < types.Length; i++)
-            {
-                if (types[i].FindInterfaces(typeFilter, typeof(T)).Length > 0)
-                {
-                    result.Add(types[i]);
-                }
-            }
-
-            return result;
+            return types
+                .Where(t => t.FindInterfaces(typeFilter, typeof(T)).Length > 0)
+                .ToList();
         }
 
         #endregion

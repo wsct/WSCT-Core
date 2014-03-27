@@ -21,7 +21,7 @@ namespace WSCT.Stack.Core
         }
 
         /// <inheritdoc cref="CardChannel(ICardContext,string)"/>
-        public CardChannelLayer(ICardContext context, String readerName)
+        public CardChannelLayer(ICardContext context, string readerName)
             : base(context, readerName)
         {
         }

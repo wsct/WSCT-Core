@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Serialization;
-
+﻿using System.Xml.Serialization;
 using WSCT.Core;
-using WSCT.Core.APDU;
+using WSCT.Wrapper;
 
 namespace WSCT.ISO7816
 {
@@ -17,41 +12,32 @@ namespace WSCT.ISO7816
     {
         #region >> Fields
 
-        CommandAPDU _cAPDU;
-        ResponseAPDU _rAPDU;
+        private CommandAPDU _cAPDU;
 
-        Wrapper.ErrorCode _errorCode;
+        private ErrorCode _errorCode;
+        private ResponseAPDU _rAPDU;
 
         #endregion
 
         #region >> Properties
 
         /// <summary>
-        /// Command APDU of the Command Response Pair
+        /// Command APDU of the Command Response Pair.
         /// </summary>
         [XmlElement("commandAPDU")]
-        public CommandAPDU cAPDU
+        public CommandAPDU CApdu
         {
-            get
-            {
-                if (_cAPDU == null)
-                    _cAPDU = new CommandAPDU();
-                return _cAPDU;
-            }
+            get { return _cAPDU ?? (_cAPDU = new CommandAPDU()); }
             set { _cAPDU = value; }
         }
+
         /// <summary>
-        /// Response APDU of the Command Response Pair
+        /// Response APDU of the Command Response Pair.
         /// </summary>
         [XmlElement("responseAPDU")]
-        public ResponseAPDU rAPDU
+        public ResponseAPDU RApdu
         {
-            get
-            {
-                if (_rAPDU == null)
-                    _rAPDU = new ResponseAPDU();
-                return _rAPDU;
-            }
+            get { return _rAPDU ?? (_rAPDU = new ResponseAPDU()); }
             set { _rAPDU = value; }
         }
 
@@ -59,7 +45,7 @@ namespace WSCT.ISO7816
         /// Error code of last transmitted C-APDU.
         /// </summary>
         [XmlIgnore]
-        public Wrapper.ErrorCode errorCode
+        public ErrorCode ErrorCode
         {
             get { return _errorCode; }
         }
@@ -69,16 +55,16 @@ namespace WSCT.ISO7816
         #region >> Constructors
 
         /// <summary>
-        /// Default constructor
+        /// Initializes a new instance.
         /// </summary>
         public CommandResponsePair()
         {
         }
 
         /// <summary>
-        /// Constructor
+        /// Initializes a new instance.
         /// </summary>
-        /// <param name="cAPDU">Command APDU of the new CRP</param>
+        /// <param name="cAPDU">Command APDU of the new CRP.</param>
         public CommandResponsePair(CommandAPDU cAPDU)
         {
             _cAPDU = cAPDU;
@@ -93,11 +79,10 @@ namespace WSCT.ISO7816
         /// </summary>
         /// <param name="cardChannel"></param>
         /// <returns></returns>
-        public Wrapper.ErrorCode transmit(ICardChannel cardChannel)
+        public ErrorCode Transmit(ICardChannel cardChannel)
         {
-            ICardResponse cardResponse = (ICardResponse)rAPDU;
-            _errorCode = cardChannel.transmit(cAPDU, rAPDU);
-            return errorCode;
+            _errorCode = cardChannel.Transmit(CApdu, RApdu);
+            return ErrorCode;
         }
 
         #endregion

@@ -1,6 +1,6 @@
 ﻿namespace WSCT.Helpers.GUI
 {
-    partial class HelpersGUI
+    partial class HelpersGui
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -223,7 +223,7 @@
             this.buttonHexaToString.Name = "buttonHexaToString";
             this.buttonHexaToString.Size = new System.Drawing.Size(100, 23);
             this.buttonHexaToString.TabIndex = 5;
-            this.buttonHexaToString.Text = "Hexa to String";
+            this.buttonHexaToString.Text = "Hexa to string";
             this.buttonHexaToString.UseVisualStyleBackColor = true;
             this.buttonHexaToString.Click += new System.EventHandler(this.buttonHexaToString_Click);
             // 
@@ -234,7 +234,7 @@
             this.buttonStringToHexa.Name = "buttonStringToHexa";
             this.buttonStringToHexa.Size = new System.Drawing.Size(100, 23);
             this.buttonStringToHexa.TabIndex = 4;
-            this.buttonStringToHexa.Text = "String to Hexa";
+            this.buttonStringToHexa.Text = "string to Hexa";
             this.buttonStringToHexa.UseVisualStyleBackColor = true;
             this.buttonStringToHexa.Click += new System.EventHandler(this.buttonStringToHexa_Click);
             // 
@@ -266,7 +266,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 444);
             this.Controls.Add(this.tabTLV);
-            this.Name = "HelpersGUI";
+            this.Name = "HelpersGui";
             this.Text = "Helpers GUI";
             this.tabTLV.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

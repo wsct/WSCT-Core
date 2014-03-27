@@ -1,49 +1,41 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Xml;
+using System.Xml.Schema;
 using System.Xml.Serialization;
-
-using WSCT.Core;
 using WSCT.Core.APDU;
 using WSCT.Helpers;
-using System.Xml;
 
 namespace WSCT.ISO7816
 {
     /// <summary>
-    /// Represents the normalized (ISO7816) C-APDU to be sent to a smart card
+    /// Represents the normalized (ISO7816) C-APDU to be sent to a smart card.
     /// <para>C-APDU: <b>CLA INS P1 P2 (Lc UDC) (Le)</b></para>
     /// </summary>
     /// <remarks>
-    /// Only short C-APDU (Le, Lc coded on 1 byte) are now supported
+    /// Only short C-APDU (Le, Lc coded on 1 byte) are now supported.
     /// </remarks>
     [XmlRoot("commandAPDU")]
-    public class CommandAPDU : Core.APDU.ICardCommand, IXmlSerializable
+    public class CommandAPDU : ICardCommand, IXmlSerializable
     {
         #region >> Fields
 
-        CommandCase _commandCase = CommandCase.CC1;
+        private CommandCase _commandCase = CommandCase.CC1;
+        private Boolean _hasLc;
+        private Boolean _hasLe;
 
-        Byte _cla = 0x00;
-        Byte _ins = 0x00;
-        Byte _p1 = 0x00;
-        Byte _p2 = 0x00;
-        UInt32 _le = 0x00;
-        UInt32 _lc = 0x00;
-        Byte[] _udc;
-
-        Boolean _hasLe = false;
-        Boolean _hasLc = false;
+        private UInt32 _lc;
+        private UInt32 _le;
+        private byte[] _udc;
 
         #endregion
 
         #region >> Properties
 
         /// <summary>
-        /// Accessor to the Command Case of the C-APDU
-        /// Write access: <see cref="hasLe"/> and <see cref="hasLc"/> are updated
+        /// Accessor to the Command Case of the C-APDU.
+        /// Write access: <see cref="HasLe"/> and <see cref="HasLc"/> are updated.
         /// </summary>
-        public CommandCase commandCase
+        public CommandCase CommandCase
         {
             get { return _commandCase; }
             set
@@ -51,67 +43,77 @@ namespace WSCT.ISO7816
                 _commandCase = value;
                 switch (value)
                 {
-                    case CommandCase.CC1: _hasLc = false; _hasLe = false; break;
-                    case CommandCase.CC2: _hasLc = false; _hasLe = true; break;
-                    case CommandCase.CC3: _hasLc = true; _hasLe = false; break;
-                    case CommandCase.CC4: _hasLc = true; _hasLe = true; break;
-                    default: break;
+                    case CommandCase.CC1:
+                        _hasLc = false;
+                        _hasLe = false;
+                        break;
+                    case CommandCase.CC2:
+                        _hasLc = false;
+                        _hasLe = true;
+                        break;
+                    case CommandCase.CC3:
+                        _hasLc = true;
+                        _hasLe = false;
+                        break;
+                    case CommandCase.CC4:
+                        _hasLc = true;
+                        _hasLe = true;
+                        break;
                 }
             }
         }
+
         /// <summary>
-        /// Accessor to the CLA byte of the C-APDU
+        /// Accessor to the CLA byte of the C-APDU.
         /// </summary>
-        public Byte cla
-        {
-            get { return _cla; }
-            set { _cla = value; }
-        }
+        public byte Cla { get; set; }
+
         /// <summary>
-        /// Accessor to the INS byte of the C-APDU
+        /// Accessor to the INS byte of the C-APDU.
         /// </summary>
-        public Byte ins
-        {
-            get { return _ins; }
-            set { _ins = value; }
-        }
+        public byte Ins { get; set; }
+
         /// <summary>
-        /// Accessor to the P1 byte of the C-APDU
+        /// Accessor to the P1 byte of the C-APDU.
         /// </summary>
-        public Byte p1
-        {
-            get { return _p1; }
-            set { _p1 = value; }
-        }
+        public byte P1 { get; set; }
+
         /// <summary>
-        /// Accessor to the P2 byte of the C-APDU
+        /// Accessor to the P2 byte of the C-APDU.
         /// </summary>
-        public Byte p2
-        {
-            get { return _p2; }
-            set { _p2 = value; }
-        }
+        public byte P2 { get; set; }
+
         /// <summary>
-        /// Accessor to the Le value of the C-APDU
+        /// Accessor to the Le value of the C-APDU.
         /// </summary>
-        public UInt32 le
+        public UInt32 Le
         {
             get { return _le; }
-            set { _le = value; hasLe = true; }
+            set
+            {
+                _le = value;
+                HasLe = true;
+            }
         }
+
         /// <summary>
-        /// Accessor to the Lc value of the C-APDU
+        /// Accessor to the Lc value of the C-APDU.
         /// </summary>
-        public UInt32 lc
+        public UInt32 Lc
         {
             get { return _lc; }
-            set { _lc = value; hasLc = true; }
+            set
+            {
+                _lc = value;
+                HasLc = true;
+            }
         }
+
         /// <summary>
-        /// Informs if Le has been parsed
-        /// Write access: <see cref="commandCase"/> is updated
+        /// Informs if Le has been parsed.
+        /// Write access: <see cref="CommandCase"/> is updated.
         /// </summary>
-        public Boolean hasLe
+        public Boolean HasLe
         {
             get { return _hasLe; }
             set
@@ -121,27 +123,34 @@ namespace WSCT.ISO7816
                 {
                     switch (_commandCase)
                     {
-                        case CommandCase.CC1: _commandCase = CommandCase.CC2; break;
-                        case CommandCase.CC3: _commandCase = CommandCase.CC4; break;
-                        default: break;
+                        case CommandCase.CC1:
+                            _commandCase = CommandCase.CC2;
+                            break;
+                        case CommandCase.CC3:
+                            _commandCase = CommandCase.CC4;
+                            break;
                     }
                 }
                 else
                 {
                     switch (_commandCase)
                     {
-                        case CommandCase.CC2: _commandCase = CommandCase.CC1; break;
-                        case CommandCase.CC4: _commandCase = CommandCase.CC3; break;
-                        default: break;
+                        case CommandCase.CC2:
+                            _commandCase = CommandCase.CC1;
+                            break;
+                        case CommandCase.CC4:
+                            _commandCase = CommandCase.CC3;
+                            break;
                     }
                 }
             }
         }
+
         /// <summary>
-        /// Informs if Lc has been parsed
-        /// Write access: <see cref="commandCase"/> is updated
+        /// Informs if Lc has been parsed.
+        /// Write access: <see cref="CommandCase"/> is updated.
         /// </summary>
-        public Boolean hasLc
+        public Boolean HasLc
         {
             get { return _hasLc; }
             set
@@ -151,100 +160,114 @@ namespace WSCT.ISO7816
                 {
                     switch (_commandCase)
                     {
-                        case CommandCase.CC1: _commandCase = CommandCase.CC3; break;
-                        case CommandCase.CC2: _commandCase = CommandCase.CC4; break;
-                        default: break;
+                        case CommandCase.CC1:
+                            _commandCase = CommandCase.CC3;
+                            break;
+                        case CommandCase.CC2:
+                            _commandCase = CommandCase.CC4;
+                            break;
                     }
                 }
                 else
                 {
                     switch (_commandCase)
                     {
-                        case CommandCase.CC3: _commandCase = CommandCase.CC1; break;
-                        case CommandCase.CC4: _commandCase = CommandCase.CC2; break;
-                        default: break;
+                        case CommandCase.CC3:
+                            _commandCase = CommandCase.CC1;
+                            break;
+                        case CommandCase.CC4:
+                            _commandCase = CommandCase.CC2;
+                            break;
                     }
                 }
             }
         }
+
         /// <summary>
-        /// Accessor to the UDC of the C-APDU
-        /// Write access: <see cref="lc"/> is updated
+        /// Accessor to the UDC of the C-APDU.
+        /// Write access: <see cref="Lc"/> is updated.
         /// </summary>
-        public Byte[] udc
+        public byte[] Udc
         {
-            get { return (hasLc ? _udc : new Byte[0]); }
+            get { return (HasLc ? _udc : new byte[0]); }
             set
             {
                 _udc = value;
-                lc = (uint)value.Length;
+                Lc = (uint)value.Length;
             }
         }
 
         /// <summary>
-        /// Informs if the C-APDU is a Command Case 1
+        /// Informs if the C-APDU is a Command Case 1.
         /// </summary>
-        public Boolean isCC1
+        public Boolean IsCc1
         {
             get { return _commandCase == CommandCase.CC1; }
         }
+
         /// <summary>
-        /// Informs if the C-APDU is a Command Case 2
+        /// Informs if the C-APDU is a Command Case 2.
         /// </summary>
-        public Boolean isCC2
+        public Boolean IsCc2
         {
             get { return _commandCase == CommandCase.CC2; }
         }
+
         /// <summary>
-        /// Informs if the C-APDU is a Command Case 3
+        /// Informs if the C-APDU is a Command Case 3.
         /// </summary>
-        public Boolean isCC3
+        public Boolean IsCc3
         {
             get { return _commandCase == CommandCase.CC3; }
         }
+
         /// <summary>
-        /// Informs if the C-APDU is a Command Case 4
+        /// Informs if the C-APDU is a Command Case 4.
         /// </summary>
-        public Boolean isCC4
+        public Boolean IsCc4
         {
             get { return _commandCase == CommandCase.CC4; }
         }
 
         /// <summary>
-        /// Accessor to the entire C-APDU in Byte array format
+        /// Accessor to the entire C-APDU in byte array format.
         /// </summary>
-        public byte[] binaryCommand
+        public byte[] BinaryCommand
         {
             get
             {
-                int length = 4 + (hasLc ? udc.Length + 1 : 0) + (hasLe ? 1 : 0);
-                Byte[] data = new Byte[length];
-                data[0] = cla;
-                data[1] = ins;
-                data[2] = p1;
-                data[3] = p2;
-                if (hasLc)
+                var length = 4 + (HasLc ? Udc.Length + 1 : 0) + (HasLe ? 1 : 0);
+                var data = new byte[length];
+                data[0] = Cla;
+                data[1] = Ins;
+                data[2] = P1;
+                data[3] = P2;
+                if (HasLc)
                 {
-                    data[4] = (Byte)lc;
-                    Array.Copy(udc, 0, data, 5, udc.Length);
-                    if (hasLe)
-                        data[5 + udc.Length] = (Byte)le;
+                    data[4] = (byte)Lc;
+                    Array.Copy(Udc, 0, data, 5, Udc.Length);
+                    if (HasLe)
+                    {
+                        data[5 + Udc.Length] = (byte)Le;
+                    }
                 }
                 else
                 {
-                    if (hasLe)
-                        data[4] = (Byte)le;
+                    if (HasLe)
+                    {
+                        data[4] = (byte)Le;
+                    }
                 }
                 return data;
             }
         }
 
         /// <summary>
-        /// Accessor to the entire C-APDU in String format (all bytes are represented in hexa)
+        /// Accessor to the entire C-APDU in string format (all bytes are represented in hexa).
         /// </summary>
-        public string stringCommand
+        public string StringCommand
         {
-            get { return binaryCommand.toHexa(); }
+            get { return BinaryCommand.ToHexa(); }
         }
 
         #endregion
@@ -252,96 +275,121 @@ namespace WSCT.ISO7816
         #region >> Constructors
 
         /// <summary>
-        /// Default constructor
+        /// Initializes a new instance.
         /// </summary>
         public CommandAPDU()
         {
+            _hasLe = false;
+            P1 = 0x00;
+            P2 = 0x00;
+            Ins = 0x00;
+            Cla = 0x00;
         }
+
         /// <summary>
-        /// Constructor for CC1 C-APDU
+        /// Initializes a new instance for CC1 C-APDU.
         /// </summary>
-        /// <param name="cla">CLA byte of the C-APDU</param>
-        /// <param name="ins">INS byte of the C-APDU</param>
-        /// <param name="p1">P1 byte of the C-APDU</param>
-        /// <param name="p2">P2 byte of the C-APDU</param>
-        public CommandAPDU(Byte cla, Byte ins, Byte p1, Byte p2)
+        /// <param name="cla">CLA byte of the C-APDU.</param>
+        /// <param name="ins">INS byte of the C-APDU.</param>
+        /// <param name="p1">P1 byte of the C-APDU.</param>
+        /// <param name="p2">P2 byte of the C-APDU.</param>
+        public CommandAPDU(byte cla, byte ins, byte p1, byte p2)
         {
-            this.cla = cla;
-            this.ins = ins;
-            this.p1 = p1;
-            this.p2 = p2;
+            _hasLe = false;
+            Cla = cla;
+            Ins = ins;
+            P1 = p1;
+            P2 = p2;
         }
+
         /// <summary>
-        /// Constructor for CC2 C-APDU
+        /// Initializes a new instance for CC2 C-APDU.
         /// </summary>
-        /// <param name="cla">CLA byte of the C-APDU</param>
-        /// <param name="ins">INS byte of the C-APDU</param>
-        /// <param name="p1">P1 byte of the C-APDU</param>
-        /// <param name="p2">P2 byte of the C-APDU</param>
-        /// <param name="le">Le value of the C-APDU</param>
-        public CommandAPDU(Byte cla, Byte ins, Byte p1, Byte p2, UInt32 le)
+        /// <param name="cla">CLA byte of the C-APDU.</param>
+        /// <param name="ins">INS byte of the C-APDU.</param>
+        /// <param name="p1">P1 byte of the C-APDU.</param>
+        /// <param name="p2">P2 byte of the C-APDU.</param>
+        /// <param name="le">Le value of the C-APDU.</param>
+        public CommandAPDU(byte cla, byte ins, byte p1, byte p2, UInt32 le)
         {
-            this.cla = cla;
-            this.ins = ins;
-            this.p1 = p1;
-            this.p2 = p2;
-            this.le = le;
+            _hasLe = false;
+            Cla = cla;
+            Ins = ins;
+            P1 = p1;
+            P2 = p2;
+            Le = le;
         }
+
         /// <summary>
-        /// Constructor for CC2 C-APDU
+        /// Initializes a new instance for CC2 C-APDU.
         /// </summary>
-        /// <param name="cla">CLA byte of the C-APDU</param>
-        /// <param name="ins">INS byte of the C-APDU</param>
-        /// <param name="p1">P1 byte of the C-APDU</param>
-        /// <param name="p2">P2 byte of the C-APDU</param>
-        /// <param name="lc">Lc value of the C-APDU</param>
-        /// <param name="udc">UDC of the C-APDU</param>
-        public CommandAPDU(Byte cla, Byte ins, Byte p1, Byte p2, UInt32 lc, Byte[] udc)
+        /// <param name="cla">CLA byte of the C-APDU.</param>
+        /// <param name="ins">INS byte of the C-APDU.</param>
+        /// <param name="p1">P1 byte of the C-APDU.</param>
+        /// <param name="p2">P2 byte of the C-APDU.</param>
+        /// <param name="lc">Lc value of the C-APDU.</param>
+        /// <param name="udc">UDC of the C-APDU.</param>
+        public CommandAPDU(byte cla, byte ins, byte p1, byte p2, UInt32 lc, byte[] udc)
         {
-            this.cla = cla;
-            this.ins = ins;
-            this.p1 = p1;
-            this.p2 = p2;
-            this.udc = udc;
-            this.lc = lc;
+            _hasLe = false;
+            Cla = cla;
+            Ins = ins;
+            P1 = p1;
+            P2 = p2;
+            Udc = udc;
+            Lc = lc;
         }
+
         /// <summary>
-        /// Constructor for CC4 C-APDU
+        /// Initializes a new instance for CC4 C-APDU.
         /// </summary>
-        /// <param name="cla">CLA byte of the C-APDU</param>
-        /// <param name="ins">INS byte of the C-APDU</param>
-        /// <param name="p1">P1 byte of the C-APDU</param>
-        /// <param name="p2">P2 byte of the C-APDU</param>
-        /// <param name="lc">Lc value of the C-APDU</param>
-        /// <param name="udc">UDC of the C-APDU</param>
-        /// <param name="le">Le value of the C-APDU</param>
-        public CommandAPDU(Byte cla, Byte ins, Byte p1, Byte p2, UInt32 lc, Byte[] udc, UInt32 le)
+        /// <param name="cla">CLA byte of the C-APDU.</param>
+        /// <param name="ins">INS byte of the C-APDU.</param>
+        /// <param name="p1">P1 byte of the C-APDU.</param>
+        /// <param name="p2">P2 byte of the C-APDU.</param>
+        /// <param name="lc">Lc value of the C-APDU.</param>
+        /// <param name="udc">UDC of the C-APDU.</param>
+        /// <param name="le">Le value of the C-APDU.</param>
+        public CommandAPDU(byte cla, byte ins, byte p1, byte p2, UInt32 lc, byte[] udc, UInt32 le)
         {
-            this.cla = cla;
-            this.ins = ins;
-            this.p1 = p1;
-            this.p2 = p2;
-            this.udc = udc;
-            this.lc = lc;
-            this.hasLc = true;
-            this.le = le;
-            this.hasLe = true;
+            _hasLe = false;
+            Cla = cla;
+            Ins = ins;
+            P1 = p1;
+            P2 = p2;
+            Udc = udc;
+            Lc = lc;
+            HasLc = true;
+            Le = le;
+            HasLe = true;
         }
+
         /// <summary>
-        /// Constructor for arbitrary C-APDU
+        /// Initializes a new instance for arbitrary C-APDU.
         /// </summary>
-        /// <param name="cAPDU">C-APDU to be assigned as a Byte array</param>
-        public CommandAPDU(Byte[] cAPDU)
+        /// <param name="cAPDU">C-APDU to be assigned as a byte array.</param>
+        public CommandAPDU(byte[] cAPDU)
         {
-            parse(cAPDU);
+            _hasLe = false;
+            P1 = 0x00;
+            P2 = 0x00;
+            Ins = 0x00;
+            Cla = 0x00;
+            Parse(cAPDU);
         }
+
         /// <summary>
-        /// Constructor for arbitrary C-APDU
+        /// Initializes a new instance for arbitrary C-APDU.
         /// </summary>
-        /// <param name="cAPDU">C-APDU to be assigned as a String container (each byte is coded in hexa)</param>
-        public CommandAPDU(String cAPDU)
+        /// <param name="cAPDU">C-APDU to be assigned as a string container (each byte is coded in hexa).</param>
+        public CommandAPDU(string cAPDU)
         {
-            parse(cAPDU);
+            _hasLe = false;
+            P1 = 0x00;
+            P2 = 0x00;
+            Ins = 0x00;
+            Cla = 0x00;
+            Parse(cAPDU);
         }
 
         #endregion
@@ -352,10 +400,14 @@ namespace WSCT.ISO7816
         /// 
         /// </summary>
         /// <param name="udcPart"></param>
-        public void appendUDC(Byte[] udcPart)
+        public void AppendUdc(byte[] udcPart)
         {
-            new NotImplementedException();
+            throw new NotImplementedException();
         }
+
+        #endregion
+
+        #region >> Object
 
         /// <summary>
         /// 
@@ -363,7 +415,7 @@ namespace WSCT.ISO7816
         /// <returns></returns>
         public override string ToString()
         {
-            return stringCommand;
+            return StringCommand;
         }
 
         #endregion
@@ -371,15 +423,17 @@ namespace WSCT.ISO7816
         #region >> ICardCommand Membres
 
         /// <inheritdoc />
-        public ICardCommand parse(byte[] cAPDU)
+        public ICardCommand Parse(byte[] cAPDU)
         {
             if (cAPDU.Length < 4)
-                new Exception("cAPDU.Length<4");
-            this.cla = cAPDU[0];
-            this.ins = cAPDU[1];
-            this.p1 = cAPDU[2];
-            this.p2 = cAPDU[3];
-            this.commandCase = CommandCase.CC1;
+            {
+                throw new Exception("cApdu.Length<4");
+            }
+            Cla = cAPDU[0];
+            Ins = cAPDU[1];
+            P1 = cAPDU[2];
+            P2 = cAPDU[3];
+            CommandCase = CommandCase.CC1;
 
             UInt32 pos = 4;
             if (cAPDU.Length > pos)
@@ -388,30 +442,30 @@ namespace WSCT.ISO7816
                 pos += 1;
                 if (cAPDU.Length >= pos + length)
                 {
-                    this.lc = length;
-                    this.udc = new Byte[length];
-                    Array.Copy(cAPDU, pos, this.udc, 0, length);
+                    Lc = length;
+                    Udc = new byte[length];
+                    Array.Copy(cAPDU, pos, Udc, 0, length);
                     pos += length;
-                    this.commandCase = CommandCase.CC3;
+                    CommandCase = CommandCase.CC3;
                     if (cAPDU.Length > pos)
                     {
-                        this.le = cAPDU[pos];
-                        this.commandCase = CommandCase.CC4;
+                        Le = cAPDU[pos];
+                        CommandCase = CommandCase.CC4;
                     }
                 }
                 else
                 {
-                    this.commandCase = CommandCase.CC2;
-                    this.le = length;
+                    CommandCase = CommandCase.CC2;
+                    Le = length;
                 }
             }
             return this;
         }
 
         /// <inheritdoc />
-        public ICardCommand parse(string cAPDU)
+        public ICardCommand Parse(string cAPDU)
         {
-            return parse(cAPDU.fromHexa());
+            return Parse(cAPDU.FromHexa());
         }
 
         #endregion
@@ -419,7 +473,7 @@ namespace WSCT.ISO7816
         #region >> IXmlSerializable Members
 
         /// <inheritdoc />
-        public System.Xml.Schema.XmlSchema GetSchema()
+        public XmlSchema GetSchema()
         {
             return null;
         }
@@ -427,23 +481,25 @@ namespace WSCT.ISO7816
         /// <inheritdoc />
         public void ReadXml(XmlReader reader)
         {
-            cla = reader.GetAttribute("cla").fromHexa()[0];
-            ins = reader.GetAttribute("ins").fromHexa()[0];
-            p1 = reader.GetAttribute("p1").fromHexa()[0];
-            p2 = reader.GetAttribute("p2").fromHexa()[0];
+            Cla = reader.GetAttribute("cla").FromHexa()[0];
+            Ins = reader.GetAttribute("ins").FromHexa()[0];
+            P1 = reader.GetAttribute("p1").FromHexa()[0];
+            P2 = reader.GetAttribute("p2").FromHexa()[0];
             if (reader.MoveToAttribute("le"))
             {
-                le = (uint)reader.ReadContentAsString().fromHexa()[0];
+                Le = reader.ReadContentAsString().FromHexa()[0];
             }
             reader.MoveToElement();
             if (reader.IsEmptyElement)
-            {   // <commandAPDU cla=... ins=... p1=... p2=... (le=...) />
+            {
+                // <commandAPDU cla=... ins=... p1=... p2=... (le=...) />
                 reader.ReadStartElement();
             }
             else
-            {   // <commandAPDU cla=... ins=... p1=... p2=... (le=...) > udc </commandAPDU>
+            {
+                // <commandAPDU cla=... ins=... p1=... p2=... (le=...) > udc </commandAPDU>
                 reader.ReadStartElement();
-                udc = reader.ReadString().fromHexa();
+                Udc = reader.ReadString().FromHexa();
                 reader.ReadEndElement();
             }
             reader.ReadStartElement();
@@ -452,17 +508,17 @@ namespace WSCT.ISO7816
         /// <inheritdoc />
         public void WriteXml(XmlWriter writer)
         {
-            writer.WriteAttributeString("cla", String.Format("{0:X2}", cla));
-            writer.WriteAttributeString("ins", String.Format("{0:X2}", ins));
-            writer.WriteAttributeString("p1", String.Format("{0:X2}", p1));
-            writer.WriteAttributeString("p2", String.Format("{0:X2}", p2));
-            if (hasLc)
+            writer.WriteAttributeString("cla", String.Format("{0:X2}", Cla));
+            writer.WriteAttributeString("ins", String.Format("{0:X2}", Ins));
+            writer.WriteAttributeString("p1", String.Format("{0:X2}", P1));
+            writer.WriteAttributeString("p2", String.Format("{0:X2}", P2));
+            if (HasLc)
             {
-                writer.WriteString(udc.toHexa());
+                writer.WriteString(Udc.ToHexa());
             }
-            if (hasLe)
+            if (HasLe)
             {
-                writer.WriteAttributeString("le", String.Format("{0:X2}", le));
+                writer.WriteAttributeString("le", String.Format("{0:X2}", Le));
             }
         }
 

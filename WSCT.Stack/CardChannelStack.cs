@@ -115,57 +115,57 @@ namespace WSCT.Stack
         #region >> ICardChannel Membres
 
         /// <inheritdoc />
-        public Protocol protocol
+        public Protocol Protocol
         {
-            get { return RequestLayer(null, SearchMode.Top).protocol; }
+            get { return RequestLayer(null, SearchMode.Top).Protocol; }
         }
 
         /// <inheritdoc />
-        public string readerName
+        public string ReaderName
         {
-            get { return RequestLayer(null, SearchMode.Top).readerName; }
+            get { return RequestLayer(null, SearchMode.Top).ReaderName; }
         }
 
         /// <inheritdoc />
-        public void attach(ICardContext context, string readerName)
+        public void Attach(ICardContext context, string readerName)
         {
-            RequestLayer(null, SearchMode.Top).attach(context, readerName);
+            RequestLayer(null, SearchMode.Top).Attach(context, readerName);
         }
 
         /// <inheritdoc />
-        public ErrorCode connect(ShareMode shareMode, Protocol preferedProtocol)
+        public ErrorCode Connect(ShareMode shareMode, Protocol preferedProtocol)
         {
-            return RequestLayer(null, SearchMode.Top).connect(shareMode, preferedProtocol);
+            return RequestLayer(null, SearchMode.Top).Connect(shareMode, preferedProtocol);
         }
 
         /// <inheritdoc />
-        public ErrorCode disconnect(Disposition disposition)
+        public ErrorCode Disconnect(Disposition disposition)
         {
-            return RequestLayer(null, SearchMode.Top).disconnect(disposition);
+            return RequestLayer(null, SearchMode.Top).Disconnect(disposition);
         }
 
         /// <inheritdoc />
-        public ErrorCode getAttrib(Attrib attrib, ref byte[] buffer)
+        public ErrorCode GetAttrib(Attrib attrib, ref byte[] buffer)
         {
-            return RequestLayer(null, SearchMode.Top).getAttrib(attrib, ref buffer);
+            return RequestLayer(null, SearchMode.Top).GetAttrib(attrib, ref buffer);
         }
 
         /// <inheritdoc />
-        public State getStatus()
+        public State GetStatus()
         {
-            return RequestLayer(null, SearchMode.Top).getStatus();
+            return RequestLayer(null, SearchMode.Top).GetStatus();
         }
 
         /// <inheritdoc />
-        public ErrorCode reconnect(ShareMode shareMode, Protocol preferedProtocol, Disposition initialization)
+        public ErrorCode Reconnect(ShareMode shareMode, Protocol preferedProtocol, Disposition initialization)
         {
-            return RequestLayer(null, SearchMode.Top).reconnect(shareMode, preferedProtocol, initialization);
+            return RequestLayer(null, SearchMode.Top).Reconnect(shareMode, preferedProtocol, initialization);
         }
 
         /// <inheritdoc />
-        public ErrorCode transmit(ICardCommand command, ICardResponse response)
+        public ErrorCode Transmit(ICardCommand command, ICardResponse response)
         {
-            return RequestLayer(null, SearchMode.Top).transmit(command, response);
+            return RequestLayer(null, SearchMode.Top).Transmit(command, response);
         }
 
         #endregion

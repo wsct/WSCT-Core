@@ -1,20 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace WSCT.Helpers.GUI
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// Point d'entrée principal de l'application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HelpersGUI());
+            Application.Run(new HelpersGui());
         }
     }
 }

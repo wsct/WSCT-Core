@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace WSCT.ISO7816.AnswerToReset
 {
@@ -13,90 +10,109 @@ namespace WSCT.ISO7816.AnswerToReset
         #region >> Enumerations
 
         /// <summary>
-        /// Identifiers of interface bytes
+        /// Identifiers of interface bytes.
         /// </summary>
-        public enum Id
+        public enum IdType
         {
             /// <summary>
-            /// Identifier for T0 byte
+            /// Identifier for T0 byte.
             /// </summary>
             T0,
+
             /// <summary>
-            /// Identifier for TA1 byte
+            /// Identifier for TA1 byte.
             /// </summary>
-            TA1,
+            Ta1,
+
             /// <summary>
-            /// Identifier for TB1 byte
+            /// Identifier for TB1 byte.
             /// </summary>
-            TB1,
+            Tb1,
+
             /// <summary>
-            /// Identifier for TC1 byte
+            /// Identifier for Tc1 byte.
             /// </summary>
-            TC1,
+            Tc1,
+
             /// <summary>
-            /// Identifier for TD1 byte
+            /// Identifier for TD1 byte.
             /// </summary>
-            TD1,
+            Td1,
+
             /// <summary>
-            /// Identifier for TA2 byte
+            /// Identifier for TA2 byte.
             /// </summary>
-            TA2,
+            Ta2,
+
             /// <summary>
-            /// Identifier for TB2 byte
+            /// Identifier for TB2 byte.
             /// </summary>
-            TB2,
+            Tb2,
+
             /// <summary>
-            /// Identifier for TC2 byte
+            /// Identifier for TC2 byte.
             /// </summary>
-            TC2,
+            Tc2,
+
             /// <summary>
-            /// Identifier for TD2 byte
+            /// Identifier for TD2 byte.
             /// </summary>
-            TD2,
+            Td2,
+
             /// <summary>
-            /// Identifier for TA3 byte
+            /// Identifier for TA3 byte.
             /// </summary>
-            TA3,
+            Ta3,
+
             /// <summary>
-            /// Identifier for TB3 byte
+            /// Identifier for TB3 byte.
             /// </summary>
-            TB3,
+            Tb3,
+
             /// <summary>
-            /// Identifier for TC3 byte
+            /// Identifier for TC3 byte.
             /// </summary>
-            TC3,
+            Tc3,
+
             /// <summary>
-            /// Identifier for TD3 byte
+            /// Identifier for TD3 byte.
             /// </summary>
-            TD3,
+            Td3,
+
             /// <summary>
-            /// Identifier for TA4 byte
+            /// Identifier for TA4 byte.
             /// </summary>
-            TA4,
+            Ta4,
+
             /// <summary>
-            /// Identifier for TB4 byte
+            /// Identifier for TB4 byte.
             /// </summary>
-            TB4,
+            Tb4,
+
             /// <summary>
-            /// Identifier for TC4 byte
+            /// Identifier for TC4 byte.
             /// </summary>
-            TC4,
+            Tc4,
+
             /// <summary>
-            /// Identifier for TD4 byte
+            /// Identifier for TD4 byte.
             /// </summary>
-            TD4,
+            Td4,
+
             /// <summary>
-            /// Identifier for TA5 byte
+            /// Identifier for TA5 byte.
             /// </summary>
-            TA5,
+            Ta5,
+
             /// <summary>
-            /// Identifier for TB5 byte
+            /// Identifier for TB5 byte.
             /// </summary>
-            TB5,
+            Tb5,
+
             /// <summary>
-            /// Identifier for TC5 byte
+            /// Identifier for TC5 byte.
             /// </summary>
-            TC5
+            Tc5
         }
 
         #endregion
@@ -104,38 +120,40 @@ namespace WSCT.ISO7816.AnswerToReset
         #region >> Properties
 
         /// <summary>
-        /// Value of interface byte
+        /// Value of interface byte.
         /// </summary>
-        public Byte value
-        { get; set; }
+        public byte Value { get; set; }
 
         /// <summary>
-        /// Identifier of the byte
+        /// Identifier of the byte.
         /// </summary>
-        public Id id
-        { get; set; }
+        public IdType Id { get; set; }
 
         #endregion
 
         #region >> Constructors
 
         /// <summary>
-        /// Accessor to a named interface byte
+        /// Initializes a new instance.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="b"></param>
-        public InterfaceByte(Id id, Byte b)
+        public InterfaceByte(IdType id, byte b)
         {
-            this.id = id;
-            this.value = b;
+            Id = id;
+            Value = b;
         }
 
         #endregion
 
+        #region >> Object
+
         /// <inheritdoc />
         public override string ToString()
         {
-            return String.Format("{0}:{1:X2}", id, value);
+            return String.Format("{0}:{1:X2}", Id, Value);
         }
+
+        #endregion
     }
 }

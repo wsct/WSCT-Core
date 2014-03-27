@@ -1,5 +1,4 @@
 using System;
-
 using WSCT.Core.APDU;
 using WSCT.Helpers;
 using WSCT.ISO7816;
@@ -10,9 +9,9 @@ using WSCT.Wrapper;
 
 namespace WSCT.Core.ConsoleTests
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main( /*string[] args*/)
         {
             try
             {
@@ -44,8 +43,8 @@ namespace WSCT.Core.ConsoleTests
 
             #region >> ConsoleObserver
 
-            ConsoleObserver logger = new ConsoleObserver();
-            ConsoleObserver61xx logger61xx = new ConsoleObserver61xx();
+            var logger = new ConsoleObserver();
+            var logger61 = new ConsoleObserver61();
 
             #endregion
 
@@ -54,12 +53,12 @@ namespace WSCT.Core.ConsoleTests
 
             #region >> CardContext
 
-            ICardContext context = new Core.CardContext();
-            logger.observeContext((Core.CardContextObservable)context);
+            ICardContext context = new CardContext();
+            logger.ObserveContext((CardContextObservable)context);
 
-            context.establish();
-            context.listReaderGroups();
-            context.listReaders(context.groups[0]);
+            context.Establish();
+            context.ListReaderGroups();
+            context.ListReaders(context.Groups[0]);
 
             #endregion
 
@@ -68,15 +67,15 @@ namespace WSCT.Core.ConsoleTests
 
             #region >> StatusChangeMonitor
 
-            StatusChangeMonitor monitor = new StatusChangeMonitor(context);
+            var monitor = new StatusChangeMonitor(context);
 
-            logger.observeMonitor(monitor);
+            logger.ObserveMonitor(monitor);
 
-            AbstractReaderState readerState = monitor.WaitForCardPresence(0);
+            var readerState = monitor.WaitForCardPresence(0);
             if (readerState == null)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(">> Insert a card in one of the {0} readers (time out in 15s)", context.readersCount);
+                Console.WriteLine(">> Insert a card in one of the {0} readers (time out in 15s)", context.ReadersCount);
                 readerState = monitor.WaitForCardPresence(15000);
             }
 
@@ -93,60 +92,60 @@ namespace WSCT.Core.ConsoleTests
 
             #region >> CardChannel
 
-            ICardChannel cardChannel = new Core.CardChannel(context, readerState.ReaderName);
-            logger.observeChannel((Core.CardChannelObservable)cardChannel);
+            ICardChannel cardChannel = new CardChannel(context, readerState.ReaderName);
+            logger.ObserveChannel((CardChannelObservable)cardChannel);
 
-            cardChannel.connect(ShareMode.Shared, Protocol.Any);
+            cardChannel.Connect(ShareMode.Shared, Protocol.Any);
 
             //Console.WriteLine(cardChannel.getStatus());
 
-            Byte[] recvBuffer = null;
-            cardChannel.getAttrib(Attrib.AtrString, ref recvBuffer);
+            byte[] recvBuffer = null;
+            cardChannel.GetAttrib(Attrib.AtrString, ref recvBuffer);
 
             recvBuffer = null;
-            cardChannel.getAttrib(Attrib.DeviceFriendlyName, ref recvBuffer);
+            cardChannel.GetAttrib(Attrib.DeviceFriendlyName, ref recvBuffer);
 
             recvBuffer = null;
-            cardChannel.getAttrib(Attrib.AtrString, ref recvBuffer);
+            cardChannel.GetAttrib(Attrib.AtrString, ref recvBuffer);
 
-            cardChannel.reconnect(ShareMode.Shared, Protocol.Any, Disposition.ResetCard);
+            cardChannel.Reconnect(ShareMode.Shared, Protocol.Any, Disposition.ResetCard);
 
             Console.WriteLine();
 
-            CommandAPDU cAPDU = new CommandAPDU("00A4040005A000000069");
+            var cAPDU = new CommandAPDU("00A4040005A000000069");
             ICardResponse rAPDU = new ResponseAPDU();
 
-            cardChannel.transmit(cAPDU, rAPDU);
-            if (((ResponseAPDU)rAPDU).sw1 == 0x61)
+            cardChannel.Transmit(cAPDU, rAPDU);
+            if (((ResponseAPDU)rAPDU).Sw1 == 0x61)
             {
-                cAPDU = new CommandAPDU(String.Format("00C00000{0:X2}", ((ResponseAPDU)rAPDU).sw2));
+                cAPDU = new CommandAPDU(String.Format("00C00000{0:X2}", ((ResponseAPDU)rAPDU).Sw2));
                 rAPDU = new ResponseAPDU();
-                cardChannel.transmit(cAPDU, rAPDU);
+                cardChannel.Transmit(cAPDU, rAPDU);
             }
 
             Console.WriteLine();
 
             cAPDU = new CommandAPDU("00A404000E315041592E5359532E4444463031");
             rAPDU = new ResponseAPDU();
-            cardChannel.transmit(cAPDU, rAPDU);
-            if (((ResponseAPDU)rAPDU).sw1 == 0x61)
+            cardChannel.Transmit(cAPDU, rAPDU);
+            if (((ResponseAPDU)rAPDU).Sw1 == 0x61)
             {
-                cAPDU = new CommandAPDU(String.Format("00C00000{0:X2}", ((ResponseAPDU)rAPDU).sw2));
+                cAPDU = new CommandAPDU(String.Format("00C00000{0:X2}", ((ResponseAPDU)rAPDU).Sw2));
                 rAPDU = new ResponseAPDU();
-                cardChannel.transmit(cAPDU, rAPDU);
+                cardChannel.Transmit(cAPDU, rAPDU);
             }
 
-            cAPDU = new CommandAPDU(0x00, 0xA4, 0x00, 0x00, 0x02, new Byte[2] { 0x3F, 0x00 });
+            cAPDU = new CommandAPDU(0x00, 0xA4, 0x00, 0x00, 0x02, new byte[] { 0x3F, 0x00 });
             rAPDU = new ResponseAPDU();
-            cardChannel.transmit(cAPDU, rAPDU);
-            if (((ResponseAPDU)rAPDU).sw1 == 0x61)
+            cardChannel.Transmit(cAPDU, rAPDU);
+            if (((ResponseAPDU)rAPDU).Sw1 == 0x61)
             {
-                cAPDU = new CommandAPDU(String.Format("00C00000{0:X2}", ((ResponseAPDU)rAPDU).sw2));
+                cAPDU = new CommandAPDU(String.Format("00C00000{0:X2}", ((ResponseAPDU)rAPDU).Sw2));
                 rAPDU = new ResponseAPDU();
-                cardChannel.transmit(cAPDU, rAPDU);
+                cardChannel.Transmit(cAPDU, rAPDU);
             }
 
-            cardChannel.disconnect(Disposition.UnpowerCard);
+            cardChannel.Disconnect(Disposition.UnpowerCard);
 
             #endregion
 
@@ -158,26 +157,27 @@ namespace WSCT.Core.ConsoleTests
             ICardChannelStack cardStack = new CardChannelStack();
 
             ICardChannelLayer cardLayer = new CardChannelLayer();
-            ICardChannelLayer cardLayer61 = new CardChannelLayer61xx();
+            ICardChannelLayer cardLayer61 = new CardChannelLayer61();
 
-            logger61xx.observeChannel((ICardChannelObservable)cardLayer61);
+            logger61.ObserveChannel((ICardChannelObservable)cardLayer61);
             cardStack.AddLayer(cardLayer61);
 
-            logger.observeChannel((ICardChannelObservable)cardLayer);
+            logger.ObserveChannel((ICardChannelObservable)cardLayer);
             cardStack.AddLayer(cardLayer);
 
-            cardStack.attach(context, readerState.ReaderName);
+            cardStack.Attach(context, readerState.ReaderName);
 
-            cardStack.connect(ShareMode.Shared, Protocol.Any);
+            cardStack.Connect(ShareMode.Shared, Protocol.Any);
 
-            cardStack.reconnect(ShareMode.Shared, Protocol.Any, Disposition.ResetCard);
+            cardStack.Reconnect(ShareMode.Shared, Protocol.Any, Disposition.ResetCard);
 
             // Use of a CommandResponsePair object to manage the dialog
-            cAPDU = new SelectCommand(SelectCommand.SelectionMode.SELECT_DF_NAME, SelectCommand.FileOccurrence.FIRST_OR_ONLY, SelectCommand.FileControlInformation.RETURN_FCI, "A000000069".fromHexa(), 0xFF);
-            CommandResponsePair crp = new CommandResponsePair(cAPDU);
-            crp.transmit(cardStack);
+            cAPDU = new SelectCommand(SelectCommand.SelectionMode.SelectDFName, SelectCommand.FileOccurrence.FirstOrOnly, SelectCommand.FileControlInformation.ReturnFci, "A000000069".FromHexa(),
+                0xFF);
+            var crp = new CommandResponsePair(cAPDU);
+            crp.Transmit(cardStack);
 
-            cardStack.disconnect(Disposition.UnpowerCard);
+            cardStack.Disconnect(Disposition.UnpowerCard);
 
             #endregion
 
@@ -189,18 +189,18 @@ namespace WSCT.Core.ConsoleTests
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(">> Waiting for a change since last call (time out in 10s)");
             // "unpower" change should be fired for the previously used reader
-            monitor.waitForChange(10000);
+            monitor.WaitForChange(10000);
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(">> Remove the card in one of the readers {0} (time out in 10s)", readerState.ReaderName);
             // Wait for another change
-            monitor.waitForChange(10000);
+            monitor.WaitForChange(10000);
 
             #endregion
 
             Console.WriteLine();
 
-            context.release();
+            context.Release();
         }
     }
 }

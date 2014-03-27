@@ -1,44 +1,42 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using System.Xml.Serialization;
-using System.IO;
-
-using WSCT.Helpers;
 using WSCT.Helpers.Reflection;
-using WSCT.Helpers.BasicEncodingRules;
 
 namespace WSCT.Helpers.BasicEncodingRules
 {
     /// <summary>
     /// Manages a list of known TLV data representations.
-    /// <para>List can be programmatically defined of read from an XML file (see <c>Dictionary.EMVTag.xsd</c> for XML format)</para>
+    /// <para>List can be programmatically defined of read from an XML file (see <c>Dictionary.EMVTag.xsd</c> for XML format).</para>
     /// </summary>
     /// <remarks>
-    /// <see cref="AbstractTLVObject" /> is the base abstract class for all TLV data representations.
-    /// An instance of <see cref="TLVDescription" /> explains how to create a TLV data representation for a given tag.
-    /// <see cref="TLVDictionary" /> allows to manage sets of <see cref="TLVDescription" />.
+    /// <see cref="AbstractTlvObject" /> is the base abstract class for all TLV data representations.
+    /// An instance of <see cref="TlvDescription" /> explains how to create a TLV data representation for a given tag.
+    /// <see cref="TlvDictionary" /> allows to manage sets of <see cref="TlvDescription" />.
     /// </remarks>
     [XmlRoot("TlvDictionary")]
-    public class TLVDictionary
+    public class TlvDictionary
     {
         #region >> Fields
 
-        Dictionary<String, TLVDescription> _descByHexa;
+        private Dictionary<string, TlvDescription> _descByHexa;
 
         #endregion
 
         #region >> Properties
 
-        Dictionary<String, TLVDescription> descByHexa
+        private Dictionary<string, TlvDescription> DescByHexa
         {
             get
             {
                 if (_descByHexa == null)
                 {
-                    _descByHexa = new Dictionary<string, TLVDescription>();
-                    foreach (TLVDescription tlvd in tlvDescriptionList)
-                        _descByHexa.Add(tlvd.hexaValue, tlvd);
+                    _descByHexa = new Dictionary<string, TlvDescription>();
+                    foreach (var tlvd in TlvDescriptionList)
+                    {
+                        _descByHexa.Add(tlvd.HexaValue, tlvd);
+                    }
                 }
                 return _descByHexa;
             }
@@ -46,22 +44,10 @@ namespace WSCT.Helpers.BasicEncodingRules
         }
 
         /// <summary>
-        /// List of <see cref="TLVDescription"/> objects known by the dictionary
+        /// List of <see cref="TlvDescription"/> objects known by the dictionary
         /// </summary>
         [XmlElement("tlvDesc")]
-        public List<TLVDescription> tlvDescriptionList
-        { get; set; }
-
-        #endregion
-
-        #region >> Constructors
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public TLVDictionary()
-        {
-        }
+        public List<TlvDescription> TlvDescriptionList { get; set; }
 
         #endregion
 
@@ -71,9 +57,9 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// Adds a description to the known TLV representation
         /// </summary>
         /// <param name="tlvDesc">TLV description for the tlvDesc to add</param>
-        public void add(TLVDescription tlvDesc)
+        public void Add(TlvDescription tlvDesc)
         {
-            _descByHexa.Add(tlvDesc.hexaValue, tlvDesc);
+            _descByHexa.Add(tlvDesc.HexaValue, tlvDesc);
         }
 
         /// <summary>
@@ -81,23 +67,27 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// </summary>
         /// <param name="tlv">Reference <c>TLVData</c></param>
         /// <returns>A newly instance of the description class for the tlv</returns>
-        public AbstractTLVObject createInstance(TLVData tlv)
+        public AbstractTlvObject CreateInstance(TlvData tlv)
         {
-            AbstractTLVObject tag;
-            TLVDescription desc;
-            if (tlv.tag < 0x100)
-                desc = get(String.Format("{0:X2}", tlv.tag));
+            AbstractTlvObject tag;
+            TlvDescription desc;
+            if (tlv.Tag < 0x100)
+            {
+                desc = Get(String.Format("{0:X2}", tlv.Tag));
+            }
             else
-                desc = get(String.Format("{0:X4}", tlv.tag));
+            {
+                desc = Get(String.Format("{0:X4}", tlv.Tag));
+            }
             if (desc == null)
             {
                 tag = null;
             }
             else
             {
-                tag = createInstance(desc);
-                tag.tlv = tlv;
-                tag.tlvDescription = desc;
+                tag = CreateInstance(desc);
+                tag.Tlv = tlv;
+                tag.TlvDescription = desc;
             }
             return tag;
         }
@@ -107,12 +97,14 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// </summary>
         /// <param name="tlvDesc">Description of the tag</param>
         /// <returns>A new instance of the TLV object</returns>
-        public static AbstractTLVObject createInstance(TLVDescription tlvDesc)
+        public static AbstractTlvObject CreateInstance(TlvDescription tlvDesc)
         {
-            String dll = "";
-            if (tlvDesc.dllName != null)
-                dll = (tlvDesc.pathToDll == null ? "" : tlvDesc.pathToDll) + tlvDesc.dllName;
-            return AssemblyLoader.createInstance<AbstractTLVObject>(dll, tlvDesc.className);
+            var dll = "";
+            if (tlvDesc.DllName != null)
+            {
+                dll = (tlvDesc.PathToDll ?? String.Empty) + tlvDesc.DllName;
+            }
+            return AssemblyLoader.CreateInstance<AbstractTlvObject>(dll, tlvDesc.ClassName);
         }
 
         /// <summary>
@@ -120,20 +112,20 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// </summary>
         /// <param name="tagName">Hexa string representation of the tag value</param>
         /// <returns>A new instance of the TLV object</returns>
-        public AbstractTLVObject createInstance(String tagName)
+        public AbstractTlvObject CreateInstance(string tagName)
         {
-            return TLVDictionary.createInstance(get(tagName));
+            return CreateInstance(Get(tagName));
         }
 
         /// <summary>
-        /// Get the <see cref="TLVDescription"/> instance which name is <paramref name="tagHexaValue"/>
+        /// Get the <see cref="TlvDescription"/> instance which name is <paramref name="tagHexaValue"/>
         /// </summary>
         /// <param name="tagHexaValue">Hexa string value of the tag</param>
         /// <returns>The TagDescription instance or null if not find</returns>
-        public TLVDescription get(String tagHexaValue)
+        public TlvDescription Get(string tagHexaValue)
         {
-            TLVDescription tagFound;
-            descByHexa.TryGetValue(tagHexaValue, out tagFound);
+            TlvDescription tagFound;
+            DescByHexa.TryGetValue(tagHexaValue, out tagFound);
             return tagFound;
         }
 
@@ -142,13 +134,12 @@ namespace WSCT.Helpers.BasicEncodingRules
         #region >> IEnumerable Membres
 
         /// <summary>
-        /// Enumerator of the registered <see cref="TLVDescription"/>s
+        /// Enumerator of the registered <see cref="TlvDescription"/>s
         /// </summary>
         /// <returns>The enumerator</returns>
-        public System.Collections.IEnumerator GetEnumerator()
+        public IEnumerator GetEnumerator()
         {
-            foreach (TLVDescription tag in _descByHexa.Values)
-                yield return tag;
+            return _descByHexa.Values.GetEnumerator();
         }
 
         #endregion

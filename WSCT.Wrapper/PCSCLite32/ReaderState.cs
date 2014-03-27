@@ -6,7 +6,9 @@ namespace WSCT.Wrapper.PCSCLite32
     {
         #region >> Properties
 
-        public override String ReaderName
+        public ScardReaderState ScReaderState;
+
+        public override string ReaderName
         {
             get { return ScReaderState.readerName; }
             set { ScReaderState.readerName = value; }
@@ -37,8 +39,6 @@ namespace WSCT.Wrapper.PCSCLite32
             set { ScReaderState.atr = value; }
         }
 
-        public ScardReaderState ScReaderState;
-
         #endregion
 
         #region >> Constructors
@@ -48,13 +48,13 @@ namespace WSCT.Wrapper.PCSCLite32
             ScReaderState = new ScardReaderState();
         }
 
-        public ReaderState(String readerName)
+        public ReaderState(string readerName)
             : this()
         {
             ReaderName = readerName;
         }
 
-        public ReaderState(String readerName, EventState currentState, EventState eventState)
+        public ReaderState(string readerName, EventState currentState, EventState eventState)
             : this()
         {
             ReaderName = readerName;

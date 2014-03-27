@@ -1,32 +1,25 @@
-using System;
 using System.Text;
 
 namespace WSCT.Helpers.BasicEncodingRules
 {
     /// <summary>
-    /// Represents a TLV object where the value is BCD encoded
+    /// Represents a TLV object where the value is BCD encoded.
     /// </summary>
-    public class BCDTLVObject : AbstractTLVObject
+    public class BcdTlvObject : AbstractTlvObject
     {
-        #region >> Constructors
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public BCDTLVObject()
-            : base()
-        {
-        }
-
-        #endregion
+        #region >> Object
 
         /// <inheritdoc />
         public override string ToString()
         {
-            StringBuilder s = new StringBuilder();
-            foreach (Byte b in tlv.value)
-                s.AppendFormat("{0}{1}", b / 16, b % 16);
+            var s = new StringBuilder();
+            foreach (var b in Tlv.Value)
+            {
+                s.AppendFormat("{0}{1}", b/16, b%16);
+            }
             return s.ToString();
         }
+
+        #endregion
     }
 }

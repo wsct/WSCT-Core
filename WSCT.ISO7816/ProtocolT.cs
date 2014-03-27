@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace WSCT.ISO7816
 {
     /// <summary>
@@ -12,10 +8,11 @@ namespace WSCT.ISO7816
         /// <summary>
         /// 
         /// </summary>
-        T_0 = 0,
+        T0 = 0,
+
         /// <summary>
         /// 
         /// </summary>
-        T_1 = 1
+        T1 = 1
     }
 }

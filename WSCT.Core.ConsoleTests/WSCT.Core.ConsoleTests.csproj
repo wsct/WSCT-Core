@@ -16,7 +16,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>2.0</OldToolsVersion>
-   <TargetFrameworkProfile>
+    <TargetFrameworkProfile>
     </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -48,9 +48,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CardChannelLayer61xx.cs" />
+    <Compile Include="CardChannelLayer61.cs" />
     <Compile Include="ConsoleObserver.cs" />
-    <Compile Include="ConsoleObserver61xx.cs" />
+    <Compile Include="ConsoleObserver61.cs" />
     <Compile Include="LogLevel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

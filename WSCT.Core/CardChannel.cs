@@ -1,5 +1,3 @@
-using System;
-
 namespace WSCT.Core
 {
     /// <inheritdoc cref="CardChannelCore" />
@@ -8,15 +6,15 @@ namespace WSCT.Core
         #region >> Constructors
 
         /// <summary>
-        /// Default constructor
+        /// Initializes a new instance.
         /// </summary>
         public CardChannel()
             : base(new CardChannelCore())
         {
         }
 
-        /// <inheritdoc cref="CardChannelCore(ICardContext,String)" />
-        public CardChannel(ICardContext context, String readerName)
+        /// <inheritdoc cref="CardChannelCore(ICardContext,string)" />
+        public CardChannel(ICardContext context, string readerName)
             : base(new CardChannelCore(context, readerName))
         {
         }

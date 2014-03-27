@@ -1,27 +1,20 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 using System.Xml.Serialization;
-
-using WSCT.Helpers;
 using WSCT.Helpers.BasicEncodingRules;
 
 namespace WSCT.Helpers.GUI
 {
     /// <summary>
-    /// Main form of the tool
+    /// Main form of the tool.
     /// </summary>
-    public partial class HelpersGUI : Form
+    public partial class HelpersGui : Form
     {
         /// <summary>
-        /// Default constructor
+        /// Initializes a new instance.
         /// </summary>
-        public HelpersGUI()
+        public HelpersGui()
         {
             InitializeComponent();
         }
@@ -29,87 +22,86 @@ namespace WSCT.Helpers.GUI
         private void buttonTlvToXml_Click(object sender, EventArgs e)
         {
             textTLVDecoded.Text = "";
-            TLVData tlv;
+            TlvData tlv;
 
             try
             {
-                tlv = textTLVHexa.Text.Replace("\r\n", "").toTLVData();
+                tlv = textTLVHexa.Text.Replace("\r\n", "").ToTlvData();
             }
-            catch (Exception eTLV)
+            catch (Exception exception)
             {
-                textTLVDecoded.Text = eTLV.Message;
+                textTLVDecoded.Text = exception.Message;
                 return;
             }
             try
             {
-                textTLVDecoded.Text = tlv.toXmlString();
+                textTLVDecoded.Text = tlv.ToXmlString();
             }
-            catch (Exception eXML)
+            catch (Exception exception)
             {
-                textTLVDecoded.Text = eXML.Message;
-                return;
+                textTLVDecoded.Text = exception.Message;
             }
         }
 
         private void buttonXmlToTlv_Click(object sender, EventArgs e)
         {
             textTLVDecoded.Text = "";
-            TLVData tlv;
+            TlvData tlv;
 
             try
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(TLVData));
-                tlv = (TLVData)serializer.Deserialize(new StringReader(textTLVHexa.Text));
+                var serializer = new XmlSerializer(typeof(TlvData));
+                tlv = (TlvData)serializer.Deserialize(new StringReader(textTLVHexa.Text));
             }
-            catch (Exception eTLV)
+            catch (Exception exception)
             {
-                textTLVDecoded.Text = eTLV.Message;
+                textTLVDecoded.Text = exception.Message;
                 return;
             }
             try
             {
-                textTLVDecoded.Text = tlv.toByteArray().toHexa();
+                textTLVDecoded.Text = tlv.ToByteArray().ToHexa();
             }
-            catch (Exception eXML)
+            catch (Exception exception)
             {
-                textTLVDecoded.Text = eXML.Message;
-                return;
+                textTLVDecoded.Text = exception.Message;
             }
         }
 
         private void buttonAnalyzeTLV_Click(object sender, EventArgs e)
         {
             textTLVDecoded.Text = "";
-            TLVData tlv;
+            TlvData tlv;
 
             try
             {
-                tlv = textTLVHexa.Text.Replace("\r\n", "").toTLVData();
+                tlv = textTLVHexa.Text.Replace("\r\n", "").ToTlvData();
             }
-            catch (Exception eTLV)
+            catch (Exception exception)
             {
-                textTLVDecoded.Text = eTLV.Message;
+                textTLVDecoded.Text = exception.Message;
                 return;
             }
             try
             {
-                TLVDictionary tagsManager = SerializedObject<TLVDictionary>.loadFromXml(@"Dictionary.HelpersTags.xml");
-                foreach (TLVData tlvData in tlv.getTags())
+                var tagsManager = SerializedObject<TlvDictionary>.LoadFromXml(@"Dictionary.HelpersTags.xml");
+                foreach (TlvData tlvData in tlv.GetTags())
                 {
-                    AbstractTLVObject tagObject = tagsManager.createInstance(tlvData);
+                    var tagObject = tagsManager.CreateInstance(tlvData);
                     if (tagObject != null)
+                    {
                         textTLVDecoded.Text += String.Format("{0:N} ({1:T}): {0}\r\n", tagObject, tlvData);
+                    }
                     else
+                    {
                         textTLVDecoded.Text += String.Format("! Unknow tlvDesc {0:T}: {0:V}\r\n", tlvData);
+                    }
                 }
-
             }
             catch (Exception eAnalyze)
             {
                 textTLVDecoded.Text = eAnalyze.Message;
-                return;
             }
-
         }
 
         private void buttonHexaToString_Click(object sender, EventArgs e)
@@ -118,12 +110,11 @@ namespace WSCT.Helpers.GUI
 
             try
             {
-                textArrayOfBytesInterpreted.Text = textArrayOfBytesSource.Text.fromHexa().toString();
+                textArrayOfBytesInterpreted.Text = textArrayOfBytesSource.Text.FromHexa().ToAsciiString();
             }
             catch (Exception eHexa)
             {
                 textArrayOfBytesInterpreted.Text = eHexa.Message;
-                return;
             }
         }
 
@@ -133,12 +124,11 @@ namespace WSCT.Helpers.GUI
 
             try
             {
-                textArrayOfBytesInterpreted.Text = textArrayOfBytesSource.Text.fromString().toHexa();
+                textArrayOfBytesInterpreted.Text = textArrayOfBytesSource.Text.FromString().ToHexa();
             }
             catch (Exception eHexa)
             {
                 textArrayOfBytesInterpreted.Text = eHexa.Message;
-                return;
             }
         }
 
@@ -148,12 +138,11 @@ namespace WSCT.Helpers.GUI
 
             try
             {
-                textArrayOfBytesInterpreted.Text = textArrayOfBytesSource.Text.fromBCD().toHexa();
+                textArrayOfBytesInterpreted.Text = textArrayOfBytesSource.Text.FromBcd().ToHexa();
             }
-            catch (Exception eBCD)
+            catch (Exception exception)
             {
-                textArrayOfBytesInterpreted.Text = eBCD.Message;
-                return;
+                textArrayOfBytesInterpreted.Text = exception.Message;
             }
         }
 
@@ -163,12 +152,11 @@ namespace WSCT.Helpers.GUI
 
             try
             {
-                textArrayOfBytesInterpreted.Text = textArrayOfBytesSource.Text.fromHexa().toBCD(' ');
+                textArrayOfBytesInterpreted.Text = textArrayOfBytesSource.Text.FromHexa().ToBcdString(' ');
             }
-            catch (Exception eBCD)
+            catch (Exception exception)
             {
-                textArrayOfBytesInterpreted.Text = eBCD.Message;
-                return;
+                textArrayOfBytesInterpreted.Text = exception.Message;
             }
         }
     }

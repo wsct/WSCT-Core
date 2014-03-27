@@ -7,6 +7,8 @@ namespace WSCT.Wrapper.PCSCLite64
     {
         #region >> Properties
 
+        public ScardIoRequest ScIoRequest;
+
         /// <inheritdoc />
         public override UInt32 Protocol
         {
@@ -20,8 +22,6 @@ namespace WSCT.Wrapper.PCSCLite64
             get { return (uint)ScIoRequest.pciLength; }
             set { ScIoRequest.pciLength = value; }
         }
-
-        public ScardIoRequest ScIoRequest;
 
         #endregion
 

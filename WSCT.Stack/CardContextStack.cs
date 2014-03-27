@@ -112,75 +112,75 @@ namespace WSCT.Stack
         #region >> ICardContext Membres
 
         /// <inheritdoc />
-        public IntPtr context
+        public IntPtr Context
         {
-            get { return RequestLayer(null, SearchMode.Top).context; }
+            get { return RequestLayer(null, SearchMode.Top).Context; }
         }
 
         /// <inheritdoc />
-        public string[] groups
+        public string[] Groups
         {
-            get { return RequestLayer(null, SearchMode.Top).groups; }
+            get { return RequestLayer(null, SearchMode.Top).Groups; }
         }
 
         /// <inheritdoc />
-        public int groupsCount
+        public int GroupsCount
         {
-            get { return RequestLayer(null, SearchMode.Top).groupsCount; }
+            get { return RequestLayer(null, SearchMode.Top).GroupsCount; }
         }
 
         /// <inheritdoc />
-        public string[] readers
+        public string[] Readers
         {
-            get { return RequestLayer(null, SearchMode.Top).readers; }
+            get { return RequestLayer(null, SearchMode.Top).Readers; }
         }
 
         /// <inheritdoc />
-        public int readersCount
+        public int ReadersCount
         {
-            get { return RequestLayer(null, SearchMode.Top).readersCount; }
+            get { return RequestLayer(null, SearchMode.Top).ReadersCount; }
         }
 
         /// <inheritdoc />
-        public ErrorCode cancel()
+        public ErrorCode Cancel()
         {
-            return RequestLayer(null, SearchMode.Top).cancel();
+            return RequestLayer(null, SearchMode.Top).Cancel();
         }
 
         /// <inheritdoc />
-        public ErrorCode establish()
+        public ErrorCode Establish()
         {
-            return RequestLayer(null, SearchMode.Top).establish();
+            return RequestLayer(null, SearchMode.Top).Establish();
         }
 
         /// <inheritdoc />
-        public ErrorCode getStatusChange(uint timeout, AbstractReaderState[] readerStates)
+        public ErrorCode GetStatusChange(uint timeout, AbstractReaderState[] readerStates)
         {
-            return RequestLayer(null, SearchMode.Top).getStatusChange(timeout, readerStates);
+            return RequestLayer(null, SearchMode.Top).GetStatusChange(timeout, readerStates);
         }
 
         /// <inheritdoc />
-        public ErrorCode isValid()
+        public ErrorCode IsValid()
         {
-            return RequestLayer(null, SearchMode.Top).isValid();
+            return RequestLayer(null, SearchMode.Top).IsValid();
         }
 
         /// <inheritdoc />
-        public ErrorCode listReaders(string group)
+        public ErrorCode ListReaders(string group)
         {
-            return RequestLayer(null, SearchMode.Top).listReaders(group);
+            return RequestLayer(null, SearchMode.Top).ListReaders(group);
         }
 
         /// <inheritdoc />
-        public ErrorCode listReaderGroups()
+        public ErrorCode ListReaderGroups()
         {
-            return RequestLayer(null, SearchMode.Top).listReaderGroups();
+            return RequestLayer(null, SearchMode.Top).ListReaderGroups();
         }
 
         /// <inheritdoc />
-        public ErrorCode release()
+        public ErrorCode Release()
         {
-            return RequestLayer(null, SearchMode.Top).release();
+            return RequestLayer(null, SearchMode.Top).Release();
         }
 
         #endregion

@@ -10,10 +10,10 @@ namespace WSCT.Stack.Generic
     {
         #region >> Fields
 
-        private String _className;
-        private String _dllName;
-        private String _name;
-        private String _pathToDll;
+        private string _className;
+        private string _dllName;
+        private string _name;
+        private string _pathToDll;
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace WSCT.Stack.Generic
         /// Name of the layer.
         /// </summary>
         [XmlAttribute("name")]
-        public String Name
+        public string Name
         {
             get { return _name; }
             set { _name = (value == "" ? null : value); }
@@ -33,7 +33,7 @@ namespace WSCT.Stack.Generic
         /// Name of the assembly (without path).
         /// </summary>
         [XmlElement("dll")]
-        public String DllName
+        public string DllName
         {
             get { return _dllName; }
             set { _dllName = (value == "" ? null : value); }
@@ -43,7 +43,7 @@ namespace WSCT.Stack.Generic
         /// Canonical name of the class.
         /// </summary>
         [XmlElement("className")]
-        public String ClassName
+        public string ClassName
         {
             get { return _className; }
             set { _className = (value ?? ""); }
@@ -53,7 +53,7 @@ namespace WSCT.Stack.Generic
         /// Path to the assembly (directory only).
         /// </summary>
         [XmlElement("pathToDll")]
-        public String PathToDll
+        public string PathToDll
         {
             get { return _pathToDll; }
             set { _pathToDll = (value ?? ""); }

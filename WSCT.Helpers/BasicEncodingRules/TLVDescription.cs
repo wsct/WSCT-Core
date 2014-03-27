@@ -1,66 +1,59 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace WSCT.Helpers.BasicEncodingRules
 {
-
     /// <summary>
     /// Describes the TLV representation of a given tag.
     /// </summary>
-    /// <remarks><inheritdoc cref="TLVDictionary"/></remarks>
-    public class TLVDescription
+    /// <remarks><inheritdoc cref="TlvDictionary"/></remarks>
+    public class TlvDescription
     {
         #region >> Encapsulated Classes
 
         /// <summary>
-        /// Description of field value
+        /// Description of field value.
         /// </summary>
-        public class Value
+        public class ValueType
         {
             /// <summary>
-            /// Format of the field
+            /// Format of the field.
             /// </summary>
-            /// <value>Default is <c>"b"</c></value>
-            [XmlAttribute("format")]
-            public String format = "b";
+            /// <value>Default is <c>"b"</c>.</value>
+            [XmlAttribute("format")] public string Format = "b";
+
             /// <summary>
-            /// Minimum size of the field
+            /// Maximum size of the field.
             /// </summary>
-            [XmlAttribute("minSize")]
-            public Byte minSize = 0;
+            [XmlAttribute("maxSize")] public byte MaxSize = byte.MaxValue;
+
             /// <summary>
-            /// Maximum size of the field
+            /// Minimum size of the field.
             /// </summary>
-            [XmlAttribute("maxSize")]
-            public Byte maxSize = Byte.MaxValue;
+            [XmlAttribute("minSize")] public byte MinSize = 0;
         }
 
         #endregion
 
         #region >> Fields
 
-        String _hexaValue;
-        String _name;
-        String _longName;
-        String _source;
-
-        Value _value;
-
-        String _dllName;
-        String _className;
-        String _pathToDll;
+        private string _className;
+        private string _dllName;
+        private string _hexaValue;
+        private string _longName;
+        private string _name;
+        private string _pathToDll;
+        private string _source;
 
         #endregion
 
         #region >> Properties
 
         /// <summary>
-        /// Accessor to tag field represented in hexadecimal as a <c>String</c>.
+        /// Accessor to tag field represented in hexadecimal as a <c>string</c>.
         /// </summary>
         [XmlAttribute("hexaValue")]
-        public String hexaValue
+        public string HexaValue
         {
             get { return _hexaValue; }
             set { _hexaValue = (value == "" ? null : value); }
@@ -70,7 +63,7 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// Accessor to the (short) name of the tag.
         /// </summary>
         [XmlAttribute("name")]
-        public String name
+        public string Name
         {
             get { return _name; }
             set { _name = (value == "" ? null : value); }
@@ -80,7 +73,7 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// Accessor to the long name of the tag.
         /// </summary>
         [XmlAttribute("longName")]
-        public String longName
+        public string LongName
         {
             get { return _longName; }
             set { _longName = (value == "" ? null : value); }
@@ -90,7 +83,7 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// Accessor to the source of the tag (ICC/Terminal/Issuer/...)
         /// </summary>
         [XmlAttribute("source")]
-        public String source
+        public string Source
         {
             get { return _source; }
             set { _source = (value == "" ? null : value); }
@@ -100,17 +93,13 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// Accessor to the format of the field
         /// </summary>
         [XmlElement("value")]
-        public Value value
-        {
-            get { return _value; }
-            set { _value = value; }
-        }
+        public ValueType Value { get; set; }
 
         /// <summary>
-        /// Accessor to the name of DLL file containing the <see cref="className"/>
+        /// Accessor to the name of DLL file containing the <see cref="ClassName"/>
         /// </summary>
         [XmlElement("dll")]
-        public String dllName
+        public string DllName
         {
             get { return _dllName; }
             set { _dllName = (value == "" ? null : value); }
@@ -120,27 +109,27 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// Accessor to the name of the class to be used
         /// </summary>
         [XmlElement("className")]
-        public String className
+        public string ClassName
         {
             get { return _className; }
-            set { _className = (value == null ? "" : value); }
+            set { _className = (value ?? String.Empty); }
         }
 
         /// <summary>
-        /// Accessor to the path to dll file on disk
+        /// Accessor to the path to dll file on disk.
         /// </summary>
         [XmlElement("pathToDll")]
-        public String pathToDll
+        public string PathToDll
         {
             get { return _pathToDll; }
-            set { _pathToDll = (value == null ? "" : value); }
+            set { _pathToDll = (value ?? String.Empty); }
         }
 
         /// <summary>
         /// Informs if descriptor is correctly defined
         /// </summary>
         [XmlIgnore]
-        public Boolean isValid
+        public Boolean IsValid
         {
             get { return (_hexaValue != null && _className != null); }
         }
@@ -152,10 +141,10 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// <summary>
         /// Default constructor
         /// </summary>
-        public TLVDescription()
+        public TlvDescription()
         {
             _pathToDll = "";
-            _value = new Value();
+            Value = new ValueType();
         }
 
         #endregion

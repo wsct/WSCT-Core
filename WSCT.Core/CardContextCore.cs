@@ -1,12 +1,11 @@
 using System;
 using System.Runtime.InteropServices;
-
 using WSCT.Wrapper;
 
 namespace WSCT.Core
 {
     /// <summary>
-    /// Represents a basic object capable of managing smartcard resources
+    /// Represents a basic object capable of managing smartcard resources.
     /// </summary>
     public class CardContextCore : ICardContext
     {
@@ -14,16 +13,16 @@ namespace WSCT.Core
 
         private IntPtr _context;
 
-        private String[] _groups;
+        private string[] _groups;
 
-        private String[] _readers;
+        private string[] _readers;
 
         #endregion
 
         #region >> Constructor
 
         /// <summary>
-        /// Default constructor
+        /// Initializes a new instance.
         /// </summary>
         public CardContextCore()
         {
@@ -35,112 +34,97 @@ namespace WSCT.Core
         #region >> ICardContext Members
 
         /// <inheritdoc />
-        public IntPtr context
+        public IntPtr Context
         {
-            get
-            {
-                return _context;
-            }
+            get { return _context; }
         }
 
         /// <inheritdoc />
-        public String[] groups
+        public string[] Groups
         {
-            get
-            {
-                return _groups;
-            }
+            get { return _groups; }
         }
 
         /// <inheritdoc />
-        public int groupsCount
+        public int GroupsCount
         {
-            get
-            {
-                return _groups.Length;
-            }
+            get { return _groups.Length; }
         }
 
         /// <inheritdoc />
-        public String[] readers
+        public string[] Readers
         {
-            get
-            {
-                return _readers;
-            }
+            get { return _readers; }
         }
 
         /// <inheritdoc />
-        public int readersCount
+        public int ReadersCount
         {
-            get
-            {
-                return _readers.Length;
-            }
+            get { return _readers.Length; }
         }
 
         /// <inheritdoc />
-        public ErrorCode cancel()
+        public ErrorCode Cancel()
         {
             return Primitives.Api.SCardCancel(_context);
         }
 
         /// <inheritdoc />
-        public virtual ErrorCode establish()
+        public virtual ErrorCode Establish()
         {
             return Primitives.Api.SCardEstablishContext((int)Scope.System, null, null, ref _context);
         }
 
         /// <inheritdoc />
-        public ErrorCode getStatusChange(uint timeout, AbstractReaderState[] readerStates)
+        public ErrorCode GetStatusChange(uint timeout, AbstractReaderState[] readerStates)
         {
-            return Primitives.Api.SCardGetStatusChange(context, timeout, readerStates, (uint)readerStates.Length);
+            return Primitives.Api.SCardGetStatusChange(Context, timeout, readerStates, (uint)readerStates.Length);
         }
 
         /// <inheritdoc />
-        public ErrorCode isValid()
+        public ErrorCode IsValid()
         {
             return Primitives.Api.SCardIsValidContext(_context);
         }
 
         /// <inheritdoc />
-        public virtual ErrorCode listReaders(String group)
+        public virtual ErrorCode ListReaders(string group)
         {
             var zStringPtr = IntPtr.Zero;
             var zStringSize = Primitives.Api.AutoAllocate;
-            var ret = Primitives.Api.SCardListReaders(context, group, ref zStringPtr, ref zStringSize);
+            var ret = Primitives.Api.SCardListReaders(Context, group, ref zStringPtr, ref zStringSize);
             if (zStringPtr == IntPtr.Zero)
             {
-                _readers = new String[0];
+                _readers = new string[0];
             }
             else
             {
                 var readersStr = Marshal.PtrToStringAuto(zStringPtr, (int)zStringSize);
-                _readers = readersStr.ToString().Split(new char[] { '\0' }, StringSplitOptions.RemoveEmptyEntries);
+                _readers = readersStr.Split(new[] { '\0' }, StringSplitOptions.RemoveEmptyEntries);
             }
             return ret;
         }
 
         /// <inheritdoc />
-        public virtual ErrorCode listReaderGroups()
+        public virtual ErrorCode ListReaderGroups()
         {
             var zStringPtr = IntPtr.Zero;
             var zStringSize = Primitives.Api.AutoAllocate;
-            var ret = Primitives.Api.SCardListReaderGroups(context, ref zStringPtr, ref zStringSize);
+            var ret = Primitives.Api.SCardListReaderGroups(Context, ref zStringPtr, ref zStringSize);
             if (zStringPtr == IntPtr.Zero)
             {
-                _groups = new String[0];
+                _groups = new string[0];
             }
             else
             {
                 var groupsStr = Marshal.PtrToStringAuto(zStringPtr, (int)zStringSize);
-                _groups = groupsStr.ToString().Split(new char[] { '\0' }, StringSplitOptions.RemoveEmptyEntries);
+                _groups = groupsStr.Split(new[] { '\0' }, StringSplitOptions.RemoveEmptyEntries);
             }
             return ret;
         }
 
         /// <inheritdoc />
-        public virtual ErrorCode release()
+        public virtual ErrorCode Release()
         {
             return Primitives.Api.SCardReleaseContext(_context);
         }

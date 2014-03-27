@@ -1,10 +1,8 @@
 ﻿using System;
-
 using WSCT.Wrapper;
 
 namespace WSCT.Core
 {
-
     /// <summary>
     /// Interface for card contexts, ie objects capable of managing the resources to access to readers.
     /// </summary>
@@ -15,30 +13,27 @@ namespace WSCT.Core
         /// <summary>
         /// Accessor to the raw context.
         /// </summary>
-        IntPtr context
-        {
-            get;
-        }
+        IntPtr Context { get; }
 
         /// <summary>
-        /// Accessor to the names of the groups of readers available (once discovered by <see cref="listReaderGroups()"/>).
+        /// Accessor to the names of the groups of readers available (once discovered by <see cref="ListReaderGroups"/>).
         /// </summary>
-        String[] groups { get; }
+        string[] Groups { get; }
 
         /// <summary>
         /// Accessor to the number of groups of readers found.
         /// </summary>
-        int groupsCount { get; }
+        int GroupsCount { get; }
 
         /// <summary>
-        /// Accessor to the names of readers found in the group (once discovered by <see cref="listReaders"/>).
+        /// Accessor to the names of readers found in the group (once discovered by <see cref="ListReaders"/>).
         /// </summary>
-        String[] readers { get; }
+        string[] Readers { get; }
 
         /// <summary>
         /// Accessor to the number of readers found.
         /// </summary>
-        int readersCount { get; }
+        int ReadersCount { get; }
 
         #endregion
 
@@ -48,20 +43,20 @@ namespace WSCT.Core
         /// This function terminates all outstanding actions within a specific resource manager context.
         /// <seealso cref="IPrimitives.SCardCancel"/>
         /// </summary>
-        /// <returns><see cref="ErrorCode.Success"/> if succeeded</returns>
-        ErrorCode cancel();
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
+        ErrorCode Cancel();
 
         /// <summary>
         /// Establishes the resource manager context.
         /// </summary>
-        /// <returns><see cref="ErrorCode.Success"/> if succeeded</returns>
-        ErrorCode establish();
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
+        ErrorCode Establish();
 
         /// <summary>
-        /// The <see cref="getStatusChange"/> function blocks execution until the current availability of the cards in a specific set of readers changes.
+        /// The <see cref="GetStatusChange"/> function blocks execution until the current availability of the cards in a specific set of readers changes.
         /// The caller supplies a list of readers to be monitored by a <see cref="AbstractReaderState"/> array and the maximum amount of time (in milliseconds)
         /// that it is willing to wait for an action to occur on one of the listed readers.
-        /// Note that <see cref="getStatusChange"/> uses the user-supplied value in the currentState members of the <paramref name="readerStates"/> <see cref="AbstractReaderState"/> array 
+        /// Note that <see cref="GetStatusChange"/> uses the user-supplied value in the currentState members of the <paramref name="readerStates"/> <see cref="AbstractReaderState"/> array 
         /// as the definition of the current state of the readers.
         /// The function returns when there is a change in availability, having filled in the <see cref="AbstractReaderState.EventState"/> members of <paramref name="readerStates"/> appropriately.
         /// </summary>
@@ -72,34 +67,33 @@ namespace WSCT.Core
         /// Important  Each member of each structure in this array must be initialized to zero and then set to specific values as necessary. If this is not done, the function will fail in situations that involve remote card readers.
         /// </param>
         /// <returns></returns>
-        ErrorCode getStatusChange(UInt32 timeout, AbstractReaderState[] readerStates);
+        ErrorCode GetStatusChange(UInt32 timeout, AbstractReaderState[] readerStates);
 
         /// <summary>
         /// Determines whether a smart card context handle is valid.
         /// </summary>
-        /// <returns><see cref="ErrorCode.Success"/> if context is valid</returns>
-        ErrorCode isValid();
+        /// <returns><see cref="ErrorCode.Success"/> if context is valid.</returns>
+        ErrorCode IsValid();
 
         /// <summary>
         /// Provides the list of readers within a set of named reader groups.
         /// </summary>
-        /// <param name="group">Name of the reader group</param>
-        /// <returns><see cref="ErrorCode.Success"/> if succeeded</returns>
-        ErrorCode listReaders(String group);
+        /// <param name="group">Name of the reader group.</param>
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
+        ErrorCode ListReaders(string group);
 
         /// <summary>
         /// Provides the list of groups of readers available on the system.
         /// </summary>
-        /// <returns><see cref="ErrorCode.Success"/> if succeeded</returns>
-        ErrorCode listReaderGroups();
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
+        ErrorCode ListReaderGroups();
 
         /// <summary>
         /// Closes the resource manager context.
         /// </summary>
-        /// <returns><see cref="ErrorCode.Success"/> if succeeded</returns>
-        ErrorCode release();
+        /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
+        ErrorCode Release();
 
         #endregion
-
     }
 }

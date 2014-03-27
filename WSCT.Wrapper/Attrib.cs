@@ -11,7 +11,7 @@ namespace WSCT.Wrapper
         AsyncProtocolTypes = 0x30120,
 
         /// <summary>
-        /// Answer to reset (ATR) string.
+        /// Answer to reset (ATR) String.
         /// </summary>
         AtrString = 0x90303,
 

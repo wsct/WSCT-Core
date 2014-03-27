@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WSCT.ISO7816.Commands
+﻿namespace WSCT.ISO7816.Commands
 {
     /// <summary>
-    /// Wrapper for ISO/IEC 7816 APPEND RECORD C-APDU
+    /// Wrapper for ISO/IEC 7816 APPEND RECORD C-APDU.
     /// </summary>
     public class AppendRecordCommand : CommandAPDU
     {
         #region >> Properties
 
         /// <summary>
-        /// SFI (Short File Identifier)
+        /// SFI (Short File Identifier).
         /// </summary>
-        public Byte sfi
+        public byte Sfi
         {
-            get { return (Byte)(p2 >> 3); }
-            set { p2 = (Byte)(value << 3); }
+            get { return (byte)(P2 >> 3); }
+            set { P2 = (byte)(value << 3); }
         }
 
         #endregion
@@ -26,12 +21,11 @@ namespace WSCT.ISO7816.Commands
         #region >> Constructors
 
         /// <summary>
-        /// Default constructor
+        /// Default constructor.
         /// </summary>
         public AppendRecordCommand()
-            : base()
         {
-            ins = 0xE2;
+            Ins = 0xE2;
         }
 
         /// <summary>
@@ -39,12 +33,12 @@ namespace WSCT.ISO7816.Commands
         /// </summary>
         /// <param name="sfi"></param>
         /// <param name="udc"></param>
-        public AppendRecordCommand(Byte sfi, Byte[] udc)
+        public AppendRecordCommand(byte sfi, byte[] udc)
             : this()
         {
-            this.p1 = 0x00;
-            this.sfi = sfi;
-            this.udc = udc;
+            P1 = 0x00;
+            Sfi = sfi;
+            Udc = udc;
         }
 
         #endregion

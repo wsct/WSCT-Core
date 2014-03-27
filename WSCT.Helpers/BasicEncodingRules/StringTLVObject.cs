@@ -1,36 +1,39 @@
-
 namespace WSCT.Helpers.BasicEncodingRules
 {
     /// <summary>
     /// Represents a TLV object where the value is a string
     /// </summary>
-    public class StringTLVObject : AbstractTLVObject
+    public class StringTlvObject : AbstractTlvObject
     {
         #region >> Constructors
 
         /// <summary>
-        /// Initializes a new <see cref="StringTLVObject"/> instance.
+        /// Initializes a new <see cref="StringTlvObject"/> instance.
         /// </summary>
-        public StringTLVObject()
+        public StringTlvObject()
         {
         }
 
         /// <summary>
-        /// Initializes a new <see cref="StringTLVObject"/> instance.
+        /// Initializes a new <see cref="StringTlvObject"/> instance.
         /// </summary>
         /// <param name="tag">Tag of the object.</param>
         /// <param name="text">Text value.</param>
-        public StringTLVObject(uint tag, string text)
+        public StringTlvObject(uint tag, string text)
         {
-            tlv = new TLVData(tag, (uint)text.Length, text.fromString());
+            Tlv = new TlvData(tag, (uint)text.Length, text.FromString());
         }
 
         #endregion
 
+        #region >> Object
+
         /// <inheritdoc/>
         public override string ToString()
         {
-            return tlv.value.toString(); ;
+            return Tlv.Value.ToAsciiString();
         }
+
+        #endregion
     }
 }

@@ -1,13 +1,13 @@
 using System;
 using System.Xml;
+using System.Xml.Schema;
 using System.Xml.Serialization;
-
 using WSCT.Helpers;
 
 namespace WSCT.ISO7816.StatusWord
 {
     /// <summary>
-    /// SW1 range and associated description
+    /// SW1 range and associated description.
     /// </summary>
     [XmlRoot("sw2")]
     public class StatusWordLow : IXmlSerializable
@@ -15,34 +15,31 @@ namespace WSCT.ISO7816.StatusWord
         #region >> Properties
 
         /// <summary>
-        /// SW2 minimum value for the description
+        /// SW2 minimum value for the description.
         /// </summary>
-        public Byte from
-        { get; set; }
+        public byte From { get; set; }
 
         /// <summary>
-        /// SW2 maximum value for the description
+        /// SW2 maximum value for the description.
         /// </summary>
-        public Byte to
-        { get; set; }
+        public byte To { get; set; }
 
         /// <summary>
-        /// Associated description when <see cref="from"/> &amp;&lt; SW2 &amp;&lt; <see cref="to"/>
+        /// Associated description when <see cref="From"/> &amp;&lt; SW2 &amp;&lt; <see cref="To"/>.
         /// </summary>
-        public String description
-        { get; set; }
+        public string Description { get; set; }
 
         #endregion
 
         #region >> Constructors
 
         /// <summary>
-        /// 
+        /// Initializes a new instance.
         /// </summary>
         public StatusWordLow()
         {
-            from = to = 0;
-            description = "";
+            From = To = 0;
+            Description = "";
         }
 
         #endregion
@@ -54,9 +51,9 @@ namespace WSCT.ISO7816.StatusWord
         /// </summary>
         /// <param name="sw2"></param>
         /// <returns></returns>
-        public bool contains(Byte sw2)
+        public bool Contains(byte sw2)
         {
-            return ((from <= sw2) && (sw2 <= to));
+            return ((From <= sw2) && (sw2 <= To));
         }
 
         #endregion
@@ -64,25 +61,26 @@ namespace WSCT.ISO7816.StatusWord
         #region >> IXmlSerializable Members
 
         /// <inheritdoc />
-        public System.Xml.Schema.XmlSchema GetSchema()
+        public XmlSchema GetSchema()
         {
             return null;
         }
 
         /// <inheritdoc />
-        public void ReadXml(System.Xml.XmlReader reader)
-        {   // <sw2 (from=... to=...) (value=...)> ... </sw2>
+        public void ReadXml(XmlReader reader)
+        {
+            // <sw2 (from=... to=...) (value=...)> ... </sw2>
             if (reader.MoveToAttribute("from"))
             {
-                from = reader.ReadContentAsString().fromHexa()[0];
+                From = reader.ReadContentAsString().FromHexa()[0];
             }
             if (reader.MoveToAttribute("to"))
             {
-                to = reader.ReadContentAsString().fromHexa()[0];
+                To = reader.ReadContentAsString().FromHexa()[0];
             }
             if (reader.MoveToAttribute("value"))
             {
-                from = to = reader.ReadContentAsString().fromHexa()[0];
+                From = To = reader.ReadContentAsString().FromHexa()[0];
             }
             reader.ReadStartElement();
             while (reader.NodeType != XmlNodeType.EndElement)
@@ -90,7 +88,7 @@ namespace WSCT.ISO7816.StatusWord
                 switch (reader.NodeType)
                 {
                     case XmlNodeType.Text:
-                        description = reader.ReadString();
+                        Description = reader.ReadString();
                         break;
                     case XmlNodeType.Comment:
                         reader.Read();
@@ -101,18 +99,18 @@ namespace WSCT.ISO7816.StatusWord
         }
 
         /// <inheritdoc />
-        public void WriteXml(System.Xml.XmlWriter writer)
+        public void WriteXml(XmlWriter writer)
         {
-            if (from == to)
+            if (From == To)
             {
-                writer.WriteAttributeString("value", String.Format("{0:X2}", from));
+                writer.WriteAttributeString("value", String.Format("{0:X2}", From));
             }
             else
             {
-                writer.WriteAttributeString("from", String.Format("{0:X2}", from));
-                writer.WriteAttributeString("to", String.Format("{0:X2}", to));
+                writer.WriteAttributeString("from", String.Format("{0:X2}", From));
+                writer.WriteAttributeString("to", String.Format("{0:X2}", To));
             }
-            writer.WriteString(description);
+            writer.WriteString(Description);
         }
 
         #endregion

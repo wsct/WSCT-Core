@@ -111,7 +111,7 @@
         UnknownError = 0x80100014,
 
         /// <summary>
-        /// Error: An ATR obtained from the registry is not a valid ATR string.
+        /// Error: An ATR obtained from the registry is not a valid ATR String.
         /// </summary>
         InvalidAtr = 0x80100015,
 
