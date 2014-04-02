@@ -481,7 +481,7 @@ namespace WSCT.Helpers.BasicEncodingRules
                 _length = 0;
                 for (var i = 0; i < size; i++)
                 {
-                    _length = _length*0x100 + data[offset + i];
+                    _length = _length * 0x100 + data[offset + i];
                 }
                 offset += size;
             }
@@ -505,7 +505,7 @@ namespace WSCT.Helpers.BasicEncodingRules
             {
                 _tag = data[offset];
                 offset++;
-                _tag = 0x100*_tag + data[offset];
+                _tag = 0x100 * _tag + data[offset];
                 offset++;
             }
             else
@@ -539,6 +539,11 @@ namespace WSCT.Helpers.BasicEncodingRules
                     var subData = new TlvData();
                     offsetValue = subData.Parse(_value, offsetValue);
                     _subFields.Add(subData);
+                    // Skip padding '00'
+                    while (offsetValue < _length && _value[offsetValue] == 0x00)
+                    {
+                        offsetValue++;
+                    }
                 }
             }
             return offset;
@@ -596,10 +601,10 @@ namespace WSCT.Helpers.BasicEncodingRules
             switch (format)
             {
                 case "T":
-                    var tagFormatter = "{0:X" + 2*LengthOfT + "}";
+                    var tagFormatter = "{0:X" + 2 * LengthOfT + "}";
                     return String.Format(tagFormatter, _tag);
                 case "L":
-                    var lengthFormatter = "{0:X" + 2*LengthOfL + "}";
+                    var lengthFormatter = "{0:X" + 2 * LengthOfL + "}";
                     return String.Format(lengthFormatter, _length);
                 case "V":
                     if (IsConstructed())
