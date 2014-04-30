@@ -1,4 +1,3 @@
-using System;
 using WSCT.Core;
 
 namespace WSCT.Stack.Core

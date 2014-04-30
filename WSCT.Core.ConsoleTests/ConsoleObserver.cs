@@ -240,7 +240,7 @@ namespace WSCT.Core.ConsoleTests
             {
                 foreach (var group in cardContext.Groups)
                 {
-                    Console.WriteLine(Header + ">> Reader groups descriptionFound: {1}", LogLevel.Info, @group);
+                    Console.WriteLine(Header + ">> Reader groups found: {1}", LogLevel.Info, @group);
                 }
             }
         }

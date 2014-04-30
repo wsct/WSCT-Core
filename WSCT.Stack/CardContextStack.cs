@@ -43,7 +43,7 @@ namespace WSCT.Stack
                     return index;
                 }
             }
-            throw new Exception("CardContextStack: layer not descriptionFound in the stack");
+            throw new Exception("CardContextStack: layer not found in the stack");
         }
 
         #endregion
