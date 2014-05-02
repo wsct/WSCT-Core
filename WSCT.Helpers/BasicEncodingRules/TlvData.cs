@@ -163,6 +163,10 @@ namespace WSCT.Helpers.BasicEncodingRules
         {
             get
             {
+                if (IsLengthUndefined)
+                {
+                    return 0x80;
+                }
                 if (_length == 0)
                 {
                     _length = (uint)Value.Length;
@@ -252,6 +256,10 @@ namespace WSCT.Helpers.BasicEncodingRules
         {
             get
             {
+                if (IsLengthUndefined)
+                {
+                    return 1;
+                }
                 if (Length <= 0xFF)
                 {
                     return 1;
@@ -275,6 +283,8 @@ namespace WSCT.Helpers.BasicEncodingRules
         {
             get { return (UInt32)Value.Length; }
         }
+
+        public bool IsLengthUndefined { get; set; }
 
         #endregion
 
@@ -474,7 +484,12 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// <returns>New value of the offset (<paramref name="offset"/>+number of bytes consumed)</returns>
         public uint ParseL(byte[] data, uint offset)
         {
-            if (data[offset] >= 0x80)
+            if (data[offset] < 0x80)
+            {
+                _length = data[offset];
+                offset++;
+            }
+            else if (data[offset] > 0x80)
             {
                 var size = data[offset] - (uint)0x80;
                 offset++;
@@ -487,8 +502,7 @@ namespace WSCT.Helpers.BasicEncodingRules
             }
             else
             {
-                _length = data[offset];
-                offset++;
+                IsLengthUndefined = true;
             }
             return offset;
         }
@@ -527,25 +541,53 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// <returns>New value of the offset (<paramref name="offset"/>+number of bytes consumed)</returns>
         public uint ParseV(byte[] data, uint offset)
         {
-            _value = new byte[_length];
-            Array.Copy(data, offset, _value, 0, _length);
-            offset += _length;
-
             if (IsConstructed())
             {
-                uint offsetValue = 0;
-                while (offsetValue < _length)
+                if (IsLengthUndefined)
                 {
-                    var subData = new TlvData();
-                    offsetValue = subData.Parse(_value, offsetValue);
-                    _subFields.Add(subData);
-                    // Skip padding '00'
-                    while (offsetValue < _length && _value[offsetValue] == 0x00)
+                    // Value is delimited by EOC (End Of Content) = tag '00' and length '00'
+                    var tempValue = data.Skip((int)offset + 1).Take(data.Length - (int)offset - 1).ToArray();
+                    uint offsetValue = 0;
+                    var condition = true;
+                    while (condition)
                     {
-                        offsetValue++;
+                        var subData = new TlvData();
+                        offsetValue = subData.Parse(tempValue, offsetValue);
+                        _subFields.Add(subData);
+                        condition = (offsetValue < tempValue.Length) && (subData.Tag != 0x00 || subData.Length != 0x00);
+                    }
+                    _value = new byte[offsetValue + 1];
+                    Array.Copy(data, offset, _value, 0, offsetValue + 1);
+                    offset += offsetValue + 1;
+                }
+                else
+                {
+                    // Value is delimited by length field
+                    _value = new byte[_length];
+                    Array.Copy(data, offset, _value, 0, _length);
+                    offset += _length;
+
+                    uint offsetValue = 0;
+                    while (offsetValue < _length)
+                    {
+                        var subData = new TlvData();
+                        offsetValue = subData.Parse(_value, offsetValue);
+                        _subFields.Add(subData);
+                        // Skip padding '00'
+                        while (offsetValue < _length && _value[offsetValue] == 0x00)
+                        {
+                            offsetValue++;
+                        }
                     }
                 }
             }
+            else
+            {
+                _value = new byte[_length];
+                Array.Copy(data, offset, _value, 0, _length);
+                offset += _length;
+            }
+
             return offset;
         }
 
