@@ -20,10 +20,11 @@
     <Language>en-US</Language>
     <DocumentationSources>
       <DocumentationSource sourceFile="..\WSCT.Core\WSCT.Core.csproj" />
-<DocumentationSource sourceFile="..\WSCT.Helpers\WSCT.Helpers.csproj" />
-<DocumentationSource sourceFile="..\WSCT.ISO7816\WSCT.ISO7816.csproj" />
-<DocumentationSource sourceFile="..\WSCT.Stack\WSCT.Stack.csproj" />
-<DocumentationSource sourceFile="..\WSCT.Wrapper\WSCT.Wrapper.csproj" /></DocumentationSources>
+      <DocumentationSource sourceFile="..\WSCT.Helpers\WSCT.Helpers.csproj" />
+      <DocumentationSource sourceFile="..\WSCT.ISO7816\WSCT.ISO7816.csproj" />
+      <DocumentationSource sourceFile="..\WSCT.Stack\WSCT.Stack.csproj" />
+      <DocumentationSource sourceFile="..\WSCT.Wrapper\WSCT.Wrapper.csproj" />
+    </DocumentationSources>
     <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
     <HelpFileFormat>Website</HelpFileFormat>
     <IndentHtml>False</IndentHtml>
@@ -35,8 +36,9 @@
     <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors, TypeParameter, AutoDocumentDispose</MissingTags>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="WSCT.Helpers" isDocumented="True">&lt;c&gt;WSCT.Helpers&lt;/c&gt; defines several public generic helper classes.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="WSCT.Stack" isDocumented="True">&lt;c&gt;WSCT.Stack&lt;/c&gt; defines a mechanism allowing to chain independant layers when transmitting commands to the card.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="WSCT.Wrapper" isDocumented="True">&lt;c&gt;WSCT.Wrapper&lt;/c&gt; defines OS specific PC/SC wrapper classes and a mechanism allowing OS independance.</NamespaceSummaryItem></NamespaceSummaries>
+      <NamespaceSummaryItem name="WSCT.Stack" isDocumented="True">&lt;c&gt;WSCT.Stack&lt;/c&gt; defines a mechanism allowing to chain independant layers when transmitting commands to the card.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="WSCT.Wrapper" isDocumented="True">&lt;c&gt;WSCT.Wrapper&lt;/c&gt; defines OS specific PC/SC wrapper classes and a mechanism allowing OS independance.</NamespaceSummaryItem>
+    </NamespaceSummaries>
     <ApiFilter />
     <ComponentConfigurations />
     <HelpAttributes />

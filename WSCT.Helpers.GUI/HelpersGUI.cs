@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using WSCT.Helpers.BasicEncodingRules;
+using WSCT.Helpers.Security;
 
 namespace WSCT.Helpers.GUI
 {
@@ -19,145 +20,153 @@ namespace WSCT.Helpers.GUI
             InitializeComponent();
         }
 
+        private void ConvertAndOutput(Func<string> conversion)
+        {
+            try
+            {
+                textTarget.Text = conversion();
+            }
+            catch (Exception exception)
+            {
+                textTarget.Text = exception.Message;
+            }
+        }
+
+        private bool TryAndOutput(Action action)
+        {
+            try
+            {
+                action();
+                return true;
+            }
+            catch (Exception exception)
+            {
+                textTarget.Text = exception.Message;
+                return false;
+            }
+        }
+
+        private void textSource_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Enable Ctrl A to select all text
+            if (e.Control & e.KeyCode == Keys.A)
+            {
+                textSource.SelectAll();
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void textTarget_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Enable Ctrl A to select all text
+            if (e.Control & e.KeyCode == Keys.A)
+            {
+                textTarget.SelectAll();
+                e.SuppressKeyPress = true;
+            }
+        }
+
         private void buttonTlvToXml_Click(object sender, EventArgs e)
         {
-            textTLVDecoded.Text = "";
-            TlvData tlv;
+            TlvData tlv = null;
 
-            try
+            var isDone = TryAndOutput(() => tlv = textSource.Text.Replace("\r\n", "").ToTlvData());
+
+            if (!isDone)
             {
-                tlv = textTLVHexa.Text.Replace("\r\n", "").ToTlvData();
-            }
-            catch (Exception exception)
-            {
-                textTLVDecoded.Text = exception.Message;
                 return;
             }
-            try
-            {
-                textTLVDecoded.Text = tlv.ToXmlString();
-            }
-            catch (Exception exception)
-            {
-                textTLVDecoded.Text = exception.Message;
-            }
+
+            ConvertAndOutput(() => tlv.ToXmlString());
         }
 
         private void buttonXmlToTlv_Click(object sender, EventArgs e)
         {
-            textTLVDecoded.Text = "";
-            TlvData tlv;
+            TlvData tlv = null;
 
-            try
+            var isDone = TryAndOutput(() =>
             {
                 var serializer = new XmlSerializer(typeof(TlvData));
-                tlv = (TlvData)serializer.Deserialize(new StringReader(textTLVHexa.Text));
-            }
-            catch (Exception exception)
+                tlv = (TlvData)serializer.Deserialize(new StringReader(textSource.Text));
+            });
+
+            if (!isDone)
             {
-                textTLVDecoded.Text = exception.Message;
                 return;
             }
-            try
-            {
-                textTLVDecoded.Text = tlv.ToByteArray().ToHexa();
-            }
-            catch (Exception exception)
-            {
-                textTLVDecoded.Text = exception.Message;
-            }
+
+            ConvertAndOutput(() => tlv.ToByteArray().ToHexa());
         }
 
         private void buttonAnalyzeTLV_Click(object sender, EventArgs e)
         {
-            textTLVDecoded.Text = "";
-            TlvData tlv;
+            TlvData tlv = null;
 
-            try
+            var isDone = TryAndOutput(() => tlv = textSource.Text.Replace(Environment.NewLine, String.Empty).ToTlvData());
+
+            if (!isDone)
             {
-                tlv = textTLVHexa.Text.Replace("\r\n", "").ToTlvData();
-            }
-            catch (Exception exception)
-            {
-                textTLVDecoded.Text = exception.Message;
                 return;
             }
-            try
+
+            ConvertAndOutput(() =>
             {
+                var text = String.Empty;
                 var tagsManager = SerializedObject<TlvDictionary>.LoadFromXml(@"Dictionary.HelpersTags.xml");
                 foreach (TlvData tlvData in tlv.GetTags())
                 {
                     var tagObject = tagsManager.CreateInstance(tlvData);
                     if (tagObject != null)
                     {
-                        textTLVDecoded.Text += String.Format("{0:N} ({1:T}): {0}\r\n", tagObject, tlvData);
+                        text += String.Format("{0:N} ({1:T}): {0}\r\n", tagObject, tlvData);
                     }
                     else
                     {
-                        textTLVDecoded.Text += String.Format("! Unknow tlvDesc {0:T}: {0:V}\r\n", tlvData);
+                        text += String.Format("! Unknow tlvDesc {0:T}: {0:V}\r\n", tlvData);
                     }
                 }
-            }
-            catch (Exception eAnalyze)
-            {
-                textTLVDecoded.Text = eAnalyze.Message;
-            }
+                return text;
+            });
         }
 
         private void buttonHexaToString_Click(object sender, EventArgs e)
         {
-            textArrayOfBytesInterpreted.Text = "";
-
-            try
-            {
-                textArrayOfBytesInterpreted.Text = textArrayOfBytesSource.Text.FromHexa().ToAsciiString();
-            }
-            catch (Exception eHexa)
-            {
-                textArrayOfBytesInterpreted.Text = eHexa.Message;
-            }
+            ConvertAndOutput(() => textSource.Text.FromHexa().ToAsciiString());
         }
 
         private void buttonStringToHexa_Click(object sender, EventArgs e)
         {
-            textArrayOfBytesInterpreted.Text = "";
-
-            try
-            {
-                textArrayOfBytesInterpreted.Text = textArrayOfBytesSource.Text.FromString().ToHexa();
-            }
-            catch (Exception eHexa)
-            {
-                textArrayOfBytesInterpreted.Text = eHexa.Message;
-            }
+            ConvertAndOutput(() => textSource.Text.FromString().ToHexa());
         }
 
         private void buttonBCDToHexa_Click(object sender, EventArgs e)
         {
-            textArrayOfBytesInterpreted.Text = "";
-
-            try
-            {
-                textArrayOfBytesInterpreted.Text = textArrayOfBytesSource.Text.FromBcd().ToHexa();
-            }
-            catch (Exception exception)
-            {
-                textArrayOfBytesInterpreted.Text = exception.Message;
-            }
+            ConvertAndOutput(() => textSource.Text.FromBcd().ToHexa());
         }
 
         private void buttonHexaToBCD_Click(object sender, EventArgs e)
         {
-            textArrayOfBytesInterpreted.Text = "";
+            ConvertAndOutput(() => textSource.Text.FromHexa().ToBcdString(' '));
+        }
 
-            try
-            {
-                textArrayOfBytesInterpreted.Text = textArrayOfBytesSource.Text.FromHexa().ToBcdString(' ');
-            }
-            catch (Exception exception)
-            {
-                textArrayOfBytesInterpreted.Text = exception.Message;
-            }
+        private void buttonBase64ToHexa_Click(object sender, EventArgs e)
+        {
+            ConvertAndOutput(() => Convert.FromBase64String(textSource.Text).ToHexa());
+        }
+
+        private void buttonHexaToBase64_Click(object sender, EventArgs e)
+        {
+            ConvertAndOutput(() => Convert.ToBase64String(textSource.Text.FromHexa()));
+        }
+
+        private void buttonAnalyzeSshPublicKey_Click(object sender, EventArgs e)
+        {
+            ConvertAndOutput(() => Ssh1PublicKeyBody.Create(textSource.Text).ToString());
+        }
+
+        private void buttonAnalyzeSshPrivateKey_Click(object sender, EventArgs e)
+        {
+            ConvertAndOutput(() => PuTTyPrivateKeyBody.Create(textSource.Text).ToString());
         }
     }
 }

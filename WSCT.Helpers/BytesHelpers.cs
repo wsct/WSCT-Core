@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 
 namespace WSCT.Helpers
@@ -59,7 +60,7 @@ namespace WSCT.Helpers
 
             for (var i = length - 1; i >= 0; i--)
             {
-                byteArray[i] = (byte)(value%0x100);
+                byteArray[i] = (byte)(value % 0x100);
                 value /= 0x100;
             }
 
@@ -91,21 +92,21 @@ namespace WSCT.Helpers
             hexa = hexa.Replace(" ", "");
             hexa = hexa.Replace("-", "");
 
-            if (hexa.Length%2 == 0)
+            if (hexa.Length % 2 == 0)
             {
-                bytes = new byte[hexa.Length/2];
-                for (var index = 0; index < hexa.Length/2; index++)
+                bytes = new byte[hexa.Length / 2];
+                for (var index = 0; index < hexa.Length / 2; index++)
                 {
-                    bytes[index] = byte.Parse(hexa.Substring(2*index, 2), NumberStyles.HexNumber);
+                    bytes[index] = byte.Parse(hexa.Substring(2 * index, 2), NumberStyles.HexNumber);
                 }
             }
             else
             {
-                bytes = new byte[hexa.Length/2 + 1];
+                bytes = new byte[hexa.Length / 2 + 1];
                 bytes[0] = byte.Parse(hexa.Substring(0, 1), NumberStyles.HexNumber);
-                for (var index = 1; index < hexa.Length/2 + 1; index++)
+                for (var index = 1; index < hexa.Length / 2 + 1; index++)
                 {
-                    bytes[index] = byte.Parse(hexa.Substring(2*index - 1, 2), NumberStyles.HexNumber);
+                    bytes[index] = byte.Parse(hexa.Substring(2 * index - 1, 2), NumberStyles.HexNumber);
                 }
             }
 
@@ -296,17 +297,17 @@ namespace WSCT.Helpers
         /// </example>
         public static byte[] ToBcd(this byte[] bytes, byte filler)
         {
-            var bcd = new byte[bytes.Length/2 + bytes.Length%2];
+            var bcd = new byte[bytes.Length / 2 + bytes.Length % 2];
 
             int index;
             for (index = 0; index + 1 < bytes.Length; index += 2)
             {
-                bcd[index/2] = (byte)((bytes[index] << 4) + bytes[index + 1]);
+                bcd[index / 2] = (byte)((bytes[index] << 4) + bytes[index + 1]);
             }
 
-            if (bytes.Length%2 == 1)
+            if (bytes.Length % 2 == 1)
             {
-                bcd[index/2] = (byte)((bytes[index] << 4) + filler);
+                bcd[index / 2] = (byte)((bytes[index] << 4) + filler);
             }
 
             return bcd;
@@ -334,7 +335,7 @@ namespace WSCT.Helpers
                 bcd.Append(b);
             }
 
-            if (bytes.Length%2 == 1)
+            if (bytes.Length % 2 == 1)
             {
                 bcd.Append(filler);
             }
@@ -356,7 +357,7 @@ namespace WSCT.Helpers
         /// </example>
         public static byte[] FromBcd(this byte[] bcd)
         {
-            return bcd.FromBcd((UInt32)bcd.Length*2);
+            return bcd.FromBcd((UInt32)bcd.Length * 2);
         }
 
         /// <summary>
@@ -379,13 +380,13 @@ namespace WSCT.Helpers
             int i;
             for (i = 0; i + 1 < length; i += 2)
             {
-                bytes[i] = (byte)((bcd[i/2] & 0xF0) >> 4);
-                bytes[i + 1] = (byte)(bcd[i/2] & 0x0F);
+                bytes[i] = (byte)((bcd[i / 2] & 0xF0) >> 4);
+                bytes[i + 1] = (byte)(bcd[i / 2] & 0x0F);
             }
 
-            if (length%2 == 1)
+            if (length % 2 == 1)
             {
-                bytes[i] = (byte)((bcd[i/2] & 0xF0) >> 4);
+                bytes[i] = (byte)((bcd[i / 2] & 0xF0) >> 4);
             }
 
             return bytes;
@@ -431,6 +432,41 @@ namespace WSCT.Helpers
             }
 
             return bytes;
+        }
+
+        /// <summary>
+        /// Extract an array of bytes prefixed by a 4 bytes coded length from a bigger array.
+        /// ... 'LL LL LL LL' 'VV VV ... VV' ...
+        /// </summary>
+        /// <param name="bytes">Source array of bytes.</param>
+        /// <param name="offset">Input: Offset of the first byte to look for in <paramref name="bytes"/>. Output: Offset of next byte after the retrieved array.</param>
+        /// <returns></returns>
+        public static byte[] Get4BytesPrefixedArray(this byte[] bytes, ref int offset)
+        {
+            if (bytes == null)
+            {
+                throw new ArgumentNullException("bytes");
+            }
+
+            if (bytes.Length - offset < 4)
+            {
+                throw new Exception(String.Format("Error: Can't get {0} bytes at offset {1}.", 4, offset));
+            }
+
+            // First 4 bytes are the length of data
+            var length = bytes[offset + 0] * 0x01000000 + bytes[offset + 1] * 0x00010000 + bytes[offset + 2] * 0x00000100 + bytes[offset + 3];
+            offset += 4;
+
+            if (bytes.Length - offset < length)
+            {
+                throw new Exception(String.Format("Error: Can't get {0} bytes at offset {1}.", length, offset));
+            }
+
+            // Extract value
+            var value = bytes.Skip(offset).Take(length).ToArray();
+            offset += length;
+
+            return value;
         }
     }
 }
