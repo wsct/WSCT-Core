@@ -1,22 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{B95B0E58-9296-4A15-AA69-10A7B6DC2267}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WSCT.Helpers</RootNamespace>
     <AssemblyName>WSCT.Helpers</AssemblyName>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>2.0</OldToolsVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,8 +23,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -36,32 +31,31 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\doc.WSCT.Helpers.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
+    <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BytesHelpers.cs" />
-    <Compile Include="BasicEncodingRules\AbstractTlvObject.cs" />
-    <Compile Include="BasicEncodingRules\BcdTlvObject.cs" />
-    <Compile Include="BasicEncodingRules\BinaryTlvObject.cs" />
-    <Compile Include="BasicEncodingRules\StringTlvObject.cs" />
-    <Compile Include="BasicEncodingRules\TlvDataHelper.cs" />
-    <Compile Include="BasicEncodingRules\TlvDescription.cs" />
-    <Compile Include="BasicEncodingRules\TlvDictionary.cs" />
+    <Compile Include="BasicEncodingRules\AbstractTLVObject.cs" />
+    <Compile Include="BasicEncodingRules\BCDTLVObject.cs" />
+    <Compile Include="BasicEncodingRules\BinaryTLVObject.cs" />
+    <Compile Include="BasicEncodingRules\StringTLVObject.cs" />
     <Compile Include="BasicEncodingRules\TlvData.cs" />
-    <Compile Include="Reflection\AssemblyLoader.cs" />
+    <Compile Include="BasicEncodingRules\TLVDataHelper.cs" />
+    <Compile Include="BasicEncodingRules\TLVDescription.cs" />
+    <Compile Include="BasicEncodingRules\TLVDictionary.cs" />
+    <Compile Include="BytesHelpers.cs" />
+    <Compile Include="Portable\PortableFile.cs" />
+    <Compile Include="Portable\IPortableFile.cs" />
+    <Compile Include="Portable\PortableFileMode.cs" />
+    <Compile Include="Portable\PortableInjector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\AssemblyLoader.cs" />
     <Compile Include="Security\PuTTyPrivateKeyBody.cs" />
     <Compile Include="Security\Ssh1PublicKeyBody.cs" />
     <Compile Include="SerializedObject.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

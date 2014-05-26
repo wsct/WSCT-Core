@@ -2,17 +2,17 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace WSCT.Wrapper.MacOSX
+namespace WSCT.Wrapper.PCSCLite64
 {
     /// <summary>
-    /// Wrapper of PC/SC (pcsclite) for MacOS.
+    /// Wrapper of PC/SC (pcsclite) for 64 bits linux.
     /// </summary>
-    internal class Primitives : IPrimitives
+    public class Primitives : IPrimitives
     {
         #region >> Fields
 
         /// <summary>
-        /// PC/SC resources management
+        /// PC/SC resources management.
         /// </summary>
         internal static IntPtr ActiveContext;
 
@@ -50,7 +50,7 @@ namespace WSCT.Wrapper.MacOSX
 
             unsafe
             {
-                var uactiveProtocol = (uint)activeProtocol;
+                var uactiveProtocol = (ulong)activeProtocol;
                 readerName += "\0";
                 // PC/SC lite does not support unicode, only utf8
                 // Ensure that encoding of readername if utf8
@@ -79,7 +79,11 @@ namespace WSCT.Wrapper.MacOSX
         /// <inheritdoc />
         public ErrorCode SCardControl(IntPtr card, uint controlCode, byte[] sendBuffer, uint sendSize, ref byte[] recvBuffer, uint recvSize, ref uint returnedSize)
         {
-            return UnsafePrimitives.SCardControl(card, controlCode, sendBuffer, sendSize, ref recvBuffer, recvSize, ref returnedSize);
+            ulong ulreturnedSize = returnedSize;
+            var ret = UnsafePrimitives.SCardControl(card, controlCode, sendBuffer, sendSize, ref recvBuffer, recvSize, ref ulreturnedSize);
+            returnedSize = (uint)ulreturnedSize;
+
+            return ret;
         }
 
         /// <inheritdoc />
@@ -89,7 +93,7 @@ namespace WSCT.Wrapper.MacOSX
             {
                 return UnsafePrimitives.SCardDisconnect(
                     (void*)card,
-                    (uint)disposition
+                    (ulong)disposition
                     );
             }
         }
@@ -124,57 +128,55 @@ namespace WSCT.Wrapper.MacOSX
         {
             ErrorCode ret;
 
+            ulong ulrecvAttributeSize = recvAttributeSize;
+
             unsafe
             {
                 if (recvAttributeSize == AutoAllocate)
                 {
-                    fixed(uint* precvAttributeSize = &recvAttributeSize)
+                    fixed(byte* precvAttribute = recvAttribute)
                     {
+                        ret = UnsafePrimitives.SCardGetAttrib(
+                            (void*)card,
+                            attributeId,
+                            precvAttribute,
+                            &ulrecvAttributeSize
+                            );
+                    }
+                    if (ret == ErrorCode.Success)
+                    {
+                        recvAttribute = new byte[ulrecvAttributeSize];
                         fixed(byte* precvAttribute = recvAttribute)
                         {
                             ret = UnsafePrimitives.SCardGetAttrib(
                                 (void*)card,
                                 attributeId,
                                 precvAttribute,
-                                precvAttributeSize
+                                &ulrecvAttributeSize
                                 );
                         }
-                        if (ret == ErrorCode.Success)
-                        {
-                            recvAttribute = new byte[*precvAttributeSize];
-                            fixed(byte* precvAttribute = recvAttribute)
-                            {
-                                ret = UnsafePrimitives.SCardGetAttrib(
-                                    (void*)card,
-                                    attributeId,
-                                    precvAttribute,
-                                    precvAttributeSize
-                                    );
-                            }
-                        }
-                        else
-                        {
-                            recvAttributeSize = 0;
-                            recvAttribute = new byte[0];
-                        }
+                    }
+                    else
+                    {
+                        recvAttributeSize = 0;
+                        recvAttribute = new byte[0];
                     }
                 }
                 else
                 {
-                    fixed(uint* precvAttributeSize = &recvAttributeSize)
+                    fixed(byte* precvAttribute = recvAttribute)
                     {
-                        fixed(byte* precvAttribute = recvAttribute)
-                        {
-                            ret = UnsafePrimitives.SCardGetAttrib(
-                                (void*)card,
-                                attributeId,
-                                precvAttribute,
-                                precvAttributeSize
-                                );
-                        }
+                        ret = UnsafePrimitives.SCardGetAttrib(
+                            (void*)card,
+                            attributeId,
+                            precvAttribute,
+                            &ulrecvAttributeSize
+                            );
                     }
                 }
             }
+
+            recvAttributeSize = (uint)ulrecvAttributeSize;
 
             return ret;
         }
@@ -220,6 +222,8 @@ namespace WSCT.Wrapper.MacOSX
         {
             ErrorCode err;
 
+            ulong ulsize = size;
+
             unsafe
             {
                 // PC/SC lite does not support unicode, only utf8
@@ -227,46 +231,44 @@ namespace WSCT.Wrapper.MacOSX
                 var def = Encoding.Default.GetBytes(groups);
                 var utf8Groups = Encoding.Convert(Encoding.Default, Encoding.UTF8, def);
 
-                fixed(uint* psize = &size)
+                fixed(byte* pgroups = utf8Groups)
                 {
-                    fixed(byte* pgroups = utf8Groups)
+                    if (size == AutoAllocate)
                     {
-                        if (size == AutoAllocate)
+                        err = UnsafePrimitives.SCardListReaders(
+                            (void*)context,
+                            (char*)pgroups,
+                            (char*)readers,
+                            &ulsize
+                            );
+                        if (err == ErrorCode.Success)
                         {
-                            err = UnsafePrimitives.SCardListReaders(
-                                (void*)context,
-                                (char*)pgroups,
-                                (char*)readers,
-                                psize
-                                );
-                            if (err == ErrorCode.Success)
+                            var creaders = new char[ulsize];
+                            fixed(char* pcreaders = creaders)
                             {
-                                var creaders = new char[*psize];
-                                fixed(char* pcreaders = creaders)
-                                {
-                                    err = UnsafePrimitives.SCardListReaders(
-                                        (void*)context,
-                                        (char*)pgroups,
-                                        pcreaders,
-                                        psize
-                                        );
-                                    readers = (IntPtr)pcreaders;
-                                }
+                                err = UnsafePrimitives.SCardListReaders(
+                                    (void*)context,
+                                    (char*)pgroups,
+                                    pcreaders,
+                                    &ulsize
+                                    );
+                                readers = (IntPtr)pcreaders;
                             }
                         }
-                        else
-                        {
-                            err = UnsafePrimitives.SCardListReaders(
-                                (void*)context,
-                                (char*)pgroups,
-                                (char*)readers,
-                                psize
-                                );
-                        }
-                        size = *psize;
+                    }
+                    else
+                    {
+                        err = UnsafePrimitives.SCardListReaders(
+                            (void*)context,
+                            (char*)pgroups,
+                            (char*)readers,
+                            &ulsize
+                            );
                     }
                 }
             }
+
+            size = (uint)ulsize;
 
             return err;
         }
@@ -276,42 +278,42 @@ namespace WSCT.Wrapper.MacOSX
         {
             ErrorCode err;
 
+            ulong ulsize = size;
+
             unsafe
             {
-                fixed(uint* psize = &size)
+                if (size == AutoAllocate)
                 {
-                    if (size == AutoAllocate)
+                    err = UnsafePrimitives.SCardListReaderGroups(
+                        (void*)context,
+                        (char*)groups,
+                        &ulsize
+                        );
+                    if (err == ErrorCode.Success)
                     {
-                        err = UnsafePrimitives.SCardListReaderGroups(
-                            (void*)context,
-                            (char*)groups,
-                            psize
-                            );
-                        if (err == ErrorCode.Success)
+                        var cgroups = new char[ulsize];
+                        fixed(char* pcgroups = cgroups)
                         {
-                            var cgroups = new char[*psize];
-                            fixed(char* pcgroups = cgroups)
-                            {
-                                err = UnsafePrimitives.SCardListReaderGroups(
-                                    (void*)context,
-                                    pcgroups,
-                                    psize
-                                    );
-                                groups = (IntPtr)pcgroups;
-                            }
+                            err = UnsafePrimitives.SCardListReaderGroups(
+                                (void*)context,
+                                pcgroups,
+                                &ulsize
+                                );
+                            groups = (IntPtr)pcgroups;
                         }
                     }
-                    else
-                    {
-                        err = UnsafePrimitives.SCardListReaderGroups(
-                            (void*)context,
-                            (char*)groups,
-                            psize
-                            );
-                    }
-                    size = *psize;
+                }
+                else
+                {
+                    err = UnsafePrimitives.SCardListReaderGroups(
+                        (void*)context,
+                        (char*)groups,
+                        &ulsize
+                        );
                 }
             }
+
+            size = (uint)ulsize;
 
             return err;
         }
@@ -323,7 +325,7 @@ namespace WSCT.Wrapper.MacOSX
 
             unsafe
             {
-                var protocol = (uint)activeProtocol;
+                ulong protocol = (uint)activeProtocol;
                 err = UnsafePrimitives.SCardReconnect(
                     (void*)card,
                     (uint)shareMode,
@@ -367,10 +369,13 @@ namespace WSCT.Wrapper.MacOSX
         {
             ErrorCode ret;
 
+            ulong ulreaderNameSize = readerNameSize;
+            ulong ulatrSize = atrSize;
+
             unsafe
             {
-                var ustatus = (uint)status;
-                var uprotocol = (uint)protocol;
+                var ustatus = (ulong)status;
+                var uprotocol = (ulong)protocol;
                 fixed(uint* preaderNameSize = &readerNameSize)
                 {
                     fixed(uint* patrSize = &atrSize)
@@ -380,11 +385,11 @@ namespace WSCT.Wrapper.MacOSX
                             ret = UnsafePrimitives.SCardStatus(
                                 (void*)card,
                                 (char*)readerName,
-                                (uint*)readerNameSize,
+                                &ulreaderNameSize,
                                 &ustatus,
                                 &uprotocol,
                                 (byte*)atr,
-                                (uint*)atrSize
+                                &ulatrSize
                                 );
                         }
                         else
@@ -400,6 +405,9 @@ namespace WSCT.Wrapper.MacOSX
                 }
             }
 
+            readerNameSize = (uint)ulreaderNameSize;
+            atrSize = (uint)ulatrSize;
+
             return ret;
         }
 
@@ -407,9 +415,9 @@ namespace WSCT.Wrapper.MacOSX
         public ErrorCode SCardStatus(IntPtr card, ref string readerName, ref State state, ref Protocol protocol, ref byte[] atr)
         {
             var atrPtr = IntPtr.Zero;
-            var zReaderNameSize = AutoAllocate;
+            ulong zReaderNameSize = AutoAllocate;
             var zReaderNamePtr = new IntPtr();
-            var atrSize = AutoAllocate;
+            ulong atrSize = AutoAllocate;
             var ret = UnsafePrimitives.SCardStatus(
                 card,
                 ref zReaderNamePtr,
@@ -447,10 +455,10 @@ namespace WSCT.Wrapper.MacOSX
 
             unsafe
             {
-                var ustatus = (uint)status;
-                var uprotocol = (uint)protocol;
-                uint readerNameSize = 0;
-                uint atrSize = 0;
+                var ustatus = (ulong)status;
+                var uprotocol = (ulong)protocol;
+                ulong readerNameSize = 0;
+                ulong atrSize = 0;
                 ret = UnsafePrimitives.SCardStatus((void*)card, null, &readerNameSize, &ustatus, &uprotocol, null, &atrSize);
                 status = (State)ustatus;
                 protocol = (Protocol)uprotocol;
@@ -464,6 +472,8 @@ namespace WSCT.Wrapper.MacOSX
         {
             ErrorCode ret;
 
+            ulong ulrecvSize = recvSize;
+
             var ptrsendPci = Marshal.AllocHGlobal(Marshal.SizeOf(((IoRequest)sendPci).ScIoRequest));
             Marshal.StructureToPtr(((IoRequest)sendPci).ScIoRequest, ptrsendPci, true);
             var ptrrecvPci = Marshal.AllocHGlobal(Marshal.SizeOf(((IoRequest)recvPci).ScIoRequest));
@@ -476,29 +486,26 @@ namespace WSCT.Wrapper.MacOSX
                     // winscard.dll supports SCARD_AUTOALLOCATE only since Windows vista; winscard.dll is able to propose l recvSize to be used with all versions (XP+)
                     // pcsclite does not support recvBuffer = null, so no automatic discovery of recvSize
                     // For more portability: Wrapper don't use the native winscard.dll's SCARD_AUTOALLOCATE
-                    recvSize = DefaultBufferSize;
-                    recvBuffer = new byte[recvSize];
+                    ulrecvSize = DefaultBufferSize;
+                    recvBuffer = new byte[ulrecvSize];
                     fixed(byte* psendBuffer = sendBuffer)
                     {
-                        fixed(uint* precvSize = &recvSize)
+                        fixed(byte* precvBuffer = recvBuffer)
                         {
-                            fixed(byte* precvBuffer = recvBuffer)
-                            {
-                                ret = UnsafePrimitives.SCardTransmit(
-                                    (void*)card,
-                                    (void*)ptrsendPci,
-                                    psendBuffer,
-                                    sendSize,
-                                    (void*)ptrrecvPci,
-                                    precvBuffer,
-                                    precvSize
-                                    );
-                            }
+                            ret = UnsafePrimitives.SCardTransmit(
+                                (void*)card,
+                                (void*)ptrsendPci,
+                                psendBuffer,
+                                sendSize,
+                                (void*)ptrrecvPci,
+                                precvBuffer,
+                                &ulrecvSize
+                                );
                         }
                     }
                     if (ret == ErrorCode.Success)
                     {
-                        Array.Resize(ref recvBuffer, (int)recvSize);
+                        Array.Resize(ref recvBuffer, (int)ulrecvSize);
                     }
                 }
                 else
@@ -506,20 +513,17 @@ namespace WSCT.Wrapper.MacOSX
                     //TODO Seems to be problems with pcsclite in this case...
                     fixed(byte* psendBuffer = sendBuffer)
                     {
-                        fixed(uint* precvSize = &recvSize)
+                        fixed(byte* precvBuffer = recvBuffer)
                         {
-                            fixed(byte* precvBuffer = recvBuffer)
-                            {
-                                ret = UnsafePrimitives.SCardTransmit(
-                                    (void*)card,
-                                    (void*)ptrsendPci,
-                                    psendBuffer,
-                                    sendSize,
-                                    (void*)ptrrecvPci,
-                                    precvBuffer,
-                                    precvSize
-                                    );
-                            }
+                            ret = UnsafePrimitives.SCardTransmit(
+                                (void*)card,
+                                (void*)ptrsendPci,
+                                psendBuffer,
+                                sendSize,
+                                (void*)ptrrecvPci,
+                                precvBuffer,
+                                &ulrecvSize
+                                );
                         }
                     }
                 }
@@ -527,6 +531,8 @@ namespace WSCT.Wrapper.MacOSX
 
             Marshal.FreeHGlobal(ptrsendPci);
             Marshal.FreeHGlobal(ptrrecvPci);
+
+            recvSize = (uint)ulrecvSize;
 
             return ret;
         }

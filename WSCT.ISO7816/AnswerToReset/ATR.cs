@@ -197,7 +197,7 @@ namespace WSCT.ISO7816.AnswerToReset
 
             // Historic bytes
             HistoricBytes = new byte[t0.Value & 0x0F];
-            Array.Copy(atr, offset, HistoricBytes, 0, HistoricBytes.Length);
+            Array.Copy(atr, (int)offset, HistoricBytes, 0, HistoricBytes.Length);
             offset += (uint)HistoricBytes.Length;
 
             // TCK

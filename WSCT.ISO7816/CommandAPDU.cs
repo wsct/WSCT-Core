@@ -444,7 +444,7 @@ namespace WSCT.ISO7816
                 {
                     Lc = length;
                     Udc = new byte[length];
-                    Array.Copy(cAPDU, pos, Udc, 0, length);
+                    Array.Copy(cAPDU, (int)pos, Udc, 0, (int)length);
                     pos += length;
                     CommandCase = CommandCase.CC3;
                     if (cAPDU.Length > pos)
@@ -499,7 +499,7 @@ namespace WSCT.ISO7816
             {
                 // <commandAPDU cla=... ins=... p1=... p2=... (le=...) > udc </commandAPDU>
                 reader.ReadStartElement();
-                Udc = reader.ReadString().FromHexa();
+                Udc = reader.ReadContentAsString().FromHexa();
                 reader.ReadEndElement();
             }
             reader.ReadStartElement();

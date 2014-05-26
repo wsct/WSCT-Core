@@ -1,36 +1,26 @@
 ﻿using System.Reflection;
-using System.Runtime.InteropServices;
 
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-
-[assembly: AssemblyTitle("WSCT API Wrapper for .NET")]
-[assembly: AssemblyDescription("WSCT API Wrapper for .NET")]
+// Les informations générales relatives à un assembly dépendent de 
+// l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
+// associées à un assembly.
+[assembly: AssemblyTitle("WSCT Wrapper API for .NET")]
+[assembly: AssemblyDescription("Core Abstraction for Concrete WSCT Wrappers")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Sylvain Vernois")]
-[assembly: AssemblyProduct("WSCT.Wrapper")]
-[assembly: AssemblyCopyright("Copyright © Sylvain Vernois 2007")]
+[assembly: AssemblyCompany("ENSICAEN / GREYC")]
+[assembly: AssemblyProduct("WSCT.Wrapper.Core")]
+[assembly: AssemblyCopyright("Copyright © ENSICAEN / GREYC 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-// Setting ComVisible to false makes the types in this assembly not visible 
-// to COM components.  If you need to access a type in this assembly from 
-// COM, set the ComVisible attribute to true on that type.
-
-[assembly: ComVisible(false)]
-
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-
-[assembly: Guid("96bf9f41-9bab-492a-bc98-3015a8347f41")]
-
-// Version information for an assembly consists of the following four values:
+// Les informations de version pour un assembly se composent des quatre valeurs suivantes :
 //
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
+//      Version principale
+//      Version secondaire 
+//      Numéro de build
+//      Révision
 //
-
-[assembly: AssemblyVersion("6.0.0.*")]
-[assembly: AssemblyFileVersion("6.0.0.0")]
+// Vous pouvez spécifier toutes les valeurs ou indiquer les numéros de build et de révision par défaut 
+// en utilisant '*', comme indiqué ci-dessous :
+// [assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("1.1.0.*")]
+[assembly: AssemblyFileVersion("1.1.0.0")]

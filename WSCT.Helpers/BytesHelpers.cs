@@ -428,7 +428,7 @@ namespace WSCT.Helpers
 
             for (var i = 0; i < length; i++)
             {
-                bytes[i] = byte.Parse(bcd[i].ToString(CultureInfo.InvariantCulture));
+                bytes[i] = byte.Parse(bcd[i].ToString());
             }
 
             return bytes;

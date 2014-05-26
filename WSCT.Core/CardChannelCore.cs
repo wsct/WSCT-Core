@@ -1,6 +1,7 @@
 using System;
 using WSCT.Core.APDU;
 using WSCT.Wrapper;
+using WSCT.Wrapper.Desktop;
 
 namespace WSCT.Core
 {

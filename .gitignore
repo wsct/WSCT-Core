@@ -1,9 +1,10 @@
-
-*.pdb
 bin
 obj
+/packages
+*.pdb
 *.suo
 *.pidb
 *.userprefs
 /Documentation/Help
 *.shfbproj_*
+/.nuget/NuGet.exe

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 
 namespace WSCT.Wrapper
 {
@@ -29,7 +28,7 @@ namespace WSCT.Wrapper
         /// <param name="context">A handle that identifies the resource manager context.</param>
         /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
         ErrorCode SCardCancel(
-            [In] IntPtr context
+            IntPtr context
             );
 
         /// <summary>
@@ -55,12 +54,12 @@ namespace WSCT.Wrapper
         /// </code>
         /// </remarks>
         ErrorCode SCardConnect(
-            [In] IntPtr context,
-            [In] string readerName,
-            [In] ShareMode shareMode,
-            [In] Protocol preferedProtocol,
-            [In, Out] ref IntPtr card,
-            [In, Out] ref Protocol activeProtocol
+            IntPtr context,
+            string readerName,
+            ShareMode shareMode,
+            Protocol preferedProtocol,
+            ref IntPtr card,
+            ref Protocol activeProtocol
             );
 
         /// <summary>
@@ -87,13 +86,13 @@ namespace WSCT.Wrapper
         /// </code>
         /// </remarks>
         ErrorCode SCardControl(
-            [In] IntPtr card,
-            [In] UInt32 controlCode,
-            [In, Out] byte[] sendBuffer,
-            [In] UInt32 sendSize,
-            [In, Out] ref byte[] recvBuffer,
-            [In] UInt32 recvSize,
-            [In, Out] ref UInt32 returnedSize
+            IntPtr card,
+            UInt32 controlCode,
+            byte[] sendBuffer,
+            UInt32 sendSize,
+            ref byte[] recvBuffer,
+            UInt32 recvSize,
+            ref UInt32 returnedSize
             );
 
         /// <summary>
@@ -111,8 +110,8 @@ namespace WSCT.Wrapper
         /// </code>
         /// </remarks>
         ErrorCode SCardDisconnect(
-            [In] IntPtr card,
-            [In] Disposition disposition
+            IntPtr card,
+            Disposition disposition
             );
 
         /// <summary>
@@ -135,10 +134,10 @@ namespace WSCT.Wrapper
         /// </code>
         /// </remarks>
         ErrorCode SCardEstablishContext(
-            [In] UInt32 scope,
-            [In] Object notUsed1,
-            [In] Object notUsed2,
-            [In, Out] ref IntPtr context
+            UInt32 scope,
+            Object notUsed1,
+            Object notUsed2,
+            ref IntPtr context
             );
 
         /// <summary>
@@ -151,10 +150,10 @@ namespace WSCT.Wrapper
         /// <param name="recvAttributeSize">On input, can be <see cref="AutoAllocate"/>, or the size allocated in <paramref name="recvAttribute"/>. On output, receives the number of bytes in <paramref name="recvAttribute"/>.</param>
         /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
         ErrorCode SCardGetAttrib(
-            [In] IntPtr card,
-            [In] UInt32 attributeId,
-            [In, Out] ref byte[] recvAttribute,
-            [In, Out] ref UInt32 recvAttributeSize
+            IntPtr card,
+            UInt32 attributeId,
+            ref byte[] recvAttribute,
+            ref UInt32 recvAttributeSize
             );
 
         /// <summary>
@@ -180,10 +179,10 @@ namespace WSCT.Wrapper
         /// </code>
         /// </remarks>
         ErrorCode SCardGetStatusChange(
-            [In] IntPtr context,
-            [In] UInt32 timeout,
-            [In, Out] AbstractReaderState[] readerStates,
-            [In, Out] UInt32 readers
+            IntPtr context,
+            UInt32 timeout,
+            AbstractReaderState[] readerStates,
+            UInt32 readers
             );
 
         /// <summary>
@@ -192,7 +191,7 @@ namespace WSCT.Wrapper
         /// <param name="context">Handle that identifies the resource manager context.</param>
         /// <returns><see cref="ErrorCode.Success"/> if the context is valid.</returns>
         ErrorCode SCardIsValidContext(
-            [In] IntPtr context
+            IntPtr context
             );
 
         /// <summary>
@@ -215,10 +214,10 @@ namespace WSCT.Wrapper
         /// </code>
         /// </remarks>
         ErrorCode SCardListReaders(
-            [In] IntPtr context,
-            [In] string groups,
-            [In, Out] ref IntPtr readers,
-            [In, Out] ref UInt32 size
+            IntPtr context,
+            string groups,
+            ref IntPtr readers,
+            ref UInt32 size
             );
 
         /// <summary>
@@ -239,9 +238,9 @@ namespace WSCT.Wrapper
         /// </code>
         /// </remarks>
         ErrorCode SCardListReaderGroups(
-            [In] IntPtr context,
-            [In, Out] ref IntPtr groups,
-            [In, Out] ref UInt32 size
+            IntPtr context,
+            ref IntPtr groups,
+            ref UInt32 size
             );
 
         /// <summary>
@@ -268,11 +267,11 @@ namespace WSCT.Wrapper
         /// </code>
         /// </remarks>
         ErrorCode SCardReconnect(
-            [In] IntPtr card,
-            [In] ShareMode shareMode,
-            [In] Protocol preferedProtocol,
-            [In] Disposition initialisation,
-            [In, Out] ref Protocol activeProtocol
+            IntPtr card,
+            ShareMode shareMode,
+            Protocol preferedProtocol,
+            Disposition initialisation,
+            ref Protocol activeProtocol
             );
 
         /// <summary>
@@ -288,7 +287,7 @@ namespace WSCT.Wrapper
         /// </code>
         /// </remarks>
         ErrorCode SCardReleaseContext(
-            [In] IntPtr context
+            IntPtr context
             );
 
         /// <summary>
@@ -302,10 +301,10 @@ namespace WSCT.Wrapper
         /// <param name="newAttributeSize">Count of bytes that represent the length of the attribute value in the pbAttr  buffer.</param>
         /// <returns><see cref="ErrorCode.Success"/> if succeeded.</returns>
         ErrorCode SCardSetAttrib(
-            [In] IntPtr card,
-            [In] UInt32 attributeId,
-            [In] byte[] newAttribute,
-            [In] UInt32 newAttributeSize
+            IntPtr card,
+            UInt32 attributeId,
+            byte[] newAttribute,
+            UInt32 newAttributeSize
             );
 
         /// <summary>
@@ -334,13 +333,13 @@ namespace WSCT.Wrapper
         /// </code>
         /// </remarks>
         ErrorCode SCardStatus(
-            [In] IntPtr card,
-            [In, Out] ref IntPtr readerName,
-            [In, Out] ref UInt32 readerNameSize,
-            [In, Out] ref State status,
-            [In, Out] ref Protocol protocol,
-            [In, Out] ref IntPtr atr,
-            [In, Out] ref UInt32 atrSize
+            IntPtr card,
+            ref IntPtr readerName,
+            ref UInt32 readerNameSize,
+            ref State status,
+            ref Protocol protocol,
+            ref IntPtr atr,
+            ref UInt32 atrSize
             );
 
         /// <summary>
@@ -366,11 +365,11 @@ namespace WSCT.Wrapper
         /// </code>
         /// </remarks>
         ErrorCode SCardStatus(
-            [In] IntPtr card,
-            [In, Out] ref string readerName,
-            [In, Out] ref State state,
-            [In, Out] ref Protocol protocol,
-            [In, Out] ref byte[] atr);
+            IntPtr card,
+            ref string readerName,
+            ref State state,
+            ref Protocol protocol,
+            ref byte[] atr);
 
         /// <summary>
         /// Provides the current status of a smart card in a reader.
@@ -393,9 +392,9 @@ namespace WSCT.Wrapper
         /// </code>
         /// </remarks>
         ErrorCode SCardStatus(
-            [In] IntPtr card,
-            [In, Out] ref State status,
-            [In, Out] ref Protocol protocol
+            IntPtr card,
+            ref State status,
+            ref Protocol protocol
             );
 
         /// <summary>
@@ -425,13 +424,13 @@ namespace WSCT.Wrapper
         /// </code>
         /// </remarks>
         ErrorCode SCardTransmit(
-            [In] IntPtr card,
-            [In] ref AbstractIoRequest sendPci,
-            [In] byte[] sendBuffer,
-            [In] UInt32 sendSize,
-            [In, Out] ref AbstractIoRequest recvPci,
-            [In, Out] ref byte[] recvBuffer,
-            [In, Out] ref UInt32 recvSize
+            IntPtr card,
+            ref AbstractIoRequest sendPci,
+            byte[] sendBuffer,
+            UInt32 sendSize,
+            ref AbstractIoRequest recvPci,
+            ref byte[] recvBuffer,
+            ref UInt32 recvSize
             );
 
         /*        {

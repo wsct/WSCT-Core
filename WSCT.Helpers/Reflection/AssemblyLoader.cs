@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 
@@ -29,7 +30,11 @@ namespace WSCT.Helpers.Reflection
             }
             else
             {
-                var assembly = Assembly.LoadFrom(assemblyFileName);
+                if (assemblyFileName.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
+                {
+                    assemblyFileName = Path.GetFileNameWithoutExtension(assemblyFileName);
+                }
+                var assembly = Assembly.Load(new AssemblyName(assemblyFileName));
                 type = assembly.GetType(typeName);
             }
             if (type != null)
@@ -47,15 +52,15 @@ namespace WSCT.Helpers.Reflection
         /// <returns>A list of <c>Type</c> implementing <typeparamref name="T"/>.</returns>
         public static List<Type> GetTypesByInterface<T>(string assemblyFileName)
         {
-            var assembly = Assembly.LoadFrom(assemblyFileName);
-            var types = assembly.GetExportedTypes();
+            if (assemblyFileName.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
+            {
+                assemblyFileName = Path.GetFileNameWithoutExtension(assemblyFileName);
+            }
+            var assembly = Assembly.Load(new AssemblyName(assemblyFileName));
+            var typeInfo = typeof(T).GetTypeInfo();
 
-            var typeFilter = new TypeFilter(
-                (typeFiltered, filterCriteria) => typeFiltered.Equals(filterCriteria)
-                );
-
-            return types
-                .Where(t => t.FindInterfaces(typeFilter, typeof(T)).Length > 0)
+            return assembly.ExportedTypes
+                .Where(t => t.GetTypeInfo().IsAssignableFrom(typeInfo))
                 .ToList();
         }
 

@@ -1,24 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Xml;
+using System.Linq;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace WSCT.Helpers.BasicEncodingRules
 {
     /// <summary>
-    /// Allows simple manipulation and conversion between <c>byte[]</c>, <c>string</c> and <see cref="TlvData"/> types data.
-    /// <para><c>ArrayOfBytes</c> also provides extension methods on <c>byte[]</c> and <c>string</c> and <c>List&lt;TLVData&gt;</c></para>
+    ///     Allows simple manipulation and conversion between <c>byte[]</c>, <c>string</c> and <see cref="TlvData" /> types
+    ///     data.
+    ///     <para>
+    ///         <c>ArrayOfBytes</c> also provides extension methods on <c>byte[]</c> and <c>string</c> and
+    ///         <c>List&lt;TLVData&gt;</c>
+    ///     </para>
     /// </summary>
     public static class TlvDataHelper
     {
         /// <summary>
-        /// Converts a <c>byte[]</c> into a TLVData by parsing the buffer.
+        ///     Converts a <c>byte[]</c> into a TLVData by parsing the buffer.
         /// </summary>
         /// <param name="buffer">Source data to convert</param>
         /// <returns>A new TLVData</returns>
         /// <remarks>
-        /// It is equivalent to <c>new TLVData(buffer)</c>
+        ///     It is equivalent to <c>new TLVData(buffer)</c>
         /// </remarks>
         /// <example>
         ///     <code>
@@ -33,12 +38,12 @@ namespace WSCT.Helpers.BasicEncodingRules
         }
 
         /// <summary>
-        /// Converts a <c>byte[]</c> into a TLVData by parsing the buffer.
+        ///     Converts a <c>byte[]</c> into a TLVData by parsing the buffer.
         /// </summary>
         /// <param name="buffer">Source data to convert</param>
         /// <returns>A new TLVData</returns>
         /// <remarks>
-        /// It is equivalent to <c>new TLVData(buffer)</c>
+        ///     It is equivalent to <c>new TLVData(buffer)</c>
         /// </remarks>
         /// <example>
         ///     <code>
@@ -53,13 +58,13 @@ namespace WSCT.Helpers.BasicEncodingRules
         }
 
         /// <summary>
-        /// Converts a <c>List&lt;TLVData&gt;</c> into a <see cref="TlvData"/> by using the buffer as subfields.
+        ///     Converts a <c>List&lt;TLVData&gt;</c> into a <see cref="TlvData" /> by using the buffer as subfields.
         /// </summary>
         /// <param name="tlvList">Source data to convert</param>
-        /// <param name="tag">Tag of the newly created <see cref="TlvData"/></param>
+        /// <param name="tag">Tag of the newly created <see cref="TlvData" /></param>
         /// <returns>A new TLVData</returns>
         /// <remarks>
-        /// It is equivalent to <c>new TLVData(tag, buffer)</c>
+        ///     It is equivalent to <c>new TLVData(tag, buffer)</c>
         /// </remarks>
         /// <example>
         ///     <code>
@@ -78,13 +83,13 @@ namespace WSCT.Helpers.BasicEncodingRules
         }
 
         /// <summary>
-        /// Converts a <c>List&lt;TLVData&gt;</c> into an XML representation <see cref="string"/>
+        ///     Converts a <c>List&lt;TLVData&gt;</c> into an XML representation <see cref="string" />
         /// </summary>
         /// <param name="tlv">Source data to convert</param>
         /// <returns>A new string</returns>
         /// <remarks>
-        /// <example>
-        ///     <code>
+        ///     <example>
+        ///         <code>
         ///     TLVData tlv = "70 03 88 01 02".toTLVData();
         ///     string xmltlv = tlv.toXmlString();
         ///     // now xmltlv is 
@@ -95,7 +100,7 @@ namespace WSCT.Helpers.BasicEncodingRules
         ///     // </tlvData>
         ///     // ]]>
         ///     </code>
-        /// </example>
+        ///     </example>
         /// </remarks>
         public static string ToXmlString(this TlvData tlv)
         {
@@ -108,64 +113,63 @@ namespace WSCT.Helpers.BasicEncodingRules
         }
 
         /// <summary>
-        /// Export a TLV object to XML format using a dictionnary to resolve formating
+        ///     Export a TLV object to XML format using a dictionnary to resolve formating
         /// </summary>
         /// <param name="tlv">Source object</param>
         /// <param name="dictionary">TLV Dictionary to use to find the long name</param>
         /// <returns>The <c>string</c> representation</returns>
         public static string ToXmlString(this TlvData tlv, TlvDictionary dictionary)
         {
-            return tlv.ToXmlNode(new XmlDocument(), dictionary).OuterXml;
+            return tlv.ToXmlNode(new XDocument(), dictionary).Value;
         }
 
         /// <summary>
-        /// Converts a TLVData into an XmlNode representation
+        ///     Converts a TLVData into an XmlNode representation
         /// </summary>
         /// <param name="tlv">Source data to convert</param>
         /// <param name="xmlDoc">XML document used to create elements</param>
         /// <returns>A new XmlNode</returns>
-        public static XmlNode ToXmlNode(this TlvData tlv, XmlDocument xmlDoc)
+        public static XElement ToXmlNode(this TlvData tlv, XDocument xmlDoc)
         {
-            xmlDoc.LoadXml(tlv.ToXmlString());
-            return xmlDoc["tlvData"];
+            xmlDoc = XDocument.Parse(tlv.ToXmlString());
+            return xmlDoc.Element("tlvData");
         }
 
         /// <summary>
-        /// Converts a TLVData into an XmlNode representation, enhanced with the long name of the field found in the <paramref name="dictionary"/>
+        ///     Converts a TLVData into an XmlNode representation, enhanced with the long name of the field found in the
+        ///     <paramref name="dictionary" />
         /// </summary>
         /// <param name="tlv">Source data to convert</param>
         /// <param name="xmlDoc">XML document used to create elements</param>
         /// <param name="dictionary">TLV Dictionary to use to find the long name</param>
         /// <returns>A new XmlNode</returns>
-        public static XmlNode ToXmlNode(this TlvData tlv, XmlDocument xmlDoc, TlvDictionary dictionary)
+        public static XElement ToXmlNode(this TlvData tlv, XDocument xmlDoc, TlvDictionary dictionary)
         {
             var xmlNode = tlv.ToXmlNode(xmlDoc);
 
             InsertDictionaryInformation(xmlNode, dictionary);
-            InsertDictionaryInformation(xmlNode.SelectNodes("tlvData"), dictionary);
+            InsertDictionaryInformation(xmlNode.Descendants("tlvData"), dictionary);
 
             return xmlNode;
         }
 
         #region >> Private Methods
 
-        private static void InsertDictionaryInformation(XmlNode xmlNode, TlvDictionary dictionary)
+        private static void InsertDictionaryInformation(XElement xmlNode, TlvDictionary dictionary)
         {
-            var description = dictionary.Get(xmlNode.Attributes["tag"].Value);
+            TlvDescription description = dictionary.Get(xmlNode.Attribute("tag").Value);
             if (description != null)
             {
-                var attribute = xmlNode.OwnerDocument.CreateAttribute("longName");
-                attribute.Value = description.LongName;
-                xmlNode.Attributes.Append(attribute);
+                xmlNode.Ancestors().Last().SetAttributeValue("longName", description.LongName);
             }
         }
 
-        private static void InsertDictionaryInformation(XmlNodeList xmlNodeList, TlvDictionary dictionary)
+        private static void InsertDictionaryInformation(IEnumerable<XElement> xmlNodeList, TlvDictionary dictionary)
         {
-            foreach (XmlNode xmlNode in xmlNodeList)
+            foreach (XElement xmlNode in xmlNodeList)
             {
                 InsertDictionaryInformation(xmlNode, dictionary);
-                InsertDictionaryInformation(xmlNode.SelectNodes("tlvData"), dictionary);
+                InsertDictionaryInformation(xmlNode.Descendants("tlvData"), dictionary);
             }
         }
 

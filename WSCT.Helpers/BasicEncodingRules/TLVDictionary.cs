@@ -40,7 +40,6 @@ namespace WSCT.Helpers.BasicEncodingRules
                 }
                 return _descByHexa;
             }
-            set { _descByHexa = value; }
         }
 
         /// <summary>

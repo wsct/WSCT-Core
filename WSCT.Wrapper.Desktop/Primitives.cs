@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace WSCT.Wrapper
+namespace WSCT.Wrapper.Desktop
 {
     /// <summary>
     /// Accessor to the concrete PC/SC API wrapper.

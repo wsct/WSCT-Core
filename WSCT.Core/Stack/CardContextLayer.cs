@@ -1,6 +1,6 @@
-using WSCT.Core;
+using WSCT.Stack;
 
-namespace WSCT.Stack.Core
+namespace WSCT.Core.Stack
 {
     /// <summary>
     /// Implements <see cref="CardContext"/> as a <see cref="CardContextLayer"/>.

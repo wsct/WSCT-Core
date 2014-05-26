@@ -6,7 +6,7 @@ namespace WSCT.Wrapper.WinSCard
     /// <summary>
     /// Wrapper of PC/SC (native winscard.dll) for windows.
     /// </summary>
-    internal class Primitives : IPrimitives
+    public class Primitives : IPrimitives
     {
         #region >> Fields
 
@@ -50,9 +50,9 @@ namespace WSCT.Wrapper.WinSCard
             {
                 var uactiveProtocol = (uint)activeProtocol;
                 readerName += "\0";
-                fixed(char* preaderName = readerName)
+                fixed (char* preaderName = readerName)
                 {
-                    fixed(void* pcard = &card)
+                    fixed (void* pcard = &card)
                     {
                         ret = UnsafePrimitives.SCardConnect(
                             (void*)context,
@@ -94,7 +94,7 @@ namespace WSCT.Wrapper.WinSCard
 
             unsafe
             {
-                fixed(void* pcontext = &context)
+                fixed (void* pcontext = &context)
                 {
                     ret = UnsafePrimitives.SCardEstablishContext(
                         scope,
@@ -121,9 +121,9 @@ namespace WSCT.Wrapper.WinSCard
             {
                 if (recvAttributeSize == AutoAllocate)
                 {
-                    fixed(uint* precvAttributeSize = &recvAttributeSize)
+                    fixed (uint* precvAttributeSize = &recvAttributeSize)
                     {
-                        fixed(byte* precvAttribute = recvAttribute)
+                        fixed (byte* precvAttribute = recvAttribute)
                         {
                             ret = UnsafePrimitives.SCardGetAttrib(
                                 (void*)card,
@@ -135,7 +135,7 @@ namespace WSCT.Wrapper.WinSCard
                         if (ret == ErrorCode.Success)
                         {
                             recvAttribute = new byte[*precvAttributeSize];
-                            fixed(byte* precvAttribute = recvAttribute)
+                            fixed (byte* precvAttribute = recvAttribute)
                             {
                                 ret = UnsafePrimitives.SCardGetAttrib(
                                     (void*)card,
@@ -154,9 +154,9 @@ namespace WSCT.Wrapper.WinSCard
                 }
                 else
                 {
-                    fixed(uint* precvAttributeSize = &recvAttributeSize)
+                    fixed (uint* precvAttributeSize = &recvAttributeSize)
                     {
-                        fixed(byte* precvAttribute = recvAttribute)
+                        fixed (byte* precvAttribute = recvAttribute)
                         {
                             ret = UnsafePrimitives.SCardGetAttrib(
                                 (void*)card,
@@ -215,9 +215,9 @@ namespace WSCT.Wrapper.WinSCard
 
             unsafe
             {
-                fixed(uint* psize = &size)
+                fixed (uint* psize = &size)
                 {
-                    fixed(char* pgroups = groups)
+                    fixed (char* pgroups = groups)
                     {
                         if (size == AutoAllocate)
                         {
@@ -258,7 +258,7 @@ namespace WSCT.Wrapper.WinSCard
 
             unsafe
             {
-                fixed(uint* psize = &size)
+                fixed (uint* psize = &size)
                 {
                     if (size == AutoAllocate)
                     {
@@ -269,7 +269,7 @@ namespace WSCT.Wrapper.WinSCard
                             psize
                             );
                         var cgroups = new char[*psize];
-                        fixed(char* pcgroups = cgroups)
+                        fixed (char* pcgroups = cgroups)
                         {
                             for (var i = 0; i < *psize; i++)
                             {
@@ -349,9 +349,9 @@ namespace WSCT.Wrapper.WinSCard
             {
                 var ustatus = (uint)status;
                 var uprotocol = (uint)protocol;
-                fixed(uint* preaderNameSize = &readerNameSize)
+                fixed (uint* preaderNameSize = &readerNameSize)
                 {
-                    fixed(uint* patrSize = &atrSize)
+                    fixed (uint* patrSize = &atrSize)
                     {
                         if (readerNameSize == AutoAllocate && atrSize == AutoAllocate)
                         {
@@ -504,11 +504,11 @@ namespace WSCT.Wrapper.WinSCard
                     // For more portability: Wrapper don't use the native winscard.dll's SCARD_AUTOALLOCATE
                     recvSize = DefaultBufferSize;
                     recvBuffer = new byte[recvSize];
-                    fixed(byte* psendBuffer = sendBuffer)
+                    fixed (byte* psendBuffer = sendBuffer)
                     {
-                        fixed(uint* precvSize = &recvSize)
+                        fixed (uint* precvSize = &recvSize)
                         {
-                            fixed(byte* precvBuffer = recvBuffer)
+                            fixed (byte* precvBuffer = recvBuffer)
                             {
                                 ret = UnsafePrimitives.SCardTransmit(
                                     (void*)card,
@@ -530,11 +530,11 @@ namespace WSCT.Wrapper.WinSCard
                 else
                 {
                     //TODO Seems to be problems with pcsclite in this case...
-                    fixed(byte* psendBuffer = sendBuffer)
+                    fixed (byte* psendBuffer = sendBuffer)
                     {
-                        fixed(uint* precvSize = &recvSize)
+                        fixed (uint* precvSize = &recvSize)
                         {
-                            fixed(byte* precvBuffer = recvBuffer)
+                            fixed (byte* precvBuffer = recvBuffer)
                             {
                                 ret = UnsafePrimitives.SCardTransmit(
                                     (void*)card,

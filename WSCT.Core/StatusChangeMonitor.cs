@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading;
 using WSCT.Wrapper;
+using WSCT.Wrapper.Desktop;
 
 namespace WSCT.Core
 {

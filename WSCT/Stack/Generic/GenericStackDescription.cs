@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
@@ -55,7 +56,11 @@ namespace WSCT.Stack.Generic
         /// <returns>A new instance of <typeparam name="TILayer"/>.</returns>
         public static TILayer CreateInstance(TLayerDescription layerDesc)
         {
-            var assembly = Assembly.LoadFrom(layerDesc.PathToDll + layerDesc.DllName);
+            if (layerDesc.DllName.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
+            {
+                layerDesc.DllName = Path.GetFileNameWithoutExtension(layerDesc.DllName);
+            }
+            var assembly = Assembly.Load(new AssemblyName(layerDesc.PathToDll + layerDesc.DllName));
             var type = assembly.GetType(layerDesc.ClassName);
             return (TILayer)Activator.CreateInstance(type);
         }

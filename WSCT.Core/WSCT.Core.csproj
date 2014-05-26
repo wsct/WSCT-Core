@@ -17,6 +17,7 @@
     <OldToolsVersion>2.0</OldToolsVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,6 +29,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>
     </DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,37 +39,33 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\doc.WSCT.Core.XML</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="APDU\ICardCommand.cs" />
-    <Compile Include="APDU\ICardResponse.cs" />
     <Compile Include="CardChannel.cs" />
     <Compile Include="CardContext.cs" />
-    <Compile Include="CardContextObservable.cs" />
-    <Compile Include="ICardChannelObservable.cs" />
-    <Compile Include="ICardContextObservable.cs" />
-    <Compile Include="CardChannelObservable.cs" />
-    <Compile Include="ICardContext.cs" />
+    <Compile Include="Stack\CardChannelLayer.cs" />
+    <Compile Include="Stack\CardContextLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ICardChannel.cs" />
     <Compile Include="CardChannelCore.cs" />
     <Compile Include="CardContextCore.cs" />
     <Compile Include="StatusChangeMonitor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WSCT.Helpers\WSCT.Helpers.csproj">
-      <Project>{b95b0e58-9296-4a15-aa69-10a7b6dc2267}</Project>
-      <Name>WSCT.Helpers</Name>
+    <ProjectReference Include="..\WSCT.Wrapper.Desktop\WSCT.Wrapper.Desktop.csproj">
+      <Project>{19b66e6e-7e5e-481a-8718-3f9c44212ad6}</Project>
+      <Name>WSCT.Wrapper.Desktop</Name>
     </ProjectReference>
     <ProjectReference Include="..\WSCT.Wrapper\WSCT.Wrapper.csproj">
-      <Project>{19b66e6e-7e5e-481a-8718-3f9c44212ad6}</Project>
+      <Project>{038b946b-d805-4d36-9b47-00e0257cdbf6}</Project>
       <Name>WSCT.Wrapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WSCT\WSCT.csproj">
+      <Project>{4EABE8DA-0BCB-4BC6-A571-7618AC0EC4B6}</Project>
+      <Name>WSCT</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

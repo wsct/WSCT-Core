@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4EABE8DA-0BCB-4BC6-A571-7618AC0EC4B6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WSCT</RootNamespace>
+    <AssemblyName>WSCT</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\WSCT.Wrapper\WSCT.Wrapper.csproj">
+      <Project>{038b946b-d805-4d36-9b47-00e0257cdbf6}</Project>
+      <Name>WSCT.Wrapper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\APDU\ICardCommand.cs" />
+    <Compile Include="Core\APDU\ICardResponse.cs" />
+    <Compile Include="Core\CardChannelObservable.cs" />
+    <Compile Include="Core\CardContextObservable.cs" />
+    <Compile Include="Core\ICardChannel.cs" />
+    <Compile Include="Core\ICardChannelObservable.cs" />
+    <Compile Include="Core\ICardContext.cs" />
+    <Compile Include="Core\ICardContextObservable.cs" />
+    <Compile Include="Stack\Generic\GenericLayerDescription.cs" />
+    <Compile Include="Stack\Generic\GenericStackDescription.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stack\CardChannelLayerDescription.cs" />
+    <Compile Include="Stack\CardChannelStack.cs" />
+    <Compile Include="Stack\CardChannelStackDescription.cs" />
+    <Compile Include="Stack\CardContextLayerDescription.cs" />
+    <Compile Include="Stack\CardContextStack.cs" />
+    <Compile Include="Stack\CardContextStackDescription.cs" />
+    <Compile Include="Stack\ICardChannelLayer.cs" />
+    <Compile Include="Stack\ICardChannelStack.cs" />
+    <Compile Include="Stack\ICardContextLayer.cs" />
+    <Compile Include="Stack\ICardContextStack.cs" />
+    <Compile Include="Stack\SearchMode.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

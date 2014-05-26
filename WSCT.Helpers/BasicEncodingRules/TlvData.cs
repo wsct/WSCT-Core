@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
@@ -547,24 +548,24 @@ namespace WSCT.Helpers.BasicEncodingRules
                 {
                     // Value is delimited by EOC (End Of Content) = tag '00' and length '00'
                     var tempValue = data.Skip((int)offset + 1).Take(data.Length - (int)offset - 1).ToArray();
-                    uint offsetValue = 0;
+                    var offsetValue = 0;
                     var condition = true;
                     while (condition)
                     {
                         var subData = new TlvData();
-                        offsetValue = subData.Parse(tempValue, offsetValue);
+                        offsetValue = (int)subData.Parse(tempValue, (uint)offsetValue);
                         _subFields.Add(subData);
                         condition = (offsetValue < tempValue.Length) && (subData.Tag != 0x00 || subData.Length != 0x00);
                     }
                     _value = new byte[offsetValue + 1];
-                    Array.Copy(data, offset, _value, 0, offsetValue + 1);
-                    offset += offsetValue + 1;
+                    Array.Copy(data, (int)offset, _value, 0, offsetValue + 1);
+                    offset += (uint)(offsetValue + 1);
                 }
                 else
                 {
                     // Value is delimited by length field
                     _value = new byte[_length];
-                    Array.Copy(data, offset, _value, 0, _length);
+                    Array.Copy(data, (int)offset, _value, 0, (int)_length);
                     offset += _length;
 
                     uint offsetValue = 0;
@@ -584,7 +585,7 @@ namespace WSCT.Helpers.BasicEncodingRules
             else
             {
                 _value = new byte[_length];
-                Array.Copy(data, offset, _value, 0, _length);
+                Array.Copy(data, (int)offset, _value, 0, (int)_length);
                 offset += _length;
             }
 

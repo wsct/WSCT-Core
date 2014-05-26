@@ -199,7 +199,7 @@ namespace WSCT.ISO7816
         {
             size = (size < rAPDU.Length ? size : (UInt32)rAPDU.Length);
             _rAPDU = new byte[size];
-            Array.Copy(rAPDU, _rAPDU, size);
+            Array.Copy(rAPDU, _rAPDU, (int)size);
             return this;
         }
 
@@ -236,7 +236,7 @@ namespace WSCT.ISO7816
             else
             {
                 reader.ReadStartElement();
-                Udr = reader.ReadString().FromHexa();
+                Udr = reader.ReadContentAsString().FromHexa();
                 reader.ReadEndElement();
             }
         }

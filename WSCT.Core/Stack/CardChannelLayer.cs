@@ -1,6 +1,6 @@
-using WSCT.Core;
+using WSCT.Stack;
 
-namespace WSCT.Stack.Core
+namespace WSCT.Core.Stack
 {
     /// <summary>
     /// Implements <see cref="CardChannel"/> as a <see cref="CardChannelLayer"/>.
@@ -19,7 +19,7 @@ namespace WSCT.Stack.Core
         {
         }
 
-        /// <inheritdoc cref="CardChannel(ICardContext,string)"/>
+        /// <inheritdoc cref="CardChannel(WSCT.Core.ICardContext,string)"/>
         public CardChannelLayer(ICardContext context, string readerName)
             : base(context, readerName)
         {

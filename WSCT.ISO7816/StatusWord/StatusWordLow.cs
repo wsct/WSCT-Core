@@ -88,7 +88,7 @@ namespace WSCT.ISO7816.StatusWord
                 switch (reader.NodeType)
                 {
                     case XmlNodeType.Text:
-                        Description = reader.ReadString();
+                        Description = reader.ReadContentAsString();
                         break;
                     case XmlNodeType.Comment:
                         reader.Read();

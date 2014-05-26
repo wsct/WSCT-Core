@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using WSCT.Wrapper;
+using WSCT.Wrapper.Desktop;
 
 namespace WSCT.Core
 {
