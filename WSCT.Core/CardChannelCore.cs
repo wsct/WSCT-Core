@@ -72,6 +72,7 @@ namespace WSCT.Core
         public virtual ErrorCode Disconnect(Disposition disposition)
         {
             var ret = Primitives.Api.SCardDisconnect(_card, disposition);
+            _card = IntPtr.Zero;
             return ret;
         }
 
