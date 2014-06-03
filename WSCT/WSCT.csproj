@@ -34,9 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <ProjectReference Include="..\WSCT.Wrapper\WSCT.Wrapper.csproj">
-      <Project>{038b946b-d805-4d36-9b47-00e0257cdbf6}</Project>
-      <Name>WSCT.Wrapper</Name>
+    <ProjectReference Include="..\WSCT.Helpers\WSCT.Helpers.csproj">
+      <Project>{b95b0e58-9296-4a15-aa69-10a7b6dc2267}</Project>
+      <Name>WSCT.Helpers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +48,24 @@
     <Compile Include="Core\ICardChannelObservable.cs" />
     <Compile Include="Core\ICardContext.cs" />
     <Compile Include="Core\ICardContextObservable.cs" />
+    <Compile Include="ISO7816\AnswerToReset\ATR.cs" />
+    <Compile Include="ISO7816\AnswerToReset\InterfaceByte.cs" />
+    <Compile Include="ISO7816\AnswerToReset\TSCharacter.cs" />
+    <Compile Include="ISO7816\CardChannelISO7816.cs" />
+    <Compile Include="ISO7816\CommandAPDU.cs" />
+    <Compile Include="ISO7816\CommandCase.cs" />
+    <Compile Include="ISO7816\CommandResponsePair.cs" />
+    <Compile Include="ISO7816\Commands\AppendRecordCommand.cs" />
+    <Compile Include="ISO7816\Commands\GetResponseCommand.cs" />
+    <Compile Include="ISO7816\Commands\ReadBinaryCommand.cs" />
+    <Compile Include="ISO7816\Commands\ReadRecordCommand.cs" />
+    <Compile Include="ISO7816\Commands\SelectCommand.cs" />
+    <Compile Include="ISO7816\Commands\WriteRecordCommand.cs" />
+    <Compile Include="ISO7816\ProtocolT.cs" />
+    <Compile Include="ISO7816\ResponseAPDU.cs" />
+    <Compile Include="ISO7816\StatusWord\StatusWordDictionary.cs" />
+    <Compile Include="ISO7816\StatusWord\StatusWordHigh.cs" />
+    <Compile Include="ISO7816\StatusWord\StatusWordLow.cs" />
     <Compile Include="Stack\Generic\GenericLayerDescription.cs" />
     <Compile Include="Stack\Generic\GenericStackDescription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,6 +80,23 @@
     <Compile Include="Stack\ICardContextLayer.cs" />
     <Compile Include="Stack\ICardContextStack.cs" />
     <Compile Include="Stack\SearchMode.cs" />
+    <Compile Include="Wrapper\AbstractIoRequest.cs" />
+    <Compile Include="Wrapper\AbstractReaderState.cs" />
+    <Compile Include="Wrapper\Attrib.cs" />
+    <Compile Include="Wrapper\Disposition.cs" />
+    <Compile Include="Wrapper\ErrorCode.cs" />
+    <Compile Include="Wrapper\EventState.cs" />
+    <Compile Include="Wrapper\IPrimitives.cs" />
+    <Compile Include="Wrapper\Protocol.cs" />
+    <Compile Include="Wrapper\Scope.cs" />
+    <Compile Include="Wrapper\ShareMode.cs" />
+    <Compile Include="Wrapper\State.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ISO7816\Dictionary.StatusWord.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

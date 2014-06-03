@@ -49,8 +49,8 @@ namespace WSCT.ISO7816.Commands
             set
             {
                 Ins |= 0x01;
-                P1 = (byte)(value/0x100);
-                P2 = (byte)(value%0x100);
+                P1 = (byte)(value / 0x100);
+                P2 = (byte)(value % 0x100);
             }
             get
             {
@@ -58,7 +58,7 @@ namespace WSCT.ISO7816.Commands
                 {
                     throw new Exception("With INS:{0:X2}, no file identifier is given");
                 }
-                return (uint)(P1*0x100 + P2);
+                return (uint)(P1 * 0x100 + P2);
             }
         }
 

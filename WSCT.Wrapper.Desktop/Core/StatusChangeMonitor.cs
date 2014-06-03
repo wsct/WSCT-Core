@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Threading;
-using WSCT.Wrapper;
-using WSCT.Wrapper.Desktop;
+using WSCT.Core;
 
-namespace WSCT.Core
+namespace WSCT.Wrapper.Desktop.Core
 {
     /// <summary>
     /// Object monitoring status change (see <see cref="ICardContext.GetStatusChange"/>).

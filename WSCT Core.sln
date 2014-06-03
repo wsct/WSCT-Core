@@ -1,12 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Core", "WSCT.Core\WSCT.Core.csproj", "{764A5311-A573-4774-A198-43A660167FC7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.ISO7816", "WSCT.ISO7816\WSCT.ISO7816.csproj", "{BDECF2A5-900E-4C5D-BEEE-7903F9145BC1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Helpers", "WSCT.Helpers\WSCT.Helpers.csproj", "{B95B0E58-9296-4A15-AA69-10A7B6DC2267}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Helpers.GUI", "WSCT.Helpers.GUI\WSCT.Helpers.GUI.csproj", "{3CE1516F-CF54-4D3E-919D-2DA4638552CC}"
@@ -27,10 +23,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Wrapper.PCSCLite64", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Wrapper.WinSCard", "WSCT.Wrapper.WinSCard\WSCT.Wrapper.WinSCard.csproj", "{651952E8-6D49-44E6-AB52-3C4BD78255FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Helpers.Portable.Windows", "WSCT.Helpers.Portable.Windows\WSCT.Helpers.Portable.Windows.csproj", "{A3EEF6F2-8509-4EB2-A8B3-B31786EBB248}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Wrapper", "WSCT.Wrapper\WSCT.Wrapper.csproj", "{038B946B-D805-4D36-9B47-00E0257CDBF6}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{154B5E16-0E3E-41ED-BF08-60C20546107F}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -40,20 +32,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{154B5E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT", "WSCT\WSCT.csproj", "{4EABE8DA-0BCB-4BC6-A571-7618AC0EC4B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Helpers.Desktop", "WSCT.Helpers.Desktop\WSCT.Helpers.Desktop.csproj", "{A3EEF6F2-8509-4EB2-A8B3-B31786EBB248}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{764A5311-A573-4774-A198-43A660167FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{764A5311-A573-4774-A198-43A660167FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{764A5311-A573-4774-A198-43A660167FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{764A5311-A573-4774-A198-43A660167FC7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BDECF2A5-900E-4C5D-BEEE-7903F9145BC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BDECF2A5-900E-4C5D-BEEE-7903F9145BC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BDECF2A5-900E-4C5D-BEEE-7903F9145BC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BDECF2A5-900E-4C5D-BEEE-7903F9145BC1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B95B0E58-9296-4A15-AA69-10A7B6DC2267}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B95B0E58-9296-4A15-AA69-10A7B6DC2267}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B95B0E58-9296-4A15-AA69-10A7B6DC2267}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -92,18 +78,14 @@ Global
 		{651952E8-6D49-44E6-AB52-3C4BD78255FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{651952E8-6D49-44E6-AB52-3C4BD78255FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{651952E8-6D49-44E6-AB52-3C4BD78255FA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A3EEF6F2-8509-4EB2-A8B3-B31786EBB248}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3EEF6F2-8509-4EB2-A8B3-B31786EBB248}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3EEF6F2-8509-4EB2-A8B3-B31786EBB248}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3EEF6F2-8509-4EB2-A8B3-B31786EBB248}.Release|Any CPU.Build.0 = Release|Any CPU
-		{038B946B-D805-4D36-9B47-00E0257CDBF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{038B946B-D805-4D36-9B47-00E0257CDBF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{038B946B-D805-4D36-9B47-00E0257CDBF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{038B946B-D805-4D36-9B47-00E0257CDBF6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4EABE8DA-0BCB-4BC6-A571-7618AC0EC4B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4EABE8DA-0BCB-4BC6-A571-7618AC0EC4B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EABE8DA-0BCB-4BC6-A571-7618AC0EC4B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EABE8DA-0BCB-4BC6-A571-7618AC0EC4B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3EEF6F2-8509-4EB2-A8B3-B31786EBB248}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3EEF6F2-8509-4EB2-A8B3-B31786EBB248}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3EEF6F2-8509-4EB2-A8B3-B31786EBB248}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3EEF6F2-8509-4EB2-A8B3-B31786EBB248}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

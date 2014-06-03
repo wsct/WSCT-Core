@@ -60,10 +60,6 @@
       <Project>{B95B0E58-9296-4A15-AA69-10A7B6DC2267}</Project>
       <Name>WSCT.Helpers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WSCT.Wrapper\WSCT.Wrapper.csproj">
-      <Project>{038b946b-d805-4d36-9b47-00e0257cdbf6}</Project>
-      <Name>WSCT.Wrapper</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

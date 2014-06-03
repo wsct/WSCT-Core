@@ -157,7 +157,7 @@ namespace WSCT.Helpers.BasicEncodingRules
 
         private static void InsertDictionaryInformation(XElement xmlNode, TlvDictionary dictionary)
         {
-            TlvDescription description = dictionary.Get(xmlNode.Attribute("tag").Value);
+            var description = dictionary.Get(xmlNode.Attribute("tag").Value);
             if (description != null)
             {
                 xmlNode.Ancestors().Last().SetAttributeValue("longName", description.LongName);
@@ -166,7 +166,7 @@ namespace WSCT.Helpers.BasicEncodingRules
 
         private static void InsertDictionaryInformation(IEnumerable<XElement> xmlNodeList, TlvDictionary dictionary)
         {
-            foreach (XElement xmlNode in xmlNodeList)
+            foreach (var xmlNode in xmlNodeList)
             {
                 InsertDictionaryInformation(xmlNode, dictionary);
                 InsertDictionaryInformation(xmlNode.Descendants("tlvData"), dictionary);

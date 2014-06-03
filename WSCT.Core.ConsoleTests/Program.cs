@@ -1,11 +1,12 @@
 using System;
 using WSCT.Core.APDU;
-using WSCT.Core.Stack;
 using WSCT.Helpers;
 using WSCT.ISO7816;
 using WSCT.ISO7816.Commands;
 using WSCT.Stack;
 using WSCT.Wrapper;
+using WSCT.Wrapper.Desktop.Core;
+using WSCT.Wrapper.Desktop.Stack;
 
 namespace WSCT.Core.ConsoleTests
 {

@@ -19,16 +19,13 @@
     <HtmlHelpName>Documentation</HtmlHelpName>
     <Language>en-US</Language>
     <DocumentationSources>
-      <DocumentationSource sourceFile="..\WSCT.Core\WSCT.Core.csproj" />
       <DocumentationSource sourceFile="..\WSCT.Helpers\WSCT.Helpers.csproj" />
-      <DocumentationSource sourceFile="..\WSCT.ISO7816\WSCT.ISO7816.csproj" />
-      <DocumentationSource sourceFile="..\WSCT.Stack\WSCT.Stack.csproj" />
-      <DocumentationSource sourceFile="..\WSCT.Wrapper\WSCT.Wrapper.csproj" />
+      <DocumentationSource sourceFile="..\WSCT\WSCT.csproj" />
     </DocumentationSources>
     <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
     <HelpFileFormat>Website</HelpFileFormat>
     <IndentHtml>False</IndentHtml>
-    <FrameworkVersion>.NET Framework 4.0</FrameworkVersion>
+    <FrameworkVersion>.NET Portable Library 4.5</FrameworkVersion>
     <KeepLogFile>True</KeepLogFile>
     <DisableCodeBlockComponent>False</DisableCodeBlockComponent>
     <CppCommentsFixup>False</CppCommentsFixup>

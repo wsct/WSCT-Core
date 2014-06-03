@@ -1,4 +1,6 @@
-namespace WSCT.Core
+using WSCT.Core;
+
+namespace WSCT.Wrapper.Desktop.Core
 {
     /// <summary>
     /// Represents an enhanced <see cref="CardContextCore"/> allowing to observe activity by using delegates.

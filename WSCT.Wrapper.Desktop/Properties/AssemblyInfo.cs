@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("WSCT Wrapper for Desktop Computer")]
+[assembly: AssemblyTitle("WSCT Wrapper for Desktop Computers")]
 [assembly: AssemblyDescription("WSCT Wrapper for Desktop (Windows, Linux, MacOS)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ENSICAEN / GREYC")]

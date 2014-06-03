@@ -3,6 +3,7 @@ using WSCT.Core.APDU;
 using WSCT.Helpers;
 using WSCT.ISO7816.AnswerToReset;
 using WSCT.Wrapper;
+using WSCT.Wrapper.Desktop.Core;
 
 namespace WSCT.Core.ConsoleTests
 {

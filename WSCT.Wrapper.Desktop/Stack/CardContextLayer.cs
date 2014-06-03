@@ -1,6 +1,7 @@
 using WSCT.Stack;
+using WSCT.Wrapper.Desktop.Core;
 
-namespace WSCT.Core.Stack
+namespace WSCT.Wrapper.Desktop.Stack
 {
     /// <summary>
     /// Implements <see cref="CardContext"/> as a <see cref="CardContextLayer"/>.

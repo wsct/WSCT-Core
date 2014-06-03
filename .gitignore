@@ -8,3 +8,4 @@ obj
 /Documentation/Help
 *.shfbproj_*
 /.nuget/NuGet.exe
+*.user

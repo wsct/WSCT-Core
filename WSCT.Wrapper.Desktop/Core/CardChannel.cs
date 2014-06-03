@@ -1,4 +1,6 @@
-namespace WSCT.Core
+using WSCT.Core;
+
+namespace WSCT.Wrapper.Desktop.Core
 {
     /// <inheritdoc cref="CardChannelCore" />
     public class CardChannel : CardChannelObservable

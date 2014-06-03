@@ -15,7 +15,7 @@ namespace WSCT.Helpers.BasicEncodingRules
             var s = new StringBuilder();
             foreach (var b in Tlv.Value)
             {
-                s.AppendFormat("{0}{1}", b/16, b%16);
+                s.AppendFormat("{0}{1}", b / 16, b % 16);
             }
             return s.ToString();
         }

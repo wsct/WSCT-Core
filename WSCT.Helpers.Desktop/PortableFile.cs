@@ -1,6 +1,7 @@
 ﻿using System.IO;
+using WSCT.Helpers.Portable;
 
-namespace WSCT.Helpers.Portable.Windows
+namespace WSCT.Helpers.Desktop
 {
     internal class PortableFile : IPortableFile
     {

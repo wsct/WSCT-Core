@@ -1,9 +1,8 @@
 using System;
+using WSCT.Core;
 using WSCT.Core.APDU;
-using WSCT.Wrapper;
-using WSCT.Wrapper.Desktop;
 
-namespace WSCT.Core
+namespace WSCT.Wrapper.Desktop.Core
 {
     /// <summary>
     /// Represents a basic object capable of managing access to a smartcard.

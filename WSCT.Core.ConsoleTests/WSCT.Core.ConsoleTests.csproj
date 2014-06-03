@@ -61,21 +61,13 @@
     <Content Include="chip2.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WSCT.Core\WSCT.Core.csproj">
-      <Project>{764a5311-a573-4774-a198-43a660167fc7}</Project>
-      <Name>WSCT.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WSCT.Helpers\WSCT.Helpers.csproj">
       <Project>{b95b0e58-9296-4a15-aa69-10a7b6dc2267}</Project>
       <Name>WSCT.Helpers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WSCT.ISO7816\WSCT.ISO7816.csproj">
-      <Project>{bdecf2a5-900e-4c5d-beee-7903f9145bc1}</Project>
-      <Name>WSCT.ISO7816</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WSCT.Wrapper\WSCT.Wrapper.csproj">
-      <Project>{038b946b-d805-4d36-9b47-00e0257cdbf6}</Project>
-      <Name>WSCT.Wrapper</Name>
+    <ProjectReference Include="..\WSCT.Wrapper.Desktop\WSCT.Wrapper.Desktop.csproj">
+      <Project>{19b66e6e-7e5e-481a-8718-3f9c44212ad6}</Project>
+      <Name>WSCT.Wrapper.Desktop</Name>
     </ProjectReference>
     <ProjectReference Include="..\WSCT\WSCT.csproj">
       <Project>{4EABE8DA-0BCB-4BC6-A571-7618AC0EC4B6}</Project>

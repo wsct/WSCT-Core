@@ -1,4 +1,6 @@
-﻿namespace WSCT.Helpers.Portable.Windows
+﻿using WSCT.Helpers.Portable;
+
+namespace WSCT.Helpers.Desktop
 {
     public class RegisterPcl
     {

@@ -1,9 +1,8 @@
 using System;
 using System.Runtime.InteropServices;
-using WSCT.Wrapper;
-using WSCT.Wrapper.Desktop;
+using WSCT.Core;
 
-namespace WSCT.Core
+namespace WSCT.Wrapper.Desktop.Core
 {
     /// <summary>
     /// Represents a basic object capable of managing smartcard resources.
