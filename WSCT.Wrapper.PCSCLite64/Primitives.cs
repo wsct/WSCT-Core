@@ -56,9 +56,9 @@ namespace WSCT.Wrapper.PCSCLite64
                 // Ensure that encoding of readername if utf8
                 var def = Encoding.Default.GetBytes(readerName);
                 var utf8ReaderName = Encoding.Convert(Encoding.Default, Encoding.UTF8, def);
-                fixed(byte* preaderName = utf8ReaderName)
+                fixed (byte* preaderName = utf8ReaderName)
                 {
-                    fixed(void* pcard = &card)
+                    fixed (void* pcard = &card)
                     {
                         ret = UnsafePrimitives.SCardConnect(
                             (void*)context,
@@ -105,7 +105,7 @@ namespace WSCT.Wrapper.PCSCLite64
 
             unsafe
             {
-                fixed(void* pcontext = &context)
+                fixed (void* pcontext = &context)
                 {
                     ret = UnsafePrimitives.SCardEstablishContext(
                         scope,
@@ -134,7 +134,7 @@ namespace WSCT.Wrapper.PCSCLite64
             {
                 if (recvAttributeSize == AutoAllocate)
                 {
-                    fixed(byte* precvAttribute = recvAttribute)
+                    fixed (byte* precvAttribute = recvAttribute)
                     {
                         ret = UnsafePrimitives.SCardGetAttrib(
                             (void*)card,
@@ -146,7 +146,7 @@ namespace WSCT.Wrapper.PCSCLite64
                     if (ret == ErrorCode.Success)
                     {
                         recvAttribute = new byte[ulrecvAttributeSize];
-                        fixed(byte* precvAttribute = recvAttribute)
+                        fixed (byte* precvAttribute = recvAttribute)
                         {
                             ret = UnsafePrimitives.SCardGetAttrib(
                                 (void*)card,
@@ -164,7 +164,7 @@ namespace WSCT.Wrapper.PCSCLite64
                 }
                 else
                 {
-                    fixed(byte* precvAttribute = recvAttribute)
+                    fixed (byte* precvAttribute = recvAttribute)
                     {
                         ret = UnsafePrimitives.SCardGetAttrib(
                             (void*)card,
@@ -231,7 +231,7 @@ namespace WSCT.Wrapper.PCSCLite64
                 var def = Encoding.Default.GetBytes(groups);
                 var utf8Groups = Encoding.Convert(Encoding.Default, Encoding.UTF8, def);
 
-                fixed(byte* pgroups = utf8Groups)
+                fixed (byte* pgroups = utf8Groups)
                 {
                     if (size == AutoAllocate)
                     {
@@ -244,7 +244,7 @@ namespace WSCT.Wrapper.PCSCLite64
                         if (err == ErrorCode.Success)
                         {
                             var creaders = new char[ulsize];
-                            fixed(char* pcreaders = creaders)
+                            fixed (char* pcreaders = creaders)
                             {
                                 err = UnsafePrimitives.SCardListReaders(
                                     (void*)context,
@@ -292,7 +292,7 @@ namespace WSCT.Wrapper.PCSCLite64
                     if (err == ErrorCode.Success)
                     {
                         var cgroups = new char[ulsize];
-                        fixed(char* pcgroups = cgroups)
+                        fixed (char* pcgroups = cgroups)
                         {
                             err = UnsafePrimitives.SCardListReaderGroups(
                                 (void*)context,
@@ -376,9 +376,9 @@ namespace WSCT.Wrapper.PCSCLite64
             {
                 var ustatus = (ulong)status;
                 var uprotocol = (ulong)protocol;
-                fixed(uint* preaderNameSize = &readerNameSize)
+                fixed (uint* preaderNameSize = &readerNameSize)
                 {
-                    fixed(uint* patrSize = &atrSize)
+                    fixed (uint* patrSize = &atrSize)
                     {
                         if (readerNameSize != AutoAllocate && atrSize != AutoAllocate)
                         {
@@ -488,9 +488,9 @@ namespace WSCT.Wrapper.PCSCLite64
                     // For more portability: Wrapper don't use the native winscard.dll's SCARD_AUTOALLOCATE
                     ulrecvSize = DefaultBufferSize;
                     recvBuffer = new byte[ulrecvSize];
-                    fixed(byte* psendBuffer = sendBuffer)
+                    fixed (byte* psendBuffer = sendBuffer)
                     {
-                        fixed(byte* precvBuffer = recvBuffer)
+                        fixed (byte* precvBuffer = recvBuffer)
                         {
                             ret = UnsafePrimitives.SCardTransmit(
                                 (void*)card,
@@ -511,9 +511,9 @@ namespace WSCT.Wrapper.PCSCLite64
                 else
                 {
                     //TODO Seems to be problems with pcsclite in this case...
-                    fixed(byte* psendBuffer = sendBuffer)
+                    fixed (byte* psendBuffer = sendBuffer)
                     {
-                        fixed(byte* precvBuffer = recvBuffer)
+                        fixed (byte* precvBuffer = recvBuffer)
                         {
                             ret = UnsafePrimitives.SCardTransmit(
                                 (void*)card,

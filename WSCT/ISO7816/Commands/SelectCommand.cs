@@ -150,8 +150,9 @@
         /// <param name="occurence"></param>
         /// <param name="fci"></param>
         /// <param name="udc"></param>
-        public SelectCommand(SelectionMode selection, FileOccurrence occurence, FileControlInformation fci, byte[] udc) :
-            this()
+        public SelectCommand(SelectionMode selection, FileOccurrence occurence, FileControlInformation fci, byte[] udc)
+            :
+                this()
         {
             Selection = selection;
             Information = fci;
@@ -167,8 +168,9 @@
         /// <param name="fci"></param>
         /// <param name="udc"></param>
         /// <param name="le"></param>
-        public SelectCommand(SelectionMode selection, FileOccurrence occurence, FileControlInformation fci, byte[] udc, uint le) :
-            this(selection, occurence, fci, udc)
+        public SelectCommand(SelectionMode selection, FileOccurrence occurence, FileControlInformation fci, byte[] udc, uint le)
+            :
+                this(selection, occurence, fci, udc)
         {
             Le = le;
         }

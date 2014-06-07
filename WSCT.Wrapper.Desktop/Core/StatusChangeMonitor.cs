@@ -91,8 +91,9 @@ namespace WSCT.Wrapper.Desktop.Core
         /// <summary>
         /// Initializes a new instance.
         /// </summary>
-        public StatusChangeMonitor() :
-            this(null, new string[0])
+        public StatusChangeMonitor()
+            :
+                this(null, new string[0])
         {
         }
 
@@ -115,8 +116,9 @@ namespace WSCT.Wrapper.Desktop.Core
         /// Initializes a new instance.
         /// </summary>
         /// <param name="context"></param>
-        public StatusChangeMonitor(ICardContext context) :
-            this(context, context.Readers)
+        public StatusChangeMonitor(ICardContext context)
+            :
+                this(context, context.Readers)
         {
         }
 

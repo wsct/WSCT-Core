@@ -20,17 +20,20 @@ namespace WSCT.Helpers.BasicEncodingRules
             /// Format of the field.
             /// </summary>
             /// <value>Default is <c>"b"</c>.</value>
-            [XmlAttribute("format")] public string Format = "b";
+            [XmlAttribute("format")]
+            public string Format = "b";
 
             /// <summary>
             /// Maximum size of the field.
             /// </summary>
-            [XmlAttribute("maxSize")] public byte MaxSize = byte.MaxValue;
+            [XmlAttribute("maxSize")]
+            public byte MaxSize = byte.MaxValue;
 
             /// <summary>
             /// Minimum size of the field.
             /// </summary>
-            [XmlAttribute("minSize")] public byte MinSize = 0;
+            [XmlAttribute("minSize")]
+            public byte MinSize = 0;
         }
 
         #endregion

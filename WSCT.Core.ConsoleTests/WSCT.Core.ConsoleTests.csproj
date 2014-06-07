@@ -61,6 +61,10 @@
     <Content Include="chip2.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WSCT.Helpers.Desktop\WSCT.Helpers.Desktop.csproj">
+      <Project>{a3eef6f2-8509-4eb2-a8b3-b31786ebb248}</Project>
+      <Name>WSCT.Helpers.Desktop</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WSCT.Helpers\WSCT.Helpers.csproj">
       <Project>{b95b0e58-9296-4a15-aa69-10a7b6dc2267}</Project>
       <Name>WSCT.Helpers</Name>
@@ -68,6 +72,22 @@
     <ProjectReference Include="..\WSCT.Wrapper.Desktop\WSCT.Wrapper.Desktop.csproj">
       <Project>{19b66e6e-7e5e-481a-8718-3f9c44212ad6}</Project>
       <Name>WSCT.Wrapper.Desktop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WSCT.Wrapper.MacOSX\WSCT.Wrapper.MacOSX.csproj">
+      <Project>{0f6f8081-b090-4505-9fbc-f127aa18806f}</Project>
+      <Name>WSCT.Wrapper.MacOSX</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WSCT.Wrapper.PCSCLite32\WSCT.Wrapper.PCSCLite32.csproj">
+      <Project>{8aae3e6a-d6fe-4b35-af27-731ce1996106}</Project>
+      <Name>WSCT.Wrapper.PCSCLite32</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WSCT.Wrapper.PCSCLite64\WSCT.Wrapper.PCSCLite64.csproj">
+      <Project>{796a4ce8-2724-43c9-bcd8-5cfd331aa541}</Project>
+      <Name>WSCT.Wrapper.PCSCLite64</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WSCT.Wrapper.WinSCard\WSCT.Wrapper.WinSCard.csproj">
+      <Project>{651952e8-6d49-44e6-ab52-3c4bd78255fa}</Project>
+      <Name>WSCT.Wrapper.WinSCard</Name>
     </ProjectReference>
     <ProjectReference Include="..\WSCT\WSCT.csproj">
       <Project>{4EABE8DA-0BCB-4BC6-A571-7618AC0EC4B6}</Project>

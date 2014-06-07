@@ -44,7 +44,7 @@
     <Compile Include="Primitives.cs" />
     <Compile Include="ReaderState.cs" />
     <Compile Include="ScardIoRequest.cs" />
-    <Compile Include="SCARD_READERSTATE.cs" />
+    <Compile Include="ScardReaderState.cs" />
     <Compile Include="UnsafePrimitives.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,311 +1,313 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <TlvDictionary>
-	<tlvDesc  hexaValue="4F" name="AID" longName="Application Identifier" source="ICC">
-		<value format="b" minSize="5" maxSize="16" />
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="50" name="App Label" longName="Application Label" source="ICC">
-		<value format="ans" minSize="1" maxSize="16" />
-		<className>WSCT.Helpers.BasicEncodingRules.StringTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="57" name="Track2Eq" longName="Track 2 Equivalent Data" source="ICC">
-		<value format="b" maxSize="19"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="5A" name="PAN" longName="Application Primary Account Number" source="ICC">
-		<value format="cn" maxSize="10"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="5F20" name="Cardholder" longName="Cardholder Name" source="ICC">
-		<value format="ans" minSize="2" maxSize="26"/>
-		<className>WSCT.Helpers.BasicEncodingRules.StringTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="5F24" name="Expiration" longName="Application Expiration Date" source="ICC">
-		<value format="n" size="6"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="5F25" name="Effective" longName="Application Effective Date" source="ICC">
-		<value format="n" size="6"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="5F28" name="Country" longName="Issuer Country Code" source="ICC">
-		<value format="n" size="3"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="5F2A" name="Currency" longName="Transaction Currency Code" source="Terminal">
-		<value format="n" size="3"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="5F2D" name="Lang Pref" longName="Language Preference" source="ICC">
-		<value format="an" minSize="2" maxSize="8"/>
-		<className>WSCT.Helpers.BasicEncodingRules.StringTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="5F30" name="Service" longName="Service Code" source="ICC">
-		<value format="n" size="3"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="5F34" name="PAN Seq" longName="Application Primary Account Number Sequence Number" source="ICC">
-		<value format="n" size="2"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="61" name="App Template" longName="Application Template" source="ICC">
-		<value format="b" maxSize="252"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="6F" name="FCI Template" longName="File Control Information Template" source="ICC">
-		<value format="b" maxSize="252"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="70" name="Record" longName="Record Template" source="ICC">
-		<value format="b" maxSize="252"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="77" name="RespTemp1" longName="Response Message Template Format 2" source="ICC">
-		<value format="b" maxSize="252"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="80" name="RespTemp2" longName="Response Message Template Format 1" source="ICC">
-		<value format="b" maxSize="252"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="82" name="AIP" longName="ApplicationInterchangeProfile" source="ICC">
-		<value format="b" size="2"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="83" name="CmdTemp" longName="Command Template" source="Terminal">
-		<value format="b"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="84" name="DF Name" longName="Dedicated File Name" source="ICC">
-		<value format="b" size="5"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="87" name="API" longName="Application Priority Indicator" source="ICC">
-		<value format="b" size="1"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="88" name="SFI" longName="Short File Identifier" source="ICC">
-		<value format="b" size="1"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="8C" name="CDOL1" longName="Card Risk Management Data Object List 1" source="ICC">
-		<value format="b" maxSize="252"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="8D" name="CDOL2" longName="Card Risk Management Data Object List 2" source="ICC">
-		<value format="b" maxSize="252"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="8E" name="CVM List" longName="Cardholder Verification Method List" source="ICC">
-		<value format="b" maxSize="252"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="8F" name="CA PKI" longName="Certification Authority Public Key Index" source="ICC">
-		<value format="b" size="1"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="90" name="IssPKCert" longName="Issuer Public Key Certificate" source="ICC">
-		<value format="b"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="92" name="IssPKRem" longName="Issuer Public Key Remainder" source="ICC">
-		<value format="b"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="93" name="SSAD" longName="Signed Static Application Data" source="ICC">
-		<value format="b"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="94" name="AFL" longName="ApplicationFileLocator" source="ICC">
-		<value format="b" maxSize="252"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="95" name="TVR" longName="Terminal Verification Results" source="Terminal">
-		<value format="b" size="5"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="97" name="TDOL" longName="Transaction Certificate Data Object List" source="ICC">
-		<value format="b" maxSize="252"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="98" name="TC" longName="Transaction Certificate (TC) Hash Value" source="Terminal">
-		<value format="b" size="20"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9A" name="Date" longName="Transaction Date" source="Terminal">
-		<value format="n" size="6"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9B" name="TSI" longName="Transaction Status Information" source="Terminal">
-		<value format="b" size="2"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9C" name="TransType" longName="Transaction Type" source="Terminal">
-		<value format="n" size="2"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F02" name="AmountAuth" longName="Amount, Authorised" source="Terminal">
-		<value format="n" size="12"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F03" name="AmountOther" longName="Amount, Other" source="Terminal">
-		<value format="n" size="12"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F04" name="AmountOtherBin" longName="Amount, Other (Binary)" source="Terminal">
-		<value format="b" size="4"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F05" name="ADD" longName="Application Discretionary Data" source="ICC">
-		<value format ="b" minSize="1" maxSize="32"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F06" name="AIDTerm" longName="Application Identifier - terminal" source="Terminal">
-		<value format="b" minSize="5" maxSize="16"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F07" name="AUC" longName="Application Usage Control" source="ICC">
-		<value format="b" size="2"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F08" name="AVN" longName="Application Version Number" source="ICC">
-		<value format="b" size="2"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F09" name="AVN" longName="Application Version Number" source="Terminal">
-		<value format="b" size="2"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F0B" name="CardNameExt" longName="Cardholder Name Extended " source="ICC">
-		<value format="ans" minSize="27" maxSize="45"/>
-		<className>WSCT.Helpers.BasicEncodingRules.StringTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F0D" name="IAC Default" longName="Issuer Action Code - Default" source="ICC">
-		<value format="b" size="5"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F0E" name="IAC Denial" longName="Issuer Action Code - Denial" source="ICC">
-		<value format="b" size="5"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F0F" name="IAC Online" longName="Issuer Action Code - Online" source="ICC">
-		<value format="b" size="5"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F10" name="IssAD" longName="Issuer Application Data" source="ICC">
-		<value format="b" maxSize="32"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F11" name="IssCodeInd" longName="Issuer Code Table Index" source="ICC">
-		<value format="n" size="2"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F12" name="PrefName" longName="Application Preferred Name" source="ICC">
-		<value format="ans" minSize="1" maxSize="16"/>
-		<className>WSCT.Helpers.BasicEncodingRules.StringTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F13" name="LastATC" longName="Last Online ATC Register" source="ICC">
-		<value format="b" size="2"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F14" name="LowOffLim" longName="Lower Consecutive Offline Limit" source="ICC">
-		<value format="b" size="1"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F17" name="PINTry" longName="PIN Try Counter" source="ICC">
-		<value format="b" size="1"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F1A" name="Country" longName="Terminal Country Code" source="Terminal">
-		<value format="n" size="3"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F1F" name="Track1Disc" longName="Track 1 Discretionary Data" source="ICC">
-		<value format="ans"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F20" name="Track2Disc" longName="Track 2 Discretionary Data" source="ICC">
-		<value format="cn"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F26" name="AC" longName="Application Cryptogram" source="ICC">
-		<value format="b" size="8"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F27" name="CID" longName="Cryptogram Information Data" source="ICC">
-		<value format="b" size="1"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F32" name="IssPKExp" longName="Issuer Public Key Exponent" source="ICC">
-		<value format="b" minSize="1" maxSize="3"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F36" name="ATC" longName="Application Transaction Counter" source="ICC">
-		<value format="b" size="2"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F37" name="UNumber" longName="Unpredictable Number" source="Terminal">
-		<value format="b" size="4"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F38" name="PDOL" longName="Processing Options Data Object List" source="ICC">
-		<value format="b"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F42" name="AppCurrency" longName="Application Currency Code" source="ICC">
-		<value format="n" size="3"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F44" name="Currency Exp" longName="Application Currency Exponent" source="ICC">
-		<value format="n" size="1"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F45" name="DAC" longName="Data Authentication Code" source="ICC">
-		<value format="b" size="2"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F46" name="ICCPubKeyCert" longName="ICC Public Key Certificate" source="ICC">
-		<value format="b"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F47" name="ICCPubKeyExp" longName="ICC Public Key Exponent" source="ICC">
-		<value format="b" minSize="1" maxSize="3"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F48" name="ICCPubKeyRem" longName="ICC Public Key Remainder" source="ICC">
-		<value format="b"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F49" name="DDOL" longName="Dynamic Data Authentication Data Object List" source="ICC">
-		<value format="b" maxSize="252"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F4A" name="SDTL" longName="Static Data Authentication tlvDesc  List" source="ICC">
-		<value format="b"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F4B" name="SDAD" longName="Signed Dynamic Application Data" source="ICC">
-		<value format="b"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F4C" name="ICCDynNum" longName="ICC Dynamic Number" source="ICC">
-		<value format="b" minSize="2" maxSize="8"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F4D" name="LogEntry" longName="Log Entry" source="ICC">
-		<value format="b" size="2"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="9F4F" name="Log" longName="Log Format" source="ICC">
-		<value format="b"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="A5" name="FCI Prop" longName="File Control Information Proprietary Template" source="ICC">
-		<value format="b"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
-	<tlvDesc  hexaValue="BF0C" name="FCI Issuer" longName="File Control Information Issuer Discretionary Data" source="ICC">
-		<value format="b" maxSize="252"/>
-		<className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
-	</tlvDesc >
+  <tlvDesc hexaValue="4F" name="AID" longName="Application Identifier" source="ICC">
+    <value format="b" minSize="5" maxSize="16" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="50" name="App Label" longName="Application Label" source="ICC">
+    <value format="ans" minSize="1" maxSize="16" />
+    <className>WSCT.Helpers.BasicEncodingRules.StringTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="57" name="Track2Eq" longName="Track 2 Equivalent Data" source="ICC">
+    <value format="b" maxSize="19" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="5A" name="PAN" longName="Application Primary Account Number" source="ICC">
+    <value format="cn" maxSize="10" />
+    <className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="5F20" name="Cardholder" longName="Cardholder Name" source="ICC">
+    <value format="ans" minSize="2" maxSize="26" />
+    <className>WSCT.Helpers.BasicEncodingRules.StringTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="5F24" name="Expiration" longName="Application Expiration Date" source="ICC">
+    <value format="n" size="6" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="5F25" name="Effective" longName="Application Effective Date" source="ICC">
+    <value format="n" size="6" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="5F28" name="Country" longName="Issuer Country Code" source="ICC">
+    <value format="n" size="3" />
+    <className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="5F2A" name="Currency" longName="Transaction Currency Code" source="Terminal">
+    <value format="n" size="3" />
+    <className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="5F2D" name="Lang Pref" longName="Language Preference" source="ICC">
+    <value format="an" minSize="2" maxSize="8" />
+    <className>WSCT.Helpers.BasicEncodingRules.StringTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="5F30" name="Service" longName="Service Code" source="ICC">
+    <value format="n" size="3" />
+    <className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="5F34" name="PAN Seq" longName="Application Primary Account Number Sequence Number" source="ICC">
+    <value format="n" size="2" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="61" name="App Template" longName="Application Template" source="ICC">
+    <value format="b" maxSize="252" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="6F" name="FCI Template" longName="File Control Information Template" source="ICC">
+    <value format="b" maxSize="252" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="70" name="Record" longName="Record Template" source="ICC">
+    <value format="b" maxSize="252" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="77" name="RespTemp1" longName="Response Message Template Format 2" source="ICC">
+    <value format="b" maxSize="252" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="80" name="RespTemp2" longName="Response Message Template Format 1" source="ICC">
+    <value format="b" maxSize="252" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="82" name="AIP" longName="ApplicationInterchangeProfile" source="ICC">
+    <value format="b" size="2" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="83" name="CmdTemp" longName="Command Template" source="Terminal">
+    <value format="b" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="84" name="DF Name" longName="Dedicated File Name" source="ICC">
+    <value format="b" size="5" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="87" name="API" longName="Application Priority Indicator" source="ICC">
+    <value format="b" size="1" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="88" name="SFI" longName="Short File Identifier" source="ICC">
+    <value format="b" size="1" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="8C" name="CDOL1" longName="Card Risk Management Data Object List 1" source="ICC">
+    <value format="b" maxSize="252" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="8D" name="CDOL2" longName="Card Risk Management Data Object List 2" source="ICC">
+    <value format="b" maxSize="252" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="8E" name="CVM List" longName="Cardholder Verification Method List" source="ICC">
+    <value format="b" maxSize="252" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="8F" name="CA PKI" longName="Certification Authority Public Key Index" source="ICC">
+    <value format="b" size="1" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="90" name="IssPKCert" longName="Issuer Public Key Certificate" source="ICC">
+    <value format="b" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="92" name="IssPKRem" longName="Issuer Public Key Remainder" source="ICC">
+    <value format="b" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="93" name="SSAD" longName="Signed Static Application Data" source="ICC">
+    <value format="b" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="94" name="AFL" longName="ApplicationFileLocator" source="ICC">
+    <value format="b" maxSize="252" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="95" name="TVR" longName="Terminal Verification Results" source="Terminal">
+    <value format="b" size="5" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="97" name="TDOL" longName="Transaction Certificate Data Object List" source="ICC">
+    <value format="b" maxSize="252" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="98" name="TC" longName="Transaction Certificate (TC) Hash Value" source="Terminal">
+    <value format="b" size="20" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9A" name="Date" longName="Transaction Date" source="Terminal">
+    <value format="n" size="6" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9B" name="TSI" longName="Transaction Status Information" source="Terminal">
+    <value format="b" size="2" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9C" name="TransType" longName="Transaction Type" source="Terminal">
+    <value format="n" size="2" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F02" name="AmountAuth" longName="Amount, Authorised" source="Terminal">
+    <value format="n" size="12" />
+    <className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F03" name="AmountOther" longName="Amount, Other" source="Terminal">
+    <value format="n" size="12" />
+    <className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F04" name="AmountOtherBin" longName="Amount, Other (Binary)" source="Terminal">
+    <value format="b" size="4" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F05" name="ADD" longName="Application Discretionary Data" source="ICC">
+    <value format="b" minSize="1" maxSize="32" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F06" name="AIDTerm" longName="Application Identifier - terminal" source="Terminal">
+    <value format="b" minSize="5" maxSize="16" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F07" name="AUC" longName="Application Usage Control" source="ICC">
+    <value format="b" size="2" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F08" name="AVN" longName="Application Version Number" source="ICC">
+    <value format="b" size="2" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F09" name="AVN" longName="Application Version Number" source="Terminal">
+    <value format="b" size="2" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F0B" name="CardNameExt" longName="Cardholder Name Extended " source="ICC">
+    <value format="ans" minSize="27" maxSize="45" />
+    <className>WSCT.Helpers.BasicEncodingRules.StringTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F0D" name="IAC Default" longName="Issuer Action Code - Default" source="ICC">
+    <value format="b" size="5" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F0E" name="IAC Denial" longName="Issuer Action Code - Denial" source="ICC">
+    <value format="b" size="5" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F0F" name="IAC Online" longName="Issuer Action Code - Online" source="ICC">
+    <value format="b" size="5" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F10" name="IssAD" longName="Issuer Application Data" source="ICC">
+    <value format="b" maxSize="32" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F11" name="IssCodeInd" longName="Issuer Code Table Index" source="ICC">
+    <value format="n" size="2" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F12" name="PrefName" longName="Application Preferred Name" source="ICC">
+    <value format="ans" minSize="1" maxSize="16" />
+    <className>WSCT.Helpers.BasicEncodingRules.StringTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F13" name="LastATC" longName="Last Online ATC Register" source="ICC">
+    <value format="b" size="2" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F14" name="LowOffLim" longName="Lower Consecutive Offline Limit" source="ICC">
+    <value format="b" size="1" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F17" name="PINTry" longName="PIN Try Counter" source="ICC">
+    <value format="b" size="1" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F1A" name="Country" longName="Terminal Country Code" source="Terminal">
+    <value format="n" size="3" />
+    <className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F1F" name="Track1Disc" longName="Track 1 Discretionary Data" source="ICC">
+    <value format="ans" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F20" name="Track2Disc" longName="Track 2 Discretionary Data" source="ICC">
+    <value format="cn" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F26" name="AC" longName="Application Cryptogram" source="ICC">
+    <value format="b" size="8" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F27" name="CID" longName="Cryptogram Information Data" source="ICC">
+    <value format="b" size="1" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F32" name="IssPKExp" longName="Issuer Public Key Exponent" source="ICC">
+    <value format="b" minSize="1" maxSize="3" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F36" name="ATC" longName="Application Transaction Counter" source="ICC">
+    <value format="b" size="2" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F37" name="UNumber" longName="Unpredictable Number" source="Terminal">
+    <value format="b" size="4" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F38" name="PDOL" longName="Processing Options Data Object List" source="ICC">
+    <value format="b" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F42" name="AppCurrency" longName="Application Currency Code" source="ICC">
+    <value format="n" size="3" />
+    <className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F44" name="Currency Exp" longName="Application Currency Exponent" source="ICC">
+    <value format="n" size="1" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F45" name="DAC" longName="Data Authentication Code" source="ICC">
+    <value format="b" size="2" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F46" name="ICCPubKeyCert" longName="ICC Public Key Certificate" source="ICC">
+    <value format="b" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F47" name="ICCPubKeyExp" longName="ICC Public Key Exponent" source="ICC">
+    <value format="b" minSize="1" maxSize="3" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F48" name="ICCPubKeyRem" longName="ICC Public Key Remainder" source="ICC">
+    <value format="b" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F49" name="DDOL" longName="Dynamic Data Authentication Data Object List" source="ICC">
+    <value format="b" maxSize="252" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F4A" name="SDTL" longName="Static Data Authentication tlvDesc  List" source="ICC">
+    <value format="b" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F4B" name="SDAD" longName="Signed Dynamic Application Data" source="ICC">
+    <value format="b" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F4C" name="ICCDynNum" longName="ICC Dynamic Number" source="ICC">
+    <value format="b" minSize="2" maxSize="8" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F4D" name="LogEntry" longName="Log Entry" source="ICC">
+    <value format="b" size="2" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="9F4F" name="Log" longName="Log Format" source="ICC">
+    <value format="b" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="A5" name="FCI Prop" longName="File Control Information Proprietary Template" source="ICC">
+    <value format="b" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
+  <tlvDesc hexaValue="BF0C" name="FCI Issuer" longName="File Control Information Issuer Discretionary Data"
+           source="ICC">
+    <value format="b" maxSize="252" />
+    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+  </tlvDesc>
 </TlvDictionary>

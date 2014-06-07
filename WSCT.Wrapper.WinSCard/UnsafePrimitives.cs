@@ -228,7 +228,7 @@ namespace WSCT.Wrapper.WinSCard
         public static unsafe IntPtr BytePointerToIntPtr(byte* p, uint size)
         {
             var b = new byte[size];
-            fixed(byte* pb = b)
+            fixed (byte* pb = b)
             {
                 for (var i = 0; i < size; i++)
                 {
@@ -247,7 +247,7 @@ namespace WSCT.Wrapper.WinSCard
         public static unsafe IntPtr CharPointerToIntPtr(char* p, uint size)
         {
             var c = new char[size];
-            fixed(char* pc = c)
+            fixed (char* pc = c)
             {
                 for (var i = 0; i < size; i++)
                 {
