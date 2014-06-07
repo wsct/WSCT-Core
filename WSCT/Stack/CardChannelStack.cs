@@ -2,50 +2,30 @@ using System;
 using System.Collections.Generic;
 using WSCT.Core;
 using WSCT.Core.APDU;
+using WSCT.Helpers.Linq;
 using WSCT.Wrapper;
 
 namespace WSCT.Stack
 {
     /// <summary>
-    /// Reference implementation of <see cref="ICardChannelStack"/>.
+    ///     Reference implementation of <see cref="ICardChannelStack" />.
     /// </summary>
     public class CardChannelStack : ICardChannelStack
     {
         #region >> Attributes
 
-        private readonly List<ICardChannelLayer> _layers;
+        private readonly List<ICardChannelLayer> layers;
 
         #endregion
 
         #region >> Constructors
 
         /// <summary>
-        /// Initializes a new instance.
+        ///     Initializes a new instance.
         /// </summary>
         public CardChannelStack()
         {
-            _layers = new List<ICardChannelLayer>();
-        }
-
-        #endregion
-
-        #region >> Methods
-
-        /// <summary>
-        /// Returns index of a <see cref="ICardChannelLayer"/> instance in the stack.
-        /// </summary>
-        /// <param name="layer">Layer instance to find.</param>
-        /// <returns>The index of the layer in the stack.</returns>
-        private int GetIndex(ICardChannelLayer layer)
-        {
-            for (var index = 0; index < _layers.Count; index++)
-            {
-                if (_layers[index] == layer)
-                {
-                    return index;
-                }
-            }
-            throw new Exception("CardChannelStack: layer not found in the stack");
+            layers = new List<ICardChannelLayer>();
         }
 
         #endregion
@@ -55,59 +35,42 @@ namespace WSCT.Stack
         /// <inheritdoc />
         public List<ICardChannelLayer> Layers
         {
-            get { return _layers; }
+            get { return layers; }
         }
 
         /// <inheritdoc />
         public void AddLayer(ICardChannelLayer layer)
         {
-            _layers.Add(layer);
+            layers.Add(layer);
             layer.SetStack(this);
         }
 
         /// <inheritdoc />
         public void ReleaseLayer(ICardChannelLayer layer)
         {
-            _layers.Remove(layer);
+            layers.Remove(layer);
         }
 
         /// <inheritdoc />
         public ICardChannelLayer RequestLayer(ICardChannelLayer layer, SearchMode mode)
         {
-            ICardChannelLayer newLayer;
-            int index;
-            if (_layers.Count == 0)
+            if (layers.Count == 0)
             {
                 throw new Exception("CardChannelStack.requestLayer(): no layers defined in the stack");
             }
             switch (mode)
             {
                 case SearchMode.Bottom:
-                    newLayer = _layers[_layers.Count - 1];
-                    break;
+                    return layers[layers.Count - 1];
                 case SearchMode.Next:
-                    index = GetIndex(layer);
-                    if (index >= _layers.Count)
-                    {
-                        throw new Exception("CardChannelStack.requestLayer(): Seek next failed");
-                    }
-                    newLayer = _layers[index + 1];
-                    break;
+                    return layers.Following(l => l == layer);
                 case SearchMode.Previous:
-                    index = GetIndex(layer);
-                    if (index <= 0)
-                    {
-                        throw new Exception("CardChannelStack.requestLayer(): Seek previous failed");
-                    }
-                    newLayer = _layers[index - 1];
-                    break;
+                    return layers.Preceding(l => l == layer);
                 case SearchMode.Top:
-                    newLayer = _layers[0];
-                    break;
+                    return layers[0];
                 default:
-                    throw new NotSupportedException(String.Format("CardChannelStack.requestLayer(): Seek mode '{0}' unknown", mode));
+                    throw new NotSupportedException(String.Format("CardChannelStack.RequestLayer(): Seek mode '{0}' unknown", mode));
             }
-            return newLayer;
         }
 
         #endregion

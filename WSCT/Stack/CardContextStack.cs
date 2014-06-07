@@ -1,49 +1,29 @@
 using System;
 using System.Collections.Generic;
+using WSCT.Helpers.Linq;
 using WSCT.Wrapper;
 
 namespace WSCT.Stack
 {
     /// <summary>
-    /// Reference implementation of <see cref="ICardContextStack"/>.
+    ///     Reference implementation of <see cref="ICardContextStack" />.
     /// </summary>
     public class CardContextStack : ICardContextStack
     {
         #region >> Attributes
 
-        private readonly List<ICardContextLayer> _layers;
+        private readonly List<ICardContextLayer> layers;
 
         #endregion
 
         #region >> Constructors
 
         /// <summary>
-        /// Initializes a new instance.
+        ///     Initializes a new instance.
         /// </summary>
         public CardContextStack()
         {
-            _layers = new List<ICardContextLayer>();
-        }
-
-        #endregion
-
-        #region >> Methods
-
-        /// <summary>
-        /// Returns index of a <see cref="ICardContextLayer"/> instance in the stack.
-        /// </summary>
-        /// <param name="layer">Layer instance to find.</param>
-        /// <returns>The index of the layer in the stack.</returns>
-        private int GetIndex(ICardContextLayer layer)
-        {
-            for (var index = 0; index < _layers.Count; index++)
-            {
-                if (_layers[index] == layer)
-                {
-                    return index;
-                }
-            }
-            throw new Exception("CardContextStack: layer not found in the stack");
+            layers = new List<ICardContextLayer>();
         }
 
         #endregion
@@ -53,58 +33,41 @@ namespace WSCT.Stack
         /// <inheritdoc />
         public List<ICardContextLayer> Layers
         {
-            get { return _layers; }
+            get { return layers; }
         }
 
         /// <inheritdoc />
         public void AddLayer(ICardContextLayer layer)
         {
-            _layers.Add(layer);
+            layers.Add(layer);
         }
 
         /// <inheritdoc />
         public void ReleaseLayer(ICardContextLayer layer)
         {
-            _layers.Remove(layer);
+            layers.Remove(layer);
         }
 
         /// <inheritdoc />
         public ICardContextLayer RequestLayer(ICardContextLayer layer, SearchMode mode)
         {
-            ICardContextLayer newLayer;
-            int index;
-            if (_layers.Count == 0)
+            if (layers.Count == 0)
             {
                 throw new Exception("CardContextStack.requestLayer(): no layers defined in the stack");
             }
             switch (mode)
             {
                 case SearchMode.Bottom:
-                    newLayer = _layers[_layers.Count - 1];
-                    break;
+                    return layers[layers.Count - 1];
                 case SearchMode.Next:
-                    index = GetIndex(layer);
-                    if (index >= _layers.Count)
-                    {
-                        throw new Exception("CardContextStack.requestLayer(): Seek next failed");
-                    }
-                    newLayer = _layers[index + 1];
-                    break;
+                    return layers.Following(l => l == layer);
                 case SearchMode.Previous:
-                    index = GetIndex(layer);
-                    if (index <= 0)
-                    {
-                        throw new Exception("CardContextStack.requestLayer(): Seek previous failed");
-                    }
-                    newLayer = _layers[index - 1];
-                    break;
+                    return layers.Preceding(l => l == layer);
                 case SearchMode.Top:
-                    newLayer = _layers[0];
-                    break;
+                    return layers[0];
                 default:
                     throw new NotSupportedException(String.Format("CardContextStack.requestLayer(): Seek mode '{0}' unknown", mode));
             }
-            return newLayer;
         }
 
         #endregion

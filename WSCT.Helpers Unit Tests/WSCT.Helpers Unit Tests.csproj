@@ -51,6 +51,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Linq\EnumerableUnitTest.cs" />
     <Compile Include="Security\Ssh1PublicKeyBodyUnitTest.cs" />
     <Compile Include="Security\PuTTyPrivateKeyBodyUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
