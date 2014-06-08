@@ -66,6 +66,8 @@
     <Compile Include="Core\CardChannelCore.cs" />
     <Compile Include="Core\CardContext.cs" />
     <Compile Include="Core\CardContextCore.cs" />
+    <Compile Include="Core\OnCardInsertionEventArgs.cs" />
+    <Compile Include="Core\OnCardRemovalEventArgs.cs" />
     <Compile Include="Core\StatusChangeMonitor.cs" />
     <Compile Include="Primitives.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,6 +75,10 @@
     <Compile Include="Stack\CardContextLayer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WSCT.Helpers\WSCT.Helpers.csproj">
+      <Project>{B95B0E58-9296-4A15-AA69-10A7B6DC2267}</Project>
+      <Name>WSCT.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WSCT.Wrapper.MacOSX\WSCT.Wrapper.MacOSX.csproj">
       <Project>{0f6f8081-b090-4505-9fbc-f127aa18806f}</Project>
       <Name>WSCT.Wrapper.MacOSX</Name>

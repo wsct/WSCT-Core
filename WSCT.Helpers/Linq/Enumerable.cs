@@ -6,14 +6,27 @@ namespace WSCT.Helpers.Linq
     public static class Enumerable
     {
         /// <summary>
-        ///     Returns the element of a sequence following the first element that satisfies a specified condition.
+        /// Executes an action on each element of a sequence..
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="action"></param>
+        public static void DoForEach<TSource>(this IEnumerable<TSource> source, Action<TSource> action)
+        {
+            foreach (var element in source)
+            {
+                action(element);
+            }
+        }
+
+        /// <summary>
+        /// Returns the element of a sequence following the first element that satisfies a specified condition.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">An <see cref="IEnumerable&lt;TSource&gt;" /> to return an element from.</param>
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>
-        ///     The element in the sequence following the first element that passes the test in the specified predicate
-        ///     function.
+        /// The element in the sequence following the first element that passes the test in the specified predicate function.
         /// </returns>
         public static TSource Following<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
         {
@@ -42,14 +55,30 @@ namespace WSCT.Helpers.Linq
         }
 
         /// <summary>
-        ///     Returns the element of a sequence preceding the first element that satisfies a specified condition.
+        /// Executes an action on each element of a sequence and returns the sequence.
+        /// Execution is delayed until the enumeration occurs.
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        public static IEnumerable<TSource> ForEach<TSource>(this IEnumerable<TSource> source, Action<TSource> action)
+        {
+            foreach (var element in source)
+            {
+                action(element);
+                yield return element;
+            }
+        }
+
+        /// <summary>
+        /// Returns the element of a sequence preceding the first element that satisfies a specified condition.
         /// </summary>
         /// <typeparam name="TSource">The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source">An <see cref="IEnumerable&lt;TSource&gt;" /> to return an element from.</param>
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>
-        ///     The element in the sequence preceding the first element that passes the test in the specified predicate
-        ///     function.
+        /// The element in the sequence preceding the first element that passes the test in the specified predicate function.
         /// </returns>
         public static TSource Preceding<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
         {

@@ -6,7 +6,7 @@ using WSCT.Wrapper;
 namespace WSCT.Stack
 {
     /// <summary>
-    ///     Reference implementation of <see cref="ICardContextStack" />.
+    /// Reference implementation of <see cref="ICardContextStack" />.
     /// </summary>
     public class CardContextStack : ICardContextStack
     {
@@ -19,11 +19,20 @@ namespace WSCT.Stack
         #region >> Constructors
 
         /// <summary>
-        ///     Initializes a new instance.
+        /// Initializes a new instance.
         /// </summary>
         public CardContextStack()
         {
             layers = new List<ICardContextLayer>();
+        }
+
+        public CardContextStack(IEnumerable<ICardContextLayer> layers)
+            : this()
+        {
+            foreach (var layer in layers)
+            {
+                AddLayer(layer);
+            }
         }
 
         #endregion
@@ -40,6 +49,7 @@ namespace WSCT.Stack
         public void AddLayer(ICardContextLayer layer)
         {
             layers.Add(layer);
+            layer.SetStack(this);
         }
 
         /// <inheritdoc />
@@ -60,9 +70,9 @@ namespace WSCT.Stack
                 case SearchMode.Bottom:
                     return layers[layers.Count - 1];
                 case SearchMode.Next:
-                    return layers.Following(l => l == layer);
+                    return layers.Following(l => l.LayerId == layer.LayerId);
                 case SearchMode.Previous:
-                    return layers.Preceding(l => l == layer);
+                    return layers.Preceding(l => l.LayerId == layer.LayerId);
                 case SearchMode.Top:
                     return layers[0];
                 default:

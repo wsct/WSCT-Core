@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading;
 using WSCT.Core;
+using WSCT.Helpers.Events;
 
 namespace WSCT.Wrapper.Desktop.Core
 {
@@ -10,45 +11,17 @@ namespace WSCT.Wrapper.Desktop.Core
     /// </summary>
     public class StatusChangeMonitor
     {
-        #region >> Delegates
-
-        /// <summary>
-        /// Delegate for event sent when a card is inserted a reader in the system.
-        /// </summary>
-        /// <param name="readerState"></param>
-        public delegate void OnCardInsertionEventHandler(AbstractReaderState readerState);
-
-        /// <summary>
-        /// Delegate for event sent when a card is removed from a reader in the system.
-        /// </summary>
-        /// <param name="readerState"></param>
-        public delegate void OnCardRemovalEventHandler(AbstractReaderState readerState);
-
-        /// <summary>
-        /// Delegate for event sent when a reader is inserted in the system.
-        /// </summary>
-        /// <param name="insertedReaders"></param>
-        public delegate void OnReaderInsertionEventHandler(string[] insertedReaders);
-
-        /// <summary>
-        /// Delegate for event sent when a reader is removed from the system.
-        /// </summary>
-        /// <param name="removedReaders"></param>
-        public delegate void OnReaderRemovalEventHandler(string[] removedReaders);
-
-        #endregion
-
         #region >> Events
 
         /// <summary>
-        /// 
+        /// Event raised when a card is inserted in a monitored reader.
         /// </summary>
-        public OnCardInsertionEventHandler OnCardInsertionEvent;
+        public EventHandler<OnCardInsertionEventArgs> OnCardInsertionEvent;
 
         /// <summary>
-        /// 
+        /// Event raised when a card is removed in a monitored reader.
         /// </summary>
-        public OnCardRemovalEventHandler OnCardRemovalEvent;
+        public EventHandler<OnCardRemovalEventArgs> OnCardRemovalEvent;
 
         #endregion
 
@@ -163,13 +136,10 @@ namespace WSCT.Wrapper.Desktop.Core
                 rs => ((rs.EventState & EventState.StatePresent) != 0)
                 );
 
-            // Fire the insertion event, because waitForChange only fire the event on change detection
+            // Raise the insertion event, because waitForChange only fire the event on change detection
             if (readerState != null)
             {
-                if (OnCardInsertionEvent != null)
-                {
-                    OnCardInsertionEvent(readerState);
-                }
+                OnCardInsertionEvent.Raise(this, new OnCardInsertionEventArgs { ReaderState = readerState });
             }
 
             if (readerState == null)
@@ -208,7 +178,7 @@ namespace WSCT.Wrapper.Desktop.Core
             switch (result)
             {
                 case ErrorCode.Success: // Change occured
-                    FireChangeEvents();
+                    RaiseChangeEvents();
                     break;
                 case ErrorCode.Timeout: // Nothing changed
                     break;
@@ -270,9 +240,9 @@ namespace WSCT.Wrapper.Desktop.Core
         }
 
         /// <summary>
-        /// Fire events for states that changed.
+        /// Raises events for states that changed.
         /// </summary>
-        private void FireChangeEvents()
+        private void RaiseChangeEvents()
         {
             foreach (var readerState in _readerStates)
             {
@@ -283,17 +253,11 @@ namespace WSCT.Wrapper.Desktop.Core
                     {
                         if ((readerState.EventState & EventState.StatePresent) != 0)
                         {
-                            if (OnCardInsertionEvent != null)
-                            {
-                                OnCardInsertionEvent(publishedReaderState);
-                            }
+                            OnCardInsertionEvent.Raise(this, new OnCardInsertionEventArgs { ReaderState = publishedReaderState });
                         }
                         else
                         {
-                            if (OnCardRemovalEvent != null)
-                            {
-                                OnCardRemovalEvent(publishedReaderState);
-                            }
+                            OnCardRemovalEvent.Raise(this, new OnCardRemovalEventArgs { ReaderState = publishedReaderState });
                         }
                     }
                 }

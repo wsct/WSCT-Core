@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="CardChannelLayer61.cs" />
     <Compile Include="ConsoleObserver.cs" />
-    <Compile Include="ConsoleObserver61.cs" />
     <Compile Include="LogLevel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

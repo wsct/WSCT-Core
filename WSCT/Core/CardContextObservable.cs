@@ -1,4 +1,6 @@
 using System;
+using WSCT.Core.Events;
+using WSCT.Helpers.Events;
 using WSCT.Wrapper;
 
 namespace WSCT.Core
@@ -13,7 +15,7 @@ namespace WSCT.Core
         /// <summary>
         /// Wrapped <see cref="ICardContext"/> instance.
         /// </summary>
-        protected ICardContext _cardContext;
+        protected ICardContext context;
 
         #endregion
 
@@ -25,7 +27,7 @@ namespace WSCT.Core
         /// <param name="context"><b>ICardContext</b> instance to wrap.</param>
         public CardContextObservable(ICardContext context)
         {
-            _cardContext = context;
+            this.context = context;
         }
 
         #endregion
@@ -35,135 +37,114 @@ namespace WSCT.Core
         /// <inheritdoc />
         public IntPtr Context
         {
-            get { return _cardContext.Context; }
+            get { return context.Context; }
         }
 
         /// <inheritdoc />
         public string[] Groups
         {
-            get { return _cardContext.Groups; }
+            get { return context.Groups; }
         }
 
         /// <inheritdoc />
         public int GroupsCount
         {
-            get { return _cardContext.GroupsCount; }
+            get { return context.GroupsCount; }
         }
 
         /// <inheritdoc />
         public string[] Readers
         {
-            get { return _cardContext.Readers; }
+            get { return context.Readers; }
         }
 
         /// <inheritdoc />
         public int ReadersCount
         {
-            get { return _cardContext.ReadersCount; }
+            get { return context.ReadersCount; }
         }
 
         /// <inheritdoc />
         public ErrorCode Cancel()
         {
-            if (BeforeCancelEvent != null)
-            {
-                BeforeCancelEvent(this);
-            }
-            var ret = _cardContext.Cancel();
-            if (AfterCancelEvent != null)
-            {
-                AfterCancelEvent(this, ret);
-            }
+            BeforeCancelEvent.Raise(this, new BeforeCancelEventArgs());
+
+            var ret = context.Cancel();
+
+            AfterCancelEvent.Raise(this, new AfterCancelEventArgs { ReturnValue = ret });
+
             return ret;
         }
 
         /// <inheritdoc />
         public ErrorCode Establish()
         {
-            if (BeforeEstablishEvent != null)
-            {
-                BeforeEstablishEvent(this);
-            }
-            var ret = _cardContext.Establish();
-            if (AfterEstablishEvent != null)
-            {
-                AfterEstablishEvent(this, ret);
-            }
+            BeforeEstablishEvent.Raise(this, new BeforeEstablishEventArgs());
+
+            var ret = context.Establish();
+
+            AfterEstablishEvent.Raise(this, new AfterEstablishEventArgs { ReturnValue = ret });
+
             return ret;
         }
 
         /// <inheritdoc />
         public ErrorCode GetStatusChange(uint timeout, AbstractReaderState[] readerStates)
         {
-            if (BeforeGetStatusChangeEvent != null)
-            {
-                BeforeGetStatusChangeEvent(this, timeout, readerStates);
-            }
-            var ret = _cardContext.GetStatusChange(timeout, readerStates);
-            if (AfterGetStatusChangeEvent != null)
-            {
-                AfterGetStatusChangeEvent(this, timeout, readerStates, ret);
-            }
+            BeforeGetStatusChangeEvent.Raise(this, new BeforeGetStatusChangeEventArgs { TimeOut = timeout, ReaderStates = readerStates });
+
+            var ret = context.GetStatusChange(timeout, readerStates);
+
+            AfterGetStatusChangeEvent.Raise(this, new AfterGetStatusChangeEventArgs { TimeOut = timeout, ReaderStates = readerStates, ReturnValue = ret });
+
             return ret;
         }
 
         /// <inheritdoc />
         public ErrorCode IsValid()
         {
-            if (BeforeIsValidEvent != null)
-            {
-                BeforeIsValidEvent(this);
-            }
-            var ret = _cardContext.IsValid();
-            if (AfterIsValidEvent != null)
-            {
-                AfterIsValidEvent(this, ret);
-            }
+            BeforeIsValidEvent.Raise(this, new BeforeIsValidEventArgs());
+
+            var ret = context.IsValid();
+
+            AfterIsValidEvent.Raise(this, new AfterIsValidEventArgs { ReturnValue = ret });
+
             return ret;
         }
 
         /// <inheritdoc />
         public ErrorCode ListReaderGroups()
         {
-            if (BeforeListReaderGroupsEvent != null)
-            {
-                BeforeListReaderGroupsEvent(this);
-            }
-            var ret = _cardContext.ListReaderGroups();
-            if (AfterListReaderGroupsEvent != null)
-            {
-                AfterListReaderGroupsEvent(this, ret);
-            }
+            BeforeListReaderGroupsEvent.Raise(this, new BeforeListReaderGroupsEventArgs());
+
+            var ret = context.ListReaderGroups();
+
+            AfterListReaderGroupsEvent.Raise(this, new AfterListReaderGroupsEventArgs { ReturnValue = ret });
+
             return ret;
         }
 
         /// <inheritdoc />
         public ErrorCode ListReaders(string group)
         {
-            if (BeforeListReadersEvent != null)
-            {
-                BeforeListReadersEvent(this, group);
-            }
-            var ret = _cardContext.ListReaders(group);
-            if (AfterListReadersEvent != null)
-            {
-                AfterListReadersEvent(this, group, ret);
-            }
+            BeforeListReadersEvent.Raise(this, new BeforeListReadersEventArgs { Group = group });
+
+            var ret = context.ListReaders(group);
+
+            AfterListReadersEvent.Raise(this, new AfterListReadersEventArgs { Group = group, ReturnValue = ret });
+
             return ret;
         }
 
         /// <inheritdoc />
         public ErrorCode Release()
         {
-            if (BeforeReleaseEvent != null)
-            {
-                BeforeReleaseEvent(this);
-            }
-            var ret = _cardContext.Release();
-            if (AfterReleaseEvent != null)
-            {
-                AfterReleaseEvent(this, ret);
-            }
+            BeforeReleaseEvent.Raise(this, new BeforeReleaseEventArgs());
+
+            var ret = context.Release();
+
+            AfterReleaseEvent.Raise(this, new AfterReleaseEventArgs { ReturnValue = ret });
+
             return ret;
         }
 
@@ -172,46 +153,46 @@ namespace WSCT.Core
         #region >> ICardContextObservable Membres
 
         /// <inheritdoc />
-        public event BeforeCancel BeforeCancelEvent;
+        public event EventHandler<BeforeCancelEventArgs> BeforeCancelEvent;
 
         /// <inheritdoc />
-        public event AfterCancel AfterCancelEvent;
+        public event EventHandler<AfterCancelEventArgs> AfterCancelEvent;
 
         /// <inheritdoc />
-        public event BeforeEstablish BeforeEstablishEvent;
+        public event EventHandler<BeforeEstablishEventArgs> BeforeEstablishEvent;
 
         /// <inheritdoc />
-        public event AfterEstablish AfterEstablishEvent;
+        public event EventHandler<AfterEstablishEventArgs> AfterEstablishEvent;
 
         /// <inheritdoc />
-        public event BeforeGetStatusChange BeforeGetStatusChangeEvent;
+        public event EventHandler<BeforeGetStatusChangeEventArgs> BeforeGetStatusChangeEvent;
 
         /// <inheritdoc />
-        public event AfterGetStatusChange AfterGetStatusChangeEvent;
+        public event EventHandler<AfterGetStatusChangeEventArgs> AfterGetStatusChangeEvent;
 
         /// <inheritdoc />
-        public event BeforeIsValid BeforeIsValidEvent;
+        public event EventHandler<BeforeIsValidEventArgs> BeforeIsValidEvent;
 
         /// <inheritdoc />
-        public event AfterIsValid AfterIsValidEvent;
+        public event EventHandler<AfterIsValidEventArgs> AfterIsValidEvent;
 
         /// <inheritdoc />
-        public event BeforeListReaderGroups BeforeListReaderGroupsEvent;
+        public event EventHandler<BeforeListReaderGroupsEventArgs> BeforeListReaderGroupsEvent;
 
         /// <inheritdoc />
-        public event AfterListReaderGroups AfterListReaderGroupsEvent;
+        public event EventHandler<AfterListReaderGroupsEventArgs> AfterListReaderGroupsEvent;
 
         /// <inheritdoc />
-        public event BeforeListReaders BeforeListReadersEvent;
+        public event EventHandler<BeforeListReadersEventArgs> BeforeListReadersEvent;
 
         /// <inheritdoc />
-        public event AfterListReaders AfterListReadersEvent;
+        public event EventHandler<AfterListReadersEventArgs> AfterListReadersEvent;
 
         /// <inheritdoc />
-        public event BeforeRelease BeforeReleaseEvent;
+        public event EventHandler<BeforeReleaseEventArgs> BeforeReleaseEvent;
 
         /// <inheritdoc />
-        public event AfterRelease AfterReleaseEvent;
+        public event EventHandler<AfterReleaseEventArgs> AfterReleaseEvent;
 
         #endregion
     }

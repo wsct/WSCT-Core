@@ -1,4 +1,7 @@
+using System;
 using WSCT.Core.APDU;
+using WSCT.Core.Events;
+using WSCT.Helpers.Events;
 using WSCT.Wrapper;
 
 namespace WSCT.Core
@@ -13,7 +16,7 @@ namespace WSCT.Core
         /// <summary>
         /// Wrapped <see cref="ICardChannel"/> instance.
         /// </summary>
-        protected ICardChannel _cardChannel;
+        protected ICardChannel channel;
 
         #endregion
 
@@ -25,7 +28,7 @@ namespace WSCT.Core
         /// <param name="channel"><c>ICardChannel</c> instance to wrap.</param>
         public CardChannelObservable(ICardChannel channel)
         {
-            _cardChannel = channel;
+            this.channel = channel;
         }
 
         #endregion
@@ -37,35 +40,29 @@ namespace WSCT.Core
         /// </summary>
         public Protocol Protocol
         {
-            get { return _cardChannel.Protocol; }
+            get { return channel.Protocol; }
         }
 
         /// <inheritdoc />
         public string ReaderName
         {
-            get { return _cardChannel.ReaderName; }
+            get { return channel.ReaderName; }
         }
 
         /// <inheritdoc />
         public void Attach(ICardContext context, string readerName)
         {
-            _cardChannel.Attach(context, readerName);
+            channel.Attach(context, readerName);
         }
 
         /// <inheritdoc />
         public ErrorCode Connect(ShareMode shareMode, Protocol preferedProtocol)
         {
-            if (BeforeConnectEvent != null)
-            {
-                BeforeConnectEvent(this, shareMode, preferedProtocol);
-            }
+            BeforeConnectEvent.Raise(this, new BeforeConnectEventArgs { ShareMode = shareMode, PreferedProtocol = preferedProtocol });
 
-            var ret = _cardChannel.Connect(shareMode, preferedProtocol);
+            var ret = channel.Connect(shareMode, preferedProtocol);
 
-            if (AfterConnectEvent != null)
-            {
-                AfterConnectEvent(this, shareMode, preferedProtocol, ret);
-            }
+            AfterConnectEvent.Raise(this, new AfterConnectEventArgs { ShareMode = shareMode, PreferedProtocol = preferedProtocol, ReturnValue = ret });
 
             return ret;
         }
@@ -73,17 +70,11 @@ namespace WSCT.Core
         /// <inheritdoc />
         public ErrorCode Disconnect(Disposition disposition)
         {
-            if (BeforeDisconnectEvent != null)
-            {
-                BeforeDisconnectEvent(this, disposition);
-            }
+            BeforeDisconnectEvent.Raise(this, new BeforeDisconnectEventArgs { Disposition = disposition });
 
-            var ret = _cardChannel.Disconnect(disposition);
+            var ret = channel.Disconnect(disposition);
 
-            if (AfterDisconnectEvent != null)
-            {
-                AfterDisconnectEvent(this, disposition, ret);
-            }
+            AfterDisconnectEvent.Raise(this, new AfterDisconnectEventArgs { Disposition = disposition, ReturnValue = ret });
 
             return ret;
         }
@@ -91,17 +82,11 @@ namespace WSCT.Core
         /// <inheritdoc />
         public ErrorCode GetAttrib(Attrib attrib, ref byte[] buffer)
         {
-            if (BeforeGetAttribEvent != null)
-            {
-                BeforeGetAttribEvent(this, attrib, buffer);
-            }
+            BeforeGetAttribEvent.Raise(this, new BeforeGetAttribEventArgs { Attrib = attrib, Buffer = buffer });
 
-            var ret = _cardChannel.GetAttrib(attrib, ref buffer);
+            var ret = channel.GetAttrib(attrib, ref buffer);
 
-            if (AfterGetAttribEvent != null)
-            {
-                AfterGetAttribEvent(this, attrib, buffer, ret);
-            }
+            AfterGetAttribEvent.Raise(this, new AfterGetAttribEventArgs { Attrib = attrib, Buffer = buffer, ReturnValue = ret });
 
             return ret;
         }
@@ -109,35 +94,23 @@ namespace WSCT.Core
         /// <inheritdoc />
         public State GetStatus()
         {
-            if (BeforeGetStatusEvent != null)
-            {
-                BeforeGetStatusEvent(this);
-            }
+            BeforeGetStatusEvent.Raise(this, new BeforeGetStatusEventArgs());
 
-            var ret = _cardChannel.GetStatus();
+            var state = channel.GetStatus();
 
-            if (AfterGetStatusEvent != null)
-            {
-                AfterGetStatusEvent(this, ret);
-            }
+            AfterGetStatusEvent.Raise(this, new AfterGetStatusEventArgs { State = state });
 
-            return ret;
+            return state;
         }
 
         /// <inheritdoc />
         public ErrorCode Reconnect(ShareMode shareMode, Protocol preferedProtocol, Disposition initialization)
         {
-            if (BeforeReconnectEvent != null)
-            {
-                BeforeReconnectEvent(this, shareMode, preferedProtocol, initialization);
-            }
+            BeforeReconnectEvent.Raise(this, new BeforeReconnectEventArgs { ShareMode = shareMode, PreferedProtocol = preferedProtocol, Initialization = initialization });
 
-            var ret = _cardChannel.Reconnect(shareMode, preferedProtocol, initialization);
+            var ret = channel.Reconnect(shareMode, preferedProtocol, initialization);
 
-            if (AfterReconnectEvent != null)
-            {
-                AfterReconnectEvent(this, shareMode, preferedProtocol, initialization, ret);
-            }
+            AfterReconnectEvent.Raise(this, new AfterReconnectEventArgs { ShareMode = shareMode, PreferedProtocol = preferedProtocol, Initialization = initialization, ReturnValue = ret });
 
             return ret;
         }
@@ -145,17 +118,11 @@ namespace WSCT.Core
         /// <inheritdoc />
         public ErrorCode Transmit(ICardCommand command, ICardResponse response)
         {
-            if (BeforeTransmitEvent != null)
-            {
-                BeforeTransmitEvent(this, command, response);
-            }
+            BeforeTransmitEvent.Raise(this, new BeforeTransmitEventArgs { Command = command, Response = response });
 
-            var ret = _cardChannel.Transmit(command, response);
+            var ret = channel.Transmit(command, response);
 
-            if (AfterTransmitEvent != null)
-            {
-                AfterTransmitEvent(this, command, response, ret);
-            }
+            AfterTransmitEvent.Raise(this, new AfterTransmitEventArgs { Command = command, Response = response, ReturnValue = ret });
 
             return ret;
         }
@@ -165,40 +132,40 @@ namespace WSCT.Core
         #region >> ICardChannelObservable Membres
 
         /// <inheritdoc />
-        public event BeforeConnect BeforeConnectEvent;
+        public event EventHandler<BeforeConnectEventArgs> BeforeConnectEvent;
 
         /// <inheritdoc />
-        public event AfterConnect AfterConnectEvent;
+        public event EventHandler<AfterConnectEventArgs> AfterConnectEvent;
 
         /// <inheritdoc />
-        public event BeforeDisconnect BeforeDisconnectEvent;
+        public event EventHandler<BeforeDisconnectEventArgs> BeforeDisconnectEvent;
 
         /// <inheritdoc />
-        public event AfterDisconnect AfterDisconnectEvent;
+        public event EventHandler<AfterDisconnectEventArgs> AfterDisconnectEvent;
 
         /// <inheritdoc />
-        public event BeforeGetAttrib BeforeGetAttribEvent;
+        public event EventHandler<BeforeGetAttribEventArgs> BeforeGetAttribEvent;
 
         /// <inheritdoc />
-        public event AfterGetAttrib AfterGetAttribEvent;
+        public event EventHandler<AfterGetAttribEventArgs> AfterGetAttribEvent;
 
         /// <inheritdoc />
-        public event BeforeGetStatus BeforeGetStatusEvent;
+        public event EventHandler<BeforeGetStatusEventArgs> BeforeGetStatusEvent;
 
         /// <inheritdoc />
-        public event AfterGetStatus AfterGetStatusEvent;
+        public event EventHandler<AfterGetStatusEventArgs> AfterGetStatusEvent;
 
         /// <inheritdoc />
-        public event BeforeReconnect BeforeReconnectEvent;
+        public event EventHandler<BeforeReconnectEventArgs> BeforeReconnectEvent;
 
         /// <inheritdoc />
-        public event AfterReconnect AfterReconnectEvent;
+        public event EventHandler<AfterReconnectEventArgs> AfterReconnectEvent;
 
         /// <inheritdoc />
-        public event BeforeTransmit BeforeTransmitEvent;
+        public event EventHandler<BeforeTransmitEventArgs> BeforeTransmitEvent;
 
         /// <inheritdoc />
-        public event AfterTransmit AfterTransmitEvent;
+        public event EventHandler<AfterTransmitEventArgs> AfterTransmitEvent;
 
         #endregion
     }

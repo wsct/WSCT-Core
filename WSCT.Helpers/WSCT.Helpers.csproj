@@ -45,6 +45,7 @@
     <Compile Include="BasicEncodingRules\TLVDescription.cs" />
     <Compile Include="BasicEncodingRules\TLVDictionary.cs" />
     <Compile Include="BytesHelpers.cs" />
+    <Compile Include="Events\EventHandlerExtensionMethod.cs" />
     <Compile Include="Linq\Enumerable.cs" />
     <Compile Include="Portable\PortableFile.cs" />
     <Compile Include="Portable\IPortableFile.cs" />

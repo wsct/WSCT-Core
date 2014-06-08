@@ -28,6 +28,19 @@ namespace WSCT.Stack
             layers = new List<ICardChannelLayer>();
         }
 
+        /// <summary>
+        /// Initializes a new instance.
+        /// </summary>
+        /// <param name="layers"></param>
+        public CardChannelStack(IEnumerable<ICardChannelLayer> layers)
+            : this()
+        {
+            foreach (var layer in layers)
+            {
+                AddLayer(layer);
+            }
+        }
+
         #endregion
 
         #region >> ICardChannelStack Membres
@@ -63,9 +76,9 @@ namespace WSCT.Stack
                 case SearchMode.Bottom:
                     return layers[layers.Count - 1];
                 case SearchMode.Next:
-                    return layers.Following(l => l == layer);
+                    return layers.Following(l => l.LayerId == layer.LayerId);
                 case SearchMode.Previous:
-                    return layers.Preceding(l => l == layer);
+                    return layers.Preceding(l => l.LayerId == layer.LayerId);
                 case SearchMode.Top:
                     return layers[0];
                 default:

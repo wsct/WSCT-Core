@@ -1,8 +1,11 @@
 using System;
+using System.Collections.Generic;
 using WSCT.Core.APDU;
 using WSCT.Helpers;
+using WSCT.Helpers.Linq;
 using WSCT.ISO7816;
 using WSCT.ISO7816.Commands;
+using WSCT.Linq;
 using WSCT.Stack;
 using WSCT.Wrapper;
 using WSCT.Wrapper.Desktop.Core;
@@ -24,8 +27,6 @@ namespace WSCT.Core.ConsoleTests
             }
             Console.ForegroundColor = ConsoleColor.Gray;
 
-            // Console.WriteLine((new Core.CardChannel()).GetType().GetMember("reconnect").GetValue(0));
-
             Console.WriteLine();
             Console.WriteLine("=========== S t a t u s W o r d D i c t i o n a r y");
 
@@ -45,7 +46,6 @@ namespace WSCT.Core.ConsoleTests
             #region >> ConsoleObserver
 
             var logger = new ConsoleObserver();
-            var logger61 = new ConsoleObserver61();
 
             #endregion
 
@@ -55,7 +55,7 @@ namespace WSCT.Core.ConsoleTests
             #region >> CardContext
 
             ICardContext context = new CardContext();
-            logger.ObserveContext((CardContextObservable)context);
+            logger.ObserveContext((ICardContextObservable)context);
 
             context.Establish();
             context.ListReaderGroups();
@@ -94,7 +94,7 @@ namespace WSCT.Core.ConsoleTests
             #region >> CardChannel
 
             ICardChannel cardChannel = new CardChannel(context, readerState.ReaderName);
-            logger.ObserveChannel((CardChannelObservable)cardChannel);
+            logger.ObserveChannel((ICardChannelObservable)cardChannel);
 
             cardChannel.Connect(ShareMode.Shared, Protocol.Any);
 
@@ -155,16 +155,11 @@ namespace WSCT.Core.ConsoleTests
 
             #region >> CardChannelStack
 
-            ICardChannelStack cardStack = new CardChannelStack();
+            var layers = new List<ICardChannelLayer> { new CardChannelLayer61(), new CardChannelLayer() }
+                .ToObservableLayers()
+                .ForEach(l => logger.ObserveChannel(l));
 
-            ICardChannelLayer cardLayer = new CardChannelLayer();
-            ICardChannelLayer cardLayer61 = new CardChannelLayer61();
-
-            logger61.ObserveChannel((ICardChannelObservable)cardLayer61);
-            cardStack.AddLayer(cardLayer61);
-
-            logger.ObserveChannel((ICardChannelObservable)cardLayer);
-            cardStack.AddLayer(cardLayer);
+            ICardChannelStack cardStack = new CardChannelStack(layers);
 
             cardStack.Attach(context, readerState.ReaderName);
 
@@ -173,8 +168,7 @@ namespace WSCT.Core.ConsoleTests
             cardStack.Reconnect(ShareMode.Shared, Protocol.Any, Disposition.ResetCard);
 
             // Use of a CommandResponsePair object to manage the dialog
-            cAPDU = new SelectCommand(SelectCommand.SelectionMode.SelectDFName, SelectCommand.FileOccurrence.FirstOrOnly, SelectCommand.FileControlInformation.ReturnFci, "A000000069".FromHexa(),
-                0xFF);
+            cAPDU = new SelectCommand(SelectCommand.SelectionMode.SelectDFName, SelectCommand.FileOccurrence.FirstOrOnly, SelectCommand.FileControlInformation.ReturnFci, "A000000069".FromHexa(), 0xFF);
             var crp = new CommandResponsePair(cAPDU);
             crp.Transmit(cardStack);
 

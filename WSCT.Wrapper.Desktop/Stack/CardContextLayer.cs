@@ -19,6 +19,12 @@ namespace WSCT.Wrapper.Desktop.Stack
             // Nothing to do here.
         }
 
+        /// <inheritdoc />
+        public string LayerId
+        {
+            get { return "PC/SC"; }
+        }
+
         #endregion
     }
 }

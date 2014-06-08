@@ -40,10 +40,41 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Linq\CardChannelExtension.cs" />
+    <Compile Include="Linq\CardContextStackExtension.cs" />
+    <Compile Include="Linq\CardChannelStackExtension.cs" />
+    <Compile Include="Linq\CardContextExtension.cs" />
+    <Compile Include="Core\Events\AfterCancelEventArgs.cs" />
+    <Compile Include="Core\Events\AfterConnectEventArgs.cs" />
+    <Compile Include="Core\Events\AfterDisconnectEventArgs.cs" />
+    <Compile Include="Core\Events\AfterEventArgs.cs" />
+    <Compile Include="Core\Events\AfterGetAttribEventArgs.cs" />
+    <Compile Include="Core\Events\AfterGetStatusChangeEventArgs.cs" />
+    <Compile Include="Core\Events\AfterGetStatusEventArgs.cs" />
+    <Compile Include="Core\Events\AfterIsValidEventArgs.cs" />
+    <Compile Include="Core\Events\AfterListReaderGroupsEventArgs.cs" />
+    <Compile Include="Core\Events\AfterListReadersEventArgs.cs" />
+    <Compile Include="Core\Events\AfterReconnectEventArgs.cs" />
+    <Compile Include="Core\Events\AfterReleaseEventArgs.cs" />
+    <Compile Include="Core\Events\AfterTransmitEventArgs.cs" />
     <Compile Include="Core\APDU\ICardCommand.cs" />
     <Compile Include="Core\APDU\ICardResponse.cs" />
+    <Compile Include="Core\Events\BeforeCancelEventArgs.cs" />
+    <Compile Include="Core\Events\BeforeConnectEventArgs.cs" />
+    <Compile Include="Core\Events\BeforeDisconnectEventArgs.cs" />
+    <Compile Include="Core\Events\BeforeGetAttribEventArgs.cs" />
+    <Compile Include="Core\Events\BeforeGetStatusChangeEventArgs.cs" />
+    <Compile Include="Core\Events\BeforeGetStatusEventArgs.cs" />
+    <Compile Include="Core\Events\BeforeIsValidEventArgs.cs" />
+    <Compile Include="Core\Events\BeforeListReaderGroupsEventArgs.cs" />
+    <Compile Include="Core\Events\BeforeListReadersEventArgs.cs" />
+    <Compile Include="Core\Events\BeforeReconnectEventArgs.cs" />
+    <Compile Include="Core\Events\BeforeReleaseEventArgs.cs" />
+    <Compile Include="Core\Events\BeforeTransmitEventArgs.cs" />
     <Compile Include="Core\CardChannelObservable.cs" />
     <Compile Include="Core\CardContextObservable.cs" />
+    <Compile Include="Core\Events\BeforeEstablishEventArgs.cs" />
+    <Compile Include="Core\Events\AfterEstablishEventArgs.cs" />
     <Compile Include="Core\ICardChannel.cs" />
     <Compile Include="Core\ICardChannelObservable.cs" />
     <Compile Include="Core\ICardContext.cs" />
@@ -51,7 +82,7 @@
     <Compile Include="ISO7816\AnswerToReset\ATR.cs" />
     <Compile Include="ISO7816\AnswerToReset\InterfaceByte.cs" />
     <Compile Include="ISO7816\AnswerToReset\TSCharacter.cs" />
-    <Compile Include="ISO7816\CardChannelISO7816.cs" />
+    <Compile Include="ISO7816\CardChannelIso7816.cs" />
     <Compile Include="ISO7816\CommandAPDU.cs" />
     <Compile Include="ISO7816\CommandCase.cs" />
     <Compile Include="ISO7816\CommandResponsePair.cs" />
@@ -66,6 +97,14 @@
     <Compile Include="ISO7816\StatusWord\StatusWordDictionary.cs" />
     <Compile Include="ISO7816\StatusWord\StatusWordHigh.cs" />
     <Compile Include="ISO7816\StatusWord\StatusWordLow.cs" />
+    <Compile Include="Linq\CardChannelLayerExtension.cs" />
+    <Compile Include="Stack\CardContextStackObservable.cs" />
+    <Compile Include="Stack\ICardContextStackObservable.cs" />
+    <Compile Include="Stack\ICardChannelStackObservable.cs" />
+    <Compile Include="Stack\CardChannelLayerObservable.cs" />
+    <Compile Include="Linq\CardContextLayerExtension.cs" />
+    <Compile Include="Stack\CardChannelStackObservable.cs" />
+    <Compile Include="Stack\CardContextLayerObservable.cs" />
     <Compile Include="Stack\Generic\GenericLayerDescription.cs" />
     <Compile Include="Stack\Generic\GenericStackDescription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,8 +115,10 @@
     <Compile Include="Stack\CardContextStack.cs" />
     <Compile Include="Stack\CardContextStackDescription.cs" />
     <Compile Include="Stack\ICardChannelLayer.cs" />
+    <Compile Include="Stack\ICardChannelLayerObservable.cs" />
     <Compile Include="Stack\ICardChannelStack.cs" />
     <Compile Include="Stack\ICardContextLayer.cs" />
+    <Compile Include="Stack\ICardContextLayerObservable.cs" />
     <Compile Include="Stack\ICardContextStack.cs" />
     <Compile Include="Stack\SearchMode.cs" />
     <Compile Include="Wrapper\AbstractIoRequest.cs" />

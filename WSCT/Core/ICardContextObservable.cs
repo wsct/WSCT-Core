@@ -1,110 +1,8 @@
 using System;
-using WSCT.Wrapper;
+using WSCT.Core.Events;
 
 namespace WSCT.Core
 {
-
-    #region >> Delegates
-
-    /// <summary>
-    /// Delegate for event sent before execution of a <see cref="ICardContext.Cancel"/>.
-    /// </summary>
-    /// <param name="context">Caller instance.</param>
-    public delegate void BeforeCancel(ICardContext context);
-
-    /// <summary>
-    /// Delegate for event sent after execution of a <see cref="ICardContext.Cancel"/>.
-    /// </summary>
-    /// <param name="context">Caller instance.</param>
-    /// <param name="error">Return value of the caller.</param>
-    public delegate void AfterCancel(ICardContext context, ErrorCode error);
-
-    /// <summary>
-    /// Delegate for event sent before execution of an <see cref="ICardContext.Establish"/>.
-    /// </summary>
-    /// <param name="context">Caller instance.</param>
-    public delegate void BeforeEstablish(ICardContext context);
-
-    /// <summary>
-    /// Delegate for event sent after execution of an <see cref="ICardContext.Establish"/>.
-    /// </summary>
-    /// <param name="context">Caller instance.</param>
-    /// <param name="error">Return value of the caller.</param>
-    public delegate void AfterEstablish(ICardContext context, ErrorCode error);
-
-    /// <summary>
-    /// Delegate for event sent before execution of an <see cref="ICardContext.GetStatusChange"/>.
-    /// </summary>
-    /// <param name="context">Caller instance.</param>
-    /// <param name="timeout"></param>
-    /// <param name="readerStates"></param>
-    public delegate void BeforeGetStatusChange(ICardContext context, UInt32 timeout, AbstractReaderState[] readerStates);
-
-    /// <summary>
-    /// Delegate for event sent after execution of an <see cref="ICardContext.Establish"/>.
-    /// </summary>
-    /// <param name="context">Caller instance.</param>
-    /// <param name="timeout"></param>
-    /// <param name="readerStates"></param>
-    /// <param name="error">Return value of the caller.</param>
-    public delegate void AfterGetStatusChange(ICardContext context, UInt32 timeout, AbstractReaderState[] readerStates, ErrorCode error);
-
-    /// <summary>
-    /// Delegate for event sent before execution of a <see cref="ICardContext.IsValid"/>.
-    /// </summary>
-    /// <param name="context">Caller instance.</param>
-    public delegate void BeforeIsValid(ICardContext context);
-
-    /// <summary>
-    /// Delegate for event sent after execution of a <see cref="ICardContext.IsValid"/>.
-    /// </summary>
-    /// <param name="context">Caller instance.</param>
-    /// <param name="error">Return value of the caller.</param>
-    public delegate void AfterIsValid(ICardContext context, ErrorCode error);
-
-    /// <summary>
-    /// Delegate for event sent before execution of a <see cref="ICardContext.ListReaders"/>.
-    /// </summary>
-    /// <param name="context">Caller instance.</param>
-    /// <param name="group"><inheritdoc cref="ICardContext.ListReaders"/>.</param>
-    public delegate void BeforeListReaders(ICardContext context, string group);
-
-    /// <summary >
-    /// Delegate for event sent after execution of a <see cref="ICardContext.ListReaders"/>.
-    /// </summary>
-    /// <param name="context">Caller instance</param>
-    /// <param name="group"><inheritdoc cref="ICardContext.ListReaders"/>.</param>
-    /// <param name="error">Return value of the caller.</param>
-    public delegate void AfterListReaders(ICardContext context, string group, ErrorCode error);
-
-    /// <summary>
-    /// Delegate for event sent before execution of a <see cref="ICardContext.ListReaderGroups"/>.
-    /// </summary>
-    /// <param name="context">Caller instance.</param>
-    public delegate void BeforeListReaderGroups(ICardContext context);
-
-    /// <summary>
-    /// Delegate for event sent after execution of a <see cref="ICardContext.ListReaderGroups"/>.
-    /// </summary>
-    /// <param name="context">Caller instance.</param>
-    /// <param name="error">Return value of the caller.</param>
-    public delegate void AfterListReaderGroups(ICardContext context, ErrorCode error);
-
-    /// <summary>
-    /// Delegate for event sent before execution of a <see cref="ICardContext.Release"/>.
-    /// </summary>
-    /// <param name="context">Caller instance.</param>
-    public delegate void BeforeRelease(ICardContext context);
-
-    /// <summary>
-    /// Delegate for event sent after execution of a <see cref="ICardContext.Release"/>.
-    /// </summary>
-    /// <param name="context">Caller instance.</param>
-    /// <param name="error">Return value of the caller.</param>
-    public delegate void AfterRelease(ICardContext context, ErrorCode error);
-
-    #endregion
-
     /// <summary>
     /// Interface to be implemented by all observable <see cref="ICardContext"/> instance.
     /// </summary>
@@ -115,72 +13,72 @@ namespace WSCT.Core
         /// <summary>
         /// Event sent before execution of a <see cref="ICardContext.Cancel"/>.
         /// </summary>
-        event BeforeCancel BeforeCancelEvent;
+        event EventHandler<BeforeCancelEventArgs> BeforeCancelEvent;
 
         /// <summary>
         /// Event sent after execution of a <see cref="ICardContext.Cancel"/>.
         /// </summary>
-        event AfterCancel AfterCancelEvent;
+        event EventHandler<AfterCancelEventArgs> AfterCancelEvent;
 
         /// <summary>
         /// Event sent before execution of a <see cref="ICardContext.Establish"/>.
         /// </summary>
-        event BeforeEstablish BeforeEstablishEvent;
+        event EventHandler<BeforeEstablishEventArgs> BeforeEstablishEvent;
 
         /// <summary>
         /// Event sent after execution of a <see cref="ICardContext.Establish"/>.
         /// </summary>
-        event AfterEstablish AfterEstablishEvent;
+        event EventHandler<AfterEstablishEventArgs> AfterEstablishEvent;
 
         /// <summary>
         /// Event sent before execution of a <see cref="ICardContext.GetStatusChange"/>.
         /// </summary>
-        event BeforeGetStatusChange BeforeGetStatusChangeEvent;
+        event EventHandler<BeforeGetStatusChangeEventArgs> BeforeGetStatusChangeEvent;
 
         /// <summary>
         /// Event sent after execution of a <see cref="ICardContext.GetStatusChange"/>.
         /// </summary>
-        event AfterGetStatusChange AfterGetStatusChangeEvent;
+        event EventHandler<AfterGetStatusChangeEventArgs> AfterGetStatusChangeEvent;
 
         /// <summary>
         /// Event sent before execution of a <see cref="ICardContext.IsValid"/>.
         /// </summary>
-        event BeforeIsValid BeforeIsValidEvent;
+        event EventHandler<BeforeIsValidEventArgs> BeforeIsValidEvent;
 
         /// <summary>
         /// Event sent after execution of a <see cref="ICardContext.IsValid"/>.
         /// </summary>
-        event AfterIsValid AfterIsValidEvent;
+        event EventHandler<AfterIsValidEventArgs> AfterIsValidEvent;
 
         /// <summary>
         /// Event sent before execution of a <see cref="ICardContext.ListReaderGroups"/>.
         /// </summary>
-        event BeforeListReaderGroups BeforeListReaderGroupsEvent;
+        event EventHandler<BeforeListReaderGroupsEventArgs> BeforeListReaderGroupsEvent;
 
         /// <summary>
         /// Event sent after execution of a <see cref="ICardContext.ListReaderGroups"/>.
         /// </summary>
-        event AfterListReaderGroups AfterListReaderGroupsEvent;
+        event EventHandler<AfterListReaderGroupsEventArgs> AfterListReaderGroupsEvent;
 
         /// <summary>
         /// Event sent before execution of a <see cref="ICardContext.ListReaders"/>.
         /// </summary>
-        event BeforeListReaders BeforeListReadersEvent;
+        event EventHandler<BeforeListReadersEventArgs> BeforeListReadersEvent;
 
         /// <summary>
         /// Event sent after execution of a <see cref="ICardContext.ListReaders"/>.
         /// </summary>
-        event AfterListReaders AfterListReadersEvent;
+        event EventHandler<AfterListReadersEventArgs> AfterListReadersEvent;
 
         /// <summary>
         /// Event sent before execution of a <see cref="ICardContext.Release"/>.
         /// </summary>
-        event BeforeRelease BeforeReleaseEvent;
+        event EventHandler<BeforeReleaseEventArgs> BeforeReleaseEvent;
 
         /// <summary>
         /// Event sent after execution of a <see cref="ICardContext.Release"/>.
         /// </summary>
-        event AfterRelease AfterReleaseEvent;
+        event EventHandler<AfterReleaseEventArgs> AfterReleaseEvent;
 
         #endregion
     }

@@ -15,5 +15,10 @@ namespace WSCT.Stack
         /// </summary>
         /// <param name="stack">Stack containing this layer.</param>
         void SetStack(ICardChannelStack stack);
+
+        /// <summary>
+        /// Layer identifier (must be unique).
+        /// </summary>
+        string LayerId { get; }
     }
 }
