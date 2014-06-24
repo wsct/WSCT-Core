@@ -1,4 +1,6 @@
-﻿namespace WSCT.ISO7816.AnswerToReset
+﻿using System;
+
+namespace WSCT.ISO7816.AnswerToReset
 {
     /// <summary>
     /// ISO/IEC 7816-3 TS character.
@@ -23,6 +25,16 @@
         public TsCharacter(byte ts)
         {
             Ts = ts;
+        }
+
+        #endregion
+
+        #region >> Object
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return String.Format("{0:X2}", Ts);
         }
 
         #endregion

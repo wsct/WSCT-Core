@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -13,23 +14,14 @@ namespace WSCT.ISO7816.StatusWord
     [XmlRoot("sw1")]
     public class StatusWordHigh : IXmlSerializable
     {
-        #region >> Fields
-
-        private byte _sw1;
-        private List<StatusWordLow> _sw2List;
-
-        #endregion
-
         #region >> Properties
 
         /// <summary>
-        /// List of known SW2 values
+        /// List of known SW2 values.
         /// </summary>
-        public List<StatusWordLow> Sw2List
-        {
-            get { return _sw2List; }
-            set { _sw2List = value; }
-        }
+        public List<StatusWordLow> Sw2List { get; set; }
+
+        public byte Sw1 { get; set; }
 
         #endregion
 
@@ -40,7 +32,7 @@ namespace WSCT.ISO7816.StatusWord
         /// </summary>
         public StatusWordHigh()
         {
-            _sw2List = new List<StatusWordLow>();
+            Sw2List = new List<StatusWordLow>();
         }
 
         #endregion
@@ -48,25 +40,15 @@ namespace WSCT.ISO7816.StatusWord
         #region >> Methods
 
         /// <summary>
-        /// 
+        /// Retrieves the description for <paramref name="sw2"/>.
         /// </summary>
-        /// <param name="sw1"></param>
         /// <param name="sw2"></param>
         /// <returns></returns>
-        public string GetDescription(byte sw1, byte sw2)
+        public string GetDescription(byte sw2)
         {
-            var description = "";
-            if (_sw1 == sw1)
-            {
-                foreach (var sw2Element in _sw2List)
-                {
-                    if (sw2Element.Contains(sw2))
-                    {
-                        description = sw2Element.Description;
-                    }
-                }
-            }
-            return description;
+            var sw2Description = Sw2List.LastOrDefault(sw2Element => sw2Element.Contains(sw2));
+
+            return sw2Description == null ? String.Empty : sw2Description.Description;
         }
 
         #endregion
@@ -82,7 +64,7 @@ namespace WSCT.ISO7816.StatusWord
         /// <inheritdoc />
         public void ReadXml(XmlReader reader)
         {
-            _sw1 = reader.GetAttribute("value").FromHexa()[0];
+            Sw1 = reader.GetAttribute("value").FromHexa()[0];
             reader.ReadStartElement();
             var serializer = new XmlSerializer(typeof(StatusWordLow));
             while (reader.NodeType != XmlNodeType.EndElement)
@@ -91,7 +73,7 @@ namespace WSCT.ISO7816.StatusWord
                 {
                     case XmlNodeType.Element:
                         var sw2 = (StatusWordLow)serializer.Deserialize(reader);
-                        _sw2List.Add(sw2);
+                        Sw2List.Add(sw2);
                         break;
                     case XmlNodeType.Comment:
                         reader.Read();
@@ -104,9 +86,9 @@ namespace WSCT.ISO7816.StatusWord
         /// <inheritdoc />
         public void WriteXml(XmlWriter writer)
         {
-            writer.WriteAttributeString("value", String.Format("{0:X2}", _sw1));
+            writer.WriteAttributeString("value", String.Format("{0:X2}", Sw1));
             var serializer = new XmlSerializer(typeof(StatusWordLow));
-            foreach (var sw2 in _sw2List)
+            foreach (var sw2 in Sw2List)
             {
                 serializer.Serialize(writer, sw2);
             }

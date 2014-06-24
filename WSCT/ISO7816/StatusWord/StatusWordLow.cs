@@ -47,13 +47,13 @@ namespace WSCT.ISO7816.StatusWord
         #region >> Methods
 
         /// <summary>
-        /// 
+        /// Informs if <paramref name="sw2"/> is in range <see cref="From"/> - <see cref="To"/>.
         /// </summary>
         /// <param name="sw2"></param>
         /// <returns></returns>
         public bool Contains(byte sw2)
         {
-            return ((From <= sw2) && (sw2 <= To));
+            return (From <= sw2) && (sw2 <= To);
         }
 
         #endregion

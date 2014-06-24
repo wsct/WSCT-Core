@@ -40,6 +40,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISO7816\AnswerToReset\InterfaceId.cs" />
+    <Compile Include="ISO7816\AnswerToReset\MalformedAtrException.cs" />
     <Compile Include="Linq\CardChannelExtension.cs" />
     <Compile Include="Linq\CardContextStackExtension.cs" />
     <Compile Include="Linq\CardChannelStackExtension.cs" />
@@ -79,7 +81,7 @@
     <Compile Include="Core\ICardChannelObservable.cs" />
     <Compile Include="Core\ICardContext.cs" />
     <Compile Include="Core\ICardContextObservable.cs" />
-    <Compile Include="ISO7816\AnswerToReset\ATR.cs" />
+    <Compile Include="ISO7816\AnswerToReset\Atr.cs" />
     <Compile Include="ISO7816\AnswerToReset\InterfaceByte.cs" />
     <Compile Include="ISO7816\AnswerToReset\TSCharacter.cs" />
     <Compile Include="ISO7816\CardChannelIso7816.cs" />

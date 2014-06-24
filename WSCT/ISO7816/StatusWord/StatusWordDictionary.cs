@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace WSCT.ISO7816.StatusWord
@@ -11,7 +13,7 @@ namespace WSCT.ISO7816.StatusWord
     {
         #region >> Fields
 
-        private List<StatusWordHigh> _sw1List;
+        private List<StatusWordHigh> sw1List;
 
         #endregion
 
@@ -23,8 +25,8 @@ namespace WSCT.ISO7816.StatusWord
         [XmlElement("sw1")]
         public List<StatusWordHigh> Sw1List
         {
-            get { return _sw1List; }
-            set { _sw1List = value; }
+            get { return sw1List; }
+            set { sw1List = value; }
         }
 
         #endregion
@@ -32,11 +34,11 @@ namespace WSCT.ISO7816.StatusWord
         #region >> Constructors
 
         /// <summary>
-        /// 
+        /// Initializes a new instance.
         /// </summary>
         public StatusWordDictionary()
         {
-            _sw1List = new List<StatusWordHigh>();
+            sw1List = new List<StatusWordHigh>();
         }
 
         #endregion
@@ -44,23 +46,16 @@ namespace WSCT.ISO7816.StatusWord
         #region >> Members
 
         /// <summary>
-        /// 
+        /// Retrieves the description for status word <paramref name="sw1"/>-<paramref name="sw2"/>.
         /// </summary>
         /// <param name="sw1"></param>
         /// <param name="sw2"></param>
         /// <returns></returns>
         public string GetDescription(byte sw1, byte sw2)
         {
-            var description = "";
-            foreach (var sw1Element in _sw1List)
-            {
-                description = sw1Element.GetDescription(sw1, sw2);
-                if (description != "")
-                {
-                    break;
-                }
-            }
-            return description;
+            var sw1Description = sw1List.FirstOrDefault(d => d.Sw1 == sw1);
+
+            return sw1Description == null ? String.Empty : sw1Description.GetDescription(sw2);
         }
 
         #endregion

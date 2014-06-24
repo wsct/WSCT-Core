@@ -4,12 +4,12 @@
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
 
-[assembly: AssemblyTitle("WSCT Objects")]
-[assembly: AssemblyDescription("Abstraction API for WSCT")]
+[assembly: AssemblyTitle("WSCT API")]
+[assembly: AssemblyDescription("API for WSCT")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Sylvain Vernois")]
-[assembly: AssemblyProduct("WSCT.Stack")]
-[assembly: AssemblyCopyright("Copyright © Sylvain Vernois 2010")]
+[assembly: AssemblyCompany("ENSICAEN / GREYC")]
+[assembly: AssemblyProduct("WSCT")]
+[assembly: AssemblyCopyright("Copyright © ENSICAEN / GREYC 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
