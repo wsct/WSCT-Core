@@ -26,7 +26,7 @@ namespace WSCT.Helpers.Security
         public byte[] D { get; set; }
 
         /// <summary>
-        /// RSA secret prime factor <c>q</c>.
+        /// RSA secret prime factor <c>p</c>.
         /// </summary>
         public byte[] P { get; set; }
 
