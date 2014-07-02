@@ -8,10 +8,6 @@ namespace WSCT.Helpers.BasicEncodingRules
     /// </summary>
     public abstract class AbstractTlvObject : IFormattable
     {
-        #region >> Fields
-
-        #endregion
-
         #region >> Constructors
 
         /// <summary>
@@ -45,32 +41,26 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// <inheritdoc select="param|returns" />
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            if (!String.IsNullOrEmpty(format))
+            if (String.IsNullOrEmpty(format))
             {
-                if (format == "N")
-                {
-                    return TlvDescription.LongName;
-                }
-                if (format == "n")
-                {
-                    return TlvDescription.Name;
-                }
-                if (format == "H")
-                {
-                    return Tlv.Value.ToHexa();
-                }
-                if (format == "s")
-                {
-                    return Tlv.Value.ToAsciiString();
-                }
-                if (format == "tlv")
-                {
-                    return Tlv.ToString();
-                }
-                return String.Empty;
+                return ToString();
             }
 
-            return ToString();
+            switch (format)
+            {
+                case "N":
+                    return TlvDescription.LongName;
+                case "n":
+                    return TlvDescription.Name;
+                case "H":
+                    return Tlv.Value.ToHexa();
+                case "s":
+                    return Tlv.Value.ToAsciiString();
+                case "tlv":
+                    return Tlv.ToString();
+                default:
+                    return ToString();
+            }
         }
 
         /// <summary>
@@ -79,15 +69,15 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// <returns>A string that represents the <see cref="TlvData"/> Object.</returns>
         public override string ToString()
         {
-            if (TlvDescription.Value.Format == "b")
+            switch (TlvDescription.Value.Format)
             {
-                return Tlv.Value.ToHexa();
+                case "b":
+                    return Tlv.Value.ToHexa();
+                case "ans":
+                    return Tlv.Value.ToAsciiString();
+                default:
+                    return base.ToString();
             }
-            if (TlvDescription.Value.Format == "ans")
-            {
-                return Tlv.Value.ToAsciiString();
-            }
-            return base.ToString();
         }
 
         #endregion

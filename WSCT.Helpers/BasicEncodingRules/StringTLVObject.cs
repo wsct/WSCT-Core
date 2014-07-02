@@ -31,9 +31,21 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// <inheritdoc/>
         public override string ToString()
         {
-            return Tlv.Value.ToAsciiString();
+            return Text;
         }
 
         #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Text
+        {
+            get { return Tlv.Value.ToAsciiString(); }
+            set
+            {
+                Tlv.Value = value.FromString();
+            }
+        }
     }
 }

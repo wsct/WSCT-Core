@@ -16,6 +16,23 @@ namespace WSCT.Helpers
         public static Char DefaultSeparator = ' ';
 
         /// <summary>
+        /// Set targeted bits to 0 or 1 in <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="mask">Targeted bits are to be set to 1 in the mask.</param>
+        /// <param name="setBitTo1">Set masked bits to 1 if the value is <c>true</c> or to 0 if <c>false</c>.</param>
+        /// <returns></returns>
+        public static byte SetBits(this byte value, byte mask, bool setBitTo1)
+        {
+            if (setBitTo1)
+            {
+                return (byte)(value | mask);
+            }
+
+            return (byte)(value & (0xFF ^ mask));
+        }
+
+        /// <summary>
         /// Converts a <c>UInt32</c> into a <c>byte[]</c>.
         /// </summary>
         /// <param name="value">Source data to convert.</param>
@@ -97,16 +114,16 @@ namespace WSCT.Helpers
                 bytes = new byte[hexa.Length / 2];
                 for (var index = 0; index < hexa.Length / 2; index++)
                 {
-                    bytes[index] = byte.Parse(hexa.Substring(2 * index, 2), NumberStyles.HexNumber);
+                    bytes[index] = Byte.Parse(hexa.Substring(2 * index, 2), NumberStyles.HexNumber);
                 }
             }
             else
             {
                 bytes = new byte[hexa.Length / 2 + 1];
-                bytes[0] = byte.Parse(hexa.Substring(0, 1), NumberStyles.HexNumber);
+                bytes[0] = Byte.Parse(hexa.Substring(0, 1), NumberStyles.HexNumber);
                 for (var index = 1; index < hexa.Length / 2 + 1; index++)
                 {
-                    bytes[index] = byte.Parse(hexa.Substring(2 * index - 1, 2), NumberStyles.HexNumber);
+                    bytes[index] = Byte.Parse(hexa.Substring(2 * index - 1, 2), NumberStyles.HexNumber);
                 }
             }
 
@@ -428,7 +445,7 @@ namespace WSCT.Helpers
 
             for (var i = 0; i < length; i++)
             {
-                bytes[i] = byte.Parse(bcd[i].ToString());
+                bytes[i] = Byte.Parse(bcd[i].ToString());
             }
 
             return bytes;

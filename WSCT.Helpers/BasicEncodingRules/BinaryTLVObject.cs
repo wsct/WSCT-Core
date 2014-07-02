@@ -1,7 +1,7 @@
 namespace WSCT.Helpers.BasicEncodingRules
 {
     /// <summary>
-    /// Represents a TLV object where the value is binary data
+    /// Represents a TLV object where the value is binary data.
     /// </summary>
     public class BinaryTlvObject : AbstractTlvObject
     {
