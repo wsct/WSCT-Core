@@ -16,11 +16,11 @@ namespace WSCT.Helpers.BasicEncodingRules
     {
         #region >> Fields
 
-        private UInt32 _length;
+        private UInt32 length;
 
-        private List<TlvData> _subFields;
-        private UInt32 _tag;
-        private byte[] _value;
+        private List<TlvData> innerTlvs;
+        private UInt32 tag;
+        private byte[] value;
 
         #endregion
 
@@ -41,9 +41,9 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// </example>
         public TlvData()
         {
-            _subFields = new List<TlvData>();
-            _tag = 0;
-            _length = 0;
+            innerTlvs = new List<TlvData>();
+            tag = 0;
+            length = 0;
         }
 
         /// <summary>
@@ -114,9 +114,9 @@ namespace WSCT.Helpers.BasicEncodingRules
         public TlvData(UInt32 tag, UInt32 length, byte[] value)
             : this()
         {
-            _tag = tag;
-            _length = length;
-            _value = value;
+            this.tag = tag;
+            this.length = length;
+            this.value = value;
         }
 
         /// <summary>
@@ -137,8 +137,8 @@ namespace WSCT.Helpers.BasicEncodingRules
         public TlvData(UInt32 tag, List<TlvData> tlvList)
             : this()
         {
-            _tag = tag;
-            SubFields = tlvList;
+            this.tag = tag;
+            InnerTlvs = tlvList;
         }
 
         #endregion
@@ -151,8 +151,8 @@ namespace WSCT.Helpers.BasicEncodingRules
         [XmlIgnore]
         public UInt32 Tag
         {
-            get { return _tag; }
-            set { _tag = value; }
+            get { return tag; }
+            set { tag = value; }
         }
 
         /// <summary>
@@ -167,13 +167,45 @@ namespace WSCT.Helpers.BasicEncodingRules
                 {
                     return 0x80;
                 }
-                if (_length == 0)
+                if (length == 0)
                 {
-                    _length = (uint)Value.Length;
+                    length = (uint)Value.Length;
                 }
-                return _length;
+                return length;
             }
-            set { _length = value; }
+            set { length = value; }
+        }
+
+        /// <summary>
+        /// Encoded length.
+        /// </summary>
+        [XmlIgnore]
+        public byte[] EncodedLength
+        {
+            get
+            {
+                if (IsLengthUndefined)
+                {
+                    return new byte[] { 0x80 };
+                }
+                if (Length < 0x80)
+                {
+                    return new[] { (byte)Length };
+                }
+                if (Length <= 0xFF)
+                {
+                    return new byte[] { 0x81, (byte)Length };
+                }
+                if (Length <= 0xFFFF)
+                {
+                    return new byte[] { 0x82 }.Concat(Length.ToByteArray(2)).ToArray();
+                }
+                if (Length <= 0xFFFFFF)
+                {
+                    return new byte[] { 0x83 }.Concat(Length.ToByteArray(3)).ToArray();
+                }
+                return new byte[] { 0x84 }.Concat(Length.ToByteArray(4)).ToArray();
+            }
         }
 
         /// <summary>
@@ -184,25 +216,25 @@ namespace WSCT.Helpers.BasicEncodingRules
         {
             get
             {
-                if (_value == null)
+                if (value == null)
                 {
-                    if (IsConstructed() && (_subFields != null))
+                    if (IsConstructed() && (innerTlvs != null))
                     {
-                        _value = new byte[0];
-                        foreach (var tlv in _subFields)
+                        value = new byte[0];
+                        foreach (var tlv in innerTlvs)
                         {
                             var tlvBytes = tlv.ToByteArray();
-                            var oldLength = _value.Length;
-                            Array.Resize(ref _value, oldLength + tlvBytes.Length);
-                            Array.Copy(tlvBytes, 0, _value, oldLength, tlvBytes.Length);
+                            var oldLength = value.Length;
+                            Array.Resize(ref value, oldLength + tlvBytes.Length);
+                            Array.Copy(tlvBytes, 0, value, oldLength, tlvBytes.Length);
                         }
                     }
                     else
                     {
-                        _value = new byte[_length];
+                        value = new byte[length];
                     }
                 }
-                return _value;
+                return value;
             }
             set
             {
@@ -214,15 +246,15 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// <summary>
         /// When constructed, list of all encapsulated <c>TLVData</c> objects
         /// </summary>
-        public List<TlvData> SubFields
+        public List<TlvData> InnerTlvs
         {
-            get { return _subFields; }
+            get { return innerTlvs; }
             set
             {
-                _subFields = value;
+                innerTlvs = value;
                 // Force _value to null and _length to 0 to force next "value" and "length" properties call to be computed again
-                _value = null;
-                _length = 0;
+                this.value = null;
+                length = 0;
             }
         }
 
@@ -260,17 +292,21 @@ namespace WSCT.Helpers.BasicEncodingRules
                 {
                     return 1;
                 }
-                if (Length <= 0xFF)
+                if (Length < 0x80)
                 {
                     return 1;
                 }
-                if (Length <= 0xFFFF)
+                if (Length <= 0xFF)
                 {
                     return 2;
                 }
-                if (Length <= 0xFFFFFF)
+                if (Length <= 0xFFFF)
                 {
                     return 3;
+                }
+                if (Length <= 0xFFFFFF)
+                {
+                    return 4;
                 }
                 return 4;
             }
@@ -294,7 +330,7 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// Returns a byte array containing all bytes from tag to value
         /// </summary>
         /// <returns>byte[] representation of the object</returns>
-        [Obsolete("Use TLVData.toByteArray() instead of this old method")]
+        [Obsolete("Use TLVData.ToByteArray() instead of this old method")]
         public byte[] BuildByteArray()
         {
             return String.Format("{0:T}{0:L}{0:Vh}", this).FromHexa();
@@ -325,7 +361,7 @@ namespace WSCT.Helpers.BasicEncodingRules
                 return true;
             }
 
-            return _subFields.Any(subField => (subField.Tag == tagSearched) || (recursive && subField.HasTag(tagSearched, true)));
+            return innerTlvs.Any(subField => (subField.Tag == tagSearched) || (recursive && subField.HasTag(tagSearched, true)));
         }
 
         /// <summary>
@@ -353,7 +389,7 @@ namespace WSCT.Helpers.BasicEncodingRules
                 return this;
             }
             TlvData found = null;
-            foreach (var subField in _subFields)
+            foreach (var subField in innerTlvs)
             {
                 if ((subField.Tag == tagSearched))
                 {
@@ -398,7 +434,7 @@ namespace WSCT.Helpers.BasicEncodingRules
                 yield return this;
             }
 
-            foreach (var subField in _subFields)
+            foreach (var subField in innerTlvs)
             {
                 if (recursive)
                 {
@@ -419,7 +455,7 @@ namespace WSCT.Helpers.BasicEncodingRules
         {
             yield return this;
 
-            foreach (var subField in _subFields)
+            foreach (var subField in innerTlvs)
             {
                 foreach (TlvData subFound in subField.GetTags())
                 {
@@ -434,7 +470,7 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// <returns><c>True</c> if tag is constructed</returns>
         public Boolean IsConstructed()
         {
-            var mostSignificantByte = _tag;
+            var mostSignificantByte = tag;
             while ((mostSignificantByte >> 8) != 0)
             {
                 mostSignificantByte >>= 8;
@@ -486,17 +522,17 @@ namespace WSCT.Helpers.BasicEncodingRules
         {
             if (data[offset] < 0x80)
             {
-                _length = data[offset];
+                length = data[offset];
                 offset++;
             }
             else if (data[offset] > 0x80)
             {
                 var size = data[offset] - (uint)0x80;
                 offset++;
-                _length = 0;
+                length = 0;
                 for (var i = 0; i < size; i++)
                 {
-                    _length = _length * 0x100 + data[offset + i];
+                    length = length * 0x100 + data[offset + i];
                 }
                 offset += size;
             }
@@ -517,14 +553,14 @@ namespace WSCT.Helpers.BasicEncodingRules
         {
             if ((data[offset] & 0x1F) == 0x1F)
             {
-                _tag = data[offset];
+                tag = data[offset];
                 offset++;
-                _tag = 0x100 * _tag + data[offset];
+                tag = 0x100 * tag + data[offset];
                 offset++;
             }
             else
             {
-                _tag = data[offset];
+                tag = data[offset];
                 offset++;
             }
             return offset;
@@ -553,28 +589,28 @@ namespace WSCT.Helpers.BasicEncodingRules
                     {
                         var subData = new TlvData();
                         offsetValue = (int)subData.Parse(tempValue, (uint)offsetValue);
-                        _subFields.Add(subData);
+                        innerTlvs.Add(subData);
                         condition = (offsetValue < tempValue.Length) && (subData.Tag != 0x00 || subData.Length != 0x00);
                     }
-                    _value = new byte[offsetValue + 1];
-                    Array.Copy(data, (int)offset, _value, 0, offsetValue + 1);
+                    value = new byte[offsetValue + 1];
+                    Array.Copy(data, (int)offset, value, 0, offsetValue + 1);
                     offset += (uint)(offsetValue + 1);
                 }
                 else
                 {
                     // Value is delimited by length field
-                    _value = new byte[_length];
-                    Array.Copy(data, (int)offset, _value, 0, (int)_length);
-                    offset += _length;
+                    value = new byte[length];
+                    Array.Copy(data, (int)offset, value, 0, (int)length);
+                    offset += length;
 
                     uint offsetValue = 0;
-                    while (offsetValue < _length)
+                    while (offsetValue < length)
                     {
                         var subData = new TlvData();
-                        offsetValue = subData.Parse(_value, offsetValue);
-                        _subFields.Add(subData);
+                        offsetValue = subData.Parse(value, offsetValue);
+                        innerTlvs.Add(subData);
                         // Skip padding '00'
-                        while (offsetValue < _length && _value[offsetValue] == 0x00)
+                        while (offsetValue < length && value[offsetValue] == 0x00)
                         {
                             offsetValue++;
                         }
@@ -583,9 +619,9 @@ namespace WSCT.Helpers.BasicEncodingRules
             }
             else
             {
-                _value = new byte[_length];
-                Array.Copy(data, (int)offset, _value, 0, (int)_length);
-                offset += _length;
+                value = new byte[length];
+                Array.Copy(data, (int)offset, value, 0, (int)length);
+                offset += length;
             }
 
             return offset;
@@ -604,7 +640,7 @@ namespace WSCT.Helpers.BasicEncodingRules
             var byteArray = new byte[lenT + lenL + lenV];
 
             Array.Copy(Tag.ToByteArray(lenT), byteArray, lenT);
-            Array.Copy(Length.ToByteArray(lenL), 0, byteArray, lenT, lenL);
+            Array.Copy(EncodedLength, 0, byteArray, lenT, lenL);
             Array.Copy(Value, 0, byteArray, lenT + lenL, lenV);
 
             return byteArray;
@@ -644,21 +680,31 @@ namespace WSCT.Helpers.BasicEncodingRules
             {
                 case "T":
                     var tagFormatter = "{0:X" + 2 * LengthOfT + "}";
-                    return String.Format(tagFormatter, _tag);
+                    return String.Format(tagFormatter, tag);
                 case "L":
                     var lengthFormatter = "{0:X" + 2 * LengthOfL + "}";
-                    return String.Format(lengthFormatter, _length);
+                    return String.Format(lengthFormatter, length);
                 case "V":
                     if (IsConstructed())
                     {
-                        return _subFields.Aggregate(String.Empty, (current, subField) => current + String.Format("( {0} )", subField));
+                        return innerTlvs.Aggregate(String.Empty, (current, subField) => current + String.Format("( {0} )", subField));
                     }
-                    return _value.ToHexa();
+                    return value.ToHexa();
                 case "Vh":
                     return Value.ToHexa();
                 default:
                     return String.Format("T:{0:T} L:{0:L} V:{0:V}", this);
             }
+        }
+
+        #endregion
+
+        #region >> Object
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return String.Format("{0}", this);
         }
 
         #endregion
@@ -696,9 +742,9 @@ namespace WSCT.Helpers.BasicEncodingRules
             {
                 // <tlvData tag=... > ... </tlvData>
                 reader.ReadStartElement();
-                _value = null;
-                _length = 0;
-                _subFields = new List<TlvData>();
+                value = null;
+                length = 0;
+                innerTlvs = new List<TlvData>();
                 var serializer = new XmlSerializer(typeof(TlvData));
                 while (reader.NodeType != XmlNodeType.EndElement)
                 {
@@ -706,7 +752,7 @@ namespace WSCT.Helpers.BasicEncodingRules
                     {
                         case XmlNodeType.Element:
                             var tlv = (TlvData)serializer.Deserialize(reader);
-                            SubFields.Add(tlv);
+                            InnerTlvs.Add(tlv);
                             break;
                         case XmlNodeType.Comment:
                             reader.Read();
@@ -724,7 +770,7 @@ namespace WSCT.Helpers.BasicEncodingRules
             if (IsConstructed())
             {
                 var serializer = new XmlSerializer(typeof(TlvData));
-                foreach (var tlv in SubFields)
+                foreach (var tlv in InnerTlvs)
                 {
                     serializer.Serialize(writer, tlv);
                 }
