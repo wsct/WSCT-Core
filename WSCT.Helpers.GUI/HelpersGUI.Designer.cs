@@ -292,6 +292,7 @@
             this.textSource.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.textSource.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textSource.Location = new System.Drawing.Point(3, 25);
             this.textSource.Multiline = true;
             this.textSource.Name = "textSource";
@@ -305,12 +306,13 @@
             this.textTarget.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.textTarget.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textTarget.Location = new System.Drawing.Point(3, 16);
             this.textTarget.Multiline = true;
             this.textTarget.Name = "textTarget";
             this.textTarget.ReadOnly = true;
             this.textTarget.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textTarget.Size = new System.Drawing.Size(493, 252);
+            this.textTarget.Size = new System.Drawing.Size(493, 248);
             this.textTarget.TabIndex = 1;
             this.textTarget.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textTarget_KeyDown);
             // 
