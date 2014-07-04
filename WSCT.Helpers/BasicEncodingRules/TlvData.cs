@@ -682,8 +682,7 @@ namespace WSCT.Helpers.BasicEncodingRules
                     var tagFormatter = "{0:X" + 2 * LengthOfT + "}";
                     return String.Format(tagFormatter, tag);
                 case "L":
-                    var lengthFormatter = "{0:X" + 2 * LengthOfL + "}";
-                    return String.Format(lengthFormatter, length);
+                    return EncodedLength.ToHexa('\0');
                 case "V":
                     if (IsConstructed())
                     {

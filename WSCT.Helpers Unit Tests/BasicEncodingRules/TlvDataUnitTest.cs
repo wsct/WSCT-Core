@@ -40,6 +40,7 @@ namespace WSCT.Helpers.BasicEncodingRules
             Assert.AreEqual(0x80, tlv.Length);
             Assert.AreEqual(0, tlv.InnerTlvs.Count);
             Assert.AreEqual(data, tlv.ToByteArray().ToHexa());
+            Assert.AreEqual("T:88 L:8180 V:" + new Byte[0x80].ToHexa(), String.Format("{0}", tlv));
         }
 
         [Test]

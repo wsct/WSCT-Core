@@ -18,6 +18,8 @@ namespace WSCT.Helpers.GUI
         public HelpersGui()
         {
             InitializeComponent();
+
+            Desktop.RegisterPcl.Register();
         }
 
         private void ConvertAndOutput(Func<string> conversion)

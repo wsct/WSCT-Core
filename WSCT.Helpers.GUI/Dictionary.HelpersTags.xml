@@ -15,7 +15,7 @@
   </tlvDesc>
   <tlvDesc hexaValue="5A" name="PAN" longName="Application Primary Account Number" source="ICC">
     <value format="cn" maxSize="10" />
-    <className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
+    <className>WSCT.Helpers.BasicEncodingRules.BcdTlvObject</className>
   </tlvDesc>
   <tlvDesc hexaValue="5F20" name="Cardholder" longName="Cardholder Name" source="ICC">
     <value format="ans" minSize="2" maxSize="26" />
@@ -23,19 +23,21 @@
   </tlvDesc>
   <tlvDesc hexaValue="5F24" name="Expiration" longName="Application Expiration Date" source="ICC">
     <value format="n" size="6" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Tags.DateFormattedTag</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="5F25" name="Effective" longName="Application Effective Date" source="ICC">
     <value format="n" size="6" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Tags.DateFormattedTag</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="5F28" name="Country" longName="Issuer Country Code" source="ICC">
     <value format="n" size="3" />
-    <className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
+    <className>WSCT.Helpers.BasicEncodingRules.BcdTlvObject</className>
   </tlvDesc>
   <tlvDesc hexaValue="5F2A" name="Currency" longName="Transaction Currency Code" source="Terminal">
     <value format="n" size="3" />
-    <className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
+    <className>WSCT.Helpers.BasicEncodingRules.BcdTlvObject</className>
   </tlvDesc>
   <tlvDesc hexaValue="5F2D" name="Lang Pref" longName="Language Preference" source="ICC">
     <value format="an" minSize="2" maxSize="8" />
@@ -43,7 +45,7 @@
   </tlvDesc>
   <tlvDesc hexaValue="5F30" name="Service" longName="Service Code" source="ICC">
     <value format="n" size="3" />
-    <className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
+    <className>WSCT.Helpers.BasicEncodingRules.BcdTlvObject</className>
   </tlvDesc>
   <tlvDesc hexaValue="5F34" name="PAN Seq" longName="Application Primary Account Number Sequence Number" source="ICC">
     <value format="n" size="2" />
@@ -51,11 +53,13 @@
   </tlvDesc>
   <tlvDesc hexaValue="61" name="App Template" longName="Application Template" source="ICC">
     <value format="b" maxSize="252" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Objects.ApplicationTemplate</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="6F" name="FCI Template" longName="File Control Information Template" source="ICC">
     <value format="b" maxSize="252" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Objects.FileControlInformationTemplate</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="70" name="Record" longName="Record Template" source="ICC">
     <value format="b" maxSize="252" />
@@ -71,7 +75,8 @@
   </tlvDesc>
   <tlvDesc hexaValue="82" name="AIP" longName="ApplicationInterchangeProfile" source="ICC">
     <value format="b" size="2" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Objects.ApplicationInterchangeProfile</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="83" name="CmdTemp" longName="Command Template" source="Terminal">
     <value format="b" />
@@ -87,19 +92,23 @@
   </tlvDesc>
   <tlvDesc hexaValue="88" name="SFI" longName="Short File Identifier" source="ICC">
     <value format="b" size="1" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Objects.ShortFileIdentifier</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="8C" name="CDOL1" longName="Card Risk Management Data Object List 1" source="ICC">
     <value format="b" maxSize="252" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Objects.DataObjectList</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="8D" name="CDOL2" longName="Card Risk Management Data Object List 2" source="ICC">
     <value format="b" maxSize="252" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Objects.DataObjectList</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="8E" name="CVM List" longName="Cardholder Verification Method List" source="ICC">
     <value format="b" maxSize="252" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Objects.CardholderVerificationMethodList</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="8F" name="CA PKI" longName="Certification Authority Public Key Index" source="ICC">
     <value format="b" size="1" />
@@ -119,7 +128,8 @@
   </tlvDesc>
   <tlvDesc hexaValue="94" name="AFL" longName="ApplicationFileLocator" source="ICC">
     <value format="b" maxSize="252" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Objects.ApplicationFileLocator</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="95" name="TVR" longName="Terminal Verification Results" source="Terminal">
     <value format="b" size="5" />
@@ -127,7 +137,8 @@
   </tlvDesc>
   <tlvDesc hexaValue="97" name="TDOL" longName="Transaction Certificate Data Object List" source="ICC">
     <value format="b" maxSize="252" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Objects.DataObjectList</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="98" name="TC" longName="Transaction Certificate (TC) Hash Value" source="Terminal">
     <value format="b" size="20" />
@@ -135,7 +146,8 @@
   </tlvDesc>
   <tlvDesc hexaValue="9A" name="Date" longName="Transaction Date" source="Terminal">
     <value format="n" size="6" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Tags.DateFormattedTag</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="9B" name="TSI" longName="Transaction Status Information" source="Terminal">
     <value format="b" size="2" />
@@ -147,11 +159,11 @@
   </tlvDesc>
   <tlvDesc hexaValue="9F02" name="AmountAuth" longName="Amount, Authorised" source="Terminal">
     <value format="n" size="12" />
-    <className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
+    <className>WSCT.Helpers.BasicEncodingRules.BcdTlvObject</className>
   </tlvDesc>
   <tlvDesc hexaValue="9F03" name="AmountOther" longName="Amount, Other" source="Terminal">
     <value format="n" size="12" />
-    <className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
+    <className>WSCT.Helpers.BasicEncodingRules.BcdTlvObject</className>
   </tlvDesc>
   <tlvDesc hexaValue="9F04" name="AmountOtherBin" longName="Amount, Other (Binary)" source="Terminal">
     <value format="b" size="4" />
@@ -167,7 +179,8 @@
   </tlvDesc>
   <tlvDesc hexaValue="9F07" name="AUC" longName="Application Usage Control" source="ICC">
     <value format="b" size="2" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Objects.ApplicationUsageControl</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="9F08" name="AVN" longName="Application Version Number" source="ICC">
     <value format="b" size="2" />
@@ -183,15 +196,18 @@
   </tlvDesc>
   <tlvDesc hexaValue="9F0D" name="IAC Default" longName="Issuer Action Code - Default" source="ICC">
     <value format="b" size="5" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Objects.TerminalVerificationResult</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="9F0E" name="IAC Denial" longName="Issuer Action Code - Denial" source="ICC">
     <value format="b" size="5" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Objects.TerminalVerificationResult</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="9F0F" name="IAC Online" longName="Issuer Action Code - Online" source="ICC">
     <value format="b" size="5" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Objects.TerminalVerificationResult</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="9F10" name="IssAD" longName="Issuer Application Data" source="ICC">
     <value format="b" maxSize="32" />
@@ -219,7 +235,7 @@
   </tlvDesc>
   <tlvDesc hexaValue="9F1A" name="Country" longName="Terminal Country Code" source="Terminal">
     <value format="n" size="3" />
-    <className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
+    <className>WSCT.Helpers.BasicEncodingRules.BcdTlvObject</className>
   </tlvDesc>
   <tlvDesc hexaValue="9F1F" name="Track1Disc" longName="Track 1 Discretionary Data" source="ICC">
     <value format="ans" />
@@ -251,11 +267,12 @@
   </tlvDesc>
   <tlvDesc hexaValue="9F38" name="PDOL" longName="Processing Options Data Object List" source="ICC">
     <value format="b" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Objects.DataObjectList</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="9F42" name="AppCurrency" longName="Application Currency Code" source="ICC">
     <value format="n" size="3" />
-    <className>WSCT.Helpers.BasicEncodingRules.BCDTlvObject</className>
+    <className>WSCT.Helpers.BasicEncodingRules.BcdTlvObject</className>
   </tlvDesc>
   <tlvDesc hexaValue="9F44" name="Currency Exp" longName="Application Currency Exponent" source="ICC">
     <value format="n" size="1" />
@@ -279,9 +296,10 @@
   </tlvDesc>
   <tlvDesc hexaValue="9F49" name="DDOL" longName="Dynamic Data Authentication Data Object List" source="ICC">
     <value format="b" maxSize="252" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Objects.DataObjectList</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
-  <tlvDesc hexaValue="9F4A" name="SDTL" longName="Static Data Authentication tlvDesc  List" source="ICC">
+  <tlvDesc hexaValue="9F4A" name="SDTL" longName="Static Data Authentication Tag List" source="ICC">
     <value format="b" />
     <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
   </tlvDesc>
@@ -295,19 +313,23 @@
   </tlvDesc>
   <tlvDesc hexaValue="9F4D" name="LogEntry" longName="Log Entry" source="ICC">
     <value format="b" size="2" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Objects.LogEntry</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="9F4F" name="Log" longName="Log Format" source="ICC">
     <value format="b" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Objects.DataObjectList</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="A5" name="FCI Prop" longName="File Control Information Proprietary Template" source="ICC">
     <value format="b" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Objects.FileControlInformationProprietary</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
   <tlvDesc hexaValue="BF0C" name="FCI Issuer" longName="File Control Information Issuer Discretionary Data"
            source="ICC">
     <value format="b" maxSize="252" />
-    <className>WSCT.Helpers.BasicEncodingRules.BinaryTlvObject</className>
+    <className>WSCT.EMV.Objects.FileControlInformationIssuer</className>
+    <dll>WSCT.EMV.dll</dll>
   </tlvDesc>
 </TlvDictionary>

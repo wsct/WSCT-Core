@@ -80,10 +80,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Dictionary.HelpersTags.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WSCT.Helpers.Desktop\WSCT.Helpers.Desktop.csproj">
+      <Project>{a3eef6f2-8509-4eb2-a8b3-b31786ebb248}</Project>
+      <Name>WSCT.Helpers.Desktop</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WSCT.Helpers\WSCT.Helpers.csproj">
       <Project>{b95b0e58-9296-4a15-aa69-10a7b6dc2267}</Project>
       <Name>WSCT.Helpers</Name>
