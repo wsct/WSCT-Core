@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="ISO7816\AnswerToReset\InterfaceId.cs" />
     <Compile Include="ISO7816\AnswerToReset\MalformedAtrException.cs" />
+    <Compile Include="ISO7816\Commands\GetDataCommand.cs" />
     <Compile Include="Linq\CardChannelExtension.cs" />
     <Compile Include="Linq\CardContextStackExtension.cs" />
     <Compile Include="Linq\CardChannelStackExtension.cs" />
