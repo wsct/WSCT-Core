@@ -7,6 +7,7 @@ namespace WSCT.Helpers.Desktop
         public static void Register()
         {
             PortableInjector.Register<IPortableFile>(new PortableFile());
+            PortableInjector.Register<IPortableEncoding>(new PortableEncoding());
         }
     }
 }

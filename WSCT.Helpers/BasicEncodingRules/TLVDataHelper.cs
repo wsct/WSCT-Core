@@ -153,6 +153,68 @@ namespace WSCT.Helpers.BasicEncodingRules
             return xmlNode;
         }
 
+        /// <summary>
+        /// Returns the encoded "L" field of a TLV object given data length value.
+        /// </summary>
+        /// <param name="length"></param>
+        /// <param name="isLengthUndefined"></param>
+        /// <returns></returns>
+        public static byte[] ToBerEncodedL(uint length, bool isLengthUndefined = false)
+        {
+            if (isLengthUndefined)
+            {
+                return new byte[] { 0x80 };
+            }
+            if (length < 0x80)
+            {
+                return new[] { (byte)length };
+            }
+            if (length <= 0xFF)
+            {
+                return new byte[] { 0x81, (byte)length };
+            }
+            if (length <= 0xFFFF)
+            {
+                return new byte[] { 0x82 }.Concat(length.ToByteArray(2)).ToArray();
+            }
+            if (length <= 0xFFFFFF)
+            {
+                return new byte[] { 0x83 }.Concat(length.ToByteArray(3)).ToArray();
+            }
+            return new byte[] { 0x84 }.Concat(length.ToByteArray(4)).ToArray();
+        }
+
+        /// <summary>
+        /// Returns the encoded length "L" of a TLV object given data length value.
+        /// </summary>
+        /// <param name="length"></param>
+        /// <param name="isLengthUndefined"></param>
+        /// <returns></returns>
+        public static uint ToLengthOfBerEncodedL(uint length, bool isLengthUndefined = false)
+        {
+            if (isLengthUndefined)
+            {
+                return 1;
+            }
+            if (length < 0x80)
+            {
+                return 1;
+            }
+            if (length <= 0xFF)
+            {
+                return 2;
+            }
+            if (length <= 0xFFFF)
+            {
+                return 3;
+            }
+            if (length <= 0xFFFFFF)
+            {
+                return 4;
+            }
+            return 4;
+        }
+
         #region >> Private Methods
 
         private static void InsertDictionaryInformation(XElement xmlNode, TlvDictionary dictionary)
@@ -174,5 +236,6 @@ namespace WSCT.Helpers.BasicEncodingRules
         }
 
         #endregion
+
     }
 }

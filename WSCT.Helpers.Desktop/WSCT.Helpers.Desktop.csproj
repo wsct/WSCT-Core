@@ -34,6 +34,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PortableEncoding.cs" />
     <Compile Include="RegisterPcl.cs" />
     <Compile Include="PortableFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

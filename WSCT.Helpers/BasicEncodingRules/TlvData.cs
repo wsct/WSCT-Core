@@ -184,27 +184,7 @@ namespace WSCT.Helpers.BasicEncodingRules
         {
             get
             {
-                if (IsLengthUndefined)
-                {
-                    return new byte[] { 0x80 };
-                }
-                if (Length < 0x80)
-                {
-                    return new[] { (byte)Length };
-                }
-                if (Length <= 0xFF)
-                {
-                    return new byte[] { 0x81, (byte)Length };
-                }
-                if (Length <= 0xFFFF)
-                {
-                    return new byte[] { 0x82 }.Concat(Length.ToByteArray(2)).ToArray();
-                }
-                if (Length <= 0xFFFFFF)
-                {
-                    return new byte[] { 0x83 }.Concat(Length.ToByteArray(3)).ToArray();
-                }
-                return new byte[] { 0x84 }.Concat(Length.ToByteArray(4)).ToArray();
+                return TlvDataHelper.ToBerEncodedL(Length, IsLengthUndefined);
             }
         }
 
@@ -288,27 +268,7 @@ namespace WSCT.Helpers.BasicEncodingRules
         {
             get
             {
-                if (IsLengthUndefined)
-                {
-                    return 1;
-                }
-                if (Length < 0x80)
-                {
-                    return 1;
-                }
-                if (Length <= 0xFF)
-                {
-                    return 2;
-                }
-                if (Length <= 0xFFFF)
-                {
-                    return 3;
-                }
-                if (Length <= 0xFFFFFF)
-                {
-                    return 4;
-                }
-                return 4;
+                return TlvDataHelper.ToLengthOfBerEncodedL(Length, IsLengthUndefined);
             }
         }
 
