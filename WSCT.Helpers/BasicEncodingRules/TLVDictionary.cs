@@ -68,26 +68,20 @@ namespace WSCT.Helpers.BasicEncodingRules
         /// <returns>A newly instance of the description class for the tlv</returns>
         public AbstractTlvObject CreateInstance(TlvData tlv)
         {
-            AbstractTlvObject tag;
-            TlvDescription desc;
-            if (tlv.Tag < 0x100)
+            if (tlv == null)
             {
-                desc = Get(String.Format("{0:X2}", tlv.Tag));
+                return null;
             }
-            else
-            {
-                desc = Get(String.Format("{0:X4}", tlv.Tag));
-            }
+
+            var desc = Get(tlv.Tag < 0x100 ? String.Format("{0:X2}", tlv.Tag) : String.Format("{0:X4}", tlv.Tag));
             if (desc == null)
             {
-                tag = null;
+                return null;
             }
-            else
-            {
-                tag = CreateInstance(desc);
-                tag.Tlv = tlv;
-                tag.TlvDescription = desc;
-            }
+
+            var tag = CreateInstance(desc);
+            tag.Tlv = tlv;
+            tag.TlvDescription = desc;
             return tag;
         }
 
