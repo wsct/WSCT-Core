@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace WSCT.Helpers.BasicEncodingRules
 {
@@ -55,6 +57,21 @@ namespace WSCT.Helpers.BasicEncodingRules
         public static TlvData ToTlvData(this string buffer)
         {
             return new TlvData(buffer);
+        }
+
+        public static List<TlvData> ToTlvDataArray(this string buffer)
+        {
+            var sequence = new List<TlvData>();
+            var from = 0;
+            do
+            {
+                var tlv = new TlvData(buffer.Substring(from));
+                sequence.Add(tlv);
+                from += 2 * (int)(tlv.LengthOfT + tlv.EncodedLength.Length + tlv.Value.Length);
+            }
+            while (from < buffer.Length);
+
+            return sequence;
         }
 
         /// <summary>
@@ -109,6 +126,17 @@ namespace WSCT.Helpers.BasicEncodingRules
             var xsns = new XmlSerializerNamespaces();
             xsns.Add("", "");
             xs.Serialize(sw, tlv, xsns);
+            return sw.ToString();
+        }
+
+        public static string ToXmlString(this IEnumerable<TlvData> tlvSequence)
+        {
+            var xmlRoot = new XmlRootAttribute("TlvDataSequence");
+            var xs = new XmlSerializer(typeof(TlvData[]), xmlRoot);
+            var sw = new StringWriter();
+            var xsns = new XmlSerializerNamespaces();
+            xsns.Add("", "");
+            xs.Serialize(sw, tlvSequence.ToArray(), xsns);
             return sw.ToString();
         }
 

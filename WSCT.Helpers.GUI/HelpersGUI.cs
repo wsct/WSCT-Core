@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using WSCT.Helpers.BasicEncodingRules;
@@ -70,16 +72,16 @@ namespace WSCT.Helpers.GUI
 
         private void buttonTlvToXml_Click(object sender, EventArgs e)
         {
-            TlvData tlv = null;
+            List<TlvData> tlvSequence = null;
 
-            var isDone = TryAndOutput(() => tlv = textSource.Text.Replace("\r\n", "").ToTlvData());
+            var isDone = TryAndOutput(() => tlvSequence = textSource.Text.Replace("\r\n", "").ToTlvDataArray());
 
             if (!isDone)
             {
                 return;
             }
 
-            ConvertAndOutput(() => tlv.ToXmlString());
+            ConvertAndOutput(() => tlvSequence.Count == 1 ? tlvSequence.First().ToXmlString() : tlvSequence.ToXmlString());
         }
 
         private void buttonXmlToTlv_Click(object sender, EventArgs e)
@@ -102,9 +104,9 @@ namespace WSCT.Helpers.GUI
 
         private void buttonAnalyzeTLV_Click(object sender, EventArgs e)
         {
-            TlvData tlv = null;
+            IEnumerable<TlvData> tlvSequence = null;
 
-            var isDone = TryAndOutput(() => tlv = textSource.Text.Replace(Environment.NewLine, String.Empty).ToTlvData());
+            var isDone = TryAndOutput(() => tlvSequence = textSource.Text.Replace(Environment.NewLine, String.Empty).ToTlvDataArray());
 
             if (!isDone)
             {
@@ -115,18 +117,22 @@ namespace WSCT.Helpers.GUI
             {
                 var text = String.Empty;
                 var tagsManager = SerializedObject<TlvDictionary>.LoadFromXml(@"Dictionary.HelpersTags.xml");
-                foreach (TlvData tlvData in tlv.GetTags())
+                foreach (var tlv in tlvSequence)
                 {
-                    var tagObject = tagsManager.CreateInstance(tlvData);
-                    if (tagObject != null)
+                    foreach (TlvData tlvData in tlv.GetTags())
                     {
-                        text += String.Format("{0:N} ({1:T}): {0}\r\n", tagObject, tlvData);
-                    }
-                    else
-                    {
-                        text += String.Format("! Unknow tlvDesc {0:T}: {0:V}\r\n", tlvData);
+                        var tagObject = tagsManager.CreateInstance(tlvData);
+                        if (tagObject != null)
+                        {
+                            text += $"{tagObject:N} ({tlvData:T}): {tagObject}\r\n";
+                        }
+                        else
+                        {
+                            text += $"! Unknown tlvDesc {tlvData:T}: {tlvData:V}\r\n";
+                        }
                     }
                 }
+
                 return text;
             });
         }
