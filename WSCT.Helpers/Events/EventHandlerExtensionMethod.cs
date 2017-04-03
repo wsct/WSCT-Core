@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace WSCT.Helpers.Events
 {
@@ -9,6 +10,7 @@ namespace WSCT.Helpers.Events
         /// </summary>
         /// <param name="handler">Event handler to raise.</param>
         /// <param name="sender"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Raise(this EventHandler handler, object sender)
         {
             if (handler != null)
@@ -24,6 +26,7 @@ namespace WSCT.Helpers.Events
         /// <param name="handler">Event handler to raise.</param>
         /// <param name="sender"></param>
         /// <param name="args"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Raise<T>(this EventHandler<T> handler, object sender, T args) where T : EventArgs
         {
             if (handler != null)

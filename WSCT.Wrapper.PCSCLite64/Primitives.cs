@@ -434,7 +434,7 @@ namespace WSCT.Wrapper.PCSCLite64
             else
             {
                 var readerStr = Marshal.PtrToStringAuto(zReaderNamePtr, (int)zReaderNameSize - 2);
-                readerName = readerStr.Split(new[] { '\0' })[0];
+                readerName = readerStr.Split('\0')[0];
             }
             if (atrPtr == IntPtr.Zero)
             {

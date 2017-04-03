@@ -53,6 +53,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BasicEncodingRules\TlvDataUnitTest.cs" />
+    <Compile Include="BytesHelpersUnitTest.cs" />
     <Compile Include="Linq\EnumerableUnitTest.cs" />
     <Compile Include="Security\Ssh1PublicKeyBodyUnitTest.cs" />
     <Compile Include="Security\PuTTyPrivateKeyBodyUnitTest.cs" />

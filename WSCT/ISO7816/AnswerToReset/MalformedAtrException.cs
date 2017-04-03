@@ -4,7 +4,7 @@ namespace WSCT.ISO7816.AnswerToReset
 {
     public class MalformedAtrException : Exception
     {
-        public InterfaceId? ByteId = null;
+        public InterfaceId? ByteId;
 
         #region >> Constructors
 

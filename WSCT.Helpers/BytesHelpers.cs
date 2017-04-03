@@ -46,11 +46,7 @@ namespace WSCT.Helpers
         /// </example>
         public static byte[] ToByteArray(this byte value)
         {
-            var byteArray = new byte[1];
-
-            byteArray[0] = value;
-
-            return byteArray;
+            return new[] { value };
         }
 
         /// <summary>

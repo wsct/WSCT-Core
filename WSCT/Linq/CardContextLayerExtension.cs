@@ -28,10 +28,7 @@ namespace WSCT.Linq
         /// <returns></returns>
         public static IEnumerable<ICardContextLayerObservable> ToObservableLayers(this IEnumerable<ICardContextLayer> layers)
         {
-            foreach (var layer in layers)
-            {
-                yield return layer.ToObservableLayer();
-            }
+            return layers.Select(layer => layer.ToObservableLayer());
         }
     }
 }

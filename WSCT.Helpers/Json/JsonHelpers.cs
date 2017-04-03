@@ -50,7 +50,7 @@ namespace WSCT.Helpers.Json
         /// <typeparam name="T">Target instance type.</typeparam>
         /// <param name="json">JSON source string.</param>
         /// <returns>A new instance of <typeparamref Name="T"/> read from <paramref Name="json"/>.</returns>
-        public static T CreateFromJsonString<T>(this String json)
+        public static T CreateFromJsonString<T>(this string json)
         {
             T data;
 
@@ -68,7 +68,7 @@ namespace WSCT.Helpers.Json
         /// <typeparam name="T">Target instance type.</typeparam>
         /// <param name="fileName">JSON source path and filename.</param>
         /// <returns>A new instance of <typeparamref Name="T"/> read from <paramref Name="fileName"/>.</returns>
-        public static T CreateFromJsonFile<T>(this String fileName)
+        public static T CreateFromJsonFile<T>(this string fileName)
         {
             T data;
             using (var fileStream = PortableFile.Open(fileName, PortableFileMode.Open))
@@ -84,7 +84,7 @@ namespace WSCT.Helpers.Json
         /// </summary>
         /// <param name="instance"></param>
         /// <param name="fileName"></param>
-        public static void WriteToJsonFile(this Object instance, String fileName)
+        public static void WriteToJsonFile(this Object instance, string fileName)
         {
             instance.WriteToJsonFile(fileName, false);
         }
@@ -95,7 +95,7 @@ namespace WSCT.Helpers.Json
         /// <param name="instance"></param>
         /// <param name="fileName"></param>
         /// <param name="indented"></param>
-        public static void WriteToJsonFile(this Object instance, String fileName, bool indented)
+        public static void WriteToJsonFile(this Object instance, string fileName, bool indented)
         {
             var formatting = (indented ? Formatting.Indented : Formatting.None);
 
