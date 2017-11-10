@@ -1,8 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{154B5E16-0E3E-41ED-BF08-60C20546107F}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Helpers", "WSCT.Helpers\WSCT.Helpers.csproj", "{B95B0E58-9296-4A15-AA69-10A7B6DC2267}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Helpers.GUI", "WSCT.Helpers.GUI\WSCT.Helpers.GUI.csproj", "{3CE1516F-CF54-4D3E-919D-2DA4638552CC}"
@@ -22,13 +29,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Wrapper.PCSCLite64", "WSCT.Wrapper.PCSCLite64\WSCT.Wrapper.PCSCLite64.csproj", "{796A4CE8-2724-43C9-BCD8-5CFD331AA541}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Wrapper.WinSCard", "WSCT.Wrapper.WinSCard\WSCT.Wrapper.WinSCard.csproj", "{651952E8-6D49-44E6-AB52-3C4BD78255FA}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{154B5E16-0E3E-41ED-BF08-60C20546107F}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT", "WSCT\WSCT.csproj", "{4EABE8DA-0BCB-4BC6-A571-7618AC0EC4B6}"
 EndProject
@@ -95,6 +95,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D14AAFC5-00BD-4164-B3F9-487822F24783}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = WSCT.Core.ConsoleTests\WSCT.Core.ConsoleTests.csproj

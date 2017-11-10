@@ -142,7 +142,7 @@ namespace WSCT.ISO7816.AnswerToReset
 
             AtrBytes = atr.ToArray();
 
-            using (var bytesEnumerator = AtrBytes.AsQueryable().GetEnumerator())
+            using (var bytesEnumerator = AtrBytes.AsEnumerable().GetEnumerator())
             {
                 if (bytesEnumerator.MoveNext() == false)
                 {

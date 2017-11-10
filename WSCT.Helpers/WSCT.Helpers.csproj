@@ -1,85 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B95B0E58-9296-4A15-AA69-10A7B6DC2267}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WSCT.Helpers</RootNamespace>
-    <AssemblyName>WSCT.Helpers</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\WSCT EMV\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <Product>WSCT.Helpers</Product>
+    <Description>Generic helpers classes for WSCT</Description>
+    <Copyright>Copyright © Sylvain Vernois 2006</Copyright>
+    <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <FileVersion>4.0.0.0</FileVersion>
+    <Authors>Sylvain Vernois</Authors>
+    <Company>ENSICAEN</Company>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BasicEncodingRules\AbstractTLVObject.cs" />
-    <Compile Include="BasicEncodingRules\BCDTLVObject.cs" />
-    <Compile Include="BasicEncodingRules\BinaryTLVObject.cs" />
-    <Compile Include="BasicEncodingRules\StringTLVObject.cs" />
-    <Compile Include="BasicEncodingRules\TlvData.cs" />
-    <Compile Include="BasicEncodingRules\TLVDataHelper.cs" />
-    <Compile Include="BasicEncodingRules\TLVDescription.cs" />
-    <Compile Include="BasicEncodingRules\TLVDictionary.cs" />
-    <Compile Include="BytesHelpers.cs" />
-    <Compile Include="Events\EventHandlerExtensionMethod.cs" />
-    <Compile Include="Json\JsonHelpers.cs" />
-    <Compile Include="Linq\Enumerable.cs" />
-    <Compile Include="Portable\IPortableEncoding.cs" />
-    <Compile Include="Portable\PortableEncoding.cs" />
-    <Compile Include="Portable\PortableFile.cs" />
-    <Compile Include="Portable\IPortableFile.cs" />
-    <Compile Include="Portable\PortableFileMode.cs" />
-    <Compile Include="Portable\PortableInjector.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reflection\AssemblyLoader.cs" />
-    <Compile Include="Security\PuTTyPrivateKeyBody.cs" />
-    <Compile Include="Security\Ssh1PublicKeyBody.cs" />
-    <Compile Include="SerializedObject.cs" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\WSCT EMV\packages\Newtonsoft.Json.6.0.3\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Activez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est le suivant : {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

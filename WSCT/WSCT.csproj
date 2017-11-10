@@ -1,153 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4EABE8DA-0BCB-4BC6-A571-7618AC0EC4B6}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WSCT</RootNamespace>
-    <AssemblyName>WSCT</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <PackageId>WSCT API</PackageId>
+    <Description>API for WSCT</Description>
+    <Company>ENSICAEN / GREYC</Company>
+    <Copyright>Copyright © ENSICAEN / GREYC 2014</Copyright>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <FileVersion>6.0.0.0</FileVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-    <ProjectReference Include="..\WSCT.Helpers\WSCT.Helpers.csproj">
-      <Project>{b95b0e58-9296-4a15-aa69-10a7b6dc2267}</Project>
-      <Name>WSCT.Helpers</Name>
-    </ProjectReference>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ISO7816\AnswerToReset\InterfaceId.cs" />
-    <Compile Include="ISO7816\AnswerToReset\MalformedAtrException.cs" />
-    <Compile Include="ISO7816\Commands\GetDataCommand.cs" />
-    <Compile Include="Linq\CardChannelExtension.cs" />
-    <Compile Include="Linq\CardContextStackExtension.cs" />
-    <Compile Include="Linq\CardChannelStackExtension.cs" />
-    <Compile Include="Linq\CardContextExtension.cs" />
-    <Compile Include="Core\Events\AfterCancelEventArgs.cs" />
-    <Compile Include="Core\Events\AfterConnectEventArgs.cs" />
-    <Compile Include="Core\Events\AfterDisconnectEventArgs.cs" />
-    <Compile Include="Core\Events\AfterEventArgs.cs" />
-    <Compile Include="Core\Events\AfterGetAttribEventArgs.cs" />
-    <Compile Include="Core\Events\AfterGetStatusChangeEventArgs.cs" />
-    <Compile Include="Core\Events\AfterGetStatusEventArgs.cs" />
-    <Compile Include="Core\Events\AfterIsValidEventArgs.cs" />
-    <Compile Include="Core\Events\AfterListReaderGroupsEventArgs.cs" />
-    <Compile Include="Core\Events\AfterListReadersEventArgs.cs" />
-    <Compile Include="Core\Events\AfterReconnectEventArgs.cs" />
-    <Compile Include="Core\Events\AfterReleaseEventArgs.cs" />
-    <Compile Include="Core\Events\AfterTransmitEventArgs.cs" />
-    <Compile Include="Core\APDU\ICardCommand.cs" />
-    <Compile Include="Core\APDU\ICardResponse.cs" />
-    <Compile Include="Core\Events\BeforeCancelEventArgs.cs" />
-    <Compile Include="Core\Events\BeforeConnectEventArgs.cs" />
-    <Compile Include="Core\Events\BeforeDisconnectEventArgs.cs" />
-    <Compile Include="Core\Events\BeforeGetAttribEventArgs.cs" />
-    <Compile Include="Core\Events\BeforeGetStatusChangeEventArgs.cs" />
-    <Compile Include="Core\Events\BeforeGetStatusEventArgs.cs" />
-    <Compile Include="Core\Events\BeforeIsValidEventArgs.cs" />
-    <Compile Include="Core\Events\BeforeListReaderGroupsEventArgs.cs" />
-    <Compile Include="Core\Events\BeforeListReadersEventArgs.cs" />
-    <Compile Include="Core\Events\BeforeReconnectEventArgs.cs" />
-    <Compile Include="Core\Events\BeforeReleaseEventArgs.cs" />
-    <Compile Include="Core\Events\BeforeTransmitEventArgs.cs" />
-    <Compile Include="Core\CardChannelObservable.cs" />
-    <Compile Include="Core\CardContextObservable.cs" />
-    <Compile Include="Core\Events\BeforeEstablishEventArgs.cs" />
-    <Compile Include="Core\Events\AfterEstablishEventArgs.cs" />
-    <Compile Include="Core\ICardChannel.cs" />
-    <Compile Include="Core\ICardChannelObservable.cs" />
-    <Compile Include="Core\ICardContext.cs" />
-    <Compile Include="Core\ICardContextObservable.cs" />
-    <Compile Include="ISO7816\AnswerToReset\Atr.cs" />
-    <Compile Include="ISO7816\AnswerToReset\InterfaceByte.cs" />
-    <Compile Include="ISO7816\AnswerToReset\TSCharacter.cs" />
-    <Compile Include="ISO7816\CardChannelIso7816.cs" />
-    <Compile Include="ISO7816\CommandAPDU.cs" />
-    <Compile Include="ISO7816\CommandCase.cs" />
-    <Compile Include="ISO7816\CommandResponsePair.cs" />
-    <Compile Include="ISO7816\Commands\AppendRecordCommand.cs" />
-    <Compile Include="ISO7816\Commands\GetResponseCommand.cs" />
-    <Compile Include="ISO7816\Commands\ReadBinaryCommand.cs" />
-    <Compile Include="ISO7816\Commands\ReadRecordCommand.cs" />
-    <Compile Include="ISO7816\Commands\SelectCommand.cs" />
-    <Compile Include="ISO7816\Commands\WriteRecordCommand.cs" />
-    <Compile Include="ISO7816\ProtocolT.cs" />
-    <Compile Include="ISO7816\ResponseAPDU.cs" />
-    <Compile Include="ISO7816\StatusWord\StatusWordDictionary.cs" />
-    <Compile Include="ISO7816\StatusWord\StatusWordHigh.cs" />
-    <Compile Include="ISO7816\StatusWord\StatusWordLow.cs" />
-    <Compile Include="Linq\CardChannelLayerExtension.cs" />
-    <Compile Include="Stack\CardContextStackObservable.cs" />
-    <Compile Include="Stack\ICardContextStackObservable.cs" />
-    <Compile Include="Stack\ICardChannelStackObservable.cs" />
-    <Compile Include="Stack\CardChannelLayerObservable.cs" />
-    <Compile Include="Linq\CardContextLayerExtension.cs" />
-    <Compile Include="Stack\CardChannelStackObservable.cs" />
-    <Compile Include="Stack\CardContextLayerObservable.cs" />
-    <Compile Include="Stack\Generic\GenericLayerDescription.cs" />
-    <Compile Include="Stack\Generic\GenericStackDescription.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stack\CardChannelLayerDescription.cs" />
-    <Compile Include="Stack\CardChannelStack.cs" />
-    <Compile Include="Stack\CardChannelStackDescription.cs" />
-    <Compile Include="Stack\CardContextLayerDescription.cs" />
-    <Compile Include="Stack\CardContextStack.cs" />
-    <Compile Include="Stack\CardContextStackDescription.cs" />
-    <Compile Include="Stack\ICardChannelLayer.cs" />
-    <Compile Include="Stack\ICardChannelLayerObservable.cs" />
-    <Compile Include="Stack\ICardChannelStack.cs" />
-    <Compile Include="Stack\ICardContextLayer.cs" />
-    <Compile Include="Stack\ICardContextLayerObservable.cs" />
-    <Compile Include="Stack\ICardContextStack.cs" />
-    <Compile Include="Stack\SearchMode.cs" />
-    <Compile Include="Wrapper\AbstractIoRequest.cs" />
-    <Compile Include="Wrapper\AbstractReaderState.cs" />
-    <Compile Include="Wrapper\Attrib.cs" />
-    <Compile Include="Wrapper\Disposition.cs" />
-    <Compile Include="Wrapper\ErrorCode.cs" />
-    <Compile Include="Wrapper\EventState.cs" />
-    <Compile Include="Wrapper\IPrimitives.cs" />
-    <Compile Include="Wrapper\Protocol.cs" />
-    <Compile Include="Wrapper\Scope.cs" />
-    <Compile Include="Wrapper\ShareMode.cs" />
-    <Compile Include="Wrapper\State.cs" />
+    <ProjectReference Include="..\WSCT.Helpers\WSCT.Helpers.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="ISO7816\Dictionary.StatusWord.xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
