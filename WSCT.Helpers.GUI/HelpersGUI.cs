@@ -24,6 +24,14 @@ namespace WSCT.Helpers.GUI
             Desktop.RegisterPcl.Register();
         }
 
+        private string CleanHexaString(string hexaString)
+        {
+            return hexaString
+                .Replace(Environment.NewLine, String.Empty)
+                .Replace(" ", String.Empty)
+                .Replace("\t", String.Empty);
+        }
+
         private void ConvertAndOutput(Func<string> conversion)
         {
             try
@@ -74,7 +82,7 @@ namespace WSCT.Helpers.GUI
         {
             List<TlvData> tlvSequence = null;
 
-            var isDone = TryAndOutput(() => tlvSequence = textSource.Text.Replace("\r\n", "").ToTlvDataArray());
+            var isDone = TryAndOutput(() => tlvSequence = CleanHexaString(textSource.Text).ToTlvDataArray());
 
             if (!isDone)
             {
@@ -106,7 +114,7 @@ namespace WSCT.Helpers.GUI
         {
             IEnumerable<TlvData> tlvSequence = null;
 
-            var isDone = TryAndOutput(() => tlvSequence = textSource.Text.Replace(Environment.NewLine, String.Empty).ToTlvDataArray());
+            var isDone = TryAndOutput(() => tlvSequence = CleanHexaString(textSource.Text).ToTlvDataArray());
 
             if (!isDone)
             {
