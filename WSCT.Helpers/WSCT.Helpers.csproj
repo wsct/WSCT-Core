@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Product>WSCT.Helpers</Product>
     <Description>Generic helpers classes for WSCT</Description>
     <Copyright>Copyright © Sylvain Vernois 2006</Copyright>

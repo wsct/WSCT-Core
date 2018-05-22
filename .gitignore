@@ -9,3 +9,4 @@ obj
 *.shfbproj_*
 /.nuget/NuGet.exe
 *.user
+.vs/
