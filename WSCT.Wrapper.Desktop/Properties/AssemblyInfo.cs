@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("WSCT Wrapper for Desktop Computers")]
 [assembly: AssemblyDescription("WSCT Wrapper for Desktop (Windows, Linux, MacOS)")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ENSICAEN / GREYC")]
+[assembly: AssemblyCompany("ENSICAEN")]
 [assembly: AssemblyProduct("WSCT.Wrapper")]
-[assembly: AssemblyCopyright("Copyright © ENSICAEN / GREYC 2014")]
+[assembly: AssemblyCopyright("Copyright © ENSICAEN / GREYC 2014-2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

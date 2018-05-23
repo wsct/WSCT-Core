@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    
+    <id>WSCT.Wrapper.Desktop</id>
+    <version>1.0.0.0</version>
+    <title>WSCT Wrapper for Desktop Computers</title>
+    <authors>Sylvain Vernois</authors>
+    <owners>Sylvain Vernois</owners>
+    <projectUrl>https://github.com/wsct/WSCT-Core</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>WSCT Wrapper for Desktop (Windows, Linux, MacOS)</description>
+    <releaseNotes>First public version of the project as a nuget package.</releaseNotes>
+    <copyright>Copyright 2014-2018</copyright>
+    <tags>smartcard, pc/sc, winscard, wsct</tags>
+
+    <dependencies>
+      <group>
+        <dependency id="WSCT.Helpers" version="[4,5)" />
+        <dependency id="WSCT.Core" version="[6,7)" />
+      </group>
+    </dependencies>
+
+    <references>
+      <reference file="WSCT.Wrapper.Desktop.dll" />
+      <reference file="WSCT.Wrapper.MacOSX.dll" />
+      <reference file="WSCT.Wrapper.PCSCLite32.dll" />
+      <reference file="WSCT.Wrapper.PCSCLite64.dll" />
+      <reference file="WSCT.Wrapper.WinSCard.dll" />
+    </references>
+    
+  </metadata>
+
+  <files>
+    <file src="bin\Release\WSCT.Wrapper.MacOSX.dll" target="lib/net462" />
+    <file src="bin\Release\WSCT.Wrapper.PCSCLite32.dll" target="lib/net462" />
+    <file src="bin\Release\WSCT.Wrapper.PCSCLite64.dll" target="lib/net462" />
+    <file src="bin\Release\WSCT.Wrapper.WinSCard.dll" target="lib/net462" />
+  </files>
+</package>

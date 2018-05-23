@@ -10,3 +10,4 @@ obj
 /.nuget/NuGet.exe
 *.user
 .vs/
+*.nupkg
