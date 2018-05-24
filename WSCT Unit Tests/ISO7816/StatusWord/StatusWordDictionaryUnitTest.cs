@@ -1,7 +1,7 @@
 ﻿using System;
+using System.IO;
 using NUnit.Framework;
 using WSCT.Helpers;
-using WSCT.Helpers.Desktop;
 
 namespace WSCT.ISO7816.StatusWord
 {
@@ -12,8 +12,8 @@ namespace WSCT.ISO7816.StatusWord
 
         public StatusWordDictionaryUnitTest()
         {
-            RegisterPcl.Register();
-            statusWordDictionary = SerializedObject<StatusWordDictionary>.LoadFromXml(@"ISO7816/Dictionary.StatusWord.xml");
+            var pathToFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ISO7816/Dictionary.StatusWord.xml");
+            statusWordDictionary = SerializedObject<StatusWordDictionary>.LoadFromXml(pathToFile);
         }
 
         [Test(Description = "Existing exact value")]
