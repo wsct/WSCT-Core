@@ -20,8 +20,6 @@ namespace WSCT.Helpers.GUI
         public HelpersGui()
         {
             InitializeComponent();
-
-            Desktop.RegisterPcl.Register();
         }
 
         private string CleanHexaString(string hexaString)

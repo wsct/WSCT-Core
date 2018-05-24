@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using Newtonsoft.Json;
-using WSCT.Helpers.Portable;
 
 namespace WSCT.Helpers.Json
 {
@@ -54,7 +54,7 @@ namespace WSCT.Helpers.Json
         {
             T data;
 
-            using (var stream = new MemoryStream(PortableEncoding.Default.GetBytes(json)))
+            using (var stream = new MemoryStream(Encoding.Default.GetBytes(json)))
             {
                 data = CreateFromJsonStream<T>(stream);
             }
@@ -71,7 +71,7 @@ namespace WSCT.Helpers.Json
         public static T CreateFromJsonFile<T>(this string fileName)
         {
             T data;
-            using (var fileStream = PortableFile.Open(fileName, PortableFileMode.Open))
+            using (var fileStream = File.Open(fileName, FileMode.Open))
             {
                 data = CreateFromJsonStream<T>(fileStream);
             }
@@ -101,7 +101,7 @@ namespace WSCT.Helpers.Json
 
             var serializer = new JsonSerializer { TypeNameHandling = TypeNameHandling.Auto, Formatting = formatting };
 
-            using (var streamWriter = new StreamWriter(PortableFile.Open(fileName, PortableFileMode.OpenOrCreate)))
+            using (var streamWriter = new StreamWriter(File.Open(fileName, FileMode.OpenOrCreate)))
             {
                 serializer.Serialize(streamWriter, instance);
             }
