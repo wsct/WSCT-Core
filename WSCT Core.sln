@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Wrapper.WinSCard", "WS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WSCT", "WSCT\WSCT.csproj", "{4EABE8DA-0BCB-4BC6-A571-7618AC0EC4B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT Unit Tests", "WSCT Unit Tests\WSCT Unit Tests.csproj", "{AA063877-3110-47FC-A07C-AC5C249342A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WSCT Unit Tests", "WSCT Unit Tests\WSCT Unit Tests.csproj", "{AA063877-3110-47FC-A07C-AC5C249342A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<StatusWordDictionary>
+  <sw1 value="90">
+    <sw2 value="00">Normal processing</sw2>
+  </sw1>
+  <sw1 value="61">
+    <sw2 from="00" to="FF">SW2 encodes the number of data bytes still available</sw2>
+  </sw1>
+  <sw1 value="62">
+    <sw2 value="00">No information given</sw2>
+    <sw2 from="02" to="80">Triggering by the card</sw2>
+    <sw2 value="81">Part of returned data may be corrupted</sw2>
+    <sw2 value="82">End of file or record reach before reading Ne bytes</sw2>
+    <sw2 value="83">Selected file deactivated</sw2>
+    <sw2 value="84">File control information not correctly formatted</sw2>
+    <sw2 value="85">Selected file in termination state</sw2>
+    <sw2 value="86">No input data available from a sensor on the card</sw2>
+  </sw1>
+  <sw1 value="63">
+    <sw2 value="00">No information given</sw2>
+    <sw2 value="81">File filled up by the last write</sw2>
+    <sw2 from="C0" to="CF">Counter from 0 to 15 encoded by low quarter</sw2>
+  </sw1>
+  <sw1 value="64">
+    <sw2 value="00">Execution error</sw2>
+    <sw2 value="01">Immediate response required by the card</sw2>
+    <sw2 from="02" to="80">Triggering by the card</sw2>
+  </sw1>
+  <sw1 value="65">
+    <sw2 value="00">No information given</sw2>
+    <sw2 value="81">Memory failure</sw2>
+  </sw1>
+  <sw1 value="66">
+    <sw2 from="00" to="FF">Security-related issue</sw2>
+  </sw1>
+  <sw1 value="67">
+    <sw2 value="00">Wrong lengh; no further indication</sw2>
+  </sw1>
+  <sw1 value="68">
+    <sw2 value="00">No information given</sw2>
+    <sw2 value="81">Logical channel not supported</sw2>
+    <sw2 value="82">Secure messaging not supported</sw2>
+    <sw2 value="83">Last command of the chain expected</sw2>
+    <sw2 value="84">Command chaining not supported</sw2>
+  </sw1>
+  <sw1 value="69">
+    <sw2 value="00">No information given</sw2>
+    <sw2 value="81">Command incompatible with file structure</sw2>
+    <sw2 value="82">Security status not satisfied</sw2>
+    <sw2 value="83">Authentication method blocked</sw2>
+    <sw2 value="84">Reference data not usable</sw2>
+    <sw2 value="85">Conditions of use not satisfied</sw2>
+    <sw2 value="86">Command not allowed</sw2>
+    <sw2 value="87">Expected secure messaging data objects missing</sw2>
+    <sw2 value="88">Incorrect secure messaging data objects</sw2>
+  </sw1>
+  <sw1 value="6A">
+    <sw2 value="00">No information given</sw2>
+    <sw2 value="80">Incorrect parameters in the command data field</sw2>
+    <sw2 value="81">Function not supported</sw2>
+    <sw2 value="82">File or application not found</sw2>
+    <sw2 value="83">Record not found</sw2>
+    <sw2 value="84">Not enough memory space in the file</sw2>
+    <sw2 value="85">Nc inconsistent with TLV structure</sw2>
+    <sw2 value="86">Incorrect parameters P1-P2</sw2>
+    <sw2 value="87">Nc inconsistent with parameters P1-P2</sw2>
+    <sw2 value="88">Referenced data of reference data not found</sw2>
+    <sw2 value="89">File already exists</sw2>
+    <sw2 value="81">DF name already exists</sw2>
+  </sw1>
+  <sw1 value="6B">
+    <sw2 value="00">Wrong parameters P1-P2</sw2>
+  </sw1>
+  <sw1 value="6C">
+    <sw2 from="00" to="FF">Wrong Le field; SW2 encodes the exact number of available data bytes</sw2>
+  </sw1>
+  <sw1 value="6D">
+    <sw2 value="00">Instruction code not supported or invalid</sw2>
+  </sw1>
+  <sw1 value="6E">
+    <sw2 value="00">Class not supported</sw2>
+  </sw1>
+  <sw1 value="6F">
+    <sw2 value="00">No precise diagnosis</sw2>
+  </sw1>
+</StatusWordDictionary>
