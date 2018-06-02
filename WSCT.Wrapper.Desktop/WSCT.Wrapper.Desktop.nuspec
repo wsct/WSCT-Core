@@ -3,7 +3,7 @@
   <metadata>
     
     <id>WSCT.Wrapper.Desktop</id>
-    <version>1.0.1.0</version>
+    <version>1.1.0.0</version>
     <title>WSCT Wrapper for Desktop Computers</title>
     <authors>Sylvain Vernois</authors>
     <owners>Sylvain Vernois</owners>
@@ -32,9 +32,10 @@
   </metadata>
 
   <files>
-    <file src="bin\Release\WSCT.Wrapper.MacOSX.dll" target="lib/net462" />
-    <file src="bin\Release\WSCT.Wrapper.PCSCLite32.dll" target="lib/net462" />
-    <file src="bin\Release\WSCT.Wrapper.PCSCLite64.dll" target="lib/net462" />
-    <file src="bin\Release\WSCT.Wrapper.WinSCard.dll" target="lib/net462" />
+    <file src="bin/Release/net462/WSCT.Wrapper.Desktop.dll" target="lib/net462" />
+    <file src="bin/Release/net462/WSCT.Wrapper.MacOSX.dll" target="lib/net462" />
+    <file src="bin/Release/net462/WSCT.Wrapper.PCSCLite32.dll" target="lib/net462" />
+    <file src="bin/Release/net462/WSCT.Wrapper.PCSCLite64.dll" target="lib/net462" />
+    <file src="bin/Release/net462/WSCT.Wrapper.WinSCard.dll" target="lib/net462" />
   </files>
 </package>

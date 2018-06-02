@@ -2,8 +2,10 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>WSCT.Core</PackageId>
-    <Description>Main API for WSCT (WinSCard Tools).
-Warning: this package alone does not allow to connect to a smartcard reader.</Description>
+    <Description>
+      Main API for WSCT (WinSCard Tools).
+      Warning: this package alone does not allow to connect to a smartcard reader: use WSCT.Wrapper.Desktop for that.
+    </Description>
     <Company>ENSICAEN</Company>
     <Copyright>Copyright © ENSICAEN / GREYC 2006-2018</Copyright>
     <AssemblyVersion>6.1.0.0</AssemblyVersion>
@@ -25,8 +27,11 @@ Warning: this package alone does not allow to connect to a smartcard reader.</De
     <ProjectReference Include="..\WSCT.Helpers\WSCT.Helpers.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="ISO7816\Dictionary.StatusWord.xml">
+    <Content Include="ISO7816\Dictionary.StatusWord.xml">
+      <Visible>False</Visible>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+      <Pack>True</Pack>
+      <PackageCopyToOutput>True</PackageCopyToOutput>
+    </Content>
   </ItemGroup>
 </Project>
