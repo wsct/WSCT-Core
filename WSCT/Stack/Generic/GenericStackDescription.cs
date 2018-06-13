@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
@@ -29,8 +28,8 @@ namespace WSCT.Stack.Generic
         [XmlElement("layer")]
         public List<TLayerDescription> LayerDescriptions
         {
-            get { return _layerDescriptions; }
-            set { _layerDescriptions = value; }
+            get => _layerDescriptions;
+            set => _layerDescriptions = value;
         }
 
         #endregion
@@ -56,11 +55,7 @@ namespace WSCT.Stack.Generic
         /// <returns>A new instance of <typeparam name="TILayer"/>.</returns>
         public static TILayer CreateInstance(TLayerDescription layerDesc)
         {
-            if (layerDesc.DllName.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
-            {
-                layerDesc.DllName = Path.GetFileNameWithoutExtension(layerDesc.DllName);
-            }
-            var assembly = Assembly.Load(new AssemblyName(layerDesc.PathToDll + layerDesc.DllName));
+            var assembly = Assembly.LoadFrom(layerDesc.DllName);
             var type = assembly.GetType(layerDesc.ClassName);
             return (TILayer)Activator.CreateInstance(type);
         }
