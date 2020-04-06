@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
-using WSCT.Helpers.Portable;
 
 namespace WSCT.Helpers
 {
@@ -22,7 +21,7 @@ namespace WSCT.Helpers
             var serializer = new XmlSerializer(typeof(T));
             T t;
 
-            using (TextReader textReader = new StreamReader(PortableFile.Open(xmlFileName, PortableFileMode.Open)))
+            using (TextReader textReader = new StreamReader(File.Open(xmlFileName, FileMode.Open)))
             {
                 t = (T)serializer.Deserialize(textReader);
             }
@@ -38,7 +37,7 @@ namespace WSCT.Helpers
         {
             var serializer = new XmlSerializer(typeof(T));
 
-            using (TextWriter textWriter = new StreamWriter(PortableFile.Open(xmlFileName, PortableFileMode.OpenOrCreate)))
+            using (TextWriter textWriter = new StreamWriter(File.Open(xmlFileName, FileMode.OpenOrCreate)))
             {
                 serializer.Serialize(textWriter, t);
             }

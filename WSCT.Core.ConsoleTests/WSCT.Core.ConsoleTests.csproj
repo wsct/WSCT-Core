@@ -1,110 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{066D7310-FAE0-43DF-9B78-B3AA16B10FD2}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WSCT.Core.ConsoleTests</RootNamespace>
-    <AssemblyName>WSCT.Core.ConsoleTests</AssemblyName>
+    <TargetFramework>net462</TargetFramework>
+    <Version>3.0.0.0</Version>
+    <Copyright>Copyright © Sylvain Vernois 2007</Copyright>
+    <Product>WSCT</Product>
+    <Company>ENSICAEN</Company>
+    <Authors>Sylvain Vernois</Authors>
+    <PackageId>WSCT.Core.ConsoleTests</PackageId>
+    <RepositoryUrl>https://github.com/wsct/WSCT-Core</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/wsct/WSCT-Core</PackageProjectUrl>
+    <Description>Simple WSCT API tests.</Description>
     <ApplicationIcon>chip2.ico</ApplicationIcon>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>2.0</OldToolsVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
-    <additionalargs>/unsafe</additionalargs>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignManifests>false</SignManifests>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <StartupObject />
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
+    <ProjectReference Include="..\WSCT.Helpers\WSCT.Helpers.csproj" />
+    <ProjectReference Include="..\WSCT.Wrapper.Desktop\WSCT.Wrapper.Desktop.csproj" />
+    <ProjectReference Include="..\WSCT\WSCT.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="CardChannelLayer61.cs" />
-    <Compile Include="ConsoleObserver.cs" />
-    <Compile Include="LogLevel.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="chip2.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WSCT.Helpers.Desktop\WSCT.Helpers.Desktop.csproj">
-      <Project>{a3eef6f2-8509-4eb2-a8b3-b31786ebb248}</Project>
-      <Name>WSCT.Helpers.Desktop</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WSCT.Helpers\WSCT.Helpers.csproj">
-      <Project>{b95b0e58-9296-4a15-aa69-10a7b6dc2267}</Project>
-      <Name>WSCT.Helpers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WSCT.Wrapper.Desktop\WSCT.Wrapper.Desktop.csproj">
-      <Project>{19b66e6e-7e5e-481a-8718-3f9c44212ad6}</Project>
-      <Name>WSCT.Wrapper.Desktop</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WSCT.Wrapper.MacOSX\WSCT.Wrapper.MacOSX.csproj">
-      <Project>{0f6f8081-b090-4505-9fbc-f127aa18806f}</Project>
-      <Name>WSCT.Wrapper.MacOSX</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WSCT.Wrapper.PCSCLite32\WSCT.Wrapper.PCSCLite32.csproj">
-      <Project>{8aae3e6a-d6fe-4b35-af27-731ce1996106}</Project>
-      <Name>WSCT.Wrapper.PCSCLite32</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WSCT.Wrapper.PCSCLite64\WSCT.Wrapper.PCSCLite64.csproj">
-      <Project>{796a4ce8-2724-43c9-bcd8-5cfd331aa541}</Project>
-      <Name>WSCT.Wrapper.PCSCLite64</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WSCT.Wrapper.WinSCard\WSCT.Wrapper.WinSCard.csproj">
-      <Project>{651952e8-6d49-44e6-ab52-3c4bd78255fa}</Project>
-      <Name>WSCT.Wrapper.WinSCard</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WSCT\WSCT.csproj">
-      <Project>{4EABE8DA-0BCB-4BC6-A571-7618AC0EC4B6}</Project>
-      <Name>WSCT</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

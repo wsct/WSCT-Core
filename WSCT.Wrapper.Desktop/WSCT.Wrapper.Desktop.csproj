@@ -1,114 +1,25 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{19B66E6E-7E5E-481A-8718-3F9C44212AD6}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WSCT.Wrapper.Desktop</RootNamespace>
-    <AssemblyName>WSCT.Wrapper.Desktop</AssemblyName>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>2.0</OldToolsVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;WINSCARD_DLL</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\doc.WSCT.Wrapper.XML</DocumentationFile>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Prefer32Bit>false</Prefer32Bit>
+    <TargetFramework>net462</TargetFramework>
+    <Version>1.1.0.0</Version>
+    <Copyright>Copyright © ENSICAEN / GREYC 2014</Copyright>
+    <Product>WSCT</Product>
+    <Company>ENSICAEN</Company>
+    <Authors>Sylvain Vernois</Authors>
+    <PackageId>WSCT.Wrapper.Desktop</PackageId>
+    <RepositoryUrl>https://github.com/wsct/WSCT-Core</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/wsct/WSCT-Core</PackageProjectUrl>
+    <Description>WSCT Wrapper for Desktop (Windows, Linux, MacOS).</Description>
+    <ApplicationIcon />
+    <StartupObject />
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <ProjectReference Include="..\WSCT.Wrapper.MacOSX\WSCT.Wrapper.MacOSX.csproj" />
+    <ProjectReference Include="..\WSCT.Wrapper.PCSCLite32\WSCT.Wrapper.PCSCLite32.csproj" />
+    <ProjectReference Include="..\WSCT.Wrapper.PCSCLite64\WSCT.Wrapper.PCSCLite64.csproj" />
+    <ProjectReference Include="..\WSCT.Wrapper.WinSCard\WSCT.Wrapper.WinSCard.csproj" />
+    <ProjectReference Include="..\WSCT\WSCT.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Core\CardChannel.cs" />
-    <Compile Include="Core\CardChannelCore.cs" />
-    <Compile Include="Core\CardContext.cs" />
-    <Compile Include="Core\CardContextCore.cs" />
-    <Compile Include="Core\OnCardInsertionEventArgs.cs" />
-    <Compile Include="Core\OnCardRemovalEventArgs.cs" />
-    <Compile Include="Core\StatusChangeMonitor.cs" />
-    <Compile Include="Primitives.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stack\CardChannelLayer.cs" />
-    <Compile Include="Stack\CardContextLayer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WSCT.Helpers\WSCT.Helpers.csproj">
-      <Project>{B95B0E58-9296-4A15-AA69-10A7B6DC2267}</Project>
-      <Name>WSCT.Helpers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WSCT.Wrapper.MacOSX\WSCT.Wrapper.MacOSX.csproj">
-      <Project>{0f6f8081-b090-4505-9fbc-f127aa18806f}</Project>
-      <Name>WSCT.Wrapper.MacOSX</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WSCT.Wrapper.PCSCLite32\WSCT.Wrapper.PCSCLite32.csproj">
-      <Project>{8aae3e6a-d6fe-4b35-af27-731ce1996106}</Project>
-      <Name>WSCT.Wrapper.PCSCLite32</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WSCT.Wrapper.PCSCLite64\WSCT.Wrapper.PCSCLite64.csproj">
-      <Project>{796a4ce8-2724-43c9-bcd8-5cfd331aa541}</Project>
-      <Name>WSCT.Wrapper.PCSCLite64</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WSCT.Wrapper.WinSCard\WSCT.Wrapper.WinSCard.csproj">
-      <Project>{651952e8-6d49-44e6-ab52-3c4bd78255fa}</Project>
-      <Name>WSCT.Wrapper.WinSCard</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WSCT\WSCT.csproj">
-      <Project>{4eabe8da-0bcb-4bc6-a571-7618ac0ec4b6}</Project>
-      <Name>WSCT</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Wrapper.Desktop.nuspec" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
