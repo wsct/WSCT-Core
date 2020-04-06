@@ -1,27 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WSCT.Helpers", "WSCT.Helpers\WSCT.Helpers.csproj", "{B95B0E58-9296-4A15-AA69-10A7B6DC2267}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Helpers.GUI", "WSCT.Helpers.GUI\WSCT.Helpers.GUI.csproj", "{3CE1516F-CF54-4D3E-919D-2DA4638552CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WSCT.Helpers.GUI", "WSCT.Helpers.GUI\WSCT.Helpers.GUI.csproj", "{3CE1516F-CF54-4D3E-919D-2DA4638552CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Core.ConsoleTests", "WSCT.Core.ConsoleTests\WSCT.Core.ConsoleTests.csproj", "{066D7310-FAE0-43DF-9B78-B3AA16B10FD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WSCT.Core.ConsoleTests", "WSCT.Core.ConsoleTests\WSCT.Core.ConsoleTests.csproj", "{066D7310-FAE0-43DF-9B78-B3AA16B10FD2}"
 EndProject
-Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "Documentation", "Documentation\Documentation.shfbproj", "{F33E7068-AE72-47C8-A438-4BCA714D2F72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WSCT.Helpers Unit Tests", "WSCT.Helpers Unit Tests\WSCT.Helpers Unit Tests.csproj", "{6118CD9F-50D8-4048-BC43-6E272C88E1B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Helpers Unit Tests", "WSCT.Helpers Unit Tests\WSCT.Helpers Unit Tests.csproj", "{6118CD9F-50D8-4048-BC43-6E272C88E1B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WSCT.Wrapper.Desktop", "WSCT.Wrapper.Desktop\WSCT.Wrapper.Desktop.csproj", "{19B66E6E-7E5E-481A-8718-3F9C44212AD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Wrapper.Desktop", "WSCT.Wrapper.Desktop\WSCT.Wrapper.Desktop.csproj", "{19B66E6E-7E5E-481A-8718-3F9C44212AD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WSCT.Wrapper.MacOSX", "WSCT.Wrapper.MacOSX\WSCT.Wrapper.MacOSX.csproj", "{0F6F8081-B090-4505-9FBC-F127AA18806F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Wrapper.MacOSX", "WSCT.Wrapper.MacOSX\WSCT.Wrapper.MacOSX.csproj", "{0F6F8081-B090-4505-9FBC-F127AA18806F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WSCT.Wrapper.PCSCLite32", "WSCT.Wrapper.PCSCLite32\WSCT.Wrapper.PCSCLite32.csproj", "{8AAE3E6A-D6FE-4B35-AF27-731CE1996106}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Wrapper.PCSCLite32", "WSCT.Wrapper.PCSCLite32\WSCT.Wrapper.PCSCLite32.csproj", "{8AAE3E6A-D6FE-4B35-AF27-731CE1996106}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WSCT.Wrapper.PCSCLite64", "WSCT.Wrapper.PCSCLite64\WSCT.Wrapper.PCSCLite64.csproj", "{796A4CE8-2724-43C9-BCD8-5CFD331AA541}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Wrapper.PCSCLite64", "WSCT.Wrapper.PCSCLite64\WSCT.Wrapper.PCSCLite64.csproj", "{796A4CE8-2724-43C9-BCD8-5CFD331AA541}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Wrapper.WinSCard", "WSCT.Wrapper.WinSCard\WSCT.Wrapper.WinSCard.csproj", "{651952E8-6D49-44E6-AB52-3C4BD78255FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WSCT.Wrapper.WinSCard", "WSCT.Wrapper.WinSCard\WSCT.Wrapper.WinSCard.csproj", "{651952E8-6D49-44E6-AB52-3C4BD78255FA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WSCT", "WSCT\WSCT.csproj", "{4EABE8DA-0BCB-4BC6-A571-7618AC0EC4B6}"
 EndProject
@@ -45,8 +43,6 @@ Global
 		{066D7310-FAE0-43DF-9B78-B3AA16B10FD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{066D7310-FAE0-43DF-9B78-B3AA16B10FD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{066D7310-FAE0-43DF-9B78-B3AA16B10FD2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F33E7068-AE72-47C8-A438-4BCA714D2F72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F33E7068-AE72-47C8-A438-4BCA714D2F72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6118CD9F-50D8-4048-BC43-6E272C88E1B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6118CD9F-50D8-4048-BC43-6E272C88E1B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6118CD9F-50D8-4048-BC43-6E272C88E1B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
