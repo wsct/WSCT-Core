@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
-    <Version>3.0.0.0</Version>
+    <TargetFrameworks>net462;netcoreapp3.1</TargetFrameworks>
+    <Version>3.0.1.0</Version>
     <Copyright>Copyright © Sylvain Vernois 2007</Copyright>
     <Product>WSCT</Product>
     <Company>ENSICAEN</Company>
