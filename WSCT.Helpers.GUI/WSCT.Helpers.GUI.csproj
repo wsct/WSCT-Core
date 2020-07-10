@@ -19,9 +19,6 @@
     <ProjectReference Include="..\WSCT.Helpers\WSCT.Helpers.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.Windows.Forms" />
-  </ItemGroup>
-  <ItemGroup>
     <None Update="Dictionary.HelpersTags.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

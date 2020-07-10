@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace WSCT.Helpers
 {
@@ -113,8 +114,10 @@ namespace WSCT.Helpers
             var source = new byte[] { 0x31, 0x50, 0x41, 0x59, 0x2E, 0x53, 0x59, 0x53, 0x2E, 0x44, 0x44, 0x46, 0x30, 0x31 };
 
             var result = source.ToAsciiString();
+            var spanResult = source.AsSpan().ToAsciiString();
 
             Assert.AreEqual("1PAY.SYS.DDF01", result);
+            Assert.AreEqual("1PAY.SYS.DDF01", spanResult);
         }
 
         [Test]
@@ -123,8 +126,10 @@ namespace WSCT.Helpers
             var source = new byte[] { 0x12, 0x34 };
 
             var result = source.FromBcd();
+            var spanResult = source.AsSpan().FromBcd();
 
             Assert.AreEqual(new byte[] { 0x01, 0x02, 0x03, 0x04 }, result);
+            Assert.AreEqual(new byte[] { 0x01, 0x02, 0x03, 0x04 }, spanResult);
         }
 
         [Test]
@@ -133,8 +138,10 @@ namespace WSCT.Helpers
             var source = new byte[] { 0x12, 0x34 };
 
             var result = source.FromBcd(3);
+            var spanResult = source.AsSpan().FromBcd(3);
 
             Assert.AreEqual(new byte[] { 0x01, 0x02, 0x03 }, result);
+            Assert.AreEqual(new byte[] { 0x01, 0x02, 0x03 }, spanResult);
         }
 
         [Test]
@@ -143,8 +150,10 @@ namespace WSCT.Helpers
             var source = new byte[] { 0x01, 0x02, 0x03, 0x04 };
 
             var result = source.ToBcd();
+            var spanResult = source.AsSpan().ToBcd();
 
             Assert.AreEqual(new byte[] { 0x12, 0x34 }, result);
+            Assert.AreEqual(new byte[] { 0x12, 0x34 }, spanResult);
         }
 
         [Test]
@@ -153,8 +162,10 @@ namespace WSCT.Helpers
             var source = new byte[] { 0x01, 0x02, 0x03 };
 
             var result = source.ToBcd(0xF);
+            var spanResult = source.AsSpan().ToBcd(0xF);
 
             Assert.AreEqual(new byte[] { 0x12, 0x3F }, result);
+            Assert.AreEqual(new byte[] { 0x12, 0x3F }, spanResult);
         }
     }
 }

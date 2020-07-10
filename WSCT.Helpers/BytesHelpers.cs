@@ -1,6 +1,5 @@
 using System;
 using System.Globalization;
-using System.Linq;
 using System.Text;
 
 namespace WSCT.Helpers
@@ -10,10 +9,9 @@ namespace WSCT.Helpers
     /// </summary>
     public static class BytesHelpers
     {
-        /// <summary>
-        /// Default separator to be used for <c>toHexa(...)</c> methods.
-        /// </summary>
-        public static Char DefaultSeparator = ' ';
+        private const char DefaultHexaSeparator = ' ';
+        private const byte DefaultBcdFiller = 0x00;
+        private const char DefaultBcdCharFiller = 'F';
 
         /// <summary>
         /// Set targeted bits to 0 or 1 in <paramref name="value"/>.
@@ -150,22 +148,7 @@ namespace WSCT.Helpers
             return byteBuffer;
         }
 
-        /// <summary>
-        /// Converts an array of bytes to the equivalent string in Hexa.
-        /// </summary>
-        /// <param name="buffer">Source data to convert.</param>
-        /// <returns>A string representation of the array where each byte is represented as its hexadecimal value.</returns>
-        /// <example>
-        ///     <code>
-        ///     byte[] value = new byte[] { 0x31, 0x32, 0x33 };
-        ///     string data = value.toHexa();
-        ///     // Now data = "31 32 33"
-        ///     </code>
-        /// </example>
-        public static string ToHexa(this byte[] buffer)
-        {
-            return (buffer == null ? "" : buffer.ToHexa(buffer.Length, DefaultSeparator));
-        }
+        #region ** ToHexa
 
         /// <summary>
         /// Converts an array of bytes to the equivalent string in Hexa.
@@ -180,34 +163,52 @@ namespace WSCT.Helpers
         ///     // Now data = "31-32-33"
         ///     </code>
         /// </example>
-        public static string ToHexa(this byte[] buffer, Char separator)
+        public static string ToHexa(this ReadOnlySpan<byte> buffer, char separator = DefaultHexaSeparator)
         {
-            return (buffer == null ? "" : buffer.ToHexa(buffer.Length, separator));
+            var length = buffer.Length;
+
+            var stringBuilder = new StringBuilder(separator == 0 ? 2 * length : 2 + 3 * (length - 1));
+
+            if (length > 0)
+            {
+                stringBuilder.AppendFormat("{0:X2}", buffer[0]);
+            }
+
+            if (separator == '\0')
+            {
+                for (var i = 1; i < length; i++)
+                {
+                    stringBuilder.AppendFormat("{0:X2}", buffer[i]);
+                }
+            }
+            else
+            {
+                for (var i = 1; i < length; i++)
+                {
+                    stringBuilder.AppendFormat("{1}{0:X2}", buffer[i], separator);
+                }
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        /// <inheritdoc cref="ToHexa(ReadOnlySpan{byte},char)" />
+        public static string ToHexa(this Span<byte> buffer, char separator = DefaultHexaSeparator)
+        {
+            return ((ReadOnlySpan<byte>)buffer).ToHexa(separator);
+        }
+
+        /// <inheritdoc cref="ToHexa(ReadOnlySpan{byte},char)" />
+        public static string ToHexa(this byte[] buffer, char separator = DefaultHexaSeparator)
+        {
+            return new ReadOnlySpan<byte>(buffer).ToHexa(separator);
         }
 
         /// <summary>
         /// Converts first bytes of a byte Array to the equivalent string in Hexa.
         /// </summary>
         /// <param name="buffer">Source data to convert.</param>
-        /// <param name="size">Maximum number of bytes in the array to convert.</param>
-        /// <returns>A string representation of the array where each byte is represented as its hexadecimal value.</returns>
-        /// <example>
-        ///     <code>
-        ///     byte[] value = new byte[] { 0x31, 0x32, 0x33 };
-        ///     string data = value.toHexa(2);
-        ///     // Now data = "31 32"
-        ///     </code>
-        /// </example>
-        public static string ToHexa(this byte[] buffer, int size)
-        {
-            return (buffer == null ? "" : buffer.ToHexa(size, DefaultSeparator));
-        }
-
-        /// <summary>
-        /// Converts first bytes of a byte Array to the equivalent string in Hexa.
-        /// </summary>
-        /// <param name="buffer">Source data to convert.</param>
-        /// <param name="size">Maximum number of bytes in the array to convert.</param>
+        /// <param name="length">Maximum number of bytes in the array to convert.</param>
         /// <param name="separator">Separator to be used between each group of 2 hexadecimal digits.</param>
         /// <returns>A string representation of the array where each byte is represented as its hexadecimal value.</returns>
         /// <example>
@@ -217,37 +218,26 @@ namespace WSCT.Helpers
         ///     // Now data = "31-32"
         ///     </code>
         /// </example>
-        public static string ToHexa(this byte[] buffer, int size, Char separator)
+        public static string ToHexa(this ReadOnlySpan<byte> buffer, int length, char separator = DefaultHexaSeparator)
         {
-            var s = new StringBuilder();
-
-            if (size > buffer.Length)
-            {
-                size = buffer.Length;
-            }
-
-            if (size > 0)
-            {
-                s.AppendFormat("{0:X2}", buffer[0]);
-            }
-
-            if (separator == 0)
-            {
-                for (var i = 1; i < size; i++)
-                {
-                    s.AppendFormat("{0:X2}", buffer[i]);
-                }
-            }
-            else
-            {
-                for (var i = 1; i < size; i++)
-                {
-                    s.AppendFormat("{1}{0:X2}", buffer[i], separator);
-                }
-            }
-
-            return s.ToString();
+            return buffer.Slice(0, length).ToHexa(separator);
         }
+
+        /// <inheritdoc cref="ToHexa(ReadOnlySpan{byte},int,char)" />
+        public static string ToHexa(this Span<byte> buffer, int length, char separator = DefaultHexaSeparator)
+        {
+            return ((ReadOnlySpan<byte>)buffer).ToHexa(length, separator);
+        }
+
+        /// <inheritdoc cref="ToHexa(ReadOnlySpan{byte},int,char)" />
+        public static string ToHexa(this byte[] buffer, int length, char separator = DefaultHexaSeparator)
+        {
+            return new ReadOnlySpan<byte>(buffer, 0, length).ToHexa(separator);
+        }
+
+        #endregion
+
+        #region ** ToAsciiString
 
         /// <summary>
         /// Converts a <c>byte[]</c> to the equivalent string (byte > char).
@@ -261,7 +251,7 @@ namespace WSCT.Helpers
         ///     // Now data = "123"
         ///     </code>
         /// </example>
-        public static string ToAsciiString(this byte[] buffer)
+        public static string ToAsciiString(this ReadOnlySpan<byte> buffer)
         {
             if (buffer == null)
             {
@@ -278,22 +268,21 @@ namespace WSCT.Helpers
             return s.ToString();
         }
 
-        /// <summary>
-        /// Converts an array of bytes to an array of bytes "BCD coded".
-        /// </summary>
-        /// <param name="bytes">Source array of bytes.</param>
-        /// <returns>A new array of bytes "BCD coded".</returns>
-        /// <example>
-        ///     <code>
-        ///     byte[] value = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
-        ///     byte[] data = value.toBcd();
-        ///     // Now data = { 0x12, 0x34, 0x56, 0x78, 0x90 }
-        ///     </code>
-        /// </example>
-        public static byte[] ToBcd(this byte[] bytes)
+        /// <inheritdoc cref="ToAsciiString(ReadOnlySpan{byte})" />
+        public static string ToAsciiString(this Span<byte> buffer)
         {
-            return bytes.ToBcd(0x0);
+            return ((ReadOnlySpan<byte>)buffer).ToAsciiString();
         }
+
+        /// <inheritdoc cref="ToAsciiString(ReadOnlySpan{byte})" />
+        public static string ToAsciiString(this byte[] buffer)
+        {
+            return new ReadOnlySpan<byte>(buffer).ToAsciiString();
+        }
+
+        #endregion
+
+        #region ** ToBcd
 
         /// <summary>
         /// Converts an array of bytes to an array of bytes "BCD coded".
@@ -308,7 +297,7 @@ namespace WSCT.Helpers
         ///     // Now data = { 0x12, 0x34, 0x56, 0x78, 0x9F }
         ///     </code>
         /// </example>
-        public static byte[] ToBcd(this byte[] bytes, byte filler)
+        public static byte[] ToBcd(this ReadOnlySpan<byte> bytes, byte filler = DefaultBcdFiller)
         {
             var bcd = new byte[bytes.Length / 2 + bytes.Length % 2];
 
@@ -326,6 +315,22 @@ namespace WSCT.Helpers
             return bcd;
         }
 
+        /// <inheritdoc cref="ToBcd(ReadOnlySpan{byte},byte)" />
+        public static byte[] ToBcd(this Span<byte> bytes, byte filler = DefaultBcdFiller)
+        {
+            return ((ReadOnlySpan<byte>)bytes).ToBcd(filler);
+        }
+
+        /// <inheritdoc cref="ToBcd(ReadOnlySpan{byte},byte)" />
+        public static byte[] ToBcd(this byte[] bytes, byte filler = DefaultBcdFiller)
+        {
+            return new ReadOnlySpan<byte>(bytes).ToBcd(filler);
+        }
+
+        #endregion
+
+        #region ** ToBcdString
+
         /// <summary>
         /// Converts an array of bytes to a string representation "BCD coded"
         /// </summary>
@@ -339,7 +344,7 @@ namespace WSCT.Helpers
         ///     // Now data = "123456789F"
         ///     </code>
         /// </example>
-        public static string ToBcdString(this byte[] bytes, Char filler)
+        public static string ToBcdString(this ReadOnlySpan<byte> bytes, char filler = DefaultBcdCharFiller)
         {
             var bcd = new StringBuilder(bytes.Length);
 
@@ -356,6 +361,22 @@ namespace WSCT.Helpers
             return bcd.ToString();
         }
 
+        /// <inheritdoc cref="ToBcdString(ReadOnlySpan{byte},char)" />
+        public static string ToBcdString(this Span<byte> bytes, char filler = DefaultBcdCharFiller)
+        {
+            return ((ReadOnlySpan<byte>)bytes).ToBcdString(filler);
+        }
+
+        /// <inheritdoc cref="ToBcdString(ReadOnlySpan{byte},char)"/>
+        public static string ToBcdString(this byte[] bytes, char filler = DefaultBcdCharFiller)
+        {
+            return new ReadOnlySpan<byte>(bytes).ToBcdString(filler);
+        }
+
+        #endregion
+
+        #region ** FromBcd
+
         /// <summary>
         /// Converts an array of bytes "BCD coded" to an array of bytes where each byte is a digit
         /// </summary>
@@ -368,9 +389,21 @@ namespace WSCT.Helpers
         ///     // Now data = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
         ///     </code>
         /// </example>
-        public static byte[] FromBcd(this byte[] bcd)
+        public static byte[] FromBcd(this ReadOnlySpan<byte> bcd)
         {
             return bcd.FromBcd((UInt32)bcd.Length * 2);
+        }
+
+        /// <inheritdoc cref="FromBcd(ReadOnlySpan{byte})" />
+        public static byte[] FromBcd(this Span<byte> bcd)
+        {
+            return ((ReadOnlySpan<byte>)bcd).FromBcd();
+        }
+
+        /// <inheritdoc cref="FromBcd(ReadOnlySpan{byte})" />
+        public static byte[] FromBcd(this byte[] bcd)
+        {
+            return new ReadOnlySpan<byte>(bcd).FromBcd();
         }
 
         /// <summary>
@@ -386,7 +419,7 @@ namespace WSCT.Helpers
         ///     // Now data = { 1, 2, 3, 4, 5, 6, 7 }
         ///     </code>
         /// </example>
-        public static byte[] FromBcd(this byte[] bcd, UInt32 length)
+        public static byte[] FromBcd(this ReadOnlySpan<byte> bcd, UInt32 length)
         {
             var bytes = new byte[length];
 
@@ -403,6 +436,18 @@ namespace WSCT.Helpers
             }
 
             return bytes;
+        }
+
+        /// <inheritdoc cref="FromBcd(ReadOnlySpan{byte},UInt32)" />
+        public static byte[] FromBcd(this Span<byte> bcd, UInt32 length)
+        {
+            return ((ReadOnlySpan<byte>)bcd).FromBcd(length);
+        }
+
+        /// <inheritdoc cref="FromBcd(ReadOnlySpan{byte},UInt32)" />
+        public static byte[] FromBcd(this byte[] bcd, UInt32 length)
+        {
+            return new ReadOnlySpan<byte>(bcd).FromBcd(length);
         }
 
         /// <summary>
@@ -447,6 +492,10 @@ namespace WSCT.Helpers
             return bytes;
         }
 
+        #endregion
+
+        #region ** Get4BytesPrefixedArray
+
         /// <summary>
         /// Extract an array of bytes prefixed by a 4 bytes coded length from a bigger array.
         /// ... 'LL LL LL LL' 'VV VV ... VV' ...
@@ -454,16 +503,16 @@ namespace WSCT.Helpers
         /// <param name="bytes">Source array of bytes.</param>
         /// <param name="offset">Input: Offset of the first byte to look for in <paramref name="bytes"/>. Output: Offset of next byte after the retrieved array.</param>
         /// <returns></returns>
-        public static byte[] Get4BytesPrefixedArray(this byte[] bytes, ref int offset)
+        public static byte[] Get4BytesPrefixedArray(this ReadOnlySpan<byte> bytes, ref int offset)
         {
             if (bytes == null)
             {
-                throw new ArgumentNullException("bytes");
+                throw new ArgumentNullException(nameof(bytes));
             }
 
             if (bytes.Length - offset < 4)
             {
-                throw new Exception(String.Format("Error: Can't get {0} bytes at offset {1}.", 4, offset));
+                throw new Exception($"Error: Can't get {4} bytes at offset {offset}.");
             }
 
             // First 4 bytes are the length of data
@@ -472,14 +521,28 @@ namespace WSCT.Helpers
 
             if (bytes.Length - offset < length)
             {
-                throw new Exception(String.Format("Error: Can't get {0} bytes at offset {1}.", length, offset));
+                throw new Exception($"Error: Can't get {length} bytes at offset {offset}.");
             }
 
             // Extract value
-            var value = bytes.Skip(offset).Take(length).ToArray();
+            var value = bytes.Slice(offset, length).ToArray();
             offset += length;
 
             return value;
         }
+
+        /// <inheritdoc cref="Get4BytesPrefixedArray(System.ReadOnlySpan{byte},ref int)" />
+        public static byte[] Get4BytesPrefixedArray(this Span<byte> bytes, ref int offset)
+        {
+            return ((ReadOnlySpan<byte>)bytes).Get4BytesPrefixedArray(ref offset);
+        }
+
+        /// <inheritdoc cref="Get4BytesPrefixedArray(System.ReadOnlySpan{byte},ref int)" />
+        public static byte[] Get4BytesPrefixedArray(this byte[] bytes, ref int offset)
+        {
+            return new ReadOnlySpan<byte>(bytes).Get4BytesPrefixedArray(ref offset);
+        }
+
+        #endregion
     }
 }
