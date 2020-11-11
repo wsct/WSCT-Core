@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
     <PackageId>WSCT.Core</PackageId>
     <Description>
       Main API for WSCT (WinSCard Tools).
@@ -8,14 +8,15 @@
     </Description>
     <Company>ENSICAEN</Company>
     <Copyright>Copyright © ENSICAEN / GREYC 2006-2018</Copyright>
-    <AssemblyVersion>6.1.0.0</AssemblyVersion>
-    <FileVersion>6.1.0.0</FileVersion>
+    <AssemblyVersion>6.1.2.0</AssemblyVersion>
+    <FileVersion>6.1.2.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>6.1.1.0</Version>
+    <Version>6.1.2.0</Version>
     <Authors>Sylvain Vernois</Authors>
     <PackageProjectUrl>https://github.com/wsct/WSCT-Core</PackageProjectUrl>
     <RepositoryUrl>https://github.com/wsct/WSCT-Core</RepositoryUrl>
     <PackageTags>smartcard, pc/sc, winscard, wsct</PackageTags>
+    <PackageReleaseNotes>- new: .5.0 is supported.</PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG</DefineConstants>
@@ -24,14 +25,14 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WSCT.Helpers\WSCT.Helpers.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ISO7816\Dictionary.StatusWord.xml">
       <Visible>False</Visible>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Pack>True</Pack>
       <PackageCopyToOutput>True</PackageCopyToOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WSCT.Helpers\WSCT.Helpers.csproj" />
   </ItemGroup>
 </Project>
