@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using WSCT.Core;
 using WSCT.Helpers.Events;
 
@@ -28,11 +29,12 @@ namespace WSCT.Wrapper.Desktop.Core
         #region >> Fields
 
         private ICardContext _context;
-        private Boolean _initDone;
+        private bool _initDone;
         private string[] _readerNames;
         private AbstractReaderState[] _readerStates;
-        private Thread _thread;
-        private Boolean _threadContinue;
+        private Task _task;
+        private bool _threadContinue;
+        private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
 
         #endregion
 
@@ -66,7 +68,7 @@ namespace WSCT.Wrapper.Desktop.Core
         /// </summary>
         public StatusChangeMonitor()
             :
-                this(null, new string[0])
+                this(null, Array.Empty<string>())
         {
         }
 
@@ -80,7 +82,7 @@ namespace WSCT.Wrapper.Desktop.Core
             _context = context;
             _readerNames = readerNames;
             _readerStates = new AbstractReaderState[_readerNames.Length];
-            _thread = new Thread(WaitForChanges);
+            _task = new Task(WaitForChanges, _cancellationTokenSource.Token);
             _initDone = false;
             _threadContinue = false;
         }
@@ -105,8 +107,7 @@ namespace WSCT.Wrapper.Desktop.Core
         public void Start()
         {
             _threadContinue = true;
-            _thread = new Thread(WaitForChanges);
-            _thread.Start();
+            _task = Task.Run(WaitForChanges, _cancellationTokenSource.Token);
         }
 
         /// <summary>
@@ -117,8 +118,8 @@ namespace WSCT.Wrapper.Desktop.Core
             if (_threadContinue)
             {
                 _threadContinue = false;
-                _thread.Abort();
-                _thread.Join();
+                _cancellationTokenSource.Cancel();
+                _task.Wait();
             }
         }
 
@@ -156,10 +157,10 @@ namespace WSCT.Wrapper.Desktop.Core
 
         /// <summary>
         /// Waits for a change of state of one of the monitored readers, and returns details.
-        /// Events are fired when catched.
+        /// Events are fired when catch.
         /// </summary>
         /// <param name="timeout">Maximum wait time (ms).</param>
-        /// <returns>Informations about the change, or null if no change occured until the <paramref name="timeout"/>.</returns>
+        /// <returns>Information about the change, or null if no change occurred until the <paramref name="timeout"/>.</returns>
         public void WaitForChange(uint timeout)
         {
             if (!_initDone)
@@ -177,7 +178,7 @@ namespace WSCT.Wrapper.Desktop.Core
 
             switch (result)
             {
-                case ErrorCode.Success: // Change occured
+                case ErrorCode.Success: // Change occurred
                     RaiseChangeEvents();
                     break;
                 case ErrorCode.Timeout: // Nothing changed
@@ -188,7 +189,7 @@ namespace WSCT.Wrapper.Desktop.Core
                     _threadContinue = false;
                     break;
                 default:
-                    throw new Exception(String.Format("Error occured in getStatusChange() {0}", result));
+                    throw new Exception($"Error occurred in GetStatusChange() {result}");
             }
         }
 
@@ -210,6 +211,10 @@ namespace WSCT.Wrapper.Desktop.Core
 
             do
             {
+                if (_cancellationTokenSource.Token.IsCancellationRequested)
+                {
+                    break;
+                }
                 WaitForChange(250);
             } while (_threadContinue);
         }
@@ -233,7 +238,7 @@ namespace WSCT.Wrapper.Desktop.Core
                 case ErrorCode.Timeout:
                     break;
                 default:
-                    throw new Exception(String.Format("Error occured in getStatusChange() {0}", result));
+                    throw new Exception($"Error occured in getStatusChange() {result}");
             }
 
             return result;

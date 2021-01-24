@@ -8,10 +8,8 @@
     </Description>
     <Company>ENSICAEN</Company>
     <Copyright>Copyright © ENSICAEN / GREYC 2006-2018</Copyright>
-    <AssemblyVersion>6.1.2.0</AssemblyVersion>
-    <FileVersion>6.1.2.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>6.1.2.0</Version>
+    <Version>6.1.3.0</Version>
     <Authors>Sylvain Vernois</Authors>
     <PackageProjectUrl>https://github.com/wsct/WSCT-Core</PackageProjectUrl>
     <RepositoryUrl>https://github.com/wsct/WSCT-Core</RepositoryUrl>

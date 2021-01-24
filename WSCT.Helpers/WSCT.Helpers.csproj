@@ -4,7 +4,7 @@
     <Product>WSCT.Helpers</Product>
     <Description>Generic helpers classes for WSCT</Description>
     <Copyright>Copyright © ENSICAEN / GREYC 2006-2020</Copyright>
-    <Version>5.0.1</Version>
+    <Version>5.0.2</Version>
     <Authors>Sylvain Vernois</Authors>
     <Company>ENSICAEN</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
