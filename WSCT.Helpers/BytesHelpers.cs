@@ -167,6 +167,11 @@ namespace WSCT.Helpers
         {
             var length = buffer.Length;
 
+            if (length == 0)
+            {
+                return string.Empty;
+            }
+
             var stringBuilder = new StringBuilder(separator == 0 ? 2 * length : 2 + 3 * (length - 1));
 
             if (length > 0)
