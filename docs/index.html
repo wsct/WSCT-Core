@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>WSCT Core documentation. </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="WSCT Core documentation. ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="images/wsct-logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="wsct-core-documentation">WSCT Core documentation.</h1>
+
+<h2 id="what-is-wsct">What is WSCT?</h2>
+<p>WSCT is a framework written in C# initialy used to allow any .net software to connect to <a href="https://pcscworkgroup.com/">PC/SC</a> smart card readers on windows through <a href="https://docs.microsoft.com/en-us/windows/win32/api/winscard/"><code>winscard.dll</code></a> library.
+WSCT stands for WinSCard Tools.</p>
+<p>It has evolved to allow any smart card reader to be used, even virtual smart cards.</p>
+<p>The project is hosted on <a href="https://github.com/wsct/WSCT-Core">Github</a>.</p>
+<p>Developed by S.Vernois @ <a href="https://www.ensicaen.fr/">ENSICAEN</a> / <a href="https://www.greyc.fr/en/equipes/safe-2/">GREYC</a> since 2006 with the help of some students for proof of concepts.</p>
+<h2 id="the-projects">The projects</h2>
+<h3 id="wsct">WSCT</h3>
+<p>Defines the core abstractions allowing the access to readers and smart cards.</p>
+<h4 id="wsctcore-namespace">WSCT.Core namespace</h4>
+<p>Main abstractions:</p>
+<ul>
+<li><a class="xref" href="api/WSCT.Core.ICardContext.html"><code>Core.ICardContext</code></a></li>
+<li><a class="xref" href="api/WSCT.Core.ICardChannel.html"><code>Core.ICardChannel</code></a></li>
+<li><code>Core.ICardContextObservable</code> (extends <code>ICardContext</code> by adding activity observation through events)</li>
+<li><code>Core.ICardChannelObservable</code> (extends <code>ICardChannel</code> by adding activity observation through events)</li>
+</ul>
+<p>Decorators allowing the observation of an existing context or channel:</p>
+<ul>
+<li><code>Core.CardContextObservable</code></li>
+<li><code>Core.CardChannelObservable</code></li>
+</ul>
+<h4 id="wsctstack-namespace">WSCT.Stack namespace</h4>
+<p>Defines a layer architecture allows interception and modification of any ICard* method.</p>
+<ul>
+<li><code>Stack.ICardContextLayer</code></li>
+<li><code>Stack.ICardChannelLayer</code></li>
+</ul>
+<p>Stack of layer implementation:</p>
+<ul>
+<li><code>Stack.CardContextStack</code> (implements <code>ICardContext</code>)</li>
+<li><code>Stack.CardChannelStack</code> (implements <code>ICardChannel</code>)</li>
+</ul>
+<h4 id="wsctiso7816-namespace">WSCT.ISO7816 namespace</h4>
+<p>Defines ISO/IEC 7816-4 command &amp; response APDU:</p>
+<ul>
+<li><code>ISO7816.CommandAPDU</code></li>
+<li><code>ISO7816.ResponseAPDU</code></li>
+<li><code>ISO7816.CommandResponsePair</code></li>
+</ul>
+<h3 id="wscthelpers">WSCT.Helpers</h3>
+<p>Defines some helper methods that may be used by any WSCT project.</p>
+<h3 id="wsctwrapper">WSCT.Wrapper</h3>
+<h3 id="wsctwrapperdesktop-namespace">WSCT.Wrapper.Desktop namespace</h3>
+<p>Defines an implementation of WSCT abstractions that can adapt to any desktop OS (MacOS, Linux, Windows):</p>
+<ul>
+<li><code>Wrapper.Desktop.Core.CardContextCore</code> (implements <code>ICardContext</code>)</li>
+<li><code>Wrapper.Desktop.Core.CardChannelCore</code> (implements <code>ICardChannel</code>)</li>
+<li><code>Wrapper.Desktop.Core.CardContext</code> (implements <code>ICardContextObservable</code>)</li>
+<li><code>Wrapper.Desktop.Core.CardChannel</code> (implements <code>ICardChannelObservable</code>)</li>
+</ul>
+<p>Example:</p>
+<pre><code class="lang-csharp">using WSCT.Wrapper.Desktop.Core;
+
+var context = new CardContext();
+// ...
+var cardChannel = new CardChannel(context, &quot;Some reader name&quot;);
+// ...
+</code></pre>
+<h4 id="wsctmacosx">WSCT.MacOSX</h4>
+<p>Defines the implementation of WSCT abstraction for PC/SC service on MacOS.</p>
+<h4 id="wsctpcsclite32">WSCT.PCSCLite32</h4>
+<p>Defines the implementation of WSCT abstraction for PC/SC service on 32 bits linux OS.</p>
+<h4 id="wsctpcsclite64">WSCT.PCSCLite64</h4>
+<p>Defines the implementation of WSCT abstraction for PC/SC service on 64 bits linux OS.</p>
+<h4 id="wsctwinscard">WSCT.WinSCard</h4>
+<p>Defines the implementation of WSCT abstraction for PC/SC service on Windows OS.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1275 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class CommandAPDU
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class CommandAPDU
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/wsct-logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="WSCT.ISO7816.CommandAPDU">
+  
+  
+  <h1 id="WSCT_ISO7816_CommandAPDU" data-uid="WSCT.ISO7816.CommandAPDU" class="text-break">Class CommandAPDU
+  </h1>
+  <div class="markdown level0 summary"><p>Represents the normalized (ISO7816) C-APDU to be sent to a smart card.</p>
+<p>C-APDU: <strong>CLA INS P1 P2 (Lc UDC) (Le)</strong></p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">CommandAPDU</span></div>
+      <div class="level2"><a class="xref" href="WSCT.ISO7816.Commands.AppendRecordCommand.html">AppendRecordCommand</a></div>
+      <div class="level2"><a class="xref" href="WSCT.ISO7816.Commands.GetDataCommand.html">GetDataCommand</a></div>
+      <div class="level2"><a class="xref" href="WSCT.ISO7816.Commands.GetResponseCommand.html">GetResponseCommand</a></div>
+      <div class="level2"><a class="xref" href="WSCT.ISO7816.Commands.ReadBinaryCommand.html">ReadBinaryCommand</a></div>
+      <div class="level2"><a class="xref" href="WSCT.ISO7816.Commands.ReadRecordCommand.html">ReadRecordCommand</a></div>
+      <div class="level2"><a class="xref" href="WSCT.ISO7816.Commands.SelectCommand.html">SelectCommand</a></div>
+      <div class="level2"><a class="xref" href="WSCT.ISO7816.Commands.WriteRecordCommand.html">WriteRecordCommand</a></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="WSCT.Core.APDU.ICardCommand.html">ICardCommand</a></div>
+    <div><span class="xref">System.Xml.Serialization.IXmlSerializable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="WSCT.ISO7816.html">WSCT.ISO7816</a></h6>
+  <h6><strong>Assembly</strong>: WSCT.dll</h6>
+  <h5 id="WSCT_ISO7816_CommandAPDU_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class CommandAPDU : ICardCommand, IXmlSerializable</code></pre>
+  </div>
+  <h5 id="WSCT_ISO7816_CommandAPDU_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>Only short C-APDU (Le, Lc coded on 1 byte) are now supported.</p>
+</div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU__ctor.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L280">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU__ctor_" data-uid="WSCT.ISO7816.CommandAPDU.#ctor*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU__ctor" data-uid="WSCT.ISO7816.CommandAPDU.#ctor">CommandAPDU()</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CommandAPDU()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU__ctor_System_Byte_System_Byte_System_Byte_System_Byte_.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.%23ctor(System.Byte%2CSystem.Byte%2CSystem.Byte%2CSystem.Byte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L296">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU__ctor_" data-uid="WSCT.ISO7816.CommandAPDU.#ctor*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU__ctor_System_Byte_System_Byte_System_Byte_System_Byte_" data-uid="WSCT.ISO7816.CommandAPDU.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">CommandAPDU(Byte, Byte, Byte, Byte)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance for CC1 C-APDU.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CommandAPDU(byte cla, byte ins, byte p1, byte p2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">cla</span></td>
+        <td><p>CLA byte of the C-APDU.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">ins</span></td>
+        <td><p>INS byte of the C-APDU.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">p1</span></td>
+        <td><p>P1 byte of the C-APDU.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">p2</span></td>
+        <td><p>P2 byte of the C-APDU.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU__ctor_System_Byte_System_Byte_System_Byte_System_Byte_System_UInt32_.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.%23ctor(System.Byte%2CSystem.Byte%2CSystem.Byte%2CSystem.Byte%2CSystem.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L313">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU__ctor_" data-uid="WSCT.ISO7816.CommandAPDU.#ctor*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU__ctor_System_Byte_System_Byte_System_Byte_System_Byte_System_UInt32_" data-uid="WSCT.ISO7816.CommandAPDU.#ctor(System.Byte,System.Byte,System.Byte,System.Byte,System.UInt32)">CommandAPDU(Byte, Byte, Byte, Byte, UInt32)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance for CC2 C-APDU.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CommandAPDU(byte cla, byte ins, byte p1, byte p2, uint le)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">cla</span></td>
+        <td><p>CLA byte of the C-APDU.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">ins</span></td>
+        <td><p>INS byte of the C-APDU.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">p1</span></td>
+        <td><p>P1 byte of the C-APDU.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">p2</span></td>
+        <td><p>P2 byte of the C-APDU.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">le</span></td>
+        <td><p>Le value of the C-APDU.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU__ctor_System_Byte_System_Byte_System_Byte_System_Byte_System_UInt32_System_Byte___.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.%23ctor(System.Byte%2CSystem.Byte%2CSystem.Byte%2CSystem.Byte%2CSystem.UInt32%2CSystem.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L332">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU__ctor_" data-uid="WSCT.ISO7816.CommandAPDU.#ctor*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU__ctor_System_Byte_System_Byte_System_Byte_System_Byte_System_UInt32_System_Byte___" data-uid="WSCT.ISO7816.CommandAPDU.#ctor(System.Byte,System.Byte,System.Byte,System.Byte,System.UInt32,System.Byte[])">CommandAPDU(Byte, Byte, Byte, Byte, UInt32, Byte[])</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance for CC2 C-APDU.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CommandAPDU(byte cla, byte ins, byte p1, byte p2, uint lc, byte[] udc)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">cla</span></td>
+        <td><p>CLA byte of the C-APDU.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">ins</span></td>
+        <td><p>INS byte of the C-APDU.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">p1</span></td>
+        <td><p>P1 byte of the C-APDU.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">p2</span></td>
+        <td><p>P2 byte of the C-APDU.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">lc</span></td>
+        <td><p>Lc value of the C-APDU.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">udc</span></td>
+        <td><p>UDC of the C-APDU.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU__ctor_System_Byte_System_Byte_System_Byte_System_Byte_System_UInt32_System_Byte___System_UInt32_.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.%23ctor(System.Byte%2CSystem.Byte%2CSystem.Byte%2CSystem.Byte%2CSystem.UInt32%2CSystem.Byte%5B%5D%2CSystem.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L353">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU__ctor_" data-uid="WSCT.ISO7816.CommandAPDU.#ctor*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU__ctor_System_Byte_System_Byte_System_Byte_System_Byte_System_UInt32_System_Byte___System_UInt32_" data-uid="WSCT.ISO7816.CommandAPDU.#ctor(System.Byte,System.Byte,System.Byte,System.Byte,System.UInt32,System.Byte[],System.UInt32)">CommandAPDU(Byte, Byte, Byte, Byte, UInt32, Byte[], UInt32)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance for CC4 C-APDU.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CommandAPDU(byte cla, byte ins, byte p1, byte p2, uint lc, byte[] udc, uint le)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">cla</span></td>
+        <td><p>CLA byte of the C-APDU.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">ins</span></td>
+        <td><p>INS byte of the C-APDU.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">p1</span></td>
+        <td><p>P1 byte of the C-APDU.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">p2</span></td>
+        <td><p>P2 byte of the C-APDU.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">lc</span></td>
+        <td><p>Lc value of the C-APDU.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">udc</span></td>
+        <td><p>UDC of the C-APDU.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">le</span></td>
+        <td><p>Le value of the C-APDU.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU__ctor_System_Byte___.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.%23ctor(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L371">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU__ctor_" data-uid="WSCT.ISO7816.CommandAPDU.#ctor*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU__ctor_System_Byte___" data-uid="WSCT.ISO7816.CommandAPDU.#ctor(System.Byte[])">CommandAPDU(Byte[])</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance for arbitrary C-APDU.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CommandAPDU(byte[] cAPDU)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">cAPDU</span></td>
+        <td><p>C-APDU to be assigned as a byte array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU__ctor_System_String_.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.%23ctor(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L385">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU__ctor_" data-uid="WSCT.ISO7816.CommandAPDU.#ctor*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU__ctor_System_String_" data-uid="WSCT.ISO7816.CommandAPDU.#ctor(System.String)">CommandAPDU(String)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance for arbitrary C-APDU.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CommandAPDU(string cAPDU)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">cAPDU</span></td>
+        <td><p>C-APDU to be assigned as a string container (each byte is coded in hexa).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_BinaryCommand.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.BinaryCommand%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L235">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_BinaryCommand_" data-uid="WSCT.ISO7816.CommandAPDU.BinaryCommand*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_BinaryCommand" data-uid="WSCT.ISO7816.CommandAPDU.BinaryCommand">BinaryCommand</h4>
+  <div class="markdown level1 summary"><p>Accessor to the entire C-APDU in byte array format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] BinaryCommand { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_Cla.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.Cla%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L69">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_Cla_" data-uid="WSCT.ISO7816.CommandAPDU.Cla*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_Cla" data-uid="WSCT.ISO7816.CommandAPDU.Cla">Cla</h4>
+  <div class="markdown level1 summary"><p>Accessor to the CLA byte of the C-APDU.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte Cla { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_CommandCase.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.CommandCase%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L38">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_CommandCase_" data-uid="WSCT.ISO7816.CommandAPDU.CommandCase*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_CommandCase" data-uid="WSCT.ISO7816.CommandAPDU.CommandCase">CommandCase</h4>
+  <div class="markdown level1 summary"><p>Accessor to the Command Case of the C-APDU.
+Write access: <a class="xref" href="WSCT.ISO7816.CommandAPDU.html#WSCT_ISO7816_CommandAPDU_HasLe">HasLe</a> and <a class="xref" href="WSCT.ISO7816.CommandAPDU.html#WSCT_ISO7816_CommandAPDU_HasLc">HasLc</a> are updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CommandCase CommandCase { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WSCT.ISO7816.CommandCase.html">CommandCase</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_HasLc.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.HasLc%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L153">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_HasLc_" data-uid="WSCT.ISO7816.CommandAPDU.HasLc*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_HasLc" data-uid="WSCT.ISO7816.CommandAPDU.HasLc">HasLc</h4>
+  <div class="markdown level1 summary"><p>Informs if Lc has been parsed.
+Write access: <a class="xref" href="WSCT.ISO7816.CommandAPDU.html#WSCT_ISO7816_CommandAPDU_CommandCase">CommandCase</a> is updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasLc { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_HasLe.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.HasLe%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L116">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_HasLe_" data-uid="WSCT.ISO7816.CommandAPDU.HasLe*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_HasLe" data-uid="WSCT.ISO7816.CommandAPDU.HasLe">HasLe</h4>
+  <div class="markdown level1 summary"><p>Informs if Le has been parsed.
+Write access: <a class="xref" href="WSCT.ISO7816.CommandAPDU.html#WSCT_ISO7816_CommandAPDU_CommandCase">CommandCase</a> is updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasLe { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_Ins.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.Ins%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L74">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_Ins_" data-uid="WSCT.ISO7816.CommandAPDU.Ins*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_Ins" data-uid="WSCT.ISO7816.CommandAPDU.Ins">Ins</h4>
+  <div class="markdown level1 summary"><p>Accessor to the INS byte of the C-APDU.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte Ins { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_IsCc1.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.IsCc1%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L203">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_IsCc1_" data-uid="WSCT.ISO7816.CommandAPDU.IsCc1*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_IsCc1" data-uid="WSCT.ISO7816.CommandAPDU.IsCc1">IsCc1</h4>
+  <div class="markdown level1 summary"><p>Informs if the C-APDU is a Command Case 1.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsCc1 { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_IsCc2.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.IsCc2%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L211">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_IsCc2_" data-uid="WSCT.ISO7816.CommandAPDU.IsCc2*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_IsCc2" data-uid="WSCT.ISO7816.CommandAPDU.IsCc2">IsCc2</h4>
+  <div class="markdown level1 summary"><p>Informs if the C-APDU is a Command Case 2.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsCc2 { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_IsCc3.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.IsCc3%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L219">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_IsCc3_" data-uid="WSCT.ISO7816.CommandAPDU.IsCc3*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_IsCc3" data-uid="WSCT.ISO7816.CommandAPDU.IsCc3">IsCc3</h4>
+  <div class="markdown level1 summary"><p>Informs if the C-APDU is a Command Case 3.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsCc3 { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_IsCc4.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.IsCc4%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L227">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_IsCc4_" data-uid="WSCT.ISO7816.CommandAPDU.IsCc4*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_IsCc4" data-uid="WSCT.ISO7816.CommandAPDU.IsCc4">IsCc4</h4>
+  <div class="markdown level1 summary"><p>Informs if the C-APDU is a Command Case 4.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsCc4 { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_Lc.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.Lc%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L102">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_Lc_" data-uid="WSCT.ISO7816.CommandAPDU.Lc*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_Lc" data-uid="WSCT.ISO7816.CommandAPDU.Lc">Lc</h4>
+  <div class="markdown level1 summary"><p>Accessor to the Lc value of the C-APDU.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint Lc { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_Le.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.Le%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L89">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_Le_" data-uid="WSCT.ISO7816.CommandAPDU.Le*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_Le" data-uid="WSCT.ISO7816.CommandAPDU.Le">Le</h4>
+  <div class="markdown level1 summary"><p>Accessor to the Le value of the C-APDU.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint Le { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_P1.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.P1%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L79">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_P1_" data-uid="WSCT.ISO7816.CommandAPDU.P1*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_P1" data-uid="WSCT.ISO7816.CommandAPDU.P1">P1</h4>
+  <div class="markdown level1 summary"><p>Accessor to the P1 byte of the C-APDU.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte P1 { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_P2.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.P2%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L84">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_P2_" data-uid="WSCT.ISO7816.CommandAPDU.P2*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_P2" data-uid="WSCT.ISO7816.CommandAPDU.P2">P2</h4>
+  <div class="markdown level1 summary"><p>Accessor to the P2 byte of the C-APDU.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte P2 { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_StringCommand.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.StringCommand%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L268">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_StringCommand_" data-uid="WSCT.ISO7816.CommandAPDU.StringCommand*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_StringCommand" data-uid="WSCT.ISO7816.CommandAPDU.StringCommand">StringCommand</h4>
+  <div class="markdown level1 summary"><p>Accessor to the entire C-APDU in string format (all bytes are represented in hexa).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string StringCommand { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_Udc.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.Udc%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L190">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_Udc_" data-uid="WSCT.ISO7816.CommandAPDU.Udc*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_Udc" data-uid="WSCT.ISO7816.CommandAPDU.Udc">Udc</h4>
+  <div class="markdown level1 summary"><p>Accessor to the UDC of the C-APDU.
+Write access: <a class="xref" href="WSCT.ISO7816.CommandAPDU.html#WSCT_ISO7816_CommandAPDU_Lc">Lc</a> is updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] Udc { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_AppendUdc_System_Byte___.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.AppendUdc(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L403">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_AppendUdc_" data-uid="WSCT.ISO7816.CommandAPDU.AppendUdc*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_AppendUdc_System_Byte___" data-uid="WSCT.ISO7816.CommandAPDU.AppendUdc(System.Byte[])">AppendUdc(Byte[])</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendUdc(byte[] udcPart)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">udcPart</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_GetSchema.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.GetSchema%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L476">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_GetSchema_" data-uid="WSCT.ISO7816.CommandAPDU.GetSchema*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_GetSchema" data-uid="WSCT.ISO7816.CommandAPDU.GetSchema">GetSchema()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public XmlSchema GetSchema()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Xml.Schema.XmlSchema</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_Parse_System_Byte___.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.Parse(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L426">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_Parse_" data-uid="WSCT.ISO7816.CommandAPDU.Parse*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_Parse_System_Byte___" data-uid="WSCT.ISO7816.CommandAPDU.Parse(System.Byte[])">Parse(Byte[])</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICardCommand Parse(byte[] cAPDU)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">cAPDU</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WSCT.Core.APDU.ICardCommand.html">ICardCommand</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_Parse_System_String_.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.Parse(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L466">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_Parse_" data-uid="WSCT.ISO7816.CommandAPDU.Parse*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_Parse_System_String_" data-uid="WSCT.ISO7816.CommandAPDU.Parse(System.String)">Parse(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICardCommand Parse(string cAPDU)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">cAPDU</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WSCT.Core.APDU.ICardCommand.html">ICardCommand</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_ReadXml_System_Xml_XmlReader_.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.ReadXml(System.Xml.XmlReader)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L482">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_ReadXml_" data-uid="WSCT.ISO7816.CommandAPDU.ReadXml*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_ReadXml_System_Xml_XmlReader_" data-uid="WSCT.ISO7816.CommandAPDU.ReadXml(System.Xml.XmlReader)">ReadXml(XmlReader)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReadXml(XmlReader reader)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Xml.XmlReader</span></td>
+        <td><span class="parametername">reader</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_ToString.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L416">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_ToString_" data-uid="WSCT.ISO7816.CommandAPDU.ToString*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_ToString" data-uid="WSCT.ISO7816.CommandAPDU.ToString">ToString()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.Object.ToString()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU_WriteXml_System_Xml_XmlWriter_.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU.WriteXml(System.Xml.XmlWriter)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L509">View Source</a>
+  </span>
+  <a id="WSCT_ISO7816_CommandAPDU_WriteXml_" data-uid="WSCT.ISO7816.CommandAPDU.WriteXml*"></a>
+  <h4 id="WSCT_ISO7816_CommandAPDU_WriteXml_System_Xml_XmlWriter_" data-uid="WSCT.ISO7816.CommandAPDU.WriteXml(System.Xml.XmlWriter)">WriteXml(XmlWriter)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteXml(XmlWriter writer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Xml.XmlWriter</span></td>
+        <td><span class="parametername">writer</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="WSCT.Core.APDU.ICardCommand.html">ICardCommand</a>
+  </div>
+  <div>
+      <span class="xref">System.Xml.Serialization.IXmlSerializable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="WSCT.Helpers.Json.JsonHelpers.html#WSCT_Helpers_Json_JsonHelpers_WriteToJsonFile_System_Object_System_String_">JsonHelpers.WriteToJsonFile(Object, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="WSCT.Helpers.Json.JsonHelpers.html#WSCT_Helpers_Json_JsonHelpers_WriteToJsonFile_System_Object_System_String_System_Boolean_">JsonHelpers.WriteToJsonFile(Object, String, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="WSCT.Helpers.Json.JsonHelpers.html#WSCT_Helpers_Json_JsonHelpers_WriteToJsonString_System_Object_">JsonHelpers.WriteToJsonString(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="WSCT.Helpers.Json.JsonHelpers.html#WSCT_Helpers_Json_JsonHelpers_WriteToJsonString_System_Object_System_Boolean_">JsonHelpers.WriteToJsonString(Object, Boolean)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_ISO7816_CommandAPDU.md&amp;value=---%0Auid%3A%20WSCT.ISO7816.CommandAPDU%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/ISO7816/CommandAPDU.cs/#L17" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

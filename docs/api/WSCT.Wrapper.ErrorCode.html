@@ -1,0 +1,467 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Enum ErrorCode
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Enum ErrorCode
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/wsct-logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="WSCT.Wrapper.ErrorCode">
+  
+  
+  <h1 id="WSCT_Wrapper_ErrorCode" data-uid="WSCT.Wrapper.ErrorCode" class="text-break">Enum ErrorCode
+  </h1>
+  <div class="markdown level0 summary"><p>Enumeration for errors that can be raised by WinSCard.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="WSCT.Wrapper.html">WSCT.Wrapper</a></h6>
+  <h6><strong>Assembly</strong>: WSCT.dll</h6>
+  <h5 id="WSCT_Wrapper_ErrorCode_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public enum ErrorCode : uint</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    <thead>
+    <tbody>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_BadSeek">BadSeek</td>
+        <td><p>There was an error trying to set the smart card file object pointer.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_Cancelled">Cancelled</td>
+        <td><p>Error: The action was cancelled by an SCardCancel request.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_CancelledByUser">CancelledByUser</td>
+        <td><p>Warning: The action was cancelled by the user.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_CantDispose">CantDispose</td>
+        <td><p>Error: The system could not dispose of the media in the requested manner.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_CardNotAuthenticated">CardNotAuthenticated</td>
+        <td><p>Warning: No PIN was presented to the smart card.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_CardUnsupported">CardUnsupported</td>
+        <td><p>The smart card does not meet minimal requirements for support.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_CertificateUnavailable">CertificateUnavailable</td>
+        <td><p>The requested certificate could not be obtained.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_ChvBlocked">ChvBlocked</td>
+        <td><p>Warning: The card cannot be accessed because the maximum number of PIN entry attempts has been reached.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_CommDataLost">CommDataLost</td>
+        <td><p>A communications error with the smart card has been detected. Retry the operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_CommError">CommError</td>
+        <td><p>Fatal: An internal communications error has been detected.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_DirNotFound">DirNotFound</td>
+        <td><p>The identified directory does not exist in the smart card.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_DuplicateReader">DuplicateReader</td>
+        <td><p>The reader driver did not produce a unique reader name.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_Eof">Eof</td>
+        <td><p>Warning: The end of the smart card file has been reached.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_ErrorInvalidHandle">ErrorInvalidHandle</td>
+        <td><p>The handle is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_ErrorInvalidParameter">ErrorInvalidParameter</td>
+        <td><p>The parameter is incorrect.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_FileNotFound">FileNotFound</td>
+        <td><p>The identified file does not exist in the smart card.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_IccCreateorder">IccCreateorder</td>
+        <td><p>The requested order of object creation is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_IccInstallation">IccInstallation</td>
+        <td><p>No Primary Provider can be found for the smart card.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_InsufficientBuffer">InsufficientBuffer</td>
+        <td><p>Error: The data buffer to receive returned data is too small for the returned data.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_InternalError">InternalError</td>
+        <td><p>Fatal: An internal consistency check failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_InvalidAtr">InvalidAtr</td>
+        <td><p>Error: An ATR obtained from the registry is not a valid ATR String.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_InvalidChv">InvalidChv</td>
+        <td><p>The supplied PIN is incorrect.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_InvalidHandle">InvalidHandle</td>
+        <td><p>Error: The supplied handle was invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_InvalidParameter">InvalidParameter</td>
+        <td><p>Error: One or more of the supplied parameters could not be properly interpreted.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_InvalidTarget">InvalidTarget</td>
+        <td><p>Error: Registry startup information is missing or invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_InvalidValue">InvalidValue</td>
+        <td><p>Error: One or more of the supplied parameters values could not be properly interpreted.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_NoAccess">NoAccess</td>
+        <td><p>Access is denied to this file.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_NoDir">NoDir</td>
+        <td><p>The supplied path does not represent a smart card directory.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_NoFile">NoFile</td>
+        <td><p>The supplied path does not represent a smart card file.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_NoKeyContainer">NoKeyContainer</td>
+        <td><p>The requested key container does not exist on the smart card.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_NoMemory">NoMemory</td>
+        <td><p>Error: Not enough memory available to complete this commandAPDU.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_NoReadersAvailable">NoReadersAvailable</td>
+        <td><p>Cannot find a smart card reader.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_NoService">NoService</td>
+        <td><p>The Smart card resource manager is not running.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_NoSmartcard">NoSmartcard</td>
+        <td><p>Error: The operation requires a Smart Card, but no Smart Card is currently in the device.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_NoSuchCertificate">NoSuchCertificate</td>
+        <td><p>The requested certificate does not exist.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_NotReady">NotReady</td>
+        <td><p>Error: The reader or smart card is not ready to accept commands.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_NotTransacted">NotTransacted</td>
+        <td><p>Error: An attempt was made to end a non-existent transaction.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_PciTooSmall">PciTooSmall</td>
+        <td><p>The PCI Receive buffer was too small.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_ProtoMismatch">ProtoMismatch</td>
+        <td><p>Error: The requested protocols are incompatible with the protocol currently in use with the smart card.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_ReaderUnavailable">ReaderUnavailable</td>
+        <td><p>Error: The specified reader is not currently available for use.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_ReaderUnsupported">ReaderUnsupported</td>
+        <td><p>The reader driver does not meet minimal requirements for support.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_RemovedCard">RemovedCard</td>
+        <td><p>Warning: The smart card has been removed, so that further communication is not possible.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_ResetCard">ResetCard</td>
+        <td><p>Warning: The smart card has been reset, so any shared state information is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_SecurityViolation">SecurityViolation</td>
+        <td><p>Warning: Access was denied because of a security violation.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_ServerTooBusy">ServerTooBusy</td>
+        <td><p>The Smart card resource manager is too busy to complete this operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_ServiceStopped">ServiceStopped</td>
+        <td><p>The Smart card resource manager has shut down.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_SharingViolation">SharingViolation</td>
+        <td><p>Error: The smart card cannot be accessed because of other connections outstanding.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_Shutdown">Shutdown</td>
+        <td><p>P: The operation has been aborted to allow the server application to exit.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_Success">Success</td>
+        <td><p>Success: No error was encountered.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_SystemCancelled">SystemCancelled</td>
+        <td><p>Error: The action was cancelled by the system, presumably to log off or shut down.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_Timeout">Timeout</td>
+        <td><p>Error: The user-specified timeout value has expired.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_Unexpected">Unexpected</td>
+        <td><p>An unexpected card error has occurred.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_UnknownCard">UnknownCard</td>
+        <td><p>Error: The specified smart card name is not recognized.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_UnknownError">UnknownError</td>
+        <td><p>Fatal: An internal error has been detected, but the source is unknown.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_UnknownReader">UnknownReader</td>
+        <td><p>Error: The specified reader name is not recognized.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_UnknownResMng">UnknownResMng</td>
+        <td><p>An unrecognized error code was returned from a layered component.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_UnpoweredCard">UnpoweredCard</td>
+        <td><p>Warning: Power has been removed from the smart card, so that further communication is not possible.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_UnresponsiveCard">UnresponsiveCard</td>
+        <td><p>Warning: The smart card is not responding to a reset.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_UnsupportedCard">UnsupportedCard</td>
+        <td><p>Warning: The reader cannot communicate with the smart card, due to ATR configuration conflicts.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_UnsupportedFeature">UnsupportedFeature</td>
+        <td><p>This smart card does not support the requested feature.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_WaitedTooLong">WaitedTooLong</td>
+        <td><p>Fatal: An internal consistency timer has expired.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_WriteTooMany">WriteTooMany</td>
+        <td><p>The smartcard does not have enough memory to store the information.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="WSCT_Wrapper_ErrorCode_WrongChv">WrongChv</td>
+        <td><p>Warning: The card cannot be accessed because the wrong PIN was presented.</p>
+</td>
+      </tr>
+    </tbody>
+  </thead></thead></table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="WSCT.Helpers.Json.JsonHelpers.html#WSCT_Helpers_Json_JsonHelpers_WriteToJsonFile_System_Object_System_String_">JsonHelpers.WriteToJsonFile(String)</a>
+  </div>
+  <div>
+      <a class="xref" href="WSCT.Helpers.Json.JsonHelpers.html#WSCT_Helpers_Json_JsonHelpers_WriteToJsonFile_System_Object_System_String_System_Boolean_">JsonHelpers.WriteToJsonFile(String, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="WSCT.Helpers.Json.JsonHelpers.html#WSCT_Helpers_Json_JsonHelpers_WriteToJsonString_System_Object_">JsonHelpers.WriteToJsonString()</a>
+  </div>
+  <div>
+      <a class="xref" href="WSCT.Helpers.Json.JsonHelpers.html#WSCT_Helpers_Json_JsonHelpers_WriteToJsonString_System_Object_System_Boolean_">JsonHelpers.WriteToJsonString(Boolean)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Wrapper_ErrorCode.md&amp;value=---%0Auid%3A%20WSCT.Wrapper.ErrorCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Wrapper/ErrorCode.cs/#L6" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

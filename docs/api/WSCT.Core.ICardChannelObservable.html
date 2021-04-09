@@ -1,0 +1,535 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface ICardChannelObservable
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface ICardChannelObservable
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/wsct-logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="WSCT.Core.ICardChannelObservable">
+  
+  
+  <h1 id="WSCT_Core_ICardChannelObservable" data-uid="WSCT.Core.ICardChannelObservable" class="text-break">Interface ICardChannelObservable
+  </h1>
+  <div class="markdown level0 summary"><p>Interface to be implemented by all observable <a class="xref" href="WSCT.Core.ICardChannel.html">ICardChannel</a> instance.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_Protocol">ICardChannel.Protocol</a>
+    </div>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_ReaderName">ICardChannel.ReaderName</a>
+    </div>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_Attach_WSCT_Core_ICardContext_System_String_">ICardChannel.Attach(ICardContext, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_Connect_WSCT_Wrapper_ShareMode_WSCT_Wrapper_Protocol_">ICardChannel.Connect(ShareMode, Protocol)</a>
+    </div>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_Disconnect_WSCT_Wrapper_Disposition_">ICardChannel.Disconnect(Disposition)</a>
+    </div>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_GetAttrib_WSCT_Wrapper_Attrib_System_Byte____">ICardChannel.GetAttrib(Attrib, Byte[])</a>
+    </div>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_GetStatus">ICardChannel.GetStatus()</a>
+    </div>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_Reconnect_WSCT_Wrapper_ShareMode_WSCT_Wrapper_Protocol_WSCT_Wrapper_Disposition_">ICardChannel.Reconnect(ShareMode, Protocol, Disposition)</a>
+    </div>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_Transmit_WSCT_Core_APDU_ICardCommand_WSCT_Core_APDU_ICardResponse_">ICardChannel.Transmit(ICardCommand, ICardResponse)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="WSCT.Core.html">WSCT.Core</a></h6>
+  <h6><strong>Assembly</strong>: WSCT.dll</h6>
+  <h5 id="WSCT_Core_ICardChannelObservable_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface ICardChannelObservable : ICardChannel</code></pre>
+  </div>
+  <h3 id="events">Events
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardChannelObservable_AfterConnectEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardChannelObservable.AfterConnectEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardChannelObservable.cs/#L21">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardChannelObservable_AfterConnectEvent" data-uid="WSCT.Core.ICardChannelObservable.AfterConnectEvent">AfterConnectEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_Connect_WSCT_Wrapper_ShareMode_WSCT_Wrapper_Protocol_">Connect(ShareMode, Protocol)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;AfterConnectEventArgs&gt; AfterConnectEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.AfterConnectEventArgs.html">AfterConnectEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardChannelObservable_AfterDisconnectEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardChannelObservable.AfterDisconnectEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardChannelObservable.cs/#L31">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardChannelObservable_AfterDisconnectEvent" data-uid="WSCT.Core.ICardChannelObservable.AfterDisconnectEvent">AfterDisconnectEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_Disconnect_WSCT_Wrapper_Disposition_">Disconnect(Disposition)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;AfterDisconnectEventArgs&gt; AfterDisconnectEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.AfterDisconnectEventArgs.html">AfterDisconnectEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardChannelObservable_AfterGetAttribEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardChannelObservable.AfterGetAttribEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardChannelObservable.cs/#L41">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardChannelObservable_AfterGetAttribEvent" data-uid="WSCT.Core.ICardChannelObservable.AfterGetAttribEvent">AfterGetAttribEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_GetAttrib_WSCT_Wrapper_Attrib_System_Byte____">GetAttrib(Attrib, ref Byte[])</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;AfterGetAttribEventArgs&gt; AfterGetAttribEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.AfterGetAttribEventArgs.html">AfterGetAttribEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardChannelObservable_AfterGetStatusEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardChannelObservable.AfterGetStatusEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardChannelObservable.cs/#L51">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardChannelObservable_AfterGetStatusEvent" data-uid="WSCT.Core.ICardChannelObservable.AfterGetStatusEvent">AfterGetStatusEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_GetStatus">GetStatus()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;AfterGetStatusEventArgs&gt; AfterGetStatusEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.AfterGetStatusEventArgs.html">AfterGetStatusEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardChannelObservable_AfterReconnectEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardChannelObservable.AfterReconnectEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardChannelObservable.cs/#L61">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardChannelObservable_AfterReconnectEvent" data-uid="WSCT.Core.ICardChannelObservable.AfterReconnectEvent">AfterReconnectEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_Reconnect_WSCT_Wrapper_ShareMode_WSCT_Wrapper_Protocol_WSCT_Wrapper_Disposition_">Reconnect(ShareMode, Protocol, Disposition)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;AfterReconnectEventArgs&gt; AfterReconnectEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.AfterReconnectEventArgs.html">AfterReconnectEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardChannelObservable_AfterTransmitEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardChannelObservable.AfterTransmitEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardChannelObservable.cs/#L71">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardChannelObservable_AfterTransmitEvent" data-uid="WSCT.Core.ICardChannelObservable.AfterTransmitEvent">AfterTransmitEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_Transmit_WSCT_Core_APDU_ICardCommand_WSCT_Core_APDU_ICardResponse_">Transmit(ICardCommand, ICardResponse)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;AfterTransmitEventArgs&gt; AfterTransmitEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.AfterTransmitEventArgs.html">AfterTransmitEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardChannelObservable_BeforeConnectEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardChannelObservable.BeforeConnectEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardChannelObservable.cs/#L16">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardChannelObservable_BeforeConnectEvent" data-uid="WSCT.Core.ICardChannelObservable.BeforeConnectEvent">BeforeConnectEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_Connect_WSCT_Wrapper_ShareMode_WSCT_Wrapper_Protocol_">Connect(ShareMode, Protocol)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;BeforeConnectEventArgs&gt; BeforeConnectEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.BeforeConnectEventArgs.html">BeforeConnectEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardChannelObservable_BeforeDisconnectEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardChannelObservable.BeforeDisconnectEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardChannelObservable.cs/#L26">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardChannelObservable_BeforeDisconnectEvent" data-uid="WSCT.Core.ICardChannelObservable.BeforeDisconnectEvent">BeforeDisconnectEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_Disconnect_WSCT_Wrapper_Disposition_">Disconnect(Disposition)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;BeforeDisconnectEventArgs&gt; BeforeDisconnectEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.BeforeDisconnectEventArgs.html">BeforeDisconnectEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardChannelObservable_BeforeGetAttribEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardChannelObservable.BeforeGetAttribEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardChannelObservable.cs/#L36">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardChannelObservable_BeforeGetAttribEvent" data-uid="WSCT.Core.ICardChannelObservable.BeforeGetAttribEvent">BeforeGetAttribEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_GetAttrib_WSCT_Wrapper_Attrib_System_Byte____">GetAttrib(Attrib, ref Byte[])</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;BeforeGetAttribEventArgs&gt; BeforeGetAttribEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.BeforeGetAttribEventArgs.html">BeforeGetAttribEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardChannelObservable_BeforeGetStatusEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardChannelObservable.BeforeGetStatusEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardChannelObservable.cs/#L46">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardChannelObservable_BeforeGetStatusEvent" data-uid="WSCT.Core.ICardChannelObservable.BeforeGetStatusEvent">BeforeGetStatusEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_GetStatus">GetStatus()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;BeforeGetStatusEventArgs&gt; BeforeGetStatusEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.BeforeGetStatusEventArgs.html">BeforeGetStatusEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardChannelObservable_BeforeReconnectEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardChannelObservable.BeforeReconnectEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardChannelObservable.cs/#L56">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardChannelObservable_BeforeReconnectEvent" data-uid="WSCT.Core.ICardChannelObservable.BeforeReconnectEvent">BeforeReconnectEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_Reconnect_WSCT_Wrapper_ShareMode_WSCT_Wrapper_Protocol_WSCT_Wrapper_Disposition_">Reconnect(ShareMode, Protocol, Disposition)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;BeforeReconnectEventArgs&gt; BeforeReconnectEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.BeforeReconnectEventArgs.html">BeforeReconnectEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardChannelObservable_BeforeTransmitEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardChannelObservable.BeforeTransmitEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardChannelObservable.cs/#L66">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardChannelObservable_BeforeTransmitEvent" data-uid="WSCT.Core.ICardChannelObservable.BeforeTransmitEvent">BeforeTransmitEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardChannel.html#WSCT_Core_ICardChannel_Transmit_WSCT_Core_APDU_ICardCommand_WSCT_Core_APDU_ICardResponse_">Transmit(ICardCommand, ICardResponse)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;BeforeTransmitEventArgs&gt; BeforeTransmitEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.BeforeTransmitEventArgs.html">BeforeTransmitEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="WSCT.Helpers.Json.JsonHelpers.html#WSCT_Helpers_Json_JsonHelpers_WriteToJsonFile_System_Object_System_String_">JsonHelpers.WriteToJsonFile(Object, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="WSCT.Helpers.Json.JsonHelpers.html#WSCT_Helpers_Json_JsonHelpers_WriteToJsonFile_System_Object_System_String_System_Boolean_">JsonHelpers.WriteToJsonFile(Object, String, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="WSCT.Helpers.Json.JsonHelpers.html#WSCT_Helpers_Json_JsonHelpers_WriteToJsonString_System_Object_">JsonHelpers.WriteToJsonString(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="WSCT.Helpers.Json.JsonHelpers.html#WSCT_Helpers_Json_JsonHelpers_WriteToJsonString_System_Object_System_Boolean_">JsonHelpers.WriteToJsonString(Object, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="WSCT.Linq.CardChannelExtension.html#WSCT_Linq_CardChannelExtension_ToObservable_WSCT_Core_ICardChannel_">CardChannelExtension.ToObservable(ICardChannel)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardChannelObservable.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardChannelObservable%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardChannelObservable.cs/#L9" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

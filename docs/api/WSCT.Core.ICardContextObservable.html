@@ -1,0 +1,604 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface ICardContextObservable
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface ICardContextObservable
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/wsct-logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="WSCT.Core.ICardContextObservable">
+  
+  
+  <h1 id="WSCT_Core_ICardContextObservable" data-uid="WSCT.Core.ICardContextObservable" class="text-break">Interface ICardContextObservable
+  </h1>
+  <div class="markdown level0 summary"><p>Interface to be implemented by all observable <a class="xref" href="WSCT.Core.ICardContext.html">ICardContext</a> instance.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_Context">ICardContext.Context</a>
+    </div>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_Groups">ICardContext.Groups</a>
+    </div>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_GroupsCount">ICardContext.GroupsCount</a>
+    </div>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_Readers">ICardContext.Readers</a>
+    </div>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_ReadersCount">ICardContext.ReadersCount</a>
+    </div>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_Cancel">ICardContext.Cancel()</a>
+    </div>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_Establish">ICardContext.Establish()</a>
+    </div>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_GetStatusChange_System_UInt32_WSCT_Wrapper_AbstractReaderState___">ICardContext.GetStatusChange(UInt32, AbstractReaderState[])</a>
+    </div>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_IsValid">ICardContext.IsValid()</a>
+    </div>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_ListReaders_System_String_">ICardContext.ListReaders(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_ListReaderGroups">ICardContext.ListReaderGroups()</a>
+    </div>
+    <div>
+      <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_Release">ICardContext.Release()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="WSCT.Core.html">WSCT.Core</a></h6>
+  <h6><strong>Assembly</strong>: WSCT.dll</h6>
+  <h5 id="WSCT_Core_ICardContextObservable_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface ICardContextObservable : ICardContext</code></pre>
+  </div>
+  <h3 id="events">Events
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardContextObservable_AfterCancelEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardContextObservable.AfterCancelEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardContextObservable.cs/#L21">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardContextObservable_AfterCancelEvent" data-uid="WSCT.Core.ICardContextObservable.AfterCancelEvent">AfterCancelEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_Cancel">Cancel()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;AfterCancelEventArgs&gt; AfterCancelEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.AfterCancelEventArgs.html">AfterCancelEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardContextObservable_AfterEstablishEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardContextObservable.AfterEstablishEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardContextObservable.cs/#L31">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardContextObservable_AfterEstablishEvent" data-uid="WSCT.Core.ICardContextObservable.AfterEstablishEvent">AfterEstablishEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_Establish">Establish()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;AfterEstablishEventArgs&gt; AfterEstablishEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.AfterEstablishEventArgs.html">AfterEstablishEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardContextObservable_AfterGetStatusChangeEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardContextObservable.AfterGetStatusChangeEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardContextObservable.cs/#L41">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardContextObservable_AfterGetStatusChangeEvent" data-uid="WSCT.Core.ICardContextObservable.AfterGetStatusChangeEvent">AfterGetStatusChangeEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_GetStatusChange_System_UInt32_WSCT_Wrapper_AbstractReaderState___">GetStatusChange(UInt32, AbstractReaderState[])</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;AfterGetStatusChangeEventArgs&gt; AfterGetStatusChangeEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.AfterGetStatusChangeEventArgs.html">AfterGetStatusChangeEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardContextObservable_AfterIsValidEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardContextObservable.AfterIsValidEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardContextObservable.cs/#L51">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardContextObservable_AfterIsValidEvent" data-uid="WSCT.Core.ICardContextObservable.AfterIsValidEvent">AfterIsValidEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_IsValid">IsValid()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;AfterIsValidEventArgs&gt; AfterIsValidEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.AfterIsValidEventArgs.html">AfterIsValidEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardContextObservable_AfterListReaderGroupsEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardContextObservable.AfterListReaderGroupsEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardContextObservable.cs/#L61">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardContextObservable_AfterListReaderGroupsEvent" data-uid="WSCT.Core.ICardContextObservable.AfterListReaderGroupsEvent">AfterListReaderGroupsEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_ListReaderGroups">ListReaderGroups()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;AfterListReaderGroupsEventArgs&gt; AfterListReaderGroupsEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.AfterListReaderGroupsEventArgs.html">AfterListReaderGroupsEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardContextObservable_AfterListReadersEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardContextObservable.AfterListReadersEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardContextObservable.cs/#L71">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardContextObservable_AfterListReadersEvent" data-uid="WSCT.Core.ICardContextObservable.AfterListReadersEvent">AfterListReadersEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_ListReaders_System_String_">ListReaders(String)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;AfterListReadersEventArgs&gt; AfterListReadersEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.AfterListReadersEventArgs.html">AfterListReadersEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardContextObservable_AfterReleaseEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardContextObservable.AfterReleaseEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardContextObservable.cs/#L81">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardContextObservable_AfterReleaseEvent" data-uid="WSCT.Core.ICardContextObservable.AfterReleaseEvent">AfterReleaseEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_Release">Release()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;AfterReleaseEventArgs&gt; AfterReleaseEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.AfterReleaseEventArgs.html">AfterReleaseEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardContextObservable_BeforeCancelEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardContextObservable.BeforeCancelEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardContextObservable.cs/#L16">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardContextObservable_BeforeCancelEvent" data-uid="WSCT.Core.ICardContextObservable.BeforeCancelEvent">BeforeCancelEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_Cancel">Cancel()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;BeforeCancelEventArgs&gt; BeforeCancelEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.BeforeCancelEventArgs.html">BeforeCancelEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardContextObservable_BeforeEstablishEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardContextObservable.BeforeEstablishEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardContextObservable.cs/#L26">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardContextObservable_BeforeEstablishEvent" data-uid="WSCT.Core.ICardContextObservable.BeforeEstablishEvent">BeforeEstablishEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_Establish">Establish()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;BeforeEstablishEventArgs&gt; BeforeEstablishEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.BeforeEstablishEventArgs.html">BeforeEstablishEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardContextObservable_BeforeGetStatusChangeEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardContextObservable.BeforeGetStatusChangeEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardContextObservable.cs/#L36">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardContextObservable_BeforeGetStatusChangeEvent" data-uid="WSCT.Core.ICardContextObservable.BeforeGetStatusChangeEvent">BeforeGetStatusChangeEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_GetStatusChange_System_UInt32_WSCT_Wrapper_AbstractReaderState___">GetStatusChange(UInt32, AbstractReaderState[])</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;BeforeGetStatusChangeEventArgs&gt; BeforeGetStatusChangeEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.BeforeGetStatusChangeEventArgs.html">BeforeGetStatusChangeEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardContextObservable_BeforeIsValidEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardContextObservable.BeforeIsValidEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardContextObservable.cs/#L46">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardContextObservable_BeforeIsValidEvent" data-uid="WSCT.Core.ICardContextObservable.BeforeIsValidEvent">BeforeIsValidEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_IsValid">IsValid()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;BeforeIsValidEventArgs&gt; BeforeIsValidEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.BeforeIsValidEventArgs.html">BeforeIsValidEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardContextObservable_BeforeListReaderGroupsEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardContextObservable.BeforeListReaderGroupsEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardContextObservable.cs/#L56">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardContextObservable_BeforeListReaderGroupsEvent" data-uid="WSCT.Core.ICardContextObservable.BeforeListReaderGroupsEvent">BeforeListReaderGroupsEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_ListReaderGroups">ListReaderGroups()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;BeforeListReaderGroupsEventArgs&gt; BeforeListReaderGroupsEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.BeforeListReaderGroupsEventArgs.html">BeforeListReaderGroupsEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardContextObservable_BeforeListReadersEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardContextObservable.BeforeListReadersEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardContextObservable.cs/#L66">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardContextObservable_BeforeListReadersEvent" data-uid="WSCT.Core.ICardContextObservable.BeforeListReadersEvent">BeforeListReadersEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_ListReaders_System_String_">ListReaders(String)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;BeforeListReadersEventArgs&gt; BeforeListReadersEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.BeforeListReadersEventArgs.html">BeforeListReadersEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardContextObservable_BeforeReleaseEvent.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardContextObservable.BeforeReleaseEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardContextObservable.cs/#L76">View Source</a>
+  </span>
+  <h4 id="WSCT_Core_ICardContextObservable_BeforeReleaseEvent" data-uid="WSCT.Core.ICardContextObservable.BeforeReleaseEvent">BeforeReleaseEvent</h4>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_Release">Release()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;BeforeReleaseEventArgs&gt; BeforeReleaseEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="WSCT.Core.Events.BeforeReleaseEventArgs.html">BeforeReleaseEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="WSCT.Helpers.Json.JsonHelpers.html#WSCT_Helpers_Json_JsonHelpers_WriteToJsonFile_System_Object_System_String_">JsonHelpers.WriteToJsonFile(Object, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="WSCT.Helpers.Json.JsonHelpers.html#WSCT_Helpers_Json_JsonHelpers_WriteToJsonFile_System_Object_System_String_System_Boolean_">JsonHelpers.WriteToJsonFile(Object, String, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="WSCT.Helpers.Json.JsonHelpers.html#WSCT_Helpers_Json_JsonHelpers_WriteToJsonString_System_Object_">JsonHelpers.WriteToJsonString(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="WSCT.Helpers.Json.JsonHelpers.html#WSCT_Helpers_Json_JsonHelpers_WriteToJsonString_System_Object_System_Boolean_">JsonHelpers.WriteToJsonString(Object, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="WSCT.Linq.CardContextExtension.html#WSCT_Linq_CardContextExtension_ToObservable_WSCT_Core_ICardContext_">CardContextExtension.ToObservable(ICardContext)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Core_ICardContextObservable.md&amp;value=---%0Auid%3A%20WSCT.Core.ICardContextObservable%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/ICardContextObservable.cs/#L9" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

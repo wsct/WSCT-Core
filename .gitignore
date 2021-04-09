@@ -11,3 +11,4 @@ obj
 *.user
 .vs/
 *.nupkg
+WSCT.DocFx/log.txt

@@ -1,0 +1,2016 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/src/WSCT/WSCT Core/WSCT.DocFx",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.APDU.ICardCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.APDU.ICardCommand.html",
+          "hash": "w//oPCXuFS88YSRtwwCFJw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.APDU.ICardResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.APDU.ICardResponse.html",
+          "hash": "ujacBVdfPrtVkYW4hO/0hw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.APDU.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.APDU.html",
+          "hash": "360aplLX3mLUorf30owoAg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.CardChannelObservable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.CardChannelObservable.html",
+          "hash": "eaDwH3kg3k2kg2ckjIQ8vw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.CardContextObservable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.CardContextObservable.html",
+          "hash": "YTxvJMLzQa4m9f4hPVNzAA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.AfterCancelEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.AfterCancelEventArgs.html",
+          "hash": "ui4IUO9sQren0z4ON5jWZg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.AfterConnectEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.AfterConnectEventArgs.html",
+          "hash": "9qQ4iDhZPvfEAoBBphHgTQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.AfterDisconnectEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.AfterDisconnectEventArgs.html",
+          "hash": "6Tq2z1Qo+CnqdFDJiaYCxA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.AfterEstablishEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.AfterEstablishEventArgs.html",
+          "hash": "fq1CJCC/tlK7rGnV4anrfw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.AfterEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.AfterEventArgs.html",
+          "hash": "08277VddD2gn+tCuu0lTCw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.AfterGetAttribEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.AfterGetAttribEventArgs.html",
+          "hash": "D4CqjW9QgKNm+kbFnZwV2g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.AfterGetStatusChangeEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.AfterGetStatusChangeEventArgs.html",
+          "hash": "EkCxa+MqKqmOouwDi4rfsQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.AfterGetStatusEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.AfterGetStatusEventArgs.html",
+          "hash": "h+VCKb2ID3WMHfwvrENXLw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.AfterIsValidEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.AfterIsValidEventArgs.html",
+          "hash": "k5iGaXfYt2DtDo2jRuzm9Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.AfterListReaderGroupsEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.AfterListReaderGroupsEventArgs.html",
+          "hash": "QFHkHc6Kh1SX3sLzz6qoHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.AfterListReadersEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.AfterListReadersEventArgs.html",
+          "hash": "tIzKwnSZXGcZxTxdIOqXEQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.AfterReconnectEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.AfterReconnectEventArgs.html",
+          "hash": "0smElSaL9BCHEBWWIqM12w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.AfterReleaseEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.AfterReleaseEventArgs.html",
+          "hash": "JIbnA5mKg72dVFkA8DOCBw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.AfterTransmitEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.AfterTransmitEventArgs.html",
+          "hash": "gBlUyjZQL1KhjJgeHmPIgw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.BeforeCancelEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.BeforeCancelEventArgs.html",
+          "hash": "e4mrgsM1lzcabi266aJRwA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.BeforeConnectEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.BeforeConnectEventArgs.html",
+          "hash": "k0tgOfKDMNOvRzZaj3/BSA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.BeforeDisconnectEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.BeforeDisconnectEventArgs.html",
+          "hash": "IfIy6T1eLJyCmcsYnWGstw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.BeforeEstablishEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.BeforeEstablishEventArgs.html",
+          "hash": "Z8/Dzo+OPTC3gT0XXUtiTw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.BeforeGetAttribEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.BeforeGetAttribEventArgs.html",
+          "hash": "NkJg8cU0DRatWLUJsYvGMg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.BeforeGetStatusChangeEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.BeforeGetStatusChangeEventArgs.html",
+          "hash": "pzBMK+Z925gQKSPDjQ/ITQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.BeforeGetStatusEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.BeforeGetStatusEventArgs.html",
+          "hash": "Eu0UpVG/Yh1WOa7CX7hCRg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.BeforeIsValidEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.BeforeIsValidEventArgs.html",
+          "hash": "XmeQAQ7LA0vFIGuzXfJiQg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.BeforeListReaderGroupsEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.BeforeListReaderGroupsEventArgs.html",
+          "hash": "ECKEY4j4LUrL7bOsuJlglQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.BeforeListReadersEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.BeforeListReadersEventArgs.html",
+          "hash": "IYrBk0s/ODNALPhkg0tbyA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.BeforeReconnectEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.BeforeReconnectEventArgs.html",
+          "hash": "YPO9F1/VBJg58qyr6H4CpA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.BeforeReleaseEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.BeforeReleaseEventArgs.html",
+          "hash": "ncNEhrD/OkI8J25QmjZ0Kw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.BeforeTransmitEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.BeforeTransmitEventArgs.html",
+          "hash": "XYUXEuvIcorrTa7gBmu22A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.Events.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.Events.html",
+          "hash": "+OZXVDIwj2TqG9uBeuQODA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.ICardChannel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.ICardChannel.html",
+          "hash": "nZ/f+PF1lNwXaelthrEiiw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.ICardChannelObservable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.ICardChannelObservable.html",
+          "hash": "6zypkrBsWSj8rLA5EdFb3g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.ICardContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.ICardContext.html",
+          "hash": "zF3gRR/hQ4UC05ukGPz62g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.ICardContextObservable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.ICardContextObservable.html",
+          "hash": "1XkCXf1L1ICjKGmSXQZ9Sw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Core.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Core.html",
+          "hash": "CrXjp4jK+6siWb1+AN7uxw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.BasicEncodingRules.AbstractTlvObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.BasicEncodingRules.AbstractTlvObject.html",
+          "hash": "IkFp2JHaYIH9LfB7ZXnxMg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.BasicEncodingRules.BcdTlvObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.BasicEncodingRules.BcdTlvObject.html",
+          "hash": "iBJ6aXirr5iYP74y7yu2cA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.BasicEncodingRules.BinaryTlvObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.BasicEncodingRules.BinaryTlvObject.html",
+          "hash": "5MH38HqGx1xs6EESbuvawQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.BasicEncodingRules.StringTlvObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.BasicEncodingRules.StringTlvObject.html",
+          "hash": "yJvRJsz0PR0JtUmh5tCAew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.BasicEncodingRules.TlvData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.BasicEncodingRules.TlvData.html",
+          "hash": "9ZivE83UJmoQTMW+gwaZMQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.BasicEncodingRules.TlvDataHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.BasicEncodingRules.TlvDataHelper.html",
+          "hash": "ijrlxLA6T+VbsUavD+u5Zw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.BasicEncodingRules.TlvDescription.ValueType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.BasicEncodingRules.TlvDescription.ValueType.html",
+          "hash": "vzf2nmauN0ctNIVXIYEoHA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.BasicEncodingRules.TlvDescription.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.BasicEncodingRules.TlvDescription.html",
+          "hash": "aphpSinNlYDiB1SPOn7xFw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.BasicEncodingRules.TlvDictionary.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.BasicEncodingRules.TlvDictionary.html",
+          "hash": "1HDXfY5aixSzy50MXDtb8w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.BasicEncodingRules.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.BasicEncodingRules.html",
+          "hash": "rzjsBx0kxyCQRjjdBRf8/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.BytesHelpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.BytesHelpers.html",
+          "hash": "gHmbjy4lY7ZZhlSEc4fCXQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.Events.EventHandlerExtensionMethod.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.Events.EventHandlerExtensionMethod.html",
+          "hash": "QTGhqwb0x5ogiBaM7guBcw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.Events.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.Events.html",
+          "hash": "tqAzh83KViKS3zlqqM/6vg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.Json.JsonHelpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.Json.JsonHelpers.html",
+          "hash": "s2EdXuZTw/wJTLBLiE/jmQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.Json.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.Json.html",
+          "hash": "NPJMgvZbVTGz7fUfpEJSFA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.Linq.Enumerable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.Linq.Enumerable.html",
+          "hash": "DVqvtt5mdzNHu0lxzlnYvA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.Linq.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.Linq.html",
+          "hash": "Ty4lR+4pvg3vfunLiqaeRg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.Reflection.AssemblyLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.Reflection.AssemblyLoader.html",
+          "hash": "G0w89zT8bVkklC9yPlm83Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.Reflection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.Reflection.html",
+          "hash": "tdS0ZkYzUZEyEP2sdR3uEQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.Security.PuTTyPrivateKeyBody.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.Security.PuTTyPrivateKeyBody.html",
+          "hash": "nm1WoTy8uhn2n1Nw81zX/w=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.Security.Ssh1PublicKeyBody.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.Security.Ssh1PublicKeyBody.html",
+          "hash": "H4SKy1gX0XupWH27SQ5WVg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.Security.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.Security.html",
+          "hash": "nrtTSKBz9tVs0UREq68/RQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.SerializedObject-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.SerializedObject-1.html",
+          "hash": "XHNtwa8eqD0JohfqDLrs5A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Helpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Helpers.html",
+          "hash": "gbhVsu/U82IMynCqm6ys/A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.AnswerToReset.Atr.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.AnswerToReset.Atr.html",
+          "hash": "xH9hNOnk1LCtZAYv4UvH6Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.AnswerToReset.InterfaceByte.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.AnswerToReset.InterfaceByte.html",
+          "hash": "7ADIYzWiVJ14opRNaonM/A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.AnswerToReset.InterfaceId.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.AnswerToReset.InterfaceId.html",
+          "hash": "ZiewsfBkkhbXjJoxR6CLzA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.AnswerToReset.MalformedAtrException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.AnswerToReset.MalformedAtrException.html",
+          "hash": "LEClEBVrTYxO/bK3+Eieyw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.AnswerToReset.TsCharacter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.AnswerToReset.TsCharacter.html",
+          "hash": "gFPLqs2i2gShZExl3DWRMg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.AnswerToReset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.AnswerToReset.html",
+          "hash": "UnftL60HtHzXyHTfChSYYA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.CardChannelIso7816.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.CardChannelIso7816.html",
+          "hash": "mukaqN5axz2f5Q8nu8gm2g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.CommandAPDU.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.CommandAPDU.html",
+          "hash": "1P3Pn/c8OzUq5d8XXFq+3w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.CommandCase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.CommandCase.html",
+          "hash": "oY5zdzAjrEZfvrhyh2oolQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.CommandResponsePair.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.CommandResponsePair.html",
+          "hash": "Y4TAZ3MbVQyoJ8NOrzP1Mw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.Commands.AppendRecordCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.Commands.AppendRecordCommand.html",
+          "hash": "yCoN9N67a52tcJ4NAQNAHQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.Commands.GetDataCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.Commands.GetDataCommand.html",
+          "hash": "mdQRk4XbJ5iHVx5fqqx4aw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.Commands.GetResponseCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.Commands.GetResponseCommand.html",
+          "hash": "oG93rmpzJ7HbWfVlrTrWxw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.Commands.ReadBinaryCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.Commands.ReadBinaryCommand.html",
+          "hash": "ThEExUbFkvu5yTBhG4Ol2w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.Commands.ReadRecordCommand.CCx.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.Commands.ReadRecordCommand.CCx.html",
+          "hash": "v4uZ6//Fpzawc+ChcyFwag=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.Commands.ReadRecordCommand.SearchMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.Commands.ReadRecordCommand.SearchMode.html",
+          "hash": "eWAZZhpsYefx+d2+P8GU0A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.Commands.ReadRecordCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.Commands.ReadRecordCommand.html",
+          "hash": "if+o4KJeRkBDGNjhlV9Z8A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.Commands.SelectCommand.FileControlInformation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.Commands.SelectCommand.FileControlInformation.html",
+          "hash": "ELGghFiqfilSD+uZTOq3Mg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.Commands.SelectCommand.FileOccurrence.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.Commands.SelectCommand.FileOccurrence.html",
+          "hash": "iomU2x0G8TLH7zYO6yZoUg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.Commands.SelectCommand.SelectionMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.Commands.SelectCommand.SelectionMode.html",
+          "hash": "OfGwkVujSGO8b4OMxkL1NA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.Commands.SelectCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.Commands.SelectCommand.html",
+          "hash": "Rx14PPsPqEWauY+PhghXRA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.Commands.WriteRecordCommand.TargetType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.Commands.WriteRecordCommand.TargetType.html",
+          "hash": "uWY2PcuplZY3Wt9Xi3NaKQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.Commands.WriteRecordCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.Commands.WriteRecordCommand.html",
+          "hash": "k3d65e/y01NWgRWRfne13g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.Commands.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.Commands.html",
+          "hash": "ygCyg0YmtIb0UgKPnFAGHw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.ProtocolT.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.ProtocolT.html",
+          "hash": "fgTClef4LCuayZgiovXonQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.ResponseAPDU.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.ResponseAPDU.html",
+          "hash": "w51Do/rhuYeRLS6DxdyZMw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.StatusWord.StatusWordDictionary.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.StatusWord.StatusWordDictionary.html",
+          "hash": "QczBYXI36UoSoaPMRj4zog=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.StatusWord.StatusWordHigh.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.StatusWord.StatusWordHigh.html",
+          "hash": "vAOCptnhSAHAT/5Da+hjzQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.StatusWord.StatusWordLow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.StatusWord.StatusWordLow.html",
+          "hash": "QvYJtG4JYLsV4dbMhVmjXg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.StatusWord.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.StatusWord.html",
+          "hash": "eve7Qmq12rxR8exqErYcIA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.ISO7816.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.ISO7816.html",
+          "hash": "A1/h2lBA6NRF3YFxVn0fwA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Linq.CardChannelExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Linq.CardChannelExtension.html",
+          "hash": "gqrd0Vh5fOwq7j35EIgPmA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Linq.CardChannelLayerExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Linq.CardChannelLayerExtension.html",
+          "hash": "lKnta1vuCxiRMOEOtc26KA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Linq.CardChannelStackExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Linq.CardChannelStackExtension.html",
+          "hash": "MDz67Vze8SaoMCa4fbLx/Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Linq.CardContextExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Linq.CardContextExtension.html",
+          "hash": "AsYTjMXl9E3NphDYd+74Hg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Linq.CardContextLayerExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Linq.CardContextLayerExtension.html",
+          "hash": "jZMpeoj2xWv3BOMLLSkHMg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Linq.CardContextStackExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Linq.CardContextStackExtension.html",
+          "hash": "Z7+WR/4NraflosAe4utA9A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Linq.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Linq.html",
+          "hash": "qyMDVbUAXAbBOZG9sclQCw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.CardChannelLayerDescription.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.CardChannelLayerDescription.html",
+          "hash": "sCqj79j4Wu/HxyUO6fNdOQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.CardChannelLayerObservable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.CardChannelLayerObservable.html",
+          "hash": "AzI8IPbzrmnwX6aVk7sKOQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.CardChannelStack.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.CardChannelStack.html",
+          "hash": "5lv6EmLIXc7bU5pwq3wMyQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.CardChannelStackDescription.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.CardChannelStackDescription.html",
+          "hash": "pb8czzCvkyJu5rn8qXLXng=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.CardChannelStackObservable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.CardChannelStackObservable.html",
+          "hash": "2owgXBX3qseq+qbVm2SAhg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.CardContextLayerDescription.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.CardContextLayerDescription.html",
+          "hash": "4JW3HAc1PRAkwaJ0EvEosA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.CardContextLayerObservable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.CardContextLayerObservable.html",
+          "hash": "MmeHASbXJgZXjyZc5tMDxQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.CardContextStack.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.CardContextStack.html",
+          "hash": "bnM0L3uo1KLSicHEHEUPaQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.CardContextStackDescription.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.CardContextStackDescription.html",
+          "hash": "27BxvzikyO3YW+qmh/RcDQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.CardContextStackObservable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.CardContextStackObservable.html",
+          "hash": "8TH8tzFL5GAVReqmvMxcMw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.Generic.GenericLayerDescription.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.Generic.GenericLayerDescription.html",
+          "hash": "oVlY5gY0dMThSH7LRWtYvA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.Generic.GenericStackDescription-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.Generic.GenericStackDescription-2.html",
+          "hash": "fsW85zYaMWeWAYoOrVlGsg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.Generic.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.Generic.html",
+          "hash": "Z/KdJVqSByc4Hr5A/Wy8tQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.ICardChannelLayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.ICardChannelLayer.html",
+          "hash": "qcBFyBs28LHDcgS2TNlQxw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.ICardChannelLayerObservable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.ICardChannelLayerObservable.html",
+          "hash": "1i3wlZNK46BOoZA2C9NUJw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.ICardChannelStack.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.ICardChannelStack.html",
+          "hash": "ba5CqMyVGn8A8P/C6r7heQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.ICardChannelStackObservable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.ICardChannelStackObservable.html",
+          "hash": "aLmmRepys5IknTUgX5TM1g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.ICardContextLayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.ICardContextLayer.html",
+          "hash": "fF3s9fM078EhGi5drxKXvg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.ICardContextLayerObservable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.ICardContextLayerObservable.html",
+          "hash": "639kqIELgj3HQaQIdmgFMw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.ICardContextStack.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.ICardContextStack.html",
+          "hash": "/vAky5s8WlUcptJkHqcVXA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.ICardContextStackObservable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.ICardContextStackObservable.html",
+          "hash": "Gq8n9RDFvJJOcEoCFZb7og=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.SearchMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.SearchMode.html",
+          "hash": "i6ug6EOqYbT3wa4WHRPIlA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Stack.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Stack.html",
+          "hash": "btDYie65paX1iXNANrprpQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.AbstractIoRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.AbstractIoRequest.html",
+          "hash": "RAfM8o8BKkXmHkvd263HCA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.AbstractReaderState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.AbstractReaderState.html",
+          "hash": "9t7FnRSSvzF1h2ky9X1gOA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.Attrib.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.Attrib.html",
+          "hash": "sRz+6gbTLZzcb0nqvk003w=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.Desktop.Core.CardChannel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.Desktop.Core.CardChannel.html",
+          "hash": "8joe7UVHZ/pW7sX0vueU/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.Desktop.Core.CardChannelCore.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.Desktop.Core.CardChannelCore.html",
+          "hash": "ZJwCStu3IChjEkPiW5F9TQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.Desktop.Core.CardContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.Desktop.Core.CardContext.html",
+          "hash": "1+y3P9Z6YmmJy/4YnUN42A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.Desktop.Core.CardContextCore.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.Desktop.Core.CardContextCore.html",
+          "hash": "C1jF7P3sECpkjB8NL+Xdrg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.Desktop.Core.OnCardInsertionEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.Desktop.Core.OnCardInsertionEventArgs.html",
+          "hash": "vcRY5Hx/hgmjUsLyCt8FDA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.Desktop.Core.OnCardRemovalEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.Desktop.Core.OnCardRemovalEventArgs.html",
+          "hash": "8zfgRb4KeJWawy9gqnnE3Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.Desktop.Core.StatusChangeMonitor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.Desktop.Core.StatusChangeMonitor.html",
+          "hash": "bKOQWZdDJg/7DlmLc0P5Dg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.Desktop.Core.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.Desktop.Core.html",
+          "hash": "YfTrn0IXgLbZ/63rEg15hw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.Desktop.Primitives.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.Desktop.Primitives.html",
+          "hash": "JIoYEipJGmarkh+BzRuJvQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.Desktop.Stack.CardChannelLayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.Desktop.Stack.CardChannelLayer.html",
+          "hash": "ryQ9XpXQ5Jb+9QHL/BkcTw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.Desktop.Stack.CardContextLayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.Desktop.Stack.CardContextLayer.html",
+          "hash": "qWiagQLdDeyvqmO/pdqrNQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.Desktop.Stack.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.Desktop.Stack.html",
+          "hash": "lRCoPnBVWFKXJTRUxtCmvw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.Desktop.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.Desktop.html",
+          "hash": "eoSV3zkxb6AkFZyqM9UxOQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.Disposition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.Disposition.html",
+          "hash": "ln9MYz/sPYO2fyTqlLfASA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.ErrorCode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.ErrorCode.html",
+          "hash": "faDzK7MDAr2z91zHf4M0Vg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.EventState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.EventState.html",
+          "hash": "XHVRKKo7X60N1x3ycKkipg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.IPrimitives.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.IPrimitives.html",
+          "hash": "Xb0ktlJ+Kac/EBNpS9RoOg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.MacOSX.Primitives.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.MacOSX.Primitives.html",
+          "hash": "xUzror/xpJBgcDKGGpf/Kg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.MacOSX.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.MacOSX.html",
+          "hash": "lVZtn7xcq86VTerc0p5eHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.PCSCLite32.Primitives.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.PCSCLite32.Primitives.html",
+          "hash": "6kZTkbs8NMCevf635rNaVg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.PCSCLite32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.PCSCLite32.html",
+          "hash": "mI448dmc+AsJqHh+EaWs3w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.PCSCLite64.Primitives.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.PCSCLite64.Primitives.html",
+          "hash": "3Xr1ErUCOs4XPUOepQTBjw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.PCSCLite64.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.PCSCLite64.html",
+          "hash": "BGKDm2guWCuNBr0BcX7dfw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.Protocol.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.Protocol.html",
+          "hash": "zZBMj1NFwJ+L0PWXbdVf1Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.Scope.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.Scope.html",
+          "hash": "3Ld7cFk5bBizgbvt+0PXdg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.ShareMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.ShareMode.html",
+          "hash": "BZhPrQ0q+ooyRHOT+xPEdw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.State.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.State.html",
+          "hash": "3jIY5vv1d91Jky+Ak3+4xg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.WinSCard.Primitives.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.WinSCard.Primitives.html",
+          "hash": "QCTJXzgYoq+vBVO1Vu907A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.WinSCard.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.WinSCard.html",
+          "hash": "vHxmNKE46NfZLbQX8bDAOQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WSCT.Wrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WSCT.Wrapper.html",
+          "hash": "vWYj7skfHDnwxyK+UCq/9w=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "QM/Irvrp/zWDFlmZ2bpPEw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "2lfMg+FK9++kbN+A0WijUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "AN/RirTg6HOiJ9co3l9TRw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "gB8AESyvNru97tzIZofEEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/wsct-logo.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/wsct-logo.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "9Jdy7LIFiEwTI2eHTBz81w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "+rHUkRZHZRi5gd1aTU6lJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 2
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 156,
+          "skipped_file_count": 74
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

@@ -1,0 +1,1866 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class BytesHelpers
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class BytesHelpers
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/wsct-logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="WSCT.Helpers.BytesHelpers">
+  
+  
+  <h1 id="WSCT_Helpers_BytesHelpers" data-uid="WSCT.Helpers.BytesHelpers" class="text-break">Class BytesHelpers
+  </h1>
+  <div class="markdown level0 summary"><p>Helper class allowing simple manipulation and conversion between <span class="xref">System.Byte</span>[] and <span class="xref">System.String</span> types data.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">BytesHelpers</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="WSCT.Helpers.html">WSCT.Helpers</a></h6>
+  <h6><strong>Assembly</strong>: WSCT.Helpers.dll</h6>
+  <h5 id="WSCT_Helpers_BytesHelpers_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class BytesHelpers</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_FromBcd_System_Byte___.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.FromBcd(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L409">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_FromBcd_" data-uid="WSCT.Helpers.BytesHelpers.FromBcd*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_FromBcd_System_Byte___" data-uid="WSCT.Helpers.BytesHelpers.FromBcd(System.Byte[])">FromBcd(Byte[])</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] FromBcd(this byte[] bcd)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">bcd</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_FromBcd_System_Byte___System_UInt32_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.FromBcd(System.Byte%5B%5D%2CSystem.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L453">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_FromBcd_" data-uid="WSCT.Helpers.BytesHelpers.FromBcd*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_FromBcd_System_Byte___System_UInt32_" data-uid="WSCT.Helpers.BytesHelpers.FromBcd(System.Byte[],System.UInt32)">FromBcd(Byte[], UInt32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] FromBcd(this byte[] bcd, uint length)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">bcd</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">length</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_FromBcd_System_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.FromBcd(System.ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L397">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_FromBcd_" data-uid="WSCT.Helpers.BytesHelpers.FromBcd*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_FromBcd_System_ReadOnlySpan_System_Byte__" data-uid="WSCT.Helpers.BytesHelpers.FromBcd(System.ReadOnlySpan{System.Byte})">FromBcd(ReadOnlySpan&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Converts an array of bytes &quot;BCD coded&quot; to an array of bytes where each byte is a digit</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] FromBcd(this ReadOnlySpan&lt;byte&gt; bcd)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bcd</span></td>
+        <td><p>Source BCD coded array of bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><p>A new array of bytes where each byte is a digit</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WSCT_Helpers_BytesHelpers_FromBcd_System_ReadOnlySpan_System_Byte___examples">Examples</h5>
+  <pre><code>byte[] source = new byte[] { 0x12, 0x34, 0x56, 0x78, 0x90 };
+byte[] data = source.fromBcd(9);
+// Now data = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }</code></pre>
+
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_FromBcd_System_ReadOnlySpan_System_Byte__System_UInt32_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.FromBcd(System.ReadOnlySpan%7BSystem.Byte%7D%2CSystem.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L427">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_FromBcd_" data-uid="WSCT.Helpers.BytesHelpers.FromBcd*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_FromBcd_System_ReadOnlySpan_System_Byte__System_UInt32_" data-uid="WSCT.Helpers.BytesHelpers.FromBcd(System.ReadOnlySpan{System.Byte},System.UInt32)">FromBcd(ReadOnlySpan&lt;Byte&gt;, UInt32)</h4>
+  <div class="markdown level1 summary"><p>Converts an array of bytes &quot;BCD coded&quot; to an array of bytes where each byte is a digit</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] FromBcd(this ReadOnlySpan&lt;byte&gt; bcd, uint length)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bcd</span></td>
+        <td><p>Source BCD coded array of bytes</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">length</span></td>
+        <td><p>Length of BCD data</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><p>A new array of bytes where each byte is a digit</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WSCT_Helpers_BytesHelpers_FromBcd_System_ReadOnlySpan_System_Byte__System_UInt32__examples">Examples</h5>
+  <pre><code>byte[] value = new byte[] { 0x12, 0x34, 0x56, 0x78, 0x90 };
+byte[] data = value.fromBcd(7);
+// Now data = { 1, 2, 3, 4, 5, 6, 7 }</code></pre>
+
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_FromBcd_System_Span_System_Byte__.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.FromBcd(System.Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L403">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_FromBcd_" data-uid="WSCT.Helpers.BytesHelpers.FromBcd*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_FromBcd_System_Span_System_Byte__" data-uid="WSCT.Helpers.BytesHelpers.FromBcd(System.Span{System.Byte})">FromBcd(Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] FromBcd(this Span&lt;byte&gt; bcd)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bcd</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_FromBcd_System_Span_System_Byte__System_UInt32_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.FromBcd(System.Span%7BSystem.Byte%7D%2CSystem.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L447">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_FromBcd_" data-uid="WSCT.Helpers.BytesHelpers.FromBcd*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_FromBcd_System_Span_System_Byte__System_UInt32_" data-uid="WSCT.Helpers.BytesHelpers.FromBcd(System.Span{System.Byte},System.UInt32)">FromBcd(Span&lt;Byte&gt;, UInt32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] FromBcd(this Span&lt;byte&gt; bcd, uint length)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bcd</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">length</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_FromBcd_System_String_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.FromBcd(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L470">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_FromBcd_" data-uid="WSCT.Helpers.BytesHelpers.FromBcd*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_FromBcd_System_String_" data-uid="WSCT.Helpers.BytesHelpers.FromBcd(System.String)">FromBcd(String)</h4>
+  <div class="markdown level1 summary"><p>Converts a string &quot;BCD coded&quot; to an array of bytes where each byte is a digit</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] FromBcd(this string bcd)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">bcd</span></td>
+        <td><p>Source BCD coded array of bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><p>A new array of bytes where each byte is a digit</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WSCT_Helpers_BytesHelpers_FromBcd_System_String__examples">Examples</h5>
+  <pre><code>string value = &quot;1234567890&quot;;
+byte[] data = value.fromBcd();
+// Now data = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 }</code></pre>
+
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_FromBcd_System_String_System_UInt32_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.FromBcd(System.String%2CSystem.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L488">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_FromBcd_" data-uid="WSCT.Helpers.BytesHelpers.FromBcd*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_FromBcd_System_String_System_UInt32_" data-uid="WSCT.Helpers.BytesHelpers.FromBcd(System.String,System.UInt32)">FromBcd(String, UInt32)</h4>
+  <div class="markdown level1 summary"><p>Converts a string &quot;BCD coded&quot; to an array of bytes where each byte is a digit</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] FromBcd(this string bcd, uint length)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">bcd</span></td>
+        <td><p>Source BCD coded array of bytes</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">length</span></td>
+        <td><p>Length of BCD data</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><p>A new array of bytes where each byte is a digit</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WSCT_Helpers_BytesHelpers_FromBcd_System_String_System_UInt32__examples">Examples</h5>
+  <pre><code>string value = &quot;1234567890&quot;;
+byte[] data = value.fromBcd(7);
+// Now data = { 1, 2, 3, 4, 5, 6, 7 }</code></pre>
+
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_FromHexa_System_String_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.FromHexa(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L99">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_FromHexa_" data-uid="WSCT.Helpers.BytesHelpers.FromHexa*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_FromHexa_System_String_" data-uid="WSCT.Helpers.BytesHelpers.FromHexa(System.String)">FromHexa(String)</h4>
+  <div class="markdown level1 summary"><p>Converts a string representing hexadecimal values into a <code>byte[]</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] FromHexa(this string hexa)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">hexa</span></td>
+        <td><p>Source data to convert.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><p>A new <code>byte[]</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WSCT_Helpers_BytesHelpers_FromHexa_System_String__examples">Examples</h5>
+  <pre><code>string str = &quot;12 34 56&quot;;
+byte[] data = str.fromHexa();
+// Now data = { 0x12, 0x34, 0x56 }</code></pre>
+<p>Example with odd number of digits</p>
+<pre><code>string str = &quot;23456&quot;;
+byte[] data = str.fromHexa();
+// Now data = { 0x02, 0x34, 0x56 }</code></pre>
+
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_FromString_System_String_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.FromString(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L139">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_FromString_" data-uid="WSCT.Helpers.BytesHelpers.FromString*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_FromString_System_String_" data-uid="WSCT.Helpers.BytesHelpers.FromString(System.String)">FromString(String)</h4>
+  <div class="markdown level1 summary"><p>Converts a string into a <code>byte[]</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] FromString(this string buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Source data to convert.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><p>A new <code>byte[]</code> where each character of <code data-dev-comment-type="paramref" class="paramref">buffer</code> is encoded as its ascii value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WSCT_Helpers_BytesHelpers_FromString_System_String__examples">Examples</h5>
+  <pre><code>string str = &quot;123&quot;;
+byte[] data = str.ToAsciiString();
+// Now data = { 0x31, 0x32, 0x33 }</code></pre>
+
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_Get4BytesPrefixedArray_System_Byte___System_Int32__.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.Get4BytesPrefixedArray(System.Byte%5B%5D%2CSystem.Int32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L546">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_Get4BytesPrefixedArray_" data-uid="WSCT.Helpers.BytesHelpers.Get4BytesPrefixedArray*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_Get4BytesPrefixedArray_System_Byte___System_Int32__" data-uid="WSCT.Helpers.BytesHelpers.Get4BytesPrefixedArray(System.Byte[],System.Int32@)">Get4BytesPrefixedArray(Byte[], ref Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] Get4BytesPrefixedArray(this byte[] bytes, ref int offset)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">bytes</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_Get4BytesPrefixedArray_System_ReadOnlySpan_System_Byte__System_Int32__.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.Get4BytesPrefixedArray(System.ReadOnlySpan%7BSystem.Byte%7D%2CSystem.Int32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L511">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_Get4BytesPrefixedArray_" data-uid="WSCT.Helpers.BytesHelpers.Get4BytesPrefixedArray*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_Get4BytesPrefixedArray_System_ReadOnlySpan_System_Byte__System_Int32__" data-uid="WSCT.Helpers.BytesHelpers.Get4BytesPrefixedArray(System.ReadOnlySpan{System.Byte},System.Int32@)">Get4BytesPrefixedArray(ReadOnlySpan&lt;Byte&gt;, ref Int32)</h4>
+  <div class="markdown level1 summary"><p>Extract an array of bytes prefixed by a 4 bytes coded length from a bigger array.
+... 'LL LL LL LL' 'VV VV ... VV' ...</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] Get4BytesPrefixedArray(this ReadOnlySpan&lt;byte&gt; bytes, ref int offset)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>Source array of bytes.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>Input: Offset of the first byte to look for in <code data-dev-comment-type="paramref" class="paramref">bytes</code>. Output: Offset of next byte after the retrieved array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_Get4BytesPrefixedArray_System_Span_System_Byte__System_Int32__.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.Get4BytesPrefixedArray(System.Span%7BSystem.Byte%7D%2CSystem.Int32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L540">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_Get4BytesPrefixedArray_" data-uid="WSCT.Helpers.BytesHelpers.Get4BytesPrefixedArray*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_Get4BytesPrefixedArray_System_Span_System_Byte__System_Int32__" data-uid="WSCT.Helpers.BytesHelpers.Get4BytesPrefixedArray(System.Span{System.Byte},System.Int32@)">Get4BytesPrefixedArray(Span&lt;Byte&gt;, ref Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] Get4BytesPrefixedArray(this Span&lt;byte&gt; bytes, ref int offset)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bytes</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_SetBits_System_Byte_System_Byte_System_Boolean_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.SetBits(System.Byte%2CSystem.Byte%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L23">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_SetBits_" data-uid="WSCT.Helpers.BytesHelpers.SetBits*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_SetBits_System_Byte_System_Byte_System_Boolean_" data-uid="WSCT.Helpers.BytesHelpers.SetBits(System.Byte,System.Byte,System.Boolean)">SetBits(Byte, Byte, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Set targeted bits to 0 or 1 in <code data-dev-comment-type="paramref" class="paramref">value</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte SetBits(this byte value, byte mask, bool setBitTo1)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">mask</span></td>
+        <td><p>Targeted bits are to be set to 1 in the mask.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">setBitTo1</span></td>
+        <td><p>Set masked bits to 1 if the value is <code>true</code> or to 0 if <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_ToAsciiString_System_Byte___.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.ToAsciiString(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L283">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_ToAsciiString_" data-uid="WSCT.Helpers.BytesHelpers.ToAsciiString*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_ToAsciiString_System_Byte___" data-uid="WSCT.Helpers.BytesHelpers.ToAsciiString(System.Byte[])">ToAsciiString(Byte[])</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToAsciiString(this byte[] buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_ToAsciiString_System_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.ToAsciiString(System.ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L259">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_ToAsciiString_" data-uid="WSCT.Helpers.BytesHelpers.ToAsciiString*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_ToAsciiString_System_ReadOnlySpan_System_Byte__" data-uid="WSCT.Helpers.BytesHelpers.ToAsciiString(System.ReadOnlySpan{System.Byte})">ToAsciiString(ReadOnlySpan&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Converts a <code>byte[]</code> to the equivalent string (byte &gt; char).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToAsciiString(this ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Source data to convert.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>A string representation of the array where each byte is represented as a character (global default encoding).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WSCT_Helpers_BytesHelpers_ToAsciiString_System_ReadOnlySpan_System_Byte___examples">Examples</h5>
+  <pre><code>byte[] value = new byte[] { 0x31, 0x32, 0x33 };
+string data = value.ToAsciiString();
+// Now data = &quot;123&quot;</code></pre>
+
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_ToAsciiString_System_Span_System_Byte__.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.ToAsciiString(System.Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L277">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_ToAsciiString_" data-uid="WSCT.Helpers.BytesHelpers.ToAsciiString*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_ToAsciiString_System_Span_System_Byte__" data-uid="WSCT.Helpers.BytesHelpers.ToAsciiString(System.Span{System.Byte})">ToAsciiString(Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToAsciiString(this Span&lt;byte&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_ToBcd_System_Byte___System_Byte_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.ToBcd(System.Byte%5B%5D%2CSystem.Byte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L330">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_ToBcd_" data-uid="WSCT.Helpers.BytesHelpers.ToBcd*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_ToBcd_System_Byte___System_Byte_" data-uid="WSCT.Helpers.BytesHelpers.ToBcd(System.Byte[],System.Byte)">ToBcd(Byte[], Byte)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] ToBcd(this byte[] bytes, byte filler = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">bytes</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">filler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_ToBcd_System_ReadOnlySpan_System_Byte__System_Byte_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.ToBcd(System.ReadOnlySpan%7BSystem.Byte%7D%2CSystem.Byte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L305">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_ToBcd_" data-uid="WSCT.Helpers.BytesHelpers.ToBcd*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_ToBcd_System_ReadOnlySpan_System_Byte__System_Byte_" data-uid="WSCT.Helpers.BytesHelpers.ToBcd(System.ReadOnlySpan{System.Byte},System.Byte)">ToBcd(ReadOnlySpan&lt;Byte&gt;, Byte)</h4>
+  <div class="markdown level1 summary"><p>Converts an array of bytes to an array of bytes &quot;BCD coded&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] ToBcd(this ReadOnlySpan&lt;byte&gt; bytes, byte filler = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>Source array of bytes.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">filler</span></td>
+        <td><p>Value to be used a a filler is length is odd.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><p>A new array of bytes &quot;BCD coded&quot;.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WSCT_Helpers_BytesHelpers_ToBcd_System_ReadOnlySpan_System_Byte__System_Byte__examples">Examples</h5>
+  <pre><code>byte[] value = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+byte[] data = value.toBcd(0xF);
+// Now data = { 0x12, 0x34, 0x56, 0x78, 0x9F }</code></pre>
+
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_ToBcd_System_Span_System_Byte__System_Byte_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.ToBcd(System.Span%7BSystem.Byte%7D%2CSystem.Byte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L324">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_ToBcd_" data-uid="WSCT.Helpers.BytesHelpers.ToBcd*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_ToBcd_System_Span_System_Byte__System_Byte_" data-uid="WSCT.Helpers.BytesHelpers.ToBcd(System.Span{System.Byte},System.Byte)">ToBcd(Span&lt;Byte&gt;, Byte)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] ToBcd(this Span&lt;byte&gt; bytes, byte filler = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bytes</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">filler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_ToBcdString_System_Byte___System_Char_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.ToBcdString(System.Byte%5B%5D%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L376">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_ToBcdString_" data-uid="WSCT.Helpers.BytesHelpers.ToBcdString*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_ToBcdString_System_Byte___System_Char_" data-uid="WSCT.Helpers.BytesHelpers.ToBcdString(System.Byte[],System.Char)">ToBcdString(Byte[], Char)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToBcdString(this byte[] bytes, char filler = 'F')</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">bytes</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">filler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_ToBcdString_System_ReadOnlySpan_System_Byte__System_Char_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.ToBcdString(System.ReadOnlySpan%7BSystem.Byte%7D%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L352">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_ToBcdString_" data-uid="WSCT.Helpers.BytesHelpers.ToBcdString*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_ToBcdString_System_ReadOnlySpan_System_Byte__System_Char_" data-uid="WSCT.Helpers.BytesHelpers.ToBcdString(System.ReadOnlySpan{System.Byte},System.Char)">ToBcdString(ReadOnlySpan&lt;Byte&gt;, Char)</h4>
+  <div class="markdown level1 summary"><p>Converts an array of bytes to a string representation &quot;BCD coded&quot;</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToBcdString(this ReadOnlySpan&lt;byte&gt; bytes, char filler = 'F')</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>Source array of bytes</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">filler</span></td>
+        <td><p>Value to be used a a filler is length is odd</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>A new array of bytes &quot;BCD coded&quot;</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WSCT_Helpers_BytesHelpers_ToBcdString_System_ReadOnlySpan_System_Byte__System_Char__examples">Examples</h5>
+  <pre><code>byte[] value = new byte[9] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+string data = value.toBcd(&apos;F&apos;);
+// Now data = &quot;123456789F&quot;</code></pre>
+
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_ToBcdString_System_Span_System_Byte__System_Char_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.ToBcdString(System.Span%7BSystem.Byte%7D%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L370">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_ToBcdString_" data-uid="WSCT.Helpers.BytesHelpers.ToBcdString*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_ToBcdString_System_Span_System_Byte__System_Char_" data-uid="WSCT.Helpers.BytesHelpers.ToBcdString(System.Span{System.Byte},System.Char)">ToBcdString(Span&lt;Byte&gt;, Char)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToBcdString(this Span&lt;byte&gt; bytes, char filler = 'F')</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bytes</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">filler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_ToByteArray_System_Byte_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.ToByteArray(System.Byte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L45">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_ToByteArray_" data-uid="WSCT.Helpers.BytesHelpers.ToByteArray*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_ToByteArray_System_Byte_" data-uid="WSCT.Helpers.BytesHelpers.ToByteArray(System.Byte)">ToByteArray(Byte)</h4>
+  <div class="markdown level1 summary"><p>Converts a <code>UInt32</code> into a <code>byte[]</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] ToByteArray(this byte value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Source data to convert.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><p>A new <code>byte[]</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WSCT_Helpers_BytesHelpers_ToByteArray_System_Byte__examples">Examples</h5>
+  <pre><code>byte value = 0x12;
+byte[] data = value.toByteArray();
+// now data = { 0x12 }</code></pre>
+
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_ToByteArray_System_UInt32_System_Int32_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.ToByteArray(System.UInt32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L68">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_ToByteArray_" data-uid="WSCT.Helpers.BytesHelpers.ToByteArray*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_ToByteArray_System_UInt32_System_Int32_" data-uid="WSCT.Helpers.BytesHelpers.ToByteArray(System.UInt32,System.Int32)">ToByteArray(UInt32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Converts a <code>UInt32</code> into a <code>byte[]</code>, which length is given.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] ToByteArray(this uint value, int length)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Source data to convert.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">length</span></td>
+        <td><p>Length of the array to create.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><p>A new <code>byte[]</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WSCT_Helpers_BytesHelpers_ToByteArray_System_UInt32_System_Int32__examples">Examples</h5>
+  <pre><code>UInt32 value = 0x12345678;
+byte[] data = value.toByteArray(4);
+// now data = { 0x12, 0x34, 0x56, 0x78}</code></pre>
+<pre><code>UInt32 value = 0x12;
+byte[] data = value.toByteArray(2);
+// now data = { 0x00, 0x12 }</code></pre>
+
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_ToHexa_System_Byte___System_Char_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.ToHexa(System.Byte%5B%5D%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L207">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_ToHexa_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_ToHexa_System_Byte___System_Char_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa(System.Byte[],System.Char)">ToHexa(Byte[], Char)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToHexa(this byte[] buffer, char separator = ' ')</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">separator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_ToHexa_System_Byte___System_Int32_System_Char_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.ToHexa(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L238">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_ToHexa_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_ToHexa_System_Byte___System_Int32_System_Char_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa(System.Byte[],System.Int32,System.Char)">ToHexa(Byte[], Int32, Char)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToHexa(this byte[] buffer, int length, char separator = ' ')</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">length</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">separator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_ToHexa_System_ReadOnlySpan_System_Byte__System_Char_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.ToHexa(System.ReadOnlySpan%7BSystem.Byte%7D%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L166">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_ToHexa_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_ToHexa_System_ReadOnlySpan_System_Byte__System_Char_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa(System.ReadOnlySpan{System.Byte},System.Char)">ToHexa(ReadOnlySpan&lt;Byte&gt;, Char)</h4>
+  <div class="markdown level1 summary"><p>Converts an array of bytes to the equivalent string in Hexa.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToHexa(this ReadOnlySpan&lt;byte&gt; buffer, char separator = ' ')</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Source data to convert.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">separator</span></td>
+        <td><p>Separator to be used between each group of 2 hexadecimal digits.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>A string representation of the array where each byte is represented as its hexadecimal value. <code>0</code> means no separator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WSCT_Helpers_BytesHelpers_ToHexa_System_ReadOnlySpan_System_Byte__System_Char__examples">Examples</h5>
+  <pre><code>byte[] value = new byte[] { 0x31, 0x32, 0x33 };
+string data = value.toHexa(&apos;-&apos;);
+// Now data = &quot;31-32-33&quot;</code></pre>
+
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_ToHexa_System_ReadOnlySpan_System_Byte__System_Int32_System_Char_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.ToHexa(System.ReadOnlySpan%7BSystem.Byte%7D%2CSystem.Int32%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L226">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_ToHexa_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_ToHexa_System_ReadOnlySpan_System_Byte__System_Int32_System_Char_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa(System.ReadOnlySpan{System.Byte},System.Int32,System.Char)">ToHexa(ReadOnlySpan&lt;Byte&gt;, Int32, Char)</h4>
+  <div class="markdown level1 summary"><p>Converts first bytes of a byte Array to the equivalent string in Hexa.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToHexa(this ReadOnlySpan&lt;byte&gt; buffer, int length, char separator = ' ')</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Source data to convert.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">length</span></td>
+        <td><p>Maximum number of bytes in the array to convert.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">separator</span></td>
+        <td><p>Separator to be used between each group of 2 hexadecimal digits.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>A string representation of the array where each byte is represented as its hexadecimal value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WSCT_Helpers_BytesHelpers_ToHexa_System_ReadOnlySpan_System_Byte__System_Int32_System_Char__examples">Examples</h5>
+  <pre><code>byte[] value = new byte[] { 0x31, 0x32, 0x33 };
+string data = value.toHexa(2, &apos;-&apos;);
+// Now data = &quot;31-32&quot;</code></pre>
+
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_ToHexa_System_Span_System_Byte__System_Char_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.ToHexa(System.Span%7BSystem.Byte%7D%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L201">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_ToHexa_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_ToHexa_System_Span_System_Byte__System_Char_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa(System.Span{System.Byte},System.Char)">ToHexa(Span&lt;Byte&gt;, Char)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToHexa(this Span&lt;byte&gt; buffer, char separator = ' ')</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">separator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers_ToHexa_System_Span_System_Byte__System_Int32_System_Char_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers.ToHexa(System.Span%7BSystem.Byte%7D%2CSystem.Int32%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L232">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BytesHelpers_ToHexa_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa*"></a>
+  <h4 id="WSCT_Helpers_BytesHelpers_ToHexa_System_Span_System_Byte__System_Int32_System_Char_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa(System.Span{System.Byte},System.Int32,System.Char)">ToHexa(Span&lt;Byte&gt;, Int32, Char)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToHexa(this Span&lt;byte&gt; buffer, int length, char separator = ' ')</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">length</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">separator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BytesHelpers.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BytesHelpers%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BytesHelpers.cs/#L10" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

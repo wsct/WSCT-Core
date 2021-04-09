@@ -3,9 +3,9 @@ WSCT-Core
 
 Public repository for WSCT Core project.
 
-Developped by S.Vernois @ [ENSICAEN](https://www.ensicaen.fr) / GREYC since 2006 with the help of some students for proof of concepts.
+Developed by S.Vernois @ [ENSICAEN](https://www.ensicaen.fr) / GREYC since 2006 with the help of some students for proof of concepts.
 
-WSCT Core API documentation is available from this url: http://www.ecole.ensicaen.fr/~vernois/wsct/WSCT-Core/
+WSCT Core API documentation is available from this url: http://wsct.github.io/WSCT-Core
 
 # Nuget packages
 

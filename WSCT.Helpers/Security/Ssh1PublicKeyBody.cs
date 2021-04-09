@@ -7,6 +7,7 @@ namespace WSCT.Helpers.Security
     /// </summary>
     /// <remarks>
     /// RSA:
+    /// <code>
     ///    BIGNUM *n;              // public modulus
     ///    BIGNUM *e;              // public exponent
     ///    BIGNUM *d;              // private exponent
@@ -15,6 +16,7 @@ namespace WSCT.Helpers.Security
     ///    BIGNUM *dmp1;           // d mod (p-1)
     ///    BIGNUM *dmq1;           // d mod (q-1)
     ///    BIGNUM *iqmp;           // q^-1 mod p
+    /// </code>
     /// </remarks>
     public class Ssh1PublicKeyBody
     {

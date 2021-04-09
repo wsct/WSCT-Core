@@ -1,0 +1,785 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class TlvDataHelper
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class TlvDataHelper
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/wsct-logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper">
+  
+  
+  <h1 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper" class="text-break">Class TlvDataHelper
+  </h1>
+  <div class="markdown level0 summary"><p>Allows simple manipulation and conversion between <code>byte[]</code>, <code>string</code> and <a class="xref" href="WSCT.Helpers.BasicEncodingRules.TlvData.html">TlvData</a> types
+data.</p>
+<p>
+<code>ArrayOfBytes</code> also provides extension methods on <code>byte[]</code> and <code>string</code> and
+<code>List&lt;TLVData></code>
+</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">TlvDataHelper</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="WSCT.Helpers.BasicEncodingRules.html">WSCT.Helpers.BasicEncodingRules</a></h6>
+  <h6><strong>Assembly</strong>: WSCT.Helpers.dll</h6>
+  <h5 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class TlvDataHelper</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToBerEncodedL_System_UInt32_System_Boolean_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToBerEncodedL(System.UInt32%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BasicEncodingRules/TLVDataHelper.cs/#L190">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToBerEncodedL_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToBerEncodedL*"></a>
+  <h4 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToBerEncodedL_System_UInt32_System_Boolean_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToBerEncodedL(System.UInt32,System.Boolean)">ToBerEncodedL(UInt32, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Returns the encoded &quot;L&quot; field of a TLV object given data length value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] ToBerEncodedL(uint length, bool isLengthUndefined = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">length</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isLengthUndefined</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToLengthOfBerEncodedL_System_UInt32_System_Boolean_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToLengthOfBerEncodedL(System.UInt32%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BasicEncodingRules/TLVDataHelper.cs/#L221">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToLengthOfBerEncodedL_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToLengthOfBerEncodedL*"></a>
+  <h4 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToLengthOfBerEncodedL_System_UInt32_System_Boolean_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToLengthOfBerEncodedL(System.UInt32,System.Boolean)">ToLengthOfBerEncodedL(UInt32, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Returns the encoded length &quot;L&quot; of a TLV object given data length value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static uint ToLengthOfBerEncodedL(uint length, bool isLengthUndefined = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">length</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isLengthUndefined</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToTlvData_System_Byte___.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToTlvData(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BasicEncodingRules/TLVDataHelper.cs/#L37">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToTlvData_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToTlvData*"></a>
+  <h4 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToTlvData_System_Byte___" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToTlvData(System.Byte[])">ToTlvData(Byte[])</h4>
+  <div class="markdown level1 summary"><p>Converts a <code>byte[]</code> into a TLVData by parsing the buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TlvData ToTlvData(this byte[] buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Source data to convert</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WSCT.Helpers.BasicEncodingRules.TlvData.html">TlvData</a></td>
+        <td><p>A new TLVData</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToTlvData_System_Byte____remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>It is equivalent to <code>new TLVData(buffer)</code></p>
+</div>
+  <h5 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToTlvData_System_Byte____examples">Examples</h5>
+  <pre><code>byte[] source = new byte[] {0x88, 0x01, 0x0A}
+TLVData tlv = source.toTLVData();
+// Now tlv is T:88 L:01 V:0A</code></pre>
+
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToTlvData_System_Collections_Generic_List_WSCT_Helpers_BasicEncodingRules_TlvData__System_UInt32_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToTlvData(System.Collections.Generic.List%7BWSCT.Helpers.BasicEncodingRules.TlvData%7D%2CSystem.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BasicEncodingRules/TLVDataHelper.cs/#L97">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToTlvData_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToTlvData*"></a>
+  <h4 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToTlvData_System_Collections_Generic_List_WSCT_Helpers_BasicEncodingRules_TlvData__System_UInt32_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToTlvData(System.Collections.Generic.List{WSCT.Helpers.BasicEncodingRules.TlvData},System.UInt32)">ToTlvData(List&lt;TlvData&gt;, UInt32)</h4>
+  <div class="markdown level1 summary"><p>Converts a <code>List&lt;TLVData&gt;</code> into a <a class="xref" href="WSCT.Helpers.BasicEncodingRules.TlvData.html">TlvData</a> by using the buffer as subfields.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TlvData ToTlvData(this List&lt;TlvData&gt; tlvList, uint tag)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<a class="xref" href="WSCT.Helpers.BasicEncodingRules.TlvData.html">TlvData</a>&gt;</td>
+        <td><span class="parametername">tlvList</span></td>
+        <td><p>Source data to convert</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">tag</span></td>
+        <td><p>Tag of the newly created <a class="xref" href="WSCT.Helpers.BasicEncodingRules.TlvData.html">TlvData</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WSCT.Helpers.BasicEncodingRules.TlvData.html">TlvData</a></td>
+        <td><p>A new TLVData</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToTlvData_System_Collections_Generic_List_WSCT_Helpers_BasicEncodingRules_TlvData__System_UInt32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>It is equivalent to <code>new TLVData(tag, buffer)</code></p>
+</div>
+  <h5 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToTlvData_System_Collections_Generic_List_WSCT_Helpers_BasicEncodingRules_TlvData__System_UInt32__examples">Examples</h5>
+  <pre><code>TLVData tlv1 = &quot;88 01 02&quot;.toTLVData();
+TLVData tlv2 = &quot;5F 2D 03 01 02 03&quot;.toTLVData();
+List>TLVData&lt; ltlv = new List>TLVData&lt;();
+ltlv.Add(tlv1);
+ltlv.Add(tlv2);
+ltlv = ltlv.toTLVData(0x20);
+// Now ltlv = T:20 L:08  V:88 01 02 5F 2D 03 01 02 03</code></pre>
+
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToTlvData_System_String_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToTlvData(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BasicEncodingRules/TLVDataHelper.cs/#L57">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToTlvData_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToTlvData*"></a>
+  <h4 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToTlvData_System_String_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToTlvData(System.String)">ToTlvData(String)</h4>
+  <div class="markdown level1 summary"><p>Converts a <code>byte[]</code> into a TLVData by parsing the buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TlvData ToTlvData(this string buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Source data to convert</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WSCT.Helpers.BasicEncodingRules.TlvData.html">TlvData</a></td>
+        <td><p>A new TLVData</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToTlvData_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>It is equivalent to <code>new TLVData(buffer)</code></p>
+</div>
+  <h5 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToTlvData_System_String__examples">Examples</h5>
+  <pre><code>string source = &quot;88 01 0A&quot;;
+TLVData tlv = source.toTLVData();
+// Now tlv is T:88 L:01 V:0A</code></pre>
+
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToTlvDataArray_System_String_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToTlvDataArray(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BasicEncodingRules/TLVDataHelper.cs/#L62">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToTlvDataArray_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToTlvDataArray*"></a>
+  <h4 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToTlvDataArray_System_String_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToTlvDataArray(System.String)">ToTlvDataArray(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;TlvData&gt; ToTlvDataArray(this string buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<a class="xref" href="WSCT.Helpers.BasicEncodingRules.TlvData.html">TlvData</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToXmlNode_WSCT_Helpers_BasicEncodingRules_TlvData_System_Xml_Linq_XDocument_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToXmlNode(WSCT.Helpers.BasicEncodingRules.TlvData%2CSystem.Xml.Linq.XDocument)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BasicEncodingRules/TLVDataHelper.cs/#L160">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToXmlNode_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToXmlNode*"></a>
+  <h4 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToXmlNode_WSCT_Helpers_BasicEncodingRules_TlvData_System_Xml_Linq_XDocument_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToXmlNode(WSCT.Helpers.BasicEncodingRules.TlvData,System.Xml.Linq.XDocument)">ToXmlNode(TlvData, XDocument)</h4>
+  <div class="markdown level1 summary"><p>Converts a TLVData into an XmlNode representation</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static XElement ToXmlNode(this TlvData tlv, XDocument xmlDoc)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WSCT.Helpers.BasicEncodingRules.TlvData.html">TlvData</a></td>
+        <td><span class="parametername">tlv</span></td>
+        <td><p>Source data to convert</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Xml.Linq.XDocument</span></td>
+        <td><span class="parametername">xmlDoc</span></td>
+        <td><p>XML document used to create elements</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Xml.Linq.XElement</span></td>
+        <td><p>A new XmlNode</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToXmlNode_WSCT_Helpers_BasicEncodingRules_TlvData_System_Xml_Linq_XDocument_WSCT_Helpers_BasicEncodingRules_TlvDictionary_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToXmlNode(WSCT.Helpers.BasicEncodingRules.TlvData%2CSystem.Xml.Linq.XDocument%2CWSCT.Helpers.BasicEncodingRules.TlvDictionary)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BasicEncodingRules/TLVDataHelper.cs/#L174">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToXmlNode_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToXmlNode*"></a>
+  <h4 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToXmlNode_WSCT_Helpers_BasicEncodingRules_TlvData_System_Xml_Linq_XDocument_WSCT_Helpers_BasicEncodingRules_TlvDictionary_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToXmlNode(WSCT.Helpers.BasicEncodingRules.TlvData,System.Xml.Linq.XDocument,WSCT.Helpers.BasicEncodingRules.TlvDictionary)">ToXmlNode(TlvData, XDocument, TlvDictionary)</h4>
+  <div class="markdown level1 summary"><p>Converts a TLVData into an XmlNode representation, enhanced with the long name of the field found in the
+<code data-dev-comment-type="paramref" class="paramref">dictionary</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static XElement ToXmlNode(this TlvData tlv, XDocument xmlDoc, TlvDictionary dictionary)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WSCT.Helpers.BasicEncodingRules.TlvData.html">TlvData</a></td>
+        <td><span class="parametername">tlv</span></td>
+        <td><p>Source data to convert</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Xml.Linq.XDocument</span></td>
+        <td><span class="parametername">xmlDoc</span></td>
+        <td><p>XML document used to create elements</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="WSCT.Helpers.BasicEncodingRules.TlvDictionary.html">TlvDictionary</a></td>
+        <td><span class="parametername">dictionary</span></td>
+        <td><p>TLV Dictionary to use to find the long name</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Xml.Linq.XElement</span></td>
+        <td><p>A new XmlNode</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToXmlString_System_Collections_Generic_IEnumerable_WSCT_Helpers_BasicEncodingRules_TlvData__.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToXmlString(System.Collections.Generic.IEnumerable%7BWSCT.Helpers.BasicEncodingRules.TlvData%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BasicEncodingRules/TLVDataHelper.cs/#L132">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToXmlString_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToXmlString*"></a>
+  <h4 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToXmlString_System_Collections_Generic_IEnumerable_WSCT_Helpers_BasicEncodingRules_TlvData__" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToXmlString(System.Collections.Generic.IEnumerable{WSCT.Helpers.BasicEncodingRules.TlvData})">ToXmlString(IEnumerable&lt;TlvData&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToXmlString(this IEnumerable&lt;TlvData&gt; tlvSequence)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="WSCT.Helpers.BasicEncodingRules.TlvData.html">TlvData</a>&gt;</td>
+        <td><span class="parametername">tlvSequence</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToXmlString_WSCT_Helpers_BasicEncodingRules_TlvData_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToXmlString(WSCT.Helpers.BasicEncodingRules.TlvData)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BasicEncodingRules/TLVDataHelper.cs/#L122">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToXmlString_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToXmlString*"></a>
+  <h4 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToXmlString_WSCT_Helpers_BasicEncodingRules_TlvData_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToXmlString(WSCT.Helpers.BasicEncodingRules.TlvData)">ToXmlString(TlvData)</h4>
+  <div class="markdown level1 summary"><p>Converts a <code>List&lt;TLVData&gt;</code> into an XML representation <span class="xref">System.String</span></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToXmlString(this TlvData tlv)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WSCT.Helpers.BasicEncodingRules.TlvData.html">TlvData</a></td>
+        <td><span class="parametername">tlv</span></td>
+        <td><p>Source data to convert</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>A new string</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToXmlString_WSCT_Helpers_BasicEncodingRules_TlvData__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><example>
+<pre><code>TLVData tlv = &quot;70 03 88 01 02&quot;.toTLVData();
+string xmltlv = tlv.toXmlString();
+// now xmltlv is 
+// 
+// &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?>
+// &lt;tlvData tag=&quot;70&quot; length=&quot;03&quot; value=&quot;88 01 02&quot;>
+//   &lt;tlvData tag=&quot;88&quot; length=&quot;01&quot; value=&quot;02&quot; />
+// &lt;/tlvData>
+// </code></pre>
+</example>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToXmlString_WSCT_Helpers_BasicEncodingRules_TlvData_WSCT_Helpers_BasicEncodingRules_TlvDictionary_.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToXmlString(WSCT.Helpers.BasicEncodingRules.TlvData%2CWSCT.Helpers.BasicEncodingRules.TlvDictionary)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BasicEncodingRules/TLVDataHelper.cs/#L149">View Source</a>
+  </span>
+  <a id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToXmlString_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToXmlString*"></a>
+  <h4 id="WSCT_Helpers_BasicEncodingRules_TlvDataHelper_ToXmlString_WSCT_Helpers_BasicEncodingRules_TlvData_WSCT_Helpers_BasicEncodingRules_TlvDictionary_" data-uid="WSCT.Helpers.BasicEncodingRules.TlvDataHelper.ToXmlString(WSCT.Helpers.BasicEncodingRules.TlvData,WSCT.Helpers.BasicEncodingRules.TlvDictionary)">ToXmlString(TlvData, TlvDictionary)</h4>
+  <div class="markdown level1 summary"><p>Export a TLV object to XML format using a dictionnary to resolve formating</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToXmlString(this TlvData tlv, TlvDictionary dictionary)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="WSCT.Helpers.BasicEncodingRules.TlvData.html">TlvData</a></td>
+        <td><span class="parametername">tlv</span></td>
+        <td><p>Source object</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="WSCT.Helpers.BasicEncodingRules.TlvDictionary.html">TlvDictionary</a></td>
+        <td><span class="parametername">dictionary</span></td>
+        <td><p>TLV Dictionary to use to find the long name</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The <code>string</code> representation</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Helpers_BasicEncodingRules_TlvDataHelper.md&amp;value=---%0Auid%3A%20WSCT.Helpers.BasicEncodingRules.TlvDataHelper%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT.Helpers/BasicEncodingRules/TLVDataHelper.cs/#L20" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
