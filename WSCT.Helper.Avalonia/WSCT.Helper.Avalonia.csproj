@@ -6,8 +6,22 @@
     <Nullable>enable</Nullable>
     <LangVersion>9.0</LangVersion>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Styles\" />
+    <Folder Include="Assets\Fonts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="**\*.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <AvaloniaResource Include="**\*.xaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
   <ItemGroup>

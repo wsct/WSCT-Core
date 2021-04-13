@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using WSCT.Helpers;
 using WSCT.Helpers.BasicEncodingRules;
 
@@ -9,12 +7,12 @@ namespace WSCT.Helper.Avalonia.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private string _sourceData;
+        private string? _sourceData;
         public string Greeting => "Welcome to Avalonia!";
 
         public ObservableCollection<TlvData> TlvDataList { get; set; } = new();
 
-        public string SourceData
+        public string? SourceData
         {
             get => _sourceData;
             set
@@ -25,9 +23,9 @@ namespace WSCT.Helper.Avalonia.ViewModels
                     TlvDataList.Clear();
                     TlvDataList.Add(new TlvData(SourceData.FromHexa()));
                 }
-                catch (Exception e)
+                catch (Exception exception)
                 {
-                    Console.WriteLine(e);
+                    Console.WriteLine(exception);
                     throw;
                 }
             }

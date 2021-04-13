@@ -8,7 +8,7 @@
         Width="800"
         Height="450"
         x:Class="WSCT.Helper.Avalonia.Views.MainWindow"
-        Foreground="{StaticResource SystemBaseHighColor}"
+        
         Icon="/Assets/avalonia-logo.ico"
         Title="WSCT Helper">
 
@@ -21,7 +21,7 @@
   </Window.Resources>
 
   <DockPanel>
-    <DockPanel DockPanel.Dock="Left" Width="200" VerticalAlignment="Stretch" Background="{StaticResource SystemBaseLowColor}">
+    <DockPanel DockPanel.Dock="Left" Width="200" VerticalAlignment="Stretch" >
       <StackPanel DockPanel.Dock="Top" Orientation="Vertical" VerticalAlignment="Stretch">
         <TextBlock FontWeight="Bold">Format Analyzers</TextBlock>
         <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center">
@@ -50,16 +50,15 @@
     </DockPanel>
     <DockPanel DockPanel.Dock="Right" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
       <Label DockPanel.Dock="Top">Source:</Label>
-      <TextBox DockPanel.Dock="Top" TextWrapping="Wrap" Height="100" Text="{Binding SourceData, Mode=TwoWay}" TextInput="OnTextInput"/>
-      <TextBlock DockPanel.Dock="Top" Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-      <TreeView DockPanel.Dock="Top" Items="{Binding TlvDataList}" VerticalAlignment="Stretch" >
+      <TextBox Classes="code" DockPanel.Dock="Top" TextWrapping="Wrap" Height="100" Text="{Binding SourceData, Mode=TwoWay}" TextInput="OnTextInput"/>
+      <TreeView Classes="code treeview" DockPanel.Dock="Top" Items="{Binding TlvDataList}" VerticalAlignment="Stretch" >
         <TreeView.DataTemplates>
           <TreeDataTemplate DataType="bertlv:TlvData" ItemsSource="{Binding InnerTlvs}">
-            <StackPanel Orientation="Horizontal">
-              <TextBlock Text=" T: " />
-              <TextBlock Text="{Binding ., Converter={StaticResource tlvTagConverter}, ConverterParameter=T}" Foreground="{StaticResource SystemAccentColorLight1}" />
-              <TextBlock Text=" L: "/>
-              <TextBlock Text="{Binding ., Converter={StaticResource tlvTagConverter}, ConverterParameter=L}" />
+            <StackPanel Classes="treeview" Orientation="Horizontal">
+              <TextBlock Classes="treeview" Text=" T: " />
+              <TextBlock Classes="treeview" Text="{Binding ., Converter={StaticResource tlvTagConverter}, ConverterParameter=T}" Foreground="{StaticResource SystemAccentColorLight1}" />
+              <TextBlock Classes="treeview" Text=" L: " />
+              <TextBlock Classes="treeview" Text="{Binding ., Converter={StaticResource tlvTagConverter}, ConverterParameter=L}" />
             </StackPanel>
           </TreeDataTemplate>
         </TreeView.DataTemplates>

@@ -44,7 +44,7 @@ namespace WSCT.Helper.Avalonia.Views
                 viewModel.TlvDataList.Clear();
                 viewModel.TlvDataList.Add(new TlvData(e.Text.FromHexa()));
             }
-            catch (Exception exception)
+            catch (Exception)
             {
             }
         }
