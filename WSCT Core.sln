@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WSCT", "WSCT\WSCT.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WSCT Unit Tests", "WSCT Unit Tests\WSCT Unit Tests.csproj", "{AA063877-3110-47FC-A07C-AC5C249342A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSCT.Helper.Avalonia", "WSCT.Helper.Avalonia\WSCT.Helper.Avalonia.csproj", "{7F001741-7AA6-4E01-8F73-98399768FF95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{AA063877-3110-47FC-A07C-AC5C249342A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA063877-3110-47FC-A07C-AC5C249342A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA063877-3110-47FC-A07C-AC5C249342A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F001741-7AA6-4E01-8F73-98399768FF95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F001741-7AA6-4E01-8F73-98399768FF95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F001741-7AA6-4E01-8F73-98399768FF95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F001741-7AA6-4E01-8F73-98399768FF95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

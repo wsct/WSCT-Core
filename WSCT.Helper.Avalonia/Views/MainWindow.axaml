@@ -1,0 +1,69 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:WSCT.Helper.Avalonia.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:bertlv="clr-namespace:WSCT.Helpers.BasicEncodingRules;assembly=WSCT.Helpers"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Width="800"
+        Height="450"
+        x:Class="WSCT.Helper.Avalonia.Views.MainWindow"
+        Foreground="{StaticResource SystemBaseHighColor}"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="WSCT Helper">
+
+  <Design.DataContext>
+    <vm:MainWindowViewModel/>
+  </Design.DataContext>
+
+  <Window.Resources>
+    <vm:TlvTagConverter x:Key="tlvTagConverter"/>
+  </Window.Resources>
+
+  <DockPanel>
+    <DockPanel DockPanel.Dock="Left" Width="200" VerticalAlignment="Stretch" Background="{StaticResource SystemBaseLowColor}">
+      <StackPanel DockPanel.Dock="Top" Orientation="Vertical" VerticalAlignment="Stretch">
+        <TextBlock FontWeight="Bold">Format Analyzers</TextBlock>
+        <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center">
+          TLV
+        </Button>
+        <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center">
+          XML
+        </Button>
+        <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center">
+          JSON
+        </Button>
+        <TextBlock FontWeight="Bold">Card Data Analyzers</TextBlock>
+        <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center">
+          ATR
+        </Button>
+        <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center">
+          ATR
+        </Button>
+      </StackPanel>
+      <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Bottom">
+        <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Bottom" Click="QuitTheApplicationClick">
+            Leave the app
+        </Button>
+      </StackPanel>
+      <TextBlock FontWeight="Bold">Converters</TextBlock>
+    </DockPanel>
+    <DockPanel DockPanel.Dock="Right" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+      <Label DockPanel.Dock="Top">Source:</Label>
+      <TextBox DockPanel.Dock="Top" TextWrapping="Wrap" Height="100" Text="{Binding SourceData, Mode=TwoWay}" TextInput="OnTextInput"/>
+      <TextBlock DockPanel.Dock="Top" Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+      <TreeView DockPanel.Dock="Top" Items="{Binding TlvDataList}" VerticalAlignment="Stretch" >
+        <TreeView.DataTemplates>
+          <TreeDataTemplate DataType="bertlv:TlvData" ItemsSource="{Binding InnerTlvs}">
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Text=" T: " />
+              <TextBlock Text="{Binding ., Converter={StaticResource tlvTagConverter}, ConverterParameter=T}" Foreground="{StaticResource SystemAccentColorLight1}" />
+              <TextBlock Text=" L: "/>
+              <TextBlock Text="{Binding ., Converter={StaticResource tlvTagConverter}, ConverterParameter=L}" />
+            </StackPanel>
+          </TreeDataTemplate>
+        </TreeView.DataTemplates>
+      </TreeView>
+    </DockPanel>
+  </DockPanel>
+</Window>
