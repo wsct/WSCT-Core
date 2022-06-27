@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Primitives
    ">
-    <meta name="generator" content="docfx 2.56.7.0">
+    <meta name="generator" content="docfx 2.59.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -126,7 +126,8 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_AutoAllocate_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.AutoAllocate*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_AutoAllocate" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.AutoAllocate">AutoAllocate</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Value used by PC/SC API to ask for auto allocation.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -188,7 +189,8 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_CreateIoRequestInstance_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.CreateIoRequestInstance*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_CreateIoRequestInstance_WSCT_Wrapper_Protocol_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.CreateIoRequestInstance(WSCT.Wrapper.Protocol)">CreateIoRequestInstance(Protocol)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Builds an <a class="xref" href="WSCT.Wrapper.AbstractIoRequest.html">AbstractIoRequest</a> for the current OS.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -207,7 +209,8 @@
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.Protocol.html">Protocol</a></td>
         <td><span class="parametername">protocol</span></td>
-        <td></td>
+        <td><p>T Protocol.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -222,7 +225,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.AbstractIoRequest.html">AbstractIoRequest</a></td>
-        <td></td>
+        <td><p>The concrete <a class="xref" href="WSCT.Wrapper.AbstractIoRequest.html">AbstractIoRequest</a> object.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -235,7 +239,8 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_CreateReaderStateInstance_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.CreateReaderStateInstance*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_CreateReaderStateInstance_System_String_WSCT_Wrapper_EventState_WSCT_Wrapper_EventState_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.CreateReaderStateInstance(System.String,WSCT.Wrapper.EventState,WSCT.Wrapper.EventState)">CreateReaderStateInstance(String, EventState, EventState)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Build an <a class="xref" href="WSCT.Wrapper.AbstractReaderState.html">AbstractReaderState</a> for the current OS.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -254,17 +259,20 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">readerName</span></td>
-        <td></td>
+        <td><p>Name of the reader.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.EventState.html">EventState</a></td>
         <td><span class="parametername">currentState</span></td>
-        <td></td>
+        <td><p>Current state.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.EventState.html">EventState</a></td>
         <td><span class="parametername">eventState</span></td>
-        <td></td>
+        <td><p>Expected state.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -279,7 +287,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.AbstractReaderState.html">AbstractReaderState</a></td>
-        <td></td>
+        <td><p>The concrete <a class="xref" href="WSCT.Wrapper.AbstractReaderState.html">AbstractReaderState</a> object.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -292,7 +301,11 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_SCardCancel_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardCancel*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardCancel_System_IntPtr_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardCancel(System.IntPtr)">SCardCancel(IntPtr)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>This function terminates all outstanding actions within a specific resource manager context.</p>
+<p>The only requests that you can cancel are those that require waiting for external action by the smart card or user.
+Any such outstanding action requests will terminate with a status indication that the action was canceled.
+This is especially useful to force outstanding <a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_SCardGetStatusChange_System_IntPtr_System_UInt32_WSCT_Wrapper_AbstractReaderState___System_UInt32_">SCardGetStatusChange(IntPtr, UInt32, AbstractReaderState[], UInt32)</a> calls to terminate.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -311,7 +324,8 @@
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">context</span></td>
-        <td></td>
+        <td><p>A handle that identifies the resource manager context.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -326,7 +340,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -339,7 +354,9 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_SCardConnect_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardConnect*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardConnect_System_IntPtr_System_String_WSCT_Wrapper_ShareMode_WSCT_Wrapper_Protocol_System_IntPtr__WSCT_Wrapper_Protocol__" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardConnect(System.IntPtr,System.String,WSCT.Wrapper.ShareMode,WSCT.Wrapper.Protocol,System.IntPtr@,WSCT.Wrapper.Protocol@)">SCardConnect(IntPtr, String, ShareMode, Protocol, ref IntPtr, ref Protocol)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Establishes a connection (using a specific resource manager context) between the calling application and a smart card contained by a specific reader.
+If no card exists in the specified reader, an error is returned.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -358,32 +375,38 @@
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">context</span></td>
-        <td></td>
+        <td><p>A handle that identifies the resource manager context.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">readerName</span></td>
-        <td></td>
+        <td><p>The name of the reader that contains the target card.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ShareMode.html">ShareMode</a></td>
         <td><span class="parametername">shareMode</span></td>
-        <td></td>
+        <td><p>A flag that indicates whether other applications may form connections to the card.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.Protocol.html">Protocol</a></td>
         <td><span class="parametername">preferedProtocol</span></td>
-        <td></td>
+        <td><p>A bitmask of acceptable protocols for the connection. Possible values may be combined with the OR operation.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">card</span></td>
-        <td></td>
+        <td><p>A handle that identifies the connection to the smart card in the designated reader.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.Protocol.html">Protocol</a></td>
         <td><span class="parametername">activeProtocol</span></td>
-        <td></td>
+        <td><p>A flag that indicates the established active protocol.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -398,10 +421,20 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardConnect_System_IntPtr_System_String_WSCT_Wrapper_ShareMode_WSCT_Wrapper_Protocol_System_IntPtr__WSCT_Wrapper_Protocol___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PC/SC: class <code>SCARDCOMM</code></p>
+<pre><code>RESPONSECODE Connect(
+	IN STR ReaderName // Friendly name for a Reader
+	IN DWORD Flags // Desired access mode information
+	IN DWORD PreferredProtocols // Card communications protocols that may be used
+	OUT DWORD ActiveProtocol // Protocol actually in use
+)</code></pre>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Wrapper_PCSCLite32_Primitives_SCardControl_System_IntPtr_System_UInt32_System_Byte___System_UInt32_System_Byte____System_UInt32_System_UInt32__.md&amp;value=---%0Auid%3A%20WSCT.Wrapper.PCSCLite32.Primitives.SCardControl(System.IntPtr%2CSystem.UInt32%2CSystem.Byte%5B%5D%2CSystem.UInt32%2CSystem.Byte%5B%5D%40%2CSystem.UInt32%2CSystem.UInt32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -411,7 +444,9 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_SCardControl_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardControl*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardControl_System_IntPtr_System_UInt32_System_Byte___System_UInt32_System_Byte____System_UInt32_System_UInt32__" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardControl(System.IntPtr,System.UInt32,System.Byte[],System.UInt32,System.Byte[]@,System.UInt32,System.UInt32@)">SCardControl(IntPtr, UInt32, Byte[], UInt32, ref Byte[], UInt32, ref UInt32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sends a commandAPDU directly to the IFD Handler to be processed by the reader.
+This is useful for creating client side reader drivers for functions like PIN pads, biometrics, or other extensions to the normal smart card reader that are not normally handled by PC/SC.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -430,37 +465,44 @@
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">card</span></td>
-        <td></td>
+        <td><p>Reference value returned from <a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_SCardConnect_System_IntPtr_System_String_WSCT_Wrapper_ShareMode_WSCT_Wrapper_Protocol_System_IntPtr__WSCT_Wrapper_Protocol__">SCardConnect</a></p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">controlCode</span></td>
-        <td></td>
+        <td><p>Specifies the control code for the operation. This value identifies the specific operation to be performed.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
         <td><span class="parametername">sendBuffer</span></td>
-        <td></td>
+        <td><p>Buffer that contains the data required to perform the operation. This parameter can be <code>null</code> if the <code data-dev-comment-type="paramref" class="paramref">controlCode</code> parameter specifies an operation that does not require input data.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">sendSize</span></td>
-        <td></td>
+        <td><p>Integer that specifies the size, in bytes, of the buffer pointed to by <code>sendBuffer</code>.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
         <td><span class="parametername">recvBuffer</span></td>
-        <td></td>
+        <td><p>Buffer that receives the operation's output data. This parameter can be <code>null</code> if the <code>ControlCode</code> parameter specifies an operation that does not produce output data.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">recvSize</span></td>
-        <td></td>
+        <td><p>Size, in bytes, of the buffer pointed to by <code data-dev-comment-type="paramref" class="paramref">recvBuffer</code>. (<code>SCARD_AUTOALLOCATE</code> not allowed)</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">returnedSize</span></td>
-        <td></td>
+        <td><p>Size, in bytes, of the data stored into the buffer pointed to by <code>recvBuffer</code>.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -475,10 +517,20 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardControl_System_IntPtr_System_UInt32_System_Byte___System_UInt32_System_Byte____System_UInt32_System_UInt32___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PC/SC: class <code>SCARDCOMM</code></p>
+<pre><code>RESPONSECODE Control(
+	IN DWORD ControlCode // Vendor-defined control code
+	IN BYTE[] InBuffer // Input data buffer
+	IN OUT BYTE[] OutBuffer // Output data buffer
+	OUT DWORD OutBufferLength // Length of data in output data buffer
+)</code></pre>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Wrapper_PCSCLite32_Primitives_SCardDisconnect_System_IntPtr_WSCT_Wrapper_Disposition_.md&amp;value=---%0Auid%3A%20WSCT.Wrapper.PCSCLite32.Primitives.SCardDisconnect(System.IntPtr%2CWSCT.Wrapper.Disposition)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -488,7 +540,8 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_SCardDisconnect_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardDisconnect*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardDisconnect_System_IntPtr_WSCT_Wrapper_Disposition_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardDisconnect(System.IntPtr,WSCT.Wrapper.Disposition)">SCardDisconnect(IntPtr, Disposition)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Terminates a connection to the connection made through <a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_SCardConnect_System_IntPtr_System_String_WSCT_Wrapper_ShareMode_WSCT_Wrapper_Protocol_System_IntPtr__WSCT_Wrapper_Protocol__">SCardConnect(IntPtr, String, ShareMode, Protocol, ref IntPtr, ref Protocol)</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -507,12 +560,14 @@
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">card</span></td>
-        <td></td>
+        <td><p>Connection made from SCardConnect</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.Disposition.html">Disposition</a></td>
         <td><span class="parametername">disposition</span></td>
-        <td></td>
+        <td><p>Reader function to execute</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -527,10 +582,17 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardDisconnect_System_IntPtr_WSCT_Wrapper_Disposition__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PC/SC: class <code>SCARDCOMM</code></p>
+<pre><code>RESPONSECODE Disconnect(
+	IN DWORD Disposition // Desired Card disposition action
+)</code></pre>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Wrapper_PCSCLite32_Primitives_SCardEstablishContext_System_UInt32_System_Object_System_Object_System_IntPtr__.md&amp;value=---%0Auid%3A%20WSCT.Wrapper.PCSCLite32.Primitives.SCardEstablishContext(System.UInt32%2CSystem.Object%2CSystem.Object%2CSystem.IntPtr%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -540,7 +602,8 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_SCardEstablishContext_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardEstablishContext*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardEstablishContext_System_UInt32_System_Object_System_Object_System_IntPtr__" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardEstablishContext(System.UInt32,System.Object,System.Object,System.IntPtr@)">SCardEstablishContext(UInt32, Object, Object, ref IntPtr)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Establishes the resource manager context (the scope) within which database operations are performed.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -559,22 +622,27 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">scope</span></td>
-        <td></td>
+        <td><p>Scope of the resource manager context.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Object</span></td>
         <td><span class="parametername">notUsed1</span></td>
-        <td></td>
+        <td><p>Reserved for future use and must be <code>null</code>.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Object</span></td>
         <td><span class="parametername">notUsed2</span></td>
-        <td></td>
+        <td><p>Reserved for future use and must be <code>null</code>.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">context</span></td>
-        <td></td>
+        <td><p>Handle to the established resource manager context.
+This handle can now be supplied to other functions attempting to do work within this context.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -589,10 +657,19 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardEstablishContext_System_UInt32_System_Object_System_Object_System_IntPtr___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PC/SC: class <code>RESOURCEMANAGER</code></p>
+<pre><code>RESPONSECODE EstablishContext (
+	IN DWORD Scope, // A scope indicator (see below)
+	IN DWORD Reserved1, // Reserved for future use to allow privileged administrative programs to act on behalf of another user
+	IN DWORD Reserved2 // Reserved for future use to allow privileged administrative programs to act on behalf of another terminal
+)</code></pre>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Wrapper_PCSCLite32_Primitives_SCardGetAttrib_System_IntPtr_System_UInt32_System_Byte____System_UInt32__.md&amp;value=---%0Auid%3A%20WSCT.Wrapper.PCSCLite32.Primitives.SCardGetAttrib(System.IntPtr%2CSystem.UInt32%2CSystem.Byte%5B%5D%40%2CSystem.UInt32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -602,7 +679,9 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_SCardGetAttrib_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardGetAttrib*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardGetAttrib_System_IntPtr_System_UInt32_System_Byte____System_UInt32__" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardGetAttrib(System.IntPtr,System.UInt32,System.Byte[]@,System.UInt32@)">SCardGetAttrib(IntPtr, UInt32, ref Byte[], ref UInt32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the current reader attributes for the given handle.
+It does not affect the state of the reader, driver, or card.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -621,22 +700,26 @@
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">card</span></td>
-        <td></td>
+        <td><p>Reference value returned from <a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_SCardConnect_System_IntPtr_System_String_WSCT_Wrapper_ShareMode_WSCT_Wrapper_Protocol_System_IntPtr__WSCT_Wrapper_Protocol__">SCardConnect(IntPtr, String, ShareMode, Protocol, ref IntPtr, ref Protocol)</a>.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">attributeId</span></td>
-        <td></td>
+        <td><p>Identifier for the attribute to get. Note that vendors may not support all attributes.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
         <td><span class="parametername">recvAttribute</span></td>
-        <td></td>
+        <td><p>R-APDU from the card. <code data-dev-comment-type="paramref" class="paramref">recvAttribute</code> should be <code>null</code> as the allocation will be automatic (otherwise initial instance will be lost).</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">recvAttributeSize</span></td>
-        <td></td>
+        <td><p>On input, can be <a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_AutoAllocate">AutoAllocate</a>, or the size allocated in <code data-dev-comment-type="paramref" class="paramref">recvAttribute</code>. On output, receives the number of bytes in <code data-dev-comment-type="paramref" class="paramref">recvAttribute</code>.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -651,7 +734,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -664,7 +748,13 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_SCardGetStatusChange_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardGetStatusChange*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardGetStatusChange_System_IntPtr_System_UInt32_WSCT_Wrapper_AbstractReaderState___System_UInt32_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardGetStatusChange(System.IntPtr,System.UInt32,WSCT.Wrapper.AbstractReaderState[],System.UInt32)">SCardGetStatusChange(IntPtr, UInt32, AbstractReaderState[], UInt32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The <code>SCardGetStatusChange</code> function blocks execution until the current availability of the cards in a specific set of readers changes.
+The caller supplies a list of readers to be monitored by an <code>SCARD_READERSTATE_x32OS</code> array and the maximum amount of time (in milliseconds)
+that it is willing to wait for an action to occur on one of the listed readers.
+Note that <code>SCardGetStatusChange</code> uses the user-supplied value in the <code>currentState</code> members of the <code>rgReaderStates</code> <code>SCARD_READERSTATE_x32OS</code> array
+as the definition of the current state of the readers.
+The function returns when there is a change in availability, having filled in the eventState members of rgReaderStates appropriately.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -683,22 +773,26 @@
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">context</span></td>
-        <td></td>
+        <td><p>Handle that identifies the resource manager context.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">timeout</span></td>
-        <td></td>
+        <td><p>Maximum amount of time (in milliseconds) to wait for an action. A value of zero causes the function to return immediately. A value of INFINITE causes this function never to time out.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.AbstractReaderState.html">AbstractReaderState</a>[]</td>
         <td><span class="parametername">readerStates</span></td>
-        <td></td>
+        <td><p>Array of <code>SCARD_READERSTATE_x32OS</code> structures that specify the readers to watch, and receives the result.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">readers</span></td>
-        <td></td>
+        <td><p>Number of elements in the <code>readerStates</code> array.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -713,10 +807,18 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardGetStatusChange_System_IntPtr_System_UInt32_WSCT_Wrapper_AbstractReaderState___System_UInt32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PC/SC: class <code>SCARDTRACK</code></p>
+<pre><code>RESPONSECODE GetStatusChange(
+	IN OUT SCARD_READERSTATE_x32OS[] ReaderStates // Array of READERSTATE // structures for readers of interest
+	IN DWORD Timeout // Time-out value in milliseconds
+)</code></pre>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Wrapper_PCSCLite32_Primitives_SCardIsValidContext_System_IntPtr_.md&amp;value=---%0Auid%3A%20WSCT.Wrapper.PCSCLite32.Primitives.SCardIsValidContext(System.IntPtr)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -726,7 +828,8 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_SCardIsValidContext_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardIsValidContext*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardIsValidContext_System_IntPtr_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardIsValidContext(System.IntPtr)">SCardIsValidContext(IntPtr)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Determines whether a smart card context handle is valid.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -745,7 +848,8 @@
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">context</span></td>
-        <td></td>
+        <td><p>Handle that identifies the resource manager context.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -760,7 +864,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if the context is valid.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -773,7 +878,10 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_SCardListReaderGroups_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardListReaderGroups*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardListReaderGroups_System_IntPtr_System_IntPtr__System_UInt32__" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardListReaderGroups(System.IntPtr,System.IntPtr@,System.UInt32@)">SCardListReaderGroups(IntPtr, ref IntPtr, ref UInt32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Returns a list of currently available reader groups on the system.
+If the application sends <code data-dev-comment-type="paramref" class="paramref">groups</code> as null then it will return the size of the buffer needed to allocate in <code data-dev-comment-type="paramref" class="paramref">size</code>.
+The group names is a multi-string and separated by a nul character ('\0') and ended by a double nul character.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -792,17 +900,20 @@
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">context</span></td>
-        <td></td>
+        <td><p>Connection context to the PC/SC Resource Manager</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">groups</span></td>
-        <td></td>
+        <td><p>Multi-string buffer (NULL separated) containing list of groups of readers</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">size</span></td>
-        <td></td>
+        <td><p>On input, can be <a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_AutoAllocate">AutoAllocate</a> to autoallocate <code data-dev-comment-type="paramref" class="paramref">groups</code>, or the size allocated in <code data-dev-comment-type="paramref" class="paramref">groups</code>. On output, receives the number of bytes in <code data-dev-comment-type="paramref" class="paramref">groups</code> including NULL's</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -817,10 +928,17 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardListReaderGroups_System_IntPtr_System_IntPtr__System_UInt32___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PC/SC: class <code>RESOURCEQUERY</code></p>
+<pre><code>RESPONSECODE ListReaderGroups(
+	OUT STR[] Groups // Array of strings containing the Group names
+)</code></pre>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Wrapper_PCSCLite32_Primitives_SCardListReaders_System_IntPtr_System_String_System_IntPtr__System_UInt32__.md&amp;value=---%0Auid%3A%20WSCT.Wrapper.PCSCLite32.Primitives.SCardListReaders(System.IntPtr%2CSystem.String%2CSystem.IntPtr%40%2CSystem.UInt32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -830,7 +948,10 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_SCardListReaders_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardListReaders*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardListReaders_System_IntPtr_System_String_System_IntPtr__System_UInt32__" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardListReaders(System.IntPtr,System.String,System.IntPtr@,System.UInt32@)">SCardListReaders(IntPtr, String, ref IntPtr, ref UInt32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Returns a list of currently available readers on the system.
+If the application sends <code data-dev-comment-type="paramref" class="paramref">groups</code> and <code data-dev-comment-type="paramref" class="paramref">readers</code> as null then it will return the size of the buffer needed to allocate in <code data-dev-comment-type="paramref" class="paramref">size</code>.
+The reader names is a multi-string and separated by a nul character ('\0') and ended by a double nul character.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -849,22 +970,26 @@
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">context</span></td>
-        <td></td>
+        <td><p>Connection context to the PC/SC Resource Manager</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">groups</span></td>
-        <td></td>
+        <td><p>List of groups to list readers</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">readers</span></td>
-        <td></td>
+        <td><p>Multi-string buffer (NULL separated) containing list of readers</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">size</span></td>
-        <td></td>
+        <td><p>On input, can be <a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_AutoAllocate">AutoAllocate</a> to autoallocate <code data-dev-comment-type="paramref" class="paramref">readers</code>, or the size allocated in <code data-dev-comment-type="paramref" class="paramref">readers</code>. On output, receives the number of bytes in <code data-dev-comment-type="paramref" class="paramref">groups</code> including NULL's</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -879,10 +1004,18 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardListReaders_System_IntPtr_System_String_System_IntPtr__System_UInt32___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PC/SC: class <code>RESOURCEQUERY</code></p>
+<pre><code>RESPONSECODE ListReaders(
+	IN STR[] Groups // Array of strings containing Group names of interest
+	OUT STR[] Readers // Array of strings containing Readers within the Groups
+)</code></pre>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Wrapper_PCSCLite32_Primitives_SCardReconnect_System_IntPtr_WSCT_Wrapper_ShareMode_WSCT_Wrapper_Protocol_WSCT_Wrapper_Disposition_WSCT_Wrapper_Protocol__.md&amp;value=---%0Auid%3A%20WSCT.Wrapper.PCSCLite32.Primitives.SCardReconnect(System.IntPtr%2CWSCT.Wrapper.ShareMode%2CWSCT.Wrapper.Protocol%2CWSCT.Wrapper.Disposition%2CWSCT.Wrapper.Protocol%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -892,7 +1025,11 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_SCardReconnect_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardReconnect*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardReconnect_System_IntPtr_WSCT_Wrapper_ShareMode_WSCT_Wrapper_Protocol_WSCT_Wrapper_Disposition_WSCT_Wrapper_Protocol__" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardReconnect(System.IntPtr,WSCT.Wrapper.ShareMode,WSCT.Wrapper.Protocol,WSCT.Wrapper.Disposition,WSCT.Wrapper.Protocol@)">SCardReconnect(IntPtr, ShareMode, Protocol, Disposition, ref Protocol)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Reestablishes a connection to a reader that was previously connected to using SCardConnect().
+In a multi application environment it is possible for an application to reset the card in shared mode.
+When this occurs any other application trying to access certain commands will be returned the value <a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_ResetCard">ResetCard</a>.
+When this occurs <code>SCardReconnect()</code> must be called in order to acknowledge that the card was reset and allow it to change it's state accordingly.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -911,27 +1048,32 @@
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">card</span></td>
-        <td></td>
+        <td><p>Handle to a previous call to connect</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ShareMode.html">ShareMode</a></td>
         <td><span class="parametername">shareMode</span></td>
-        <td></td>
+        <td><p>Mode of connection type: exclusive or shared</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.Protocol.html">Protocol</a></td>
         <td><span class="parametername">preferedProtocol</span></td>
-        <td></td>
+        <td><p>Desired protocol use</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.Disposition.html">Disposition</a></td>
         <td><span class="parametername">initialisation</span></td>
-        <td></td>
+        <td><p>Desired action taken on the card/reader</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.Protocol.html">Protocol</a></td>
         <td><span class="parametername">activeProtocol</span></td>
-        <td></td>
+        <td><p>Established protocol to this connection</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -946,10 +1088,20 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardReconnect_System_IntPtr_WSCT_Wrapper_ShareMode_WSCT_Wrapper_Protocol_WSCT_Wrapper_Disposition_WSCT_Wrapper_Protocol___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PC/SC: class <code>SCARDCOMM</code></p>
+<pre><code>RESPONSECODE Reconnect(
+	IN DWORD Flags // desired access mode
+	IN DWORD PreferredProtocols // card communications protocols which may be used
+	IN DWORD Initialization // Specify card initialization to be performed
+	OUT DWORD ActiveProtocol // protocol actually in use
+)</code></pre>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Wrapper_PCSCLite32_Primitives_SCardReleaseContext_System_IntPtr_.md&amp;value=---%0Auid%3A%20WSCT.Wrapper.PCSCLite32.Primitives.SCardReleaseContext(System.IntPtr)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -959,7 +1111,9 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_SCardReleaseContext_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardReleaseContext*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardReleaseContext_System_IntPtr_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardReleaseContext(System.IntPtr)">SCardReleaseContext(IntPtr)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>destroys a communication context to the PC/SC Resource Manager.
+This must be the last function called in a PC/SC application.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -978,7 +1132,8 @@
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">context</span></td>
-        <td></td>
+        <td><p>Reference value returned from <a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_SCardEstablishContext_System_UInt32_System_Object_System_Object_System_IntPtr__">SCardEstablishContext(UInt32, Object, Object, ref IntPtr)</a></p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -993,10 +1148,15 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardReleaseContext_System_IntPtr__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PC/SC: class <code>RESOURCEMANAGER</code></p>
+<pre><code>RESPONSECODE ReleaseContext()</code></pre>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Wrapper_PCSCLite32_Primitives_SCardSetAttrib_System_IntPtr_System_UInt32_System_Byte___System_UInt32_.md&amp;value=---%0Auid%3A%20WSCT.Wrapper.PCSCLite32.Primitives.SCardSetAttrib(System.IntPtr%2CSystem.UInt32%2CSystem.Byte%5B%5D%2CSystem.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -1006,7 +1166,10 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_SCardSetAttrib_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardSetAttrib*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardSetAttrib_System_IntPtr_System_UInt32_System_Byte___System_UInt32_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardSetAttrib(System.IntPtr,System.UInt32,System.Byte[],System.UInt32)">SCardSetAttrib(IntPtr, UInt32, Byte[], UInt32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sets the given reader attribute for the given handle.
+It does not affect the state of the reader, reader driver, or smart card.
+Not all attributes are supported by all readers (nor can they be set at all times) as many of the attributes are under direct control of the transport protocol.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1025,22 +1188,26 @@
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">card</span></td>
-        <td></td>
+        <td><p>Reference value returned from <a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_SCardConnect_System_IntPtr_System_String_WSCT_Wrapper_ShareMode_WSCT_Wrapper_Protocol_System_IntPtr__WSCT_Wrapper_Protocol__">SCardConnect(IntPtr, String, ShareMode, Protocol, ref IntPtr, ref Protocol)</a>.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">attributeId</span></td>
-        <td></td>
+        <td><p>Specifies the identifier for the attribute to set.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
         <td><span class="parametername">newAttribute</span></td>
-        <td></td>
+        <td><p>Pointer to a buffer that supplies the attribute whose identifier is supplied in dwAttrId.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">newAttributeSize</span></td>
-        <td></td>
+        <td><p>Count of bytes that represent the length of the attribute value in the pbAttr  buffer.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1055,7 +1222,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1068,7 +1236,11 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_SCardStatus_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardStatus*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardStatus_System_IntPtr_System_IntPtr__System_UInt32__WSCT_Wrapper_State__WSCT_Wrapper_Protocol__System_IntPtr__System_UInt32__" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardStatus(System.IntPtr,System.IntPtr@,System.UInt32@,WSCT.Wrapper.State@,WSCT.Wrapper.Protocol@,System.IntPtr@,System.UInt32@)">SCardStatus(IntPtr, ref IntPtr, ref UInt32, ref State, ref Protocol, ref IntPtr, ref UInt32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Provides the current status of a smart card in a reader.
+You can call it any time after a successful call to <a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_SCardConnect_System_IntPtr_System_String_WSCT_Wrapper_ShareMode_WSCT_Wrapper_Protocol_System_IntPtr__WSCT_Wrapper_Protocol__">SCardConnect(IntPtr, String, ShareMode, Protocol, ref IntPtr, ref Protocol)</a> and before a successful call to <a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_SCardDisconnect_System_IntPtr_WSCT_Wrapper_Disposition_">SCardDisconnect(IntPtr, Disposition)</a>.
+It does not affect the state of the reader or reader driver.</p>
+<p>Use only WITH <code data-dev-comment-type="paramref" class="paramref">atrSize</code>=<a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_AutoAllocate">AutoAllocate</a></p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1087,37 +1259,44 @@
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">card</span></td>
-        <td></td>
+        <td><p>Reference value returned from SCardConnect.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">readerName</span></td>
-        <td></td>
+        <td><p>List of friendly names (multiple string) by which the currently connected reader is known.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">readerNameSize</span></td>
-        <td></td>
+        <td><p>On input, supplies the length of the szReaderName buffer.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.State.html">State</a></td>
         <td><span class="parametername">status</span></td>
-        <td></td>
+        <td><p>One of <see name="State">State</see> enumeration</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.Protocol.html">Protocol</a></td>
         <td><span class="parametername">protocol</span></td>
-        <td></td>
+        <td><p>Current protocol, if any. The returned value is meaningful only if the returned value of pdwState is SCARD_SPECIFICMODE.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">atr</span></td>
-        <td></td>
+        <td><p>ATR originally returned by the card</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">atrSize</span></td>
-        <td></td>
+        <td><p>On input, MUST be <a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_AutoAllocate">AutoAllocate</a>, or this method will fail. On output, receives the number of bytes in the ATR string (32 bytes maximum).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1132,10 +1311,20 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardStatus_System_IntPtr_System_IntPtr__System_UInt32__WSCT_Wrapper_State__WSCT_Wrapper_Protocol__System_IntPtr__System_UInt32___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PC/SC: class <code>SCARDCOMM</code></p>
+<pre><code>RESPONSECODE Status(
+	OUT STR[] Reader // Friendly name of the connected reader
+	OUT DWORD State // Current status the connection
+	OUT DWORD ActiveProtocol // protocol actually in use
+	OUT BYTE Atr[] // ATR data buffer
+)</code></pre>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Wrapper_PCSCLite32_Primitives_SCardStatus_System_IntPtr_System_String__WSCT_Wrapper_State__WSCT_Wrapper_Protocol__System_Byte____.md&amp;value=---%0Auid%3A%20WSCT.Wrapper.PCSCLite32.Primitives.SCardStatus(System.IntPtr%2CSystem.String%40%2CWSCT.Wrapper.State%40%2CWSCT.Wrapper.Protocol%40%2CSystem.Byte%5B%5D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -1145,7 +1334,10 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_SCardStatus_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardStatus*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardStatus_System_IntPtr_System_String__WSCT_Wrapper_State__WSCT_Wrapper_Protocol__System_Byte____" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardStatus(System.IntPtr,System.String@,WSCT.Wrapper.State@,WSCT.Wrapper.Protocol@,System.Byte[]@)">SCardStatus(IntPtr, ref String, ref State, ref Protocol, ref Byte[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Provides the current status of a smart card in a reader.
+You can call it any time after a successful call to <a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_SCardConnect_System_IntPtr_System_String_WSCT_Wrapper_ShareMode_WSCT_Wrapper_Protocol_System_IntPtr__WSCT_Wrapper_Protocol__">SCardConnect(IntPtr, String, ShareMode, Protocol, ref IntPtr, ref Protocol)</a> and before a successful call to <a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_SCardDisconnect_System_IntPtr_WSCT_Wrapper_Disposition_">SCardDisconnect(IntPtr, Disposition)</a>.
+It does not affect the state of the reader or reader driver.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1164,27 +1356,32 @@
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">card</span></td>
-        <td></td>
+        <td><p>Reference value returned from SCardConnect.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">readerName</span></td>
-        <td></td>
+        <td><p>List of friendly names (multiple string) by which the currently connected reader is known.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.State.html">State</a></td>
         <td><span class="parametername">state</span></td>
-        <td></td>
+        <td><p>One of <see name="State">State</see> enumeration</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.Protocol.html">Protocol</a></td>
         <td><span class="parametername">protocol</span></td>
-        <td></td>
+        <td><p>Current protocol, if any. The returned value is meaningful only if the returned value of pdwState is SCARD_SPECIFICMODE.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
         <td><span class="parametername">atr</span></td>
-        <td></td>
+        <td><p>ATR originally returned by the card</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1199,10 +1396,20 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardStatus_System_IntPtr_System_String__WSCT_Wrapper_State__WSCT_Wrapper_Protocol__System_Byte_____remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PC/SC: class <code>SCARDCOMM</code></p>
+<pre><code>RESPONSECODE Status(
+	OUT STR[] Reader // Friendly name of the connected reader
+	OUT DWORD State // Current status the connection
+	OUT DWORD ActiveProtocol // protocol actually in use
+	OUT BYTE Atr[] // ATR data buffer
+)</code></pre>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Wrapper_PCSCLite32_Primitives_SCardStatus_System_IntPtr_WSCT_Wrapper_State__WSCT_Wrapper_Protocol__.md&amp;value=---%0Auid%3A%20WSCT.Wrapper.PCSCLite32.Primitives.SCardStatus(System.IntPtr%2CWSCT.Wrapper.State%40%2CWSCT.Wrapper.Protocol%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -1212,7 +1419,10 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_SCardStatus_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardStatus*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardStatus_System_IntPtr_WSCT_Wrapper_State__WSCT_Wrapper_Protocol__" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardStatus(System.IntPtr,WSCT.Wrapper.State@,WSCT.Wrapper.Protocol@)">SCardStatus(IntPtr, ref State, ref Protocol)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Provides the current status of a smart card in a reader.
+You can call it any time after a successful call to <a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_SCardConnect_System_IntPtr_System_String_WSCT_Wrapper_ShareMode_WSCT_Wrapper_Protocol_System_IntPtr__WSCT_Wrapper_Protocol__">SCardConnect(IntPtr, String, ShareMode, Protocol, ref IntPtr, ref Protocol)</a> and before a successful call to <a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_SCardDisconnect_System_IntPtr_WSCT_Wrapper_Disposition_">SCardDisconnect(IntPtr, Disposition)</a>.
+It does not affect the state of the reader or reader driver.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1231,17 +1441,20 @@
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">card</span></td>
-        <td></td>
+        <td><p>Reference value returned from SCardConnect.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.State.html">State</a></td>
         <td><span class="parametername">status</span></td>
-        <td></td>
+        <td><p>One of <see name="State">State</see> enumeration</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.Protocol.html">Protocol</a></td>
         <td><span class="parametername">protocol</span></td>
-        <td></td>
+        <td><p>Current protocol, if any. The returned value is meaningful only if the returned value of pdwState is SCARD_SPECIFICMODE.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1256,10 +1469,20 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardStatus_System_IntPtr_WSCT_Wrapper_State__WSCT_Wrapper_Protocol___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PC/SC: class <code>SCARDCOMM</code></p>
+<pre><code>RESPONSECODE Status(
+	OUT STR[] Reader // Friendly name of the connected reader
+	OUT DWORD State // Current status the connection
+	OUT DWORD ActiveProtocol // protocol actually in use
+	OUT BYTE Atr[] // ATR data buffer
+)</code></pre>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/wsct/WSCT-Core/new/master/apiSpec/new?filename=WSCT_Wrapper_PCSCLite32_Primitives_SCardTransmit_System_IntPtr_WSCT_Wrapper_AbstractIoRequest__System_Byte___System_UInt32_WSCT_Wrapper_AbstractIoRequest__System_Byte____System_UInt32__.md&amp;value=---%0Auid%3A%20WSCT.Wrapper.PCSCLite32.Primitives.SCardTransmit(System.IntPtr%2CWSCT.Wrapper.AbstractIoRequest%40%2CSystem.Byte%5B%5D%2CSystem.UInt32%2CWSCT.Wrapper.AbstractIoRequest%40%2CSystem.Byte%5B%5D%40%2CSystem.UInt32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -1269,7 +1492,11 @@
   </span>
   <a id="WSCT_Wrapper_PCSCLite32_Primitives_SCardTransmit_" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardTransmit*"></a>
   <h4 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardTransmit_System_IntPtr_WSCT_Wrapper_AbstractIoRequest__System_Byte___System_UInt32_WSCT_Wrapper_AbstractIoRequest__System_Byte____System_UInt32__" data-uid="WSCT.Wrapper.PCSCLite32.Primitives.SCardTransmit(System.IntPtr,WSCT.Wrapper.AbstractIoRequest@,System.Byte[],System.UInt32,WSCT.Wrapper.AbstractIoRequest@,System.Byte[]@,System.UInt32@)">SCardTransmit(IntPtr, ref AbstractIoRequest, Byte[], UInt32, ref AbstractIoRequest, ref Byte[], ref UInt32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sends a C-APDU to the smart card contained in the reader connected to by <a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_SCardConnect_System_IntPtr_System_String_WSCT_Wrapper_ShareMode_WSCT_Wrapper_Protocol_System_IntPtr__WSCT_Wrapper_Protocol__">SCardConnect(IntPtr, String, ShareMode, Protocol, ref IntPtr, ref Protocol)</a>.
+The card responds and stores this R-APDU in <code data-dev-comment-type="paramref" class="paramref">recvBuffer</code> and it's length in <code data-dev-comment-type="paramref" class="paramref">recvSize</code>.</p>
+<p>Use only WITH <code data-dev-comment-type="paramref" class="paramref">recvSize</code>=<a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_AutoAllocate">AutoAllocate</a></p>
+<p><strong>WARNING</strong>: SCARD_AUTOALLOCATE is NOT supported on Windows XP and below (<code>winscard.dll</code> limitation)</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1288,37 +1515,44 @@
       <tr>
         <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">card</span></td>
-        <td></td>
+        <td><p>Connection made from SCardConnect</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.AbstractIoRequest.html">AbstractIoRequest</a></td>
         <td><span class="parametername">sendPci</span></td>
-        <td></td>
+        <td><p>Structure of protocol information</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
         <td><span class="parametername">sendBuffer</span></td>
-        <td></td>
+        <td><p>C-APDU to send to the card</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">sendSize</span></td>
-        <td></td>
+        <td><p>Length of the C-APDU</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.AbstractIoRequest.html">AbstractIoRequest</a></td>
         <td><span class="parametername">recvPci</span></td>
-        <td></td>
+        <td><p>Structure of protocol information</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
         <td><span class="parametername">recvBuffer</span></td>
-        <td></td>
+        <td><p>R-APDU from the card. <code data-dev-comment-type="paramref" class="paramref">recvBuffer</code> should be <code>null</code> as the allocation will be automatic (otherwise initial instance will be lost).</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">recvSize</span></td>
-        <td></td>
+        <td><p>On input, <p>MUST be <a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_AutoAllocate">AutoAllocate</a>, or this method will fail. On output, receives the number of bytes in <code data-dev-comment-type="paramref" class="paramref">recvBuffer</code>.</p></p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1333,10 +1567,21 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="WSCT_Wrapper_PCSCLite32_Primitives_SCardTransmit_System_IntPtr_WSCT_Wrapper_AbstractIoRequest__System_Byte___System_UInt32_WSCT_Wrapper_AbstractIoRequest__System_Byte____System_UInt32___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>PC/SC: class <code>SCARDCOMM</code></p>
+<pre><code>RESPONSECODE Transmit(
+	IN SCARD_IO_HEADER SendPci // Send protocol structure
+	IN BYTE[] SendBuffer // Data buffer for send data
+	IN OUT SCARD_IO_HEADER RecvPci // Receive protocol structure
+	IN OUT BYTE[] RecvBuffer // Data buffer for receive data
+	OUT DWORD RecvLength // Length of received data
+)</code></pre>
+</div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="WSCT.Wrapper.IPrimitives.html">IPrimitives</a>

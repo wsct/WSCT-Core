@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class CardContextObservable
    ">
-    <meta name="generator" content="docfx 2.56.7.0">
+    <meta name="generator" content="docfx 2.59.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -198,7 +198,8 @@
   </span>
   <a id="WSCT_Core_CardContextObservable_Context_" data-uid="WSCT.Core.CardContextObservable.Context*"></a>
   <h4 id="WSCT_Core_CardContextObservable_Context" data-uid="WSCT.Core.CardContextObservable.Context">Context</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Accessor to the raw context.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -228,7 +229,8 @@
   </span>
   <a id="WSCT_Core_CardContextObservable_Groups_" data-uid="WSCT.Core.CardContextObservable.Groups*"></a>
   <h4 id="WSCT_Core_CardContextObservable_Groups" data-uid="WSCT.Core.CardContextObservable.Groups">Groups</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Accessor to the names of the groups of readers available (once discovered by <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_ListReaderGroups">ListReaderGroups()</a>).</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -258,7 +260,8 @@
   </span>
   <a id="WSCT_Core_CardContextObservable_GroupsCount_" data-uid="WSCT.Core.CardContextObservable.GroupsCount*"></a>
   <h4 id="WSCT_Core_CardContextObservable_GroupsCount" data-uid="WSCT.Core.CardContextObservable.GroupsCount">GroupsCount</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Accessor to the number of groups of readers found.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -288,7 +291,8 @@
   </span>
   <a id="WSCT_Core_CardContextObservable_Readers_" data-uid="WSCT.Core.CardContextObservable.Readers*"></a>
   <h4 id="WSCT_Core_CardContextObservable_Readers" data-uid="WSCT.Core.CardContextObservable.Readers">Readers</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Accessor to the names of readers found in the group (once discovered by <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_ListReaders_System_String_">ListReaders(String)</a>).</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -318,7 +322,8 @@
   </span>
   <a id="WSCT_Core_CardContextObservable_ReadersCount_" data-uid="WSCT.Core.CardContextObservable.ReadersCount*"></a>
   <h4 id="WSCT_Core_CardContextObservable_ReadersCount" data-uid="WSCT.Core.CardContextObservable.ReadersCount">ReadersCount</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Accessor to the number of readers found.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -350,7 +355,9 @@
   </span>
   <a id="WSCT_Core_CardContextObservable_Cancel_" data-uid="WSCT.Core.CardContextObservable.Cancel*"></a>
   <h4 id="WSCT_Core_CardContextObservable_Cancel" data-uid="WSCT.Core.CardContextObservable.Cancel">Cancel()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>This function terminates all outstanding actions within a specific resource manager context.
+<a class="xref" href="WSCT.Wrapper.IPrimitives.html#WSCT_Wrapper_IPrimitives_SCardCancel_System_IntPtr_">SCardCancel(IntPtr)</a></p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -367,7 +374,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -380,7 +388,8 @@
   </span>
   <a id="WSCT_Core_CardContextObservable_Establish_" data-uid="WSCT.Core.CardContextObservable.Establish*"></a>
   <h4 id="WSCT_Core_CardContextObservable_Establish" data-uid="WSCT.Core.CardContextObservable.Establish">Establish()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Establishes the resource manager context.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -397,7 +406,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -410,7 +420,13 @@
   </span>
   <a id="WSCT_Core_CardContextObservable_GetStatusChange_" data-uid="WSCT.Core.CardContextObservable.GetStatusChange*"></a>
   <h4 id="WSCT_Core_CardContextObservable_GetStatusChange_System_UInt32_WSCT_Wrapper_AbstractReaderState___" data-uid="WSCT.Core.CardContextObservable.GetStatusChange(System.UInt32,WSCT.Wrapper.AbstractReaderState[])">GetStatusChange(UInt32, AbstractReaderState[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_GetStatusChange_System_UInt32_WSCT_Wrapper_AbstractReaderState___">GetStatusChange(UInt32, AbstractReaderState[])</a> function blocks execution until the current availability of the cards in a specific set of readers changes.
+The caller supplies a list of readers to be monitored by a <a class="xref" href="WSCT.Wrapper.AbstractReaderState.html">AbstractReaderState</a> array and the maximum amount of time (in milliseconds)
+that it is willing to wait for an action to occur on one of the listed readers.
+Note that <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_GetStatusChange_System_UInt32_WSCT_Wrapper_AbstractReaderState___">GetStatusChange(UInt32, AbstractReaderState[])</a> uses the user-supplied value in the currentState members of the <code data-dev-comment-type="paramref" class="paramref">readerStates</code> <a class="xref" href="WSCT.Wrapper.AbstractReaderState.html">AbstractReaderState</a> array
+as the definition of the current state of the readers.
+The function returns when there is a change in availability, having filled in the <a class="xref" href="WSCT.Wrapper.AbstractReaderState.html#WSCT_Wrapper_AbstractReaderState_EventState">EventState</a> members of <code data-dev-comment-type="paramref" class="paramref">readerStates</code> appropriately.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -429,12 +445,16 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">timeout</span></td>
-        <td></td>
+        <td><p>The maximum amount of time, in milliseconds, to wait for an action. A value of zero causes the function to return immediately. A value of INFINITE causes this function never to time out.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.AbstractReaderState.html">AbstractReaderState</a>[]</td>
         <td><span class="parametername">readerStates</span></td>
-        <td></td>
+        <td><p>An array of SCARD_READERSTATE structures that specify the readers to watch, and that receives the result.
+To be notified of the arrival of a new smart card reader, set the szReader member of a SCARD_READERSTATE structure to &quot;\\?PnP?\Notification&quot;, and set all of the other members of that structure to zero.
+Important  Each member of each structure in this array must be initialized to zero and then set to specific values as necessary. If this is not done, the function will fail in situations that involve remote card readers.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -462,7 +482,8 @@
   </span>
   <a id="WSCT_Core_CardContextObservable_IsValid_" data-uid="WSCT.Core.CardContextObservable.IsValid*"></a>
   <h4 id="WSCT_Core_CardContextObservable_IsValid" data-uid="WSCT.Core.CardContextObservable.IsValid">IsValid()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Determines whether a smart card context handle is valid.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -479,7 +500,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if context is valid.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -492,7 +514,8 @@
   </span>
   <a id="WSCT_Core_CardContextObservable_ListReaderGroups_" data-uid="WSCT.Core.CardContextObservable.ListReaderGroups*"></a>
   <h4 id="WSCT_Core_CardContextObservable_ListReaderGroups" data-uid="WSCT.Core.CardContextObservable.ListReaderGroups">ListReaderGroups()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Provides the list of groups of readers available on the system.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -509,7 +532,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -522,7 +546,8 @@
   </span>
   <a id="WSCT_Core_CardContextObservable_ListReaders_" data-uid="WSCT.Core.CardContextObservable.ListReaders*"></a>
   <h4 id="WSCT_Core_CardContextObservable_ListReaders_System_String_" data-uid="WSCT.Core.CardContextObservable.ListReaders(System.String)">ListReaders(String)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Provides the list of readers within a set of named reader groups.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -541,7 +566,8 @@
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">group</span></td>
-        <td></td>
+        <td><p>Name of the reader group.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -556,7 +582,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -569,7 +596,8 @@
   </span>
   <a id="WSCT_Core_CardContextObservable_Release_" data-uid="WSCT.Core.CardContextObservable.Release*"></a>
   <h4 id="WSCT_Core_CardContextObservable_Release" data-uid="WSCT.Core.CardContextObservable.Release">Release()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Closes the resource manager context.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -586,7 +614,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="WSCT.Wrapper.ErrorCode.html">ErrorCode</a></td>
-        <td></td>
+        <td><p><a class="xref" href="WSCT.Wrapper.ErrorCode.html#WSCT_Wrapper_ErrorCode_Success">Success</a> if succeeded.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -600,7 +629,8 @@
     <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/CardContextObservable.cs/#L159">View Source</a>
   </span>
   <h4 id="WSCT_Core_CardContextObservable_AfterCancelEvent" data-uid="WSCT.Core.CardContextObservable.AfterCancelEvent">AfterCancelEvent</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_Cancel">Cancel()</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -629,7 +659,8 @@
     <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/CardContextObservable.cs/#L165">View Source</a>
   </span>
   <h4 id="WSCT_Core_CardContextObservable_AfterEstablishEvent" data-uid="WSCT.Core.CardContextObservable.AfterEstablishEvent">AfterEstablishEvent</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_Establish">Establish()</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -658,7 +689,8 @@
     <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/CardContextObservable.cs/#L171">View Source</a>
   </span>
   <h4 id="WSCT_Core_CardContextObservable_AfterGetStatusChangeEvent" data-uid="WSCT.Core.CardContextObservable.AfterGetStatusChangeEvent">AfterGetStatusChangeEvent</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_GetStatusChange_System_UInt32_WSCT_Wrapper_AbstractReaderState___">GetStatusChange(UInt32, AbstractReaderState[])</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -687,7 +719,8 @@
     <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/CardContextObservable.cs/#L177">View Source</a>
   </span>
   <h4 id="WSCT_Core_CardContextObservable_AfterIsValidEvent" data-uid="WSCT.Core.CardContextObservable.AfterIsValidEvent">AfterIsValidEvent</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_IsValid">IsValid()</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -716,7 +749,8 @@
     <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/CardContextObservable.cs/#L183">View Source</a>
   </span>
   <h4 id="WSCT_Core_CardContextObservable_AfterListReaderGroupsEvent" data-uid="WSCT.Core.CardContextObservable.AfterListReaderGroupsEvent">AfterListReaderGroupsEvent</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_ListReaderGroups">ListReaderGroups()</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -745,7 +779,8 @@
     <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/CardContextObservable.cs/#L189">View Source</a>
   </span>
   <h4 id="WSCT_Core_CardContextObservable_AfterListReadersEvent" data-uid="WSCT.Core.CardContextObservable.AfterListReadersEvent">AfterListReadersEvent</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_ListReaders_System_String_">ListReaders(String)</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -774,7 +809,8 @@
     <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/CardContextObservable.cs/#L195">View Source</a>
   </span>
   <h4 id="WSCT_Core_CardContextObservable_AfterReleaseEvent" data-uid="WSCT.Core.CardContextObservable.AfterReleaseEvent">AfterReleaseEvent</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Event sent after execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_Release">Release()</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -803,7 +839,8 @@
     <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/CardContextObservable.cs/#L156">View Source</a>
   </span>
   <h4 id="WSCT_Core_CardContextObservable_BeforeCancelEvent" data-uid="WSCT.Core.CardContextObservable.BeforeCancelEvent">BeforeCancelEvent</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_Cancel">Cancel()</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -832,7 +869,8 @@
     <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/CardContextObservable.cs/#L162">View Source</a>
   </span>
   <h4 id="WSCT_Core_CardContextObservable_BeforeEstablishEvent" data-uid="WSCT.Core.CardContextObservable.BeforeEstablishEvent">BeforeEstablishEvent</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_Establish">Establish()</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -861,7 +899,8 @@
     <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/CardContextObservable.cs/#L168">View Source</a>
   </span>
   <h4 id="WSCT_Core_CardContextObservable_BeforeGetStatusChangeEvent" data-uid="WSCT.Core.CardContextObservable.BeforeGetStatusChangeEvent">BeforeGetStatusChangeEvent</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_GetStatusChange_System_UInt32_WSCT_Wrapper_AbstractReaderState___">GetStatusChange(UInt32, AbstractReaderState[])</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -890,7 +929,8 @@
     <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/CardContextObservable.cs/#L174">View Source</a>
   </span>
   <h4 id="WSCT_Core_CardContextObservable_BeforeIsValidEvent" data-uid="WSCT.Core.CardContextObservable.BeforeIsValidEvent">BeforeIsValidEvent</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_IsValid">IsValid()</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -919,7 +959,8 @@
     <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/CardContextObservable.cs/#L180">View Source</a>
   </span>
   <h4 id="WSCT_Core_CardContextObservable_BeforeListReaderGroupsEvent" data-uid="WSCT.Core.CardContextObservable.BeforeListReaderGroupsEvent">BeforeListReaderGroupsEvent</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_ListReaderGroups">ListReaderGroups()</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -948,7 +989,8 @@
     <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/CardContextObservable.cs/#L186">View Source</a>
   </span>
   <h4 id="WSCT_Core_CardContextObservable_BeforeListReadersEvent" data-uid="WSCT.Core.CardContextObservable.BeforeListReadersEvent">BeforeListReadersEvent</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_ListReaders_System_String_">ListReaders(String)</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -977,7 +1019,8 @@
     <a href="https://github.com/wsct/WSCT-Core/blob/master/WSCT/Core/CardContextObservable.cs/#L192">View Source</a>
   </span>
   <h4 id="WSCT_Core_CardContextObservable_BeforeReleaseEvent" data-uid="WSCT.Core.CardContextObservable.BeforeReleaseEvent">BeforeReleaseEvent</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Event sent before execution of a <a class="xref" href="WSCT.Core.ICardContext.html#WSCT_Core_ICardContext_Release">Release()</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">

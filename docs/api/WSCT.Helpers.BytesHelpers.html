@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class BytesHelpers
    ">
-    <meta name="generator" content="docfx 2.56.7.0">
+    <meta name="generator" content="docfx 2.59.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -122,7 +122,8 @@
   </span>
   <a id="WSCT_Helpers_BytesHelpers_FromBcd_" data-uid="WSCT.Helpers.BytesHelpers.FromBcd*"></a>
   <h4 id="WSCT_Helpers_BytesHelpers_FromBcd_System_Byte___" data-uid="WSCT.Helpers.BytesHelpers.FromBcd(System.Byte[])">FromBcd(Byte[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts an array of bytes &quot;BCD coded&quot; to an array of bytes where each byte is a digit</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -156,7 +157,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
-        <td></td>
+        <td><p>A new array of bytes where each byte is a digit</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -169,7 +171,8 @@
   </span>
   <a id="WSCT_Helpers_BytesHelpers_FromBcd_" data-uid="WSCT.Helpers.BytesHelpers.FromBcd*"></a>
   <h4 id="WSCT_Helpers_BytesHelpers_FromBcd_System_Byte___System_UInt32_" data-uid="WSCT.Helpers.BytesHelpers.FromBcd(System.Byte[],System.UInt32)">FromBcd(Byte[], UInt32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts an array of bytes &quot;BCD coded&quot; to an array of bytes where each byte is a digit</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -193,7 +196,8 @@
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">length</span></td>
-        <td></td>
+        <td><p>Length of BCD data</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -208,7 +212,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
-        <td></td>
+        <td><p>A new array of bytes where each byte is a digit</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -337,7 +342,8 @@ byte[] data = value.fromBcd(7);
   </span>
   <a id="WSCT_Helpers_BytesHelpers_FromBcd_" data-uid="WSCT.Helpers.BytesHelpers.FromBcd*"></a>
   <h4 id="WSCT_Helpers_BytesHelpers_FromBcd_System_Span_System_Byte__" data-uid="WSCT.Helpers.BytesHelpers.FromBcd(System.Span{System.Byte})">FromBcd(Span&lt;Byte&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts an array of bytes &quot;BCD coded&quot; to an array of bytes where each byte is a digit</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -371,7 +377,8 @@ byte[] data = value.fromBcd(7);
     <tbody>
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
-        <td></td>
+        <td><p>A new array of bytes where each byte is a digit</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -384,7 +391,8 @@ byte[] data = value.fromBcd(7);
   </span>
   <a id="WSCT_Helpers_BytesHelpers_FromBcd_" data-uid="WSCT.Helpers.BytesHelpers.FromBcd*"></a>
   <h4 id="WSCT_Helpers_BytesHelpers_FromBcd_System_Span_System_Byte__System_UInt32_" data-uid="WSCT.Helpers.BytesHelpers.FromBcd(System.Span{System.Byte},System.UInt32)">FromBcd(Span&lt;Byte&gt;, UInt32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts an array of bytes &quot;BCD coded&quot; to an array of bytes where each byte is a digit</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -408,7 +416,8 @@ byte[] data = value.fromBcd(7);
       <tr>
         <td><span class="xref">System.UInt32</span></td>
         <td><span class="parametername">length</span></td>
-        <td></td>
+        <td><p>Length of BCD data</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -423,7 +432,8 @@ byte[] data = value.fromBcd(7);
     <tbody>
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
-        <td></td>
+        <td><p>A new array of bytes where each byte is a digit</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -666,7 +676,9 @@ byte[] data = str.ToAsciiString();
   </span>
   <a id="WSCT_Helpers_BytesHelpers_Get4BytesPrefixedArray_" data-uid="WSCT.Helpers.BytesHelpers.Get4BytesPrefixedArray*"></a>
   <h4 id="WSCT_Helpers_BytesHelpers_Get4BytesPrefixedArray_System_Byte___System_Int32__" data-uid="WSCT.Helpers.BytesHelpers.Get4BytesPrefixedArray(System.Byte[],System.Int32@)">Get4BytesPrefixedArray(Byte[], ref Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Extract an array of bytes prefixed by a 4 bytes coded length from a bigger array.
+... 'LL LL LL LL' 'VV VV ... VV' ...</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -690,7 +702,8 @@ byte[] data = str.ToAsciiString();
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Input: Offset of the first byte to look for in <code data-dev-comment-type="paramref" class="paramref">bytes</code>. Output: Offset of next byte after the retrieved array.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -774,7 +787,9 @@ byte[] data = str.ToAsciiString();
   </span>
   <a id="WSCT_Helpers_BytesHelpers_Get4BytesPrefixedArray_" data-uid="WSCT.Helpers.BytesHelpers.Get4BytesPrefixedArray*"></a>
   <h4 id="WSCT_Helpers_BytesHelpers_Get4BytesPrefixedArray_System_Span_System_Byte__System_Int32__" data-uid="WSCT.Helpers.BytesHelpers.Get4BytesPrefixedArray(System.Span{System.Byte},System.Int32@)">Get4BytesPrefixedArray(Span&lt;Byte&gt;, ref Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Extract an array of bytes prefixed by a 4 bytes coded length from a bigger array.
+... 'LL LL LL LL' 'VV VV ... VV' ...</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -798,7 +813,8 @@ byte[] data = str.ToAsciiString();
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Input: Offset of the first byte to look for in <code data-dev-comment-type="paramref" class="paramref">bytes</code>. Output: Offset of next byte after the retrieved array.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -886,7 +902,8 @@ byte[] data = str.ToAsciiString();
   </span>
   <a id="WSCT_Helpers_BytesHelpers_ToAsciiString_" data-uid="WSCT.Helpers.BytesHelpers.ToAsciiString*"></a>
   <h4 id="WSCT_Helpers_BytesHelpers_ToAsciiString_System_Byte___" data-uid="WSCT.Helpers.BytesHelpers.ToAsciiString(System.Byte[])">ToAsciiString(Byte[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts a <code>byte[]</code> to the equivalent string (byte &gt; char).</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -920,7 +937,8 @@ byte[] data = str.ToAsciiString();
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>A string representation of the array where each byte is represented as a character (global default encoding).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -988,7 +1006,8 @@ string data = value.ToAsciiString();
   </span>
   <a id="WSCT_Helpers_BytesHelpers_ToAsciiString_" data-uid="WSCT.Helpers.BytesHelpers.ToAsciiString*"></a>
   <h4 id="WSCT_Helpers_BytesHelpers_ToAsciiString_System_Span_System_Byte__" data-uid="WSCT.Helpers.BytesHelpers.ToAsciiString(System.Span{System.Byte})">ToAsciiString(Span&lt;Byte&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts a <code>byte[]</code> to the equivalent string (byte &gt; char).</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1022,7 +1041,8 @@ string data = value.ToAsciiString();
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>A string representation of the array where each byte is represented as a character (global default encoding).</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1035,7 +1055,8 @@ string data = value.ToAsciiString();
   </span>
   <a id="WSCT_Helpers_BytesHelpers_ToBcd_" data-uid="WSCT.Helpers.BytesHelpers.ToBcd*"></a>
   <h4 id="WSCT_Helpers_BytesHelpers_ToBcd_System_Byte___System_Byte_" data-uid="WSCT.Helpers.BytesHelpers.ToBcd(System.Byte[],System.Byte)">ToBcd(Byte[], Byte)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts an array of bytes to an array of bytes &quot;BCD coded&quot;.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1059,7 +1080,8 @@ string data = value.ToAsciiString();
       <tr>
         <td><span class="xref">System.Byte</span></td>
         <td><span class="parametername">filler</span></td>
-        <td></td>
+        <td><p>Value to be used a a filler is length is odd.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1074,7 +1096,8 @@ string data = value.ToAsciiString();
     <tbody>
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
-        <td></td>
+        <td><p>A new array of bytes &quot;BCD coded&quot;.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1148,7 +1171,8 @@ byte[] data = value.toBcd(0xF);
   </span>
   <a id="WSCT_Helpers_BytesHelpers_ToBcd_" data-uid="WSCT.Helpers.BytesHelpers.ToBcd*"></a>
   <h4 id="WSCT_Helpers_BytesHelpers_ToBcd_System_Span_System_Byte__System_Byte_" data-uid="WSCT.Helpers.BytesHelpers.ToBcd(System.Span{System.Byte},System.Byte)">ToBcd(Span&lt;Byte&gt;, Byte)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts an array of bytes to an array of bytes &quot;BCD coded&quot;.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1172,7 +1196,8 @@ byte[] data = value.toBcd(0xF);
       <tr>
         <td><span class="xref">System.Byte</span></td>
         <td><span class="parametername">filler</span></td>
-        <td></td>
+        <td><p>Value to be used a a filler is length is odd.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1187,7 +1212,8 @@ byte[] data = value.toBcd(0xF);
     <tbody>
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
-        <td></td>
+        <td><p>A new array of bytes &quot;BCD coded&quot;.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1200,7 +1226,8 @@ byte[] data = value.toBcd(0xF);
   </span>
   <a id="WSCT_Helpers_BytesHelpers_ToBcdString_" data-uid="WSCT.Helpers.BytesHelpers.ToBcdString*"></a>
   <h4 id="WSCT_Helpers_BytesHelpers_ToBcdString_System_Byte___System_Char_" data-uid="WSCT.Helpers.BytesHelpers.ToBcdString(System.Byte[],System.Char)">ToBcdString(Byte[], Char)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts an array of bytes to a string representation &quot;BCD coded&quot;</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1224,7 +1251,8 @@ byte[] data = value.toBcd(0xF);
       <tr>
         <td><span class="xref">System.Char</span></td>
         <td><span class="parametername">filler</span></td>
-        <td></td>
+        <td><p>Value to be used a a filler is length is odd</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1239,7 +1267,8 @@ byte[] data = value.toBcd(0xF);
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>A new array of bytes &quot;BCD coded&quot;</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1313,7 +1342,8 @@ string data = value.toBcd(&apos;F&apos;);
   </span>
   <a id="WSCT_Helpers_BytesHelpers_ToBcdString_" data-uid="WSCT.Helpers.BytesHelpers.ToBcdString*"></a>
   <h4 id="WSCT_Helpers_BytesHelpers_ToBcdString_System_Span_System_Byte__System_Char_" data-uid="WSCT.Helpers.BytesHelpers.ToBcdString(System.Span{System.Byte},System.Char)">ToBcdString(Span&lt;Byte&gt;, Char)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts an array of bytes to a string representation &quot;BCD coded&quot;</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1337,7 +1367,8 @@ string data = value.toBcd(&apos;F&apos;);
       <tr>
         <td><span class="xref">System.Char</span></td>
         <td><span class="parametername">filler</span></td>
-        <td></td>
+        <td><p>Value to be used a a filler is length is odd</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1352,7 +1383,8 @@ string data = value.toBcd(&apos;F&apos;);
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>A new array of bytes &quot;BCD coded&quot;</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1484,7 +1516,8 @@ byte[] data = value.toByteArray(2);
   </span>
   <a id="WSCT_Helpers_BytesHelpers_ToHexa_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa*"></a>
   <h4 id="WSCT_Helpers_BytesHelpers_ToHexa_System_Byte___System_Char_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa(System.Byte[],System.Char)">ToHexa(Byte[], Char)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts an array of bytes to the equivalent string in Hexa.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1508,7 +1541,8 @@ byte[] data = value.toByteArray(2);
       <tr>
         <td><span class="xref">System.Char</span></td>
         <td><span class="parametername">separator</span></td>
-        <td></td>
+        <td><p>Separator to be used between each group of 2 hexadecimal digits.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1523,7 +1557,8 @@ byte[] data = value.toByteArray(2);
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>A string representation of the array where each byte is represented as its hexadecimal value. <code>0</code> means no separator.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1536,7 +1571,8 @@ byte[] data = value.toByteArray(2);
   </span>
   <a id="WSCT_Helpers_BytesHelpers_ToHexa_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa*"></a>
   <h4 id="WSCT_Helpers_BytesHelpers_ToHexa_System_Byte___System_Int32_System_Char_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa(System.Byte[],System.Int32,System.Char)">ToHexa(Byte[], Int32, Char)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts first bytes of a byte Array to the equivalent string in Hexa.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1560,12 +1596,14 @@ byte[] data = value.toByteArray(2);
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">length</span></td>
-        <td></td>
+        <td><p>Maximum number of bytes in the array to convert.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Char</span></td>
         <td><span class="parametername">separator</span></td>
-        <td></td>
+        <td><p>Separator to be used between each group of 2 hexadecimal digits.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1580,7 +1618,8 @@ byte[] data = value.toByteArray(2);
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>A string representation of the array where each byte is represented as its hexadecimal value.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1721,7 +1760,8 @@ string data = value.toHexa(2, &apos;-&apos;);
   </span>
   <a id="WSCT_Helpers_BytesHelpers_ToHexa_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa*"></a>
   <h4 id="WSCT_Helpers_BytesHelpers_ToHexa_System_Span_System_Byte__System_Char_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa(System.Span{System.Byte},System.Char)">ToHexa(Span&lt;Byte&gt;, Char)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts an array of bytes to the equivalent string in Hexa.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1745,7 +1785,8 @@ string data = value.toHexa(2, &apos;-&apos;);
       <tr>
         <td><span class="xref">System.Char</span></td>
         <td><span class="parametername">separator</span></td>
-        <td></td>
+        <td><p>Separator to be used between each group of 2 hexadecimal digits.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1760,7 +1801,8 @@ string data = value.toHexa(2, &apos;-&apos;);
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>A string representation of the array where each byte is represented as its hexadecimal value. <code>0</code> means no separator.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1773,7 +1815,8 @@ string data = value.toHexa(2, &apos;-&apos;);
   </span>
   <a id="WSCT_Helpers_BytesHelpers_ToHexa_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa*"></a>
   <h4 id="WSCT_Helpers_BytesHelpers_ToHexa_System_Span_System_Byte__System_Int32_System_Char_" data-uid="WSCT.Helpers.BytesHelpers.ToHexa(System.Span{System.Byte},System.Int32,System.Char)">ToHexa(Span&lt;Byte&gt;, Int32, Char)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Converts first bytes of a byte Array to the equivalent string in Hexa.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1797,12 +1840,14 @@ string data = value.toHexa(2, &apos;-&apos;);
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">length</span></td>
-        <td></td>
+        <td><p>Maximum number of bytes in the array to convert.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Char</span></td>
         <td><span class="parametername">separator</span></td>
-        <td></td>
+        <td><p>Separator to be used between each group of 2 hexadecimal digits.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1817,7 +1862,8 @@ string data = value.toHexa(2, &apos;-&apos;);
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><p>A string representation of the array where each byte is represented as its hexadecimal value.</p>
+</td>
       </tr>
     </tbody>
   </table>
