@@ -95,6 +95,27 @@ namespace WSCT.ISO7816
             get { return _le; }
             set
             {
+                if (value > 0xFFFF)
+                {
+                    throw new Exception("Le exceeds maximum size.");
+                } else if (value > 0xFF)
+                {
+                    // Convert to extended case if required
+                    switch (CommandCase)
+                    {
+                        case CommandCase.CC2:
+                            CommandCase = CommandCase.CC2E;
+                            break;
+                        case CommandCase.CC3:
+                            CommandCase = CommandCase.CC3E;
+                            break;
+                        case CommandCase.CC4:
+                            CommandCase = CommandCase.CC4E;
+                            break;
+                        default:
+                            break;
+                    }
+                }
                 _le = value;
                 HasLe = true;
             }
@@ -108,6 +129,27 @@ namespace WSCT.ISO7816
             get { return _lc; }
             set
             {
+                if (value > 0xFFFF)
+                {
+                    throw new Exception("Lc exceeds maximum size.");
+                } else if (value > 0xFF)
+                {
+                    // Convert to extended case if required
+                    switch (CommandCase)
+                    {
+                        case CommandCase.CC2:
+                            CommandCase = CommandCase.CC2E;
+                            break;
+                        case CommandCase.CC3:
+                            CommandCase = CommandCase.CC3E;
+                            break;
+                        case CommandCase.CC4:
+                            CommandCase = CommandCase.CC4E;
+                            break;
+                        default:
+                            break;
+                    }
+                }
                 _lc = value;
                 HasLc = true;
             }

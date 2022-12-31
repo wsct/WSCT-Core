@@ -72,6 +72,13 @@ namespace WSCT_Unit_Tests.ISO7816
             Assert.AreEqual(Case2ApduByte, commandApdu.BinaryCommand);
             Assert.AreEqual(0x01, commandApdu.Ne);
             Assert.AreEqual(0x00, commandApdu.Nc);
+            
+            // Test automatic conversion to extended
+            commandApdu.Lc = 0xF00D;
+            Assert.AreEqual(CommandCase.CC2E, commandApdu.CommandCase);
+            commandApdu = new CommandAPDU(Case2Apdu);
+            commandApdu.Le = 0xF00D;
+            Assert.AreEqual(CommandCase.CC2E, commandApdu.CommandCase);
         }
         
         [Test(Description = "Case 2 Extended C-APDU")]
@@ -80,6 +87,13 @@ namespace WSCT_Unit_Tests.ISO7816
             // Test decoding
             var commandApdu = new CommandAPDU(Case2EApdu);
             Assert.AreEqual(CommandCase.CC2E, commandApdu.CommandCase);
+            Assert.IsFalse(commandApdu.IsCc1);
+            Assert.IsFalse(commandApdu.IsCc2);
+            Assert.IsFalse(commandApdu.IsCc3);
+            Assert.IsFalse(commandApdu.IsCc4);
+            Assert.IsTrue(commandApdu.IsCc2E);
+            Assert.IsFalse(commandApdu.IsCc3E);
+            Assert.IsFalse(commandApdu.IsCc4E);
             
             // Test encoding
             Assert.AreEqual(Case2EApduByte, commandApdu.BinaryCommand);
@@ -93,11 +107,25 @@ namespace WSCT_Unit_Tests.ISO7816
             // Test decoding
             var commandApdu = new CommandAPDU(Case3Apdu);
             Assert.AreEqual(CommandCase.CC3, commandApdu.CommandCase);
+            Assert.IsFalse(commandApdu.IsCc1);
+            Assert.IsFalse(commandApdu.IsCc2);
+            Assert.IsTrue(commandApdu.IsCc3);
+            Assert.IsFalse(commandApdu.IsCc4);
+            Assert.IsFalse(commandApdu.IsCc2E);
+            Assert.IsFalse(commandApdu.IsCc3E);
+            Assert.IsFalse(commandApdu.IsCc4E);
             
             // Test encoding
             Assert.AreEqual(Case3ApduByte, commandApdu.BinaryCommand);
             Assert.AreEqual(0x00, commandApdu.Ne);
             Assert.AreEqual(0x01, commandApdu.Nc);
+            
+            // Test automatic conversion to extended
+            commandApdu.Lc = 0xF00D;
+            Assert.AreEqual(CommandCase.CC3E, commandApdu.CommandCase);
+            commandApdu = new CommandAPDU(Case3Apdu);
+            commandApdu.Le = 0xF00D;
+            Assert.AreEqual(CommandCase.CC3E, commandApdu.CommandCase);
         }
         
         [Test(Description = "Case 3 Extended C-APDU")]
@@ -106,6 +134,13 @@ namespace WSCT_Unit_Tests.ISO7816
             // Test decoding
             var commandApdu = new CommandAPDU(Case3EApdu);
             Assert.AreEqual(CommandCase.CC3E, commandApdu.CommandCase);
+            Assert.IsFalse(commandApdu.IsCc1);
+            Assert.IsFalse(commandApdu.IsCc2);
+            Assert.IsFalse(commandApdu.IsCc3);
+            Assert.IsFalse(commandApdu.IsCc4);
+            Assert.IsFalse(commandApdu.IsCc2E);
+            Assert.IsTrue(commandApdu.IsCc3E);
+            Assert.IsFalse(commandApdu.IsCc4E);
             
             // Test encoding
             Assert.AreEqual(Case3EApduByte, commandApdu.BinaryCommand);
@@ -119,11 +154,25 @@ namespace WSCT_Unit_Tests.ISO7816
             // Test decoding
             var commandApdu = new CommandAPDU(Case4Apdu);
             Assert.AreEqual(CommandCase.CC4, commandApdu.CommandCase);
+            Assert.IsFalse(commandApdu.IsCc1);
+            Assert.IsFalse(commandApdu.IsCc2);
+            Assert.IsFalse(commandApdu.IsCc3);
+            Assert.IsTrue(commandApdu.IsCc4);
+            Assert.IsFalse(commandApdu.IsCc2E);
+            Assert.IsFalse(commandApdu.IsCc3E);
+            Assert.IsFalse(commandApdu.IsCc4E);
             
             // Test encoding
             Assert.AreEqual(Case4ApduByte, commandApdu.BinaryCommand);
             Assert.AreEqual(0x01, commandApdu.Ne);
             Assert.AreEqual(0x01, commandApdu.Nc);
+            
+            // Test automatic conversion to extended
+            commandApdu.Lc = 0xF00D;
+            Assert.AreEqual(CommandCase.CC4E, commandApdu.CommandCase);
+            commandApdu = new CommandAPDU(Case4Apdu);
+            commandApdu.Le = 0xF00D;
+            Assert.AreEqual(CommandCase.CC4E, commandApdu.CommandCase);
         }
         
         [Test(Description = "Case 4 Extended C-APDU")]
@@ -132,6 +181,13 @@ namespace WSCT_Unit_Tests.ISO7816
             // Test decoding
             var commandApdu = new CommandAPDU(Case4EApdu);
             Assert.AreEqual(CommandCase.CC4E, commandApdu.CommandCase);
+            Assert.IsFalse(commandApdu.IsCc1);
+            Assert.IsFalse(commandApdu.IsCc2);
+            Assert.IsFalse(commandApdu.IsCc3);
+            Assert.IsFalse(commandApdu.IsCc4);
+            Assert.IsFalse(commandApdu.IsCc2E);
+            Assert.IsFalse(commandApdu.IsCc3E);
+            Assert.IsTrue(commandApdu.IsCc4E);
             
             // Test encoding
             Assert.AreEqual(Case4EApduByte, commandApdu.BinaryCommand);
