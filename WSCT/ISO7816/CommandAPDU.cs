@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -15,7 +16,7 @@ namespace WSCT.ISO7816
     /// Only short C-APDU (Le, Lc coded on 1 byte) are now supported.
     /// </remarks>
     [XmlRoot("commandAPDU")]
-    public class CommandAPDU : ICardCommand, IXmlSerializable
+    public class CommandAPDU : ICardCommand, IXmlSerializable, IEquatable<CommandAPDU>
     {
         #region >> Fields
 
@@ -230,7 +231,7 @@ namespace WSCT.ISO7816
         /// Informs if Le has been parsed.
         /// Write access: <see cref="CommandCase"/> is updated.
         /// </summary>
-        public Boolean HasLe
+        public bool HasLe
         {
             get { return _hasLe; }
             set
@@ -267,7 +268,7 @@ namespace WSCT.ISO7816
         /// Informs if Lc has been parsed.
         /// Write access: <see cref="CommandCase"/> is updated.
         /// </summary>
-        public Boolean HasLc
+        public bool HasLc
         {
             get { return _hasLc; }
             set
@@ -299,6 +300,11 @@ namespace WSCT.ISO7816
                 }
             }
         }
+
+        /// <summary>
+        /// Returns true when this Command APDU is an extended command APDU
+        /// </summary>
+        public bool IsExtended => _commandCase == CommandCase.CC2E || _commandCase == CommandCase.CC3E || _commandCase == CommandCase.CC4E;
 
         /// <summary>
         /// Accessor to the UDC of the C-APDU.
@@ -688,13 +694,17 @@ namespace WSCT.ISO7816
         /// <inheritdoc />
         public void ReadXml(XmlReader reader)
         {
+            // Check if this is an extended APDU
+            var isExtended = (null != reader.GetAttribute("extended"));
+
             Cla = reader.GetAttribute("cla").FromHexa()[0];
             Ins = reader.GetAttribute("ins").FromHexa()[0];
             P1 = reader.GetAttribute("p1").FromHexa()[0];
             P2 = reader.GetAttribute("p2").FromHexa()[0];
             if (reader.MoveToAttribute("le"))
             {
-                Le = reader.ReadContentAsString().FromHexa()[0];
+                // Convert Le from hexadecimal
+                Le = Convert.ToUInt32(reader.ReadContentAsString(), 16);
             }
             reader.MoveToElement();
             if (reader.IsEmptyElement)
@@ -709,26 +719,98 @@ namespace WSCT.ISO7816
                 Udc = reader.ReadContentAsString().FromHexa();
                 reader.ReadEndElement();
             }
-            reader.ReadStartElement();
+
+            // Handle extended cases
+            if (!isExtended) return;
+            switch (_commandCase)
+            {
+                case CommandCase.CC2:
+                    CommandCase = CommandCase.CC2E;
+                    break;
+                case CommandCase.CC3:
+                    CommandCase = CommandCase.CC3E;
+                    break;
+                case CommandCase.CC4:
+                    CommandCase = CommandCase.CC4E;
+                    break;
+                default:
+                    break;
+            }
         }
 
         /// <inheritdoc />
         public void WriteXml(XmlWriter writer)
         {
+            // Extended length APDUs are tagged in XML
+            if (IsExtended)
+            {
+                writer.WriteAttributeString("extended", "true");
+            }
+            
             writer.WriteAttributeString("cla", String.Format("{0:X2}", Cla));
             writer.WriteAttributeString("ins", String.Format("{0:X2}", Ins));
             writer.WriteAttributeString("p1", String.Format("{0:X2}", P1));
             writer.WriteAttributeString("p2", String.Format("{0:X2}", P2));
+
+            if (HasLe)
+            {
+                var leFormatString = IsExtended ? "X4" : "X2";
+                writer.WriteAttributeString("le", Le.ToString(leFormatString));
+            }
+            
             if (HasLc)
             {
                 writer.WriteString(Udc.ToHexa());
             }
-            if (HasLe)
-            {
-                writer.WriteAttributeString("le", String.Format("{0:X2}", Le));
-            }
         }
 
+        #endregion
+
+        #region >> IEquatable<T> Members
+        /// <inheritdoc />
+        public bool Equals(CommandAPDU other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+
+            // Compare the basic information
+            if (_commandCase != other._commandCase || Cla != other.Cla || Ins != other.Ins || P1 != other.P1 || P2 != other.P2)
+            {
+                return false;
+            }
+
+            // Compare Lc and Le
+            if (_hasLc != other._hasLc || _hasLe != other._hasLe || _lc != other._lc || _le != other._le)
+            {
+                return false;
+            }
+            
+            // Compare Udc
+            if (_udc == null)
+            {
+                return other._udc == null;
+            }
+            return _udc.SequenceEqual(other._udc);
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (int)_commandCase;
+                hashCode = (hashCode * 397) ^ _hasLc.GetHashCode();
+                hashCode = (hashCode * 397) ^ _hasLe.GetHashCode();
+                hashCode = (hashCode * 397) ^ (int)_lc;
+                hashCode = (hashCode * 397) ^ (int)_le;
+                hashCode = (hashCode * 397) ^ (_udc != null ? _udc.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ Cla.GetHashCode();
+                hashCode = (hashCode * 397) ^ Ins.GetHashCode();
+                hashCode = (hashCode * 397) ^ P1.GetHashCode();
+                hashCode = (hashCode * 397) ^ P2.GetHashCode();
+                return hashCode;
+            }
+        }
         #endregion
     }
 }
