@@ -8,9 +8,9 @@
       Warning: this package alone does not allow to connect to a smartcard reader: use WSCT.Wrapper.Desktop for that.
     </Description>
     <Company>ENSICAEN</Company>
-    <Copyright>Copyright © ENSICAEN 2006-2022</Copyright>
+    <Copyright>Copyright © ENSICAEN 2006-2023</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>6.2.0</Version>
+    <Version>6.3.0</Version>
     <Authors>Sylvain Vernois</Authors>
     <PackageProjectUrl>https://github.com/wsct/WSCT-Core</PackageProjectUrl>
     <RepositoryUrl>https://github.com/wsct/WSCT-Core</RepositoryUrl>
