@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
-    <PackageId>WSCT.Core</PackageId>
+	<LangVersion>latest</LangVersion>
+	<PackageId>WSCT.Core</PackageId>
     <Description>
       Main API for WSCT (WinSCard Tools).
       Warning: this package alone does not allow to connect to a smartcard reader: use WSCT.Wrapper.Desktop for that.
