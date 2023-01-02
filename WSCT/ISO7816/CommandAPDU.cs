@@ -99,24 +99,42 @@ namespace WSCT.ISO7816
                 if (value > 0xFFFF)
                 {
                     throw new Exception("Le exceeds maximum size.");
-                } else if (value > 0xFF)
-                {
-                    // Convert to extended case if required
-                    switch (CommandCase)
-                    {
-                        case CommandCase.CC2:
-                            CommandCase = CommandCase.CC2E;
-                            break;
-                        case CommandCase.CC3:
-                            CommandCase = CommandCase.CC3E;
-                            break;
-                        case CommandCase.CC4:
-                            CommandCase = CommandCase.CC4E;
-                            break;
-                        default:
-                            break;
-                    }
                 }
+
+                CommandCase newCommandCase;
+                if (value > 0xFF)
+                {
+                    newCommandCase = CommandCase switch
+                    {
+                        CommandCase.CC1 => CommandCase.CC2E,
+                        CommandCase.CC2 => CommandCase.CC2E,
+                        CommandCase.CC3 => CommandCase.CC4E,
+                        CommandCase.CC4 => CommandCase.CC4E,
+                        CommandCase.CC2E => CommandCase.CC2E,
+                        CommandCase.CC3E => CommandCase.CC4E,
+                        CommandCase.CC4E => CommandCase.CC4E,
+                        CommandCase.Unknown => CommandCase.CC2E,
+                        _ => throw new NotSupportedException($"Command case {CommandCase} is not valid.")
+                    };
+                }
+                else
+                {
+                    newCommandCase = CommandCase switch
+                    {
+                        CommandCase.CC1 => CommandCase.CC2,
+                        CommandCase.CC2 => CommandCase.CC2,
+                        CommandCase.CC3 => CommandCase.CC4,
+                        CommandCase.CC4 => CommandCase.CC4,
+                        CommandCase.CC2E => CommandCase.CC2,
+                        CommandCase.CC3E => CommandCase.CC4E,
+                        CommandCase.CC4E when Lc <= 255 => CommandCase.CC4,
+                        CommandCase.CC4E when Lc > 255 => CommandCase.CC4E,
+                        CommandCase.Unknown => CommandCase.CC2E,
+                        _ => throw new NotSupportedException($"Command case {CommandCase} is not valid.")
+                    };
+                }
+                CommandCase = newCommandCase;
+
                 _le = value;
                 HasLe = true;
             }
@@ -133,26 +151,45 @@ namespace WSCT.ISO7816
                 if (value > 0xFFFF)
                 {
                     throw new Exception("Lc exceeds maximum size.");
-                } else if (value > 0xFF)
-                {
-                    // Convert to extended case if required
-                    switch (CommandCase)
-                    {
-                        case CommandCase.CC2:
-                            CommandCase = CommandCase.CC2E;
-                            break;
-                        case CommandCase.CC3:
-                            CommandCase = CommandCase.CC3E;
-                            break;
-                        case CommandCase.CC4:
-                            CommandCase = CommandCase.CC4E;
-                            break;
-                        default:
-                            break;
-                    }
                 }
+
                 _lc = value;
                 HasLc = true;
+
+                CommandCase newCommandCase;
+                // Update command case
+                if (value > 0xFF)
+                {
+                    newCommandCase = CommandCase switch
+                    {
+                        CommandCase.CC1 => CommandCase.CC3E,
+                        CommandCase.CC2 => CommandCase.CC4E,
+                        CommandCase.CC3 => CommandCase.CC3E,
+                        CommandCase.CC4 => CommandCase.CC4E,
+                        CommandCase.CC2E => CommandCase.CC4E,
+                        CommandCase.CC3E => CommandCase.CC3E,
+                        CommandCase.CC4E => CommandCase.CC4E,
+                        CommandCase.Unknown => CommandCase.CC3E,
+                        _ => throw new NotSupportedException($"Command case {CommandCase} is not valid.")
+                    };
+                }
+                else
+                {
+                    newCommandCase = CommandCase switch
+                    {
+                        CommandCase.CC1 => CommandCase.CC3,
+                        CommandCase.CC2 => CommandCase.CC4,
+                        CommandCase.CC3 => CommandCase.CC3,
+                        CommandCase.CC4 => CommandCase.CC4,
+                        CommandCase.CC2E => CommandCase.CC4E,
+                        CommandCase.CC3E => CommandCase.CC3,
+                        CommandCase.CC4E when Le <= 255 => CommandCase.CC4,
+                        CommandCase.CC4E when Le > 255 => CommandCase.CC4E,
+                        CommandCase.Unknown => CommandCase.CC3,
+                        _ => throw new NotSupportedException($"Command case {CommandCase} is not valid.")
+                    };
+                }
+                CommandCase = newCommandCase;
             }
         }
 
@@ -160,7 +197,7 @@ namespace WSCT.ISO7816
         /// Accessor to the Ne value of the C-APDU.
         /// Valid values: 0, 1, 2, or 3
         /// </summary>
-        public UInt32 Ne
+        public UInt32 LeFieldSize
         {
             get
             {
@@ -171,17 +208,17 @@ namespace WSCT.ISO7816
                     case CommandCase.CC3:
                     case CommandCase.CC3E:
                         return 0;
-                    
+
                     // Case 2 and 4 are standard commands with short (1-byte) expected response lengths
                     case CommandCase.CC2:
                     case CommandCase.CC4:
                         return 1;
-                    
+
                     // The expected response length is 3 bytes (0x00, 0xXX, 0XX) when command length Lc is absent
                     case CommandCase.CC2E:
                         return 3;
-                    
-                    // When command length Lc is present (and extended), expected response length is encoded as to bytes
+
+                    // When command length Lc is present (and extended), expected response length is encoded as two bytes
                     case CommandCase.CC4E:
                         return 2;
 
@@ -192,38 +229,26 @@ namespace WSCT.ISO7816
                 }
             }
         }
-        
+
         /// <summary>
         /// Accessor to the Nc value of the C-APDU.
         /// Valid values: 0, 1, or 3
         /// </summary>
-        public UInt32 Nc
+        public UInt32 LcFieldSize
         {
             get
             {
-                switch (_commandCase)
+                return _commandCase switch
                 {
                     // Case 1 and 2 do not have command data
-                    case CommandCase.CC1:
-                    case CommandCase.CC2:
-                    case CommandCase.CC2E:
-                        return 0;
-                    
+                    CommandCase.CC1 or CommandCase.CC2 or CommandCase.CC2E => 0,
                     // Case 3 and 4 are standard commands with short (1-byte) command data
-                    case CommandCase.CC3:
-                    case CommandCase.CC4:
-                        return 1;
-                    
+                    CommandCase.CC3 or CommandCase.CC4 => 1,
                     // Extended-length commands with response lengths are encoded as three bytes (0x00, 0xXX, 0xXX)
-                    case CommandCase.CC3E:
-                    case CommandCase.CC4E:
-                        return 3;
-
+                    CommandCase.CC3E or CommandCase.CC4E => 3,
                     // If the command case is unknown, the length is unknown.
-                    case CommandCase.Unknown:
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                    _ => throw new ArgumentOutOfRangeException(),
+                };
             }
         }
 
@@ -242,10 +267,13 @@ namespace WSCT.ISO7816
                     switch (_commandCase)
                     {
                         case CommandCase.CC1:
-                            _commandCase = CommandCase.CC2;
+                            _commandCase = Le <= 255 ? CommandCase.CC2 : CommandCase.CC2E;
                             break;
                         case CommandCase.CC3:
-                            _commandCase = CommandCase.CC4;
+                            _commandCase = Le <= 255 ? CommandCase.CC4 : CommandCase.CC4E;
+                            break;
+                        case CommandCase.CC3E:
+                            _commandCase = CommandCase.CC4E;
                             break;
                     }
                 }
@@ -253,11 +281,14 @@ namespace WSCT.ISO7816
                 {
                     switch (_commandCase)
                     {
-                        case CommandCase.CC2:
+                        case CommandCase.CC2 or CommandCase.CC2E:
                             _commandCase = CommandCase.CC1;
                             break;
                         case CommandCase.CC4:
                             _commandCase = CommandCase.CC3;
+                            break;
+                        case CommandCase.CC4E:
+                            _commandCase = Lc <= 255 ? CommandCase.CC3 : CommandCase.CC3E;
                             break;
                     }
                 }
@@ -279,10 +310,13 @@ namespace WSCT.ISO7816
                     switch (_commandCase)
                     {
                         case CommandCase.CC1:
-                            _commandCase = CommandCase.CC3;
+                            _commandCase = Lc <= 255 ? CommandCase.CC3 : CommandCase.CC3E;
                             break;
                         case CommandCase.CC2:
-                            _commandCase = CommandCase.CC4;
+                            _commandCase = Lc <= 255 ? CommandCase.CC4 : CommandCase.CC4E;
+                            break;
+                        case CommandCase.CC2E:
+                            _commandCase = CommandCase.CC4E;
                             break;
                     }
                 }
@@ -290,11 +324,14 @@ namespace WSCT.ISO7816
                 {
                     switch (_commandCase)
                     {
-                        case CommandCase.CC3:
+                        case CommandCase.CC3 or CommandCase.CC3E:
                             _commandCase = CommandCase.CC1;
                             break;
                         case CommandCase.CC4:
                             _commandCase = CommandCase.CC2;
+                            break;
+                        case CommandCase.CC4E:
+                            _commandCase = Le <= 255 ? CommandCase.CC2 : CommandCase.CC2E;
                             break;
                     }
                 }
@@ -335,7 +372,7 @@ namespace WSCT.ISO7816
         {
             get { return _commandCase == CommandCase.CC2; }
         }
-        
+
         /// <summary>
         /// Informs if the C-APDU is a Extended Command Case 2.
         /// </summary>
@@ -351,7 +388,7 @@ namespace WSCT.ISO7816
         {
             get { return _commandCase == CommandCase.CC3; }
         }
-        
+
         /// <summary>
         /// Informs if the C-APDU is a Extended Command Case 3.
         /// </summary>
@@ -367,7 +404,7 @@ namespace WSCT.ISO7816
         {
             get { return _commandCase == CommandCase.CC4; }
         }
-        
+
         /// <summary>
         /// Informs if the C-APDU is a Extended Command Case 4.
         /// </summary>
@@ -389,13 +426,13 @@ namespace WSCT.ISO7816
                 // If command data is present, allocate space for the data and the length
                 if (HasLc)
                 {
-                    length += Udc.Length + (int)Nc;
+                    length += Udc.Length + (int)LcFieldSize;
                 }
 
                 // If expected length is present, allocate space for it as well
                 if (HasLe)
                 {
-                    length += (int)Ne;
+                    length += (int)LeFieldSize;
                 }
 
                 // Write out the binary data
@@ -405,18 +442,20 @@ namespace WSCT.ISO7816
                 data[offset++] = Ins;
                 data[offset++] = P1;
                 data[offset++] = P2;
-                
+
                 // Handle Lc
                 if (HasLc)
                 {
                     // The bit converter produces a bit array of 4 bytes, so we can keep the last X bytes
                     var lcBytes = BitConverter.GetBytes(Lc);
                     if (BitConverter.IsLittleEndian)
+                    {
                         Array.Reverse(lcBytes);
-                    var lcOffset = lcBytes.Length - (int)Nc;
+                    }
+                    var lcOffset = lcBytes.Length - (int)LcFieldSize;
                     Array.Copy(lcBytes, lcOffset, data, offset, lcBytes.Length - lcOffset);
-                    offset += (int)Nc;
-                    
+                    offset += (int)LcFieldSize;
+
                     Array.Copy(Udc, 0, data, offset, Udc.Length);
                     offset += Udc.Length;
                 }
@@ -426,8 +465,10 @@ namespace WSCT.ISO7816
                 {
                     var leBytes = BitConverter.GetBytes(Le);
                     if (BitConverter.IsLittleEndian)
+                    {
                         Array.Reverse(leBytes);
-                    var leOffset = leBytes.Length - (int)Ne;
+                    }
+                    var leOffset = leBytes.Length - (int)LeFieldSize;
                     Array.Copy(leBytes, leOffset, data, offset, leBytes.Length - leOffset);
                 }
                 return data;
@@ -610,10 +651,13 @@ namespace WSCT.ISO7816
             P1 = cAPDU[offset++];
             P2 = cAPDU[offset++];
             CommandCase = CommandCase.CC1;
-            
+
             // Is additional data present?
-            if (cAPDU.Length <= offset) return this;
-            
+            if (cAPDU.Length <= offset)
+            {
+                return this;
+            }
+
             // Parse the length
             var lengthByte = cAPDU[offset++];
             if (cAPDU.Length == offset)
@@ -621,15 +665,18 @@ namespace WSCT.ISO7816
                 // Case 2, one byte length
                 CommandCase = CommandCase.CC2;
                 Le = lengthByte;
+
                 return this;
             }
-            else if (lengthByte == 0 && cAPDU.Length == offset + 2)
+
+            if (lengthByte == 0 && cAPDU.Length == offset + 2)
             {
                 // Case 2, 3 byte Lc
                 CommandCase = CommandCase.CC2E;
                 var firstByte = (int)cAPDU[offset++];
                 var secondByte = (int)cAPDU[offset++];
                 Le = Convert.ToUInt32((firstByte * 256) + secondByte);
+
                 return this;
             }
 
@@ -658,7 +705,7 @@ namespace WSCT.ISO7816
                 udcBytes = new byte[Lc];
                 Array.Copy(cAPDU, offset, udcBytes, 0, Lc);
                 Udc = udcBytes;
-                
+
                 if (cAPDU.Length == offset + Lc)
                 {
                     CommandCase = CommandCase.CC3E;
@@ -721,7 +768,11 @@ namespace WSCT.ISO7816
             }
 
             // Handle extended cases
-            if (!isExtended) return;
+            if (!isExtended)
+            {
+                return;
+            }
+
             switch (_commandCase)
             {
                 case CommandCase.CC2:
@@ -746,7 +797,7 @@ namespace WSCT.ISO7816
             {
                 writer.WriteAttributeString("extended", "true");
             }
-            
+
             writer.WriteAttributeString("cla", String.Format("{0:X2}", Cla));
             writer.WriteAttributeString("ins", String.Format("{0:X2}", Ins));
             writer.WriteAttributeString("p1", String.Format("{0:X2}", P1));
@@ -757,7 +808,7 @@ namespace WSCT.ISO7816
                 var leFormatString = IsExtended ? "X4" : "X2";
                 writer.WriteAttributeString("le", Le.ToString(leFormatString));
             }
-            
+
             if (HasLc)
             {
                 writer.WriteString(Udc.ToHexa());
@@ -767,11 +818,19 @@ namespace WSCT.ISO7816
         #endregion
 
         #region >> IEquatable<T> Members
+
         /// <inheritdoc />
         public bool Equals(CommandAPDU other)
         {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
 
             // Compare the basic information
             if (_commandCase != other._commandCase || Cla != other.Cla || Ins != other.Ins || P1 != other.P1 || P2 != other.P2)
@@ -784,7 +843,7 @@ namespace WSCT.ISO7816
             {
                 return false;
             }
-            
+
             // Compare Udc
             if (_udc == null)
             {
@@ -811,6 +870,7 @@ namespace WSCT.ISO7816
                 return hashCode;
             }
         }
+
         #endregion
     }
 }
