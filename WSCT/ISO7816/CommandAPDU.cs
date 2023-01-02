@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -15,7 +16,7 @@ namespace WSCT.ISO7816
     /// Only short C-APDU (Le, Lc coded on 1 byte) are now supported.
     /// </remarks>
     [XmlRoot("commandAPDU")]
-    public class CommandAPDU : ICardCommand, IXmlSerializable
+    public class CommandAPDU : ICardCommand, IXmlSerializable, IEquatable<CommandAPDU>
     {
         #region >> Fields
 
@@ -25,6 +26,7 @@ namespace WSCT.ISO7816
 
         private UInt32 _lc;
         private UInt32 _le;
+
         private byte[] _udc;
 
         #endregion
@@ -48,14 +50,17 @@ namespace WSCT.ISO7816
                         _hasLe = false;
                         break;
                     case CommandCase.CC2:
+                    case CommandCase.CC2E:
                         _hasLc = false;
                         _hasLe = true;
                         break;
                     case CommandCase.CC3:
+                    case CommandCase.CC3E:
                         _hasLc = true;
                         _hasLe = false;
                         break;
                     case CommandCase.CC4:
+                    case CommandCase.CC4E:
                         _hasLc = true;
                         _hasLe = true;
                         break;
@@ -91,6 +96,27 @@ namespace WSCT.ISO7816
             get { return _le; }
             set
             {
+                if (value > 0xFFFF)
+                {
+                    throw new Exception("Le exceeds maximum size.");
+                } else if (value > 0xFF)
+                {
+                    // Convert to extended case if required
+                    switch (CommandCase)
+                    {
+                        case CommandCase.CC2:
+                            CommandCase = CommandCase.CC2E;
+                            break;
+                        case CommandCase.CC3:
+                            CommandCase = CommandCase.CC3E;
+                            break;
+                        case CommandCase.CC4:
+                            CommandCase = CommandCase.CC4E;
+                            break;
+                        default:
+                            break;
+                    }
+                }
                 _le = value;
                 HasLe = true;
             }
@@ -104,8 +130,100 @@ namespace WSCT.ISO7816
             get { return _lc; }
             set
             {
+                if (value > 0xFFFF)
+                {
+                    throw new Exception("Lc exceeds maximum size.");
+                } else if (value > 0xFF)
+                {
+                    // Convert to extended case if required
+                    switch (CommandCase)
+                    {
+                        case CommandCase.CC2:
+                            CommandCase = CommandCase.CC2E;
+                            break;
+                        case CommandCase.CC3:
+                            CommandCase = CommandCase.CC3E;
+                            break;
+                        case CommandCase.CC4:
+                            CommandCase = CommandCase.CC4E;
+                            break;
+                        default:
+                            break;
+                    }
+                }
                 _lc = value;
                 HasLc = true;
+            }
+        }
+
+        /// <summary>
+        /// Accessor to the Ne value of the C-APDU.
+        /// Valid values: 0, 1, 2, or 3
+        /// </summary>
+        public UInt32 Ne
+        {
+            get
+            {
+                switch (_commandCase)
+                {
+                    // Case 1 and 3 do not have expected response length
+                    case CommandCase.CC1:
+                    case CommandCase.CC3:
+                    case CommandCase.CC3E:
+                        return 0;
+                    
+                    // Case 2 and 4 are standard commands with short (1-byte) expected response lengths
+                    case CommandCase.CC2:
+                    case CommandCase.CC4:
+                        return 1;
+                    
+                    // The expected response length is 3 bytes (0x00, 0xXX, 0XX) when command length Lc is absent
+                    case CommandCase.CC2E:
+                        return 3;
+                    
+                    // When command length Lc is present (and extended), expected response length is encoded as to bytes
+                    case CommandCase.CC4E:
+                        return 2;
+
+                    // If the command case is unknown, the length is unknown.
+                    case CommandCase.Unknown:
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Accessor to the Nc value of the C-APDU.
+        /// Valid values: 0, 1, or 3
+        /// </summary>
+        public UInt32 Nc
+        {
+            get
+            {
+                switch (_commandCase)
+                {
+                    // Case 1 and 2 do not have command data
+                    case CommandCase.CC1:
+                    case CommandCase.CC2:
+                    case CommandCase.CC2E:
+                        return 0;
+                    
+                    // Case 3 and 4 are standard commands with short (1-byte) command data
+                    case CommandCase.CC3:
+                    case CommandCase.CC4:
+                        return 1;
+                    
+                    // Extended-length commands with response lengths are encoded as three bytes (0x00, 0xXX, 0xXX)
+                    case CommandCase.CC3E:
+                    case CommandCase.CC4E:
+                        return 3;
+
+                    // If the command case is unknown, the length is unknown.
+                    case CommandCase.Unknown:
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
         }
 
@@ -113,7 +231,7 @@ namespace WSCT.ISO7816
         /// Informs if Le has been parsed.
         /// Write access: <see cref="CommandCase"/> is updated.
         /// </summary>
-        public Boolean HasLe
+        public bool HasLe
         {
             get { return _hasLe; }
             set
@@ -150,7 +268,7 @@ namespace WSCT.ISO7816
         /// Informs if Lc has been parsed.
         /// Write access: <see cref="CommandCase"/> is updated.
         /// </summary>
-        public Boolean HasLc
+        public bool HasLc
         {
             get { return _hasLc; }
             set
@@ -184,6 +302,11 @@ namespace WSCT.ISO7816
         }
 
         /// <summary>
+        /// Returns true when this Command APDU is an extended command APDU
+        /// </summary>
+        public bool IsExtended => _commandCase == CommandCase.CC2E || _commandCase == CommandCase.CC3E || _commandCase == CommandCase.CC4E;
+
+        /// <summary>
         /// Accessor to the UDC of the C-APDU.
         /// Write access: <see cref="Lc"/> is updated.
         /// </summary>
@@ -212,6 +335,14 @@ namespace WSCT.ISO7816
         {
             get { return _commandCase == CommandCase.CC2; }
         }
+        
+        /// <summary>
+        /// Informs if the C-APDU is a Extended Command Case 2.
+        /// </summary>
+        public Boolean IsCc2E
+        {
+            get { return _commandCase == CommandCase.CC2E; }
+        }
 
         /// <summary>
         /// Informs if the C-APDU is a Command Case 3.
@@ -219,6 +350,14 @@ namespace WSCT.ISO7816
         public Boolean IsCc3
         {
             get { return _commandCase == CommandCase.CC3; }
+        }
+        
+        /// <summary>
+        /// Informs if the C-APDU is a Extended Command Case 3.
+        /// </summary>
+        public Boolean IsCc3E
+        {
+            get { return _commandCase == CommandCase.CC3E; }
         }
 
         /// <summary>
@@ -228,6 +367,14 @@ namespace WSCT.ISO7816
         {
             get { return _commandCase == CommandCase.CC4; }
         }
+        
+        /// <summary>
+        /// Informs if the C-APDU is a Extended Command Case 4.
+        /// </summary>
+        public Boolean IsCc4E
+        {
+            get { return _commandCase == CommandCase.CC4E; }
+        }
 
         /// <summary>
         /// Accessor to the entire C-APDU in byte array format.
@@ -236,27 +383,52 @@ namespace WSCT.ISO7816
         {
             get
             {
-                var length = 4 + (HasLc ? Udc.Length + 1 : 0) + (HasLe ? 1 : 0);
-                var data = new byte[length];
-                data[0] = Cla;
-                data[1] = Ins;
-                data[2] = P1;
-                data[3] = P2;
+                // All APDUs have a length of at least 4: [CLA] [INS] [P1] [P2]
+                var length = 4;
+
+                // If command data is present, allocate space for the data and the length
                 if (HasLc)
                 {
-                    data[4] = (byte)Lc;
-                    Array.Copy(Udc, 0, data, 5, Udc.Length);
-                    if (HasLe)
-                    {
-                        data[5 + Udc.Length] = (byte)Le;
-                    }
+                    length += Udc.Length + (int)Nc;
                 }
-                else
+
+                // If expected length is present, allocate space for it as well
+                if (HasLe)
                 {
-                    if (HasLe)
-                    {
-                        data[4] = (byte)Le;
-                    }
+                    length += (int)Ne;
+                }
+
+                // Write out the binary data
+                var data = new byte[length];
+                var offset = 0;
+                data[offset++] = Cla;
+                data[offset++] = Ins;
+                data[offset++] = P1;
+                data[offset++] = P2;
+                
+                // Handle Lc
+                if (HasLc)
+                {
+                    // The bit converter produces a bit array of 4 bytes, so we can keep the last X bytes
+                    var lcBytes = BitConverter.GetBytes(Lc);
+                    if (BitConverter.IsLittleEndian)
+                        Array.Reverse(lcBytes);
+                    var lcOffset = lcBytes.Length - (int)Nc;
+                    Array.Copy(lcBytes, lcOffset, data, offset, lcBytes.Length - lcOffset);
+                    offset += (int)Nc;
+                    
+                    Array.Copy(Udc, 0, data, offset, Udc.Length);
+                    offset += Udc.Length;
+                }
+
+                // Handle Le
+                if (HasLe)
+                {
+                    var leBytes = BitConverter.GetBytes(Le);
+                    if (BitConverter.IsLittleEndian)
+                        Array.Reverse(leBytes);
+                    var leOffset = leBytes.Length - (int)Ne;
+                    Array.Copy(leBytes, leOffset, data, offset, leBytes.Length - leOffset);
                 }
                 return data;
             }
@@ -420,7 +592,7 @@ namespace WSCT.ISO7816
 
         #endregion
 
-        #region >> ICardCommand Membres
+        #region >> ICardCommand Members
 
         /// <inheritdoc />
         public ICardCommand Parse(byte[] cAPDU)
@@ -429,36 +601,77 @@ namespace WSCT.ISO7816
             {
                 throw new Exception("cApdu.Length<4");
             }
-            Cla = cAPDU[0];
-            Ins = cAPDU[1];
-            P1 = cAPDU[2];
-            P2 = cAPDU[3];
-            CommandCase = CommandCase.CC1;
 
-            UInt32 pos = 4;
-            if (cAPDU.Length > pos)
+            var offset = 0;
+            byte[] udcBytes;
+
+            Cla = cAPDU[offset++];
+            Ins = cAPDU[offset++];
+            P1 = cAPDU[offset++];
+            P2 = cAPDU[offset++];
+            CommandCase = CommandCase.CC1;
+            
+            // Is additional data present?
+            if (cAPDU.Length <= offset) return this;
+            
+            // Parse the length
+            var lengthByte = cAPDU[offset++];
+            if (cAPDU.Length == offset)
             {
-                UInt32 length = cAPDU[pos];
-                pos += 1;
-                if (cAPDU.Length >= pos + length)
+                // Case 2, one byte length
+                CommandCase = CommandCase.CC2;
+                Le = lengthByte;
+                return this;
+            }
+            else if (lengthByte == 0 && cAPDU.Length == offset + 2)
+            {
+                // Case 2, 3 byte Lc
+                CommandCase = CommandCase.CC2E;
+                var firstByte = (int)cAPDU[offset++];
+                var secondByte = (int)cAPDU[offset++];
+                Le = Convert.ToUInt32((firstByte * 256) + secondByte);
+                return this;
+            }
+
+            // Single-byte Lc
+            if (lengthByte > 0)
+            {
+                if (cAPDU.Length == offset + lengthByte)
                 {
-                    Lc = length;
-                    Udc = new byte[length];
-                    Array.Copy(cAPDU, (int)pos, Udc, 0, (int)length);
-                    pos += length;
                     CommandCase = CommandCase.CC3;
-                    if (cAPDU.Length > pos)
-                    {
-                        Le = cAPDU[pos];
-                        CommandCase = CommandCase.CC4;
-                    }
                 }
                 else
                 {
-                    CommandCase = CommandCase.CC2;
-                    Le = length;
+                    CommandCase = CommandCase.CC4;
+                    Le = cAPDU[offset + lengthByte];
+                }
+                udcBytes = new byte[lengthByte];
+                Array.Copy(cAPDU, offset, udcBytes, 0, lengthByte);
+                Udc = udcBytes;
+            }
+            else
+            {
+                // Multi-byte Lc
+                int firstByte = cAPDU[offset++];
+                int secondByte = cAPDU[offset++];
+                Lc = Convert.ToUInt32((firstByte * 256) + secondByte);
+                udcBytes = new byte[Lc];
+                Array.Copy(cAPDU, offset, udcBytes, 0, Lc);
+                Udc = udcBytes;
+                
+                if (cAPDU.Length == offset + Lc)
+                {
+                    CommandCase = CommandCase.CC3E;
+                }
+                else
+                {
+                    CommandCase = CommandCase.CC4E;
+                    firstByte = cAPDU[offset + Lc];
+                    secondByte = cAPDU[offset + Lc + 1];
+                    Le = Convert.ToUInt32((firstByte * 256) + secondByte);
                 }
             }
+
             return this;
         }
 
@@ -481,13 +694,17 @@ namespace WSCT.ISO7816
         /// <inheritdoc />
         public void ReadXml(XmlReader reader)
         {
+            // Check if this is an extended APDU
+            var isExtended = (null != reader.GetAttribute("extended"));
+
             Cla = reader.GetAttribute("cla").FromHexa()[0];
             Ins = reader.GetAttribute("ins").FromHexa()[0];
             P1 = reader.GetAttribute("p1").FromHexa()[0];
             P2 = reader.GetAttribute("p2").FromHexa()[0];
             if (reader.MoveToAttribute("le"))
             {
-                Le = reader.ReadContentAsString().FromHexa()[0];
+                // Convert Le from hexadecimal
+                Le = Convert.ToUInt32(reader.ReadContentAsString(), 16);
             }
             reader.MoveToElement();
             if (reader.IsEmptyElement)
@@ -502,26 +719,98 @@ namespace WSCT.ISO7816
                 Udc = reader.ReadContentAsString().FromHexa();
                 reader.ReadEndElement();
             }
-            reader.ReadStartElement();
+
+            // Handle extended cases
+            if (!isExtended) return;
+            switch (_commandCase)
+            {
+                case CommandCase.CC2:
+                    CommandCase = CommandCase.CC2E;
+                    break;
+                case CommandCase.CC3:
+                    CommandCase = CommandCase.CC3E;
+                    break;
+                case CommandCase.CC4:
+                    CommandCase = CommandCase.CC4E;
+                    break;
+                default:
+                    break;
+            }
         }
 
         /// <inheritdoc />
         public void WriteXml(XmlWriter writer)
         {
+            // Extended length APDUs are tagged in XML
+            if (IsExtended)
+            {
+                writer.WriteAttributeString("extended", "true");
+            }
+            
             writer.WriteAttributeString("cla", String.Format("{0:X2}", Cla));
             writer.WriteAttributeString("ins", String.Format("{0:X2}", Ins));
             writer.WriteAttributeString("p1", String.Format("{0:X2}", P1));
             writer.WriteAttributeString("p2", String.Format("{0:X2}", P2));
+
+            if (HasLe)
+            {
+                var leFormatString = IsExtended ? "X4" : "X2";
+                writer.WriteAttributeString("le", Le.ToString(leFormatString));
+            }
+            
             if (HasLc)
             {
                 writer.WriteString(Udc.ToHexa());
             }
-            if (HasLe)
-            {
-                writer.WriteAttributeString("le", String.Format("{0:X2}", Le));
-            }
         }
 
+        #endregion
+
+        #region >> IEquatable<T> Members
+        /// <inheritdoc />
+        public bool Equals(CommandAPDU other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+
+            // Compare the basic information
+            if (_commandCase != other._commandCase || Cla != other.Cla || Ins != other.Ins || P1 != other.P1 || P2 != other.P2)
+            {
+                return false;
+            }
+
+            // Compare Lc and Le
+            if (_hasLc != other._hasLc || _hasLe != other._hasLe || _lc != other._lc || _le != other._le)
+            {
+                return false;
+            }
+            
+            // Compare Udc
+            if (_udc == null)
+            {
+                return other._udc == null;
+            }
+            return _udc.SequenceEqual(other._udc);
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (int)_commandCase;
+                hashCode = (hashCode * 397) ^ _hasLc.GetHashCode();
+                hashCode = (hashCode * 397) ^ _hasLe.GetHashCode();
+                hashCode = (hashCode * 397) ^ (int)_lc;
+                hashCode = (hashCode * 397) ^ (int)_le;
+                hashCode = (hashCode * 397) ^ (_udc != null ? _udc.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ Cla.GetHashCode();
+                hashCode = (hashCode * 397) ^ Ins.GetHashCode();
+                hashCode = (hashCode * 397) ^ P1.GetHashCode();
+                hashCode = (hashCode * 397) ^ P2.GetHashCode();
+                return hashCode;
+            }
+        }
         #endregion
     }
 }
