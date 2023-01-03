@@ -3,26 +3,28 @@
     <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
 	<LangVersion>latest</LangVersion>
 	<PackageId>WSCT.Core</PackageId>
-    <Description>
-      Main API for WSCT (WinSCard Tools).
-      Warning: this package alone does not allow to connect to a smartcard reader: use WSCT.Wrapper.Desktop for that.
-    </Description>
+    <Description>Main API for WSCT (WinSCard Tools).
+Warning: this package alone does not allow to connect to a smartcard reader: use WSCT.Wrapper.Desktop for that.</Description>
     <Company>ENSICAEN</Company>
     <Copyright>Copyright © ENSICAEN 2006-2023</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>6.3.0</Version>
+    <Version>6.4.0</Version>
     <Authors>Sylvain Vernois</Authors>
     <PackageProjectUrl>https://github.com/wsct/WSCT-Core</PackageProjectUrl>
     <RepositoryUrl>https://github.com/wsct/WSCT-Core</RepositoryUrl>
     <PackageTags>smartcard, pc/sc, winscard, wsct</PackageTags>
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Title>WSCT Core API</Title>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <Compile Remove="Properties\**" />
+    <EmbeddedResource Remove="Properties\**" />
+    <None Remove="Properties\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ISO7816\Dictionary.StatusWord.xml">
@@ -34,5 +36,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WSCT.Helpers\WSCT.Helpers.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 </Project>
