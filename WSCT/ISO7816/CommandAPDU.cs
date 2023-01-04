@@ -42,6 +42,19 @@ namespace WSCT.ISO7816
             get { return _commandCase; }
             set
             {
+                if (IsExtended)
+                {
+                    // Ensure that lossless conversion is possible
+                    if (_hasLe && _le > 0xFF && value is CommandCase.CC2 or CommandCase.CC4)
+                    {
+                        throw new InvalidOperationException("Unable to convert to a short case APDU when Le > 256");
+                    }
+                    if (_hasLc && Lc > 0xFF && value is CommandCase.CC3 or CommandCase.CC4)
+                    {
+                        throw new InvalidOperationException("Unable to convert to a short case APDU when Lc > 0xFF");
+                    }
+                }
+
                 _commandCase = value;
                 switch (value)
                 {
@@ -89,8 +102,15 @@ namespace WSCT.ISO7816
         public byte P2 { get; set; }
 
         /// <summary>
-        /// Accessor to the Le value of the C-APDU.
+        /// Accessor to the Le value of the C-APDU.<br/>
         /// </summary>
+        /// <remarks>
+        /// As stated in ISO/IEC 7816, Le codes Ne, where Ne is the max length of UDR.<br/>
+        /// <list type="bullet">
+        /// <item>Using "short C-APDU", Le='00' means Ne=255+1</item>
+        /// <item>Using "extended C-APDU", Le='0000' or '000000' means Ne=65535+1</item>
+        /// </list>
+        /// </remarks>
         public UInt32 Le
         {
             get { return _le; }
@@ -98,13 +118,12 @@ namespace WSCT.ISO7816
             {
                 if (value > 0xFFFF)
                 {
-                    throw new Exception("Le exceeds maximum size.");
+                    throw new NotSupportedException("Le exceeds maximum size.");
                 }
 
-                CommandCase newCommandCase;
                 if (value > 0xFF)
                 {
-                    newCommandCase = CommandCase switch
+                    _commandCase = _commandCase switch
                     {
                         CommandCase.CC1 => CommandCase.CC2E,
                         CommandCase.CC2 => CommandCase.CC2E,
@@ -114,29 +133,28 @@ namespace WSCT.ISO7816
                         CommandCase.CC3E => CommandCase.CC4E,
                         CommandCase.CC4E => CommandCase.CC4E,
                         CommandCase.Unknown => CommandCase.CC2E,
-                        _ => throw new NotSupportedException($"Command case {CommandCase} is not valid.")
+                        _ => throw new NotSupportedException($"Command case {_commandCase} is not valid.")
                     };
                 }
                 else
                 {
-                    newCommandCase = CommandCase switch
+                    _commandCase = _commandCase switch
                     {
                         CommandCase.CC1 => CommandCase.CC2,
                         CommandCase.CC2 => CommandCase.CC2,
                         CommandCase.CC3 => CommandCase.CC4,
                         CommandCase.CC4 => CommandCase.CC4,
-                        CommandCase.CC2E => CommandCase.CC2,
+                        // Extended status must not change: design choice
+                        CommandCase.CC2E => CommandCase.CC2E,
                         CommandCase.CC3E => CommandCase.CC4E,
-                        CommandCase.CC4E when Lc <= 255 => CommandCase.CC4,
-                        CommandCase.CC4E when Lc > 255 => CommandCase.CC4E,
+                        CommandCase.CC4E => CommandCase.CC4E,
                         CommandCase.Unknown => CommandCase.CC2E,
-                        _ => throw new NotSupportedException($"Command case {CommandCase} is not valid.")
+                        _ => throw new NotSupportedException($"Command case {_commandCase} is not valid.")
                     };
                 }
-                CommandCase = newCommandCase;
 
                 _le = value;
-                HasLe = true;
+                _hasLe = true;
             }
         }
 
@@ -150,17 +168,14 @@ namespace WSCT.ISO7816
             {
                 if (value > 0xFFFF)
                 {
-                    throw new Exception("Lc exceeds maximum size.");
+                    throw new NotSupportedException("Lc exceeds maximum size.");
                 }
 
-                _lc = value;
-                HasLc = true;
-
-                CommandCase newCommandCase;
+                var initialCommandCase = _commandCase;
                 // Update command case
                 if (value > 0xFF)
                 {
-                    newCommandCase = CommandCase switch
+                    _commandCase = _commandCase switch
                     {
                         CommandCase.CC1 => CommandCase.CC3E,
                         CommandCase.CC2 => CommandCase.CC4E,
@@ -175,21 +190,29 @@ namespace WSCT.ISO7816
                 }
                 else
                 {
-                    newCommandCase = CommandCase switch
+                    _commandCase = _commandCase switch
                     {
                         CommandCase.CC1 => CommandCase.CC3,
                         CommandCase.CC2 => CommandCase.CC4,
                         CommandCase.CC3 => CommandCase.CC3,
                         CommandCase.CC4 => CommandCase.CC4,
+                        // Extended status must not change: design choice
                         CommandCase.CC2E => CommandCase.CC4E,
-                        CommandCase.CC3E => CommandCase.CC3,
-                        CommandCase.CC4E when Le <= 255 => CommandCase.CC4,
-                        CommandCase.CC4E when Le > 255 => CommandCase.CC4E,
+                        CommandCase.CC3E => CommandCase.CC3E,
+                        CommandCase.CC4E => CommandCase.CC4E,
                         CommandCase.Unknown => CommandCase.CC3,
                         _ => throw new NotSupportedException($"Command case {CommandCase} is not valid.")
                     };
                 }
-                CommandCase = newCommandCase;
+
+                _lc = value;
+                _hasLc = true;
+
+                // When upgrading from short to extended, because short Le='00' means Ne=255+1, extended Le becomes '0100'
+                if (_hasLe && (_le == 0x00) && (!initialCommandCase.IsExtended()) && _commandCase.IsExtended())
+                {
+                    _le = 0xFF + 1;
+                }
             }
         }
 
@@ -201,32 +224,19 @@ namespace WSCT.ISO7816
         {
             get
             {
-                switch (_commandCase)
+                return _commandCase switch
                 {
                     // Case 1 and 3 do not have expected response length
-                    case CommandCase.CC1:
-                    case CommandCase.CC3:
-                    case CommandCase.CC3E:
-                        return 0;
-
+                    CommandCase.CC1 or CommandCase.CC3 or CommandCase.CC3E => 0,
                     // Case 2 and 4 are standard commands with short (1-byte) expected response lengths
-                    case CommandCase.CC2:
-                    case CommandCase.CC4:
-                        return 1;
-
+                    CommandCase.CC2 or CommandCase.CC4 => 1,
                     // The expected response length is 3 bytes (0x00, 0xXX, 0XX) when command length Lc is absent
-                    case CommandCase.CC2E:
-                        return 3;
-
+                    CommandCase.CC2E => 3,
                     // When command length Lc is present (and extended), expected response length is encoded as two bytes
-                    case CommandCase.CC4E:
-                        return 2;
-
+                    CommandCase.CC4E => 2,
                     // If the command case is unknown, the length is unknown.
-                    case CommandCase.Unknown:
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                    _ => throw new NotSupportedException($"Command case {_commandCase} is not supported."),
+                };
             }
         }
 
@@ -247,7 +257,7 @@ namespace WSCT.ISO7816
                     // Extended-length commands with response lengths are encoded as three bytes (0x00, 0xXX, 0xXX)
                     CommandCase.CC3E or CommandCase.CC4E => 3,
                     // If the command case is unknown, the length is unknown.
-                    _ => throw new ArgumentOutOfRangeException(),
+                    _ => throw new NotSupportedException($"Command case {_commandCase} is not supported."),
                 };
             }
         }
@@ -264,33 +274,24 @@ namespace WSCT.ISO7816
                 _hasLe = value;
                 if (value)
                 {
-                    switch (_commandCase)
+                    _commandCase = _commandCase switch
                     {
-                        case CommandCase.CC1:
-                            _commandCase = Le <= 255 ? CommandCase.CC2 : CommandCase.CC2E;
-                            break;
-                        case CommandCase.CC3:
-                            _commandCase = Le <= 255 ? CommandCase.CC4 : CommandCase.CC4E;
-                            break;
-                        case CommandCase.CC3E:
-                            _commandCase = CommandCase.CC4E;
-                            break;
-                    }
+                        CommandCase.CC1 => _le <= 0xFF ? CommandCase.CC2 : CommandCase.CC2E,
+                        CommandCase.CC3 => _le <= 0xFF ? CommandCase.CC4 : CommandCase.CC4E,
+                        CommandCase.CC3E => CommandCase.CC4E,
+                        _ => _commandCase
+                    };
                 }
                 else
                 {
-                    switch (_commandCase)
+                    _commandCase = _commandCase switch
                     {
-                        case CommandCase.CC2 or CommandCase.CC2E:
-                            _commandCase = CommandCase.CC1;
-                            break;
-                        case CommandCase.CC4:
-                            _commandCase = CommandCase.CC3;
-                            break;
-                        case CommandCase.CC4E:
-                            _commandCase = Lc <= 255 ? CommandCase.CC3 : CommandCase.CC3E;
-                            break;
-                    }
+                        CommandCase.CC2 or CommandCase.CC2E => CommandCase.CC1,
+                        CommandCase.CC4 => CommandCase.CC3,
+                        // Extended status must not change: design choice
+                        CommandCase.CC4E => CommandCase.CC3E,
+                        _ => _commandCase
+                    };
                 }
             }
         }
@@ -307,33 +308,24 @@ namespace WSCT.ISO7816
                 _hasLc = value;
                 if (value)
                 {
-                    switch (_commandCase)
+                    _commandCase = _commandCase switch
                     {
-                        case CommandCase.CC1:
-                            _commandCase = Lc <= 255 ? CommandCase.CC3 : CommandCase.CC3E;
-                            break;
-                        case CommandCase.CC2:
-                            _commandCase = Lc <= 255 ? CommandCase.CC4 : CommandCase.CC4E;
-                            break;
-                        case CommandCase.CC2E:
-                            _commandCase = CommandCase.CC4E;
-                            break;
-                    }
+                        CommandCase.CC1 => _lc <= 0xFF ? CommandCase.CC3 : CommandCase.CC3E,
+                        CommandCase.CC2 => _lc <= 0xFF ? CommandCase.CC4 : CommandCase.CC4E,
+                        CommandCase.CC2E => CommandCase.CC4E,
+                        _ => _commandCase
+                    };
                 }
                 else
                 {
-                    switch (_commandCase)
+                    _commandCase = _commandCase switch
                     {
-                        case CommandCase.CC3 or CommandCase.CC3E:
-                            _commandCase = CommandCase.CC1;
-                            break;
-                        case CommandCase.CC4:
-                            _commandCase = CommandCase.CC2;
-                            break;
-                        case CommandCase.CC4E:
-                            _commandCase = Le <= 255 ? CommandCase.CC2 : CommandCase.CC2E;
-                            break;
-                    }
+                        CommandCase.CC3 or CommandCase.CC3E => CommandCase.CC1,
+                        CommandCase.CC4 => CommandCase.CC2,
+                        // Extended status must not change: design choice
+                        CommandCase.CC4E => CommandCase.CC2E,
+                        _ => _commandCase
+                    };
                 }
             }
         }
@@ -341,7 +333,7 @@ namespace WSCT.ISO7816
         /// <summary>
         /// Returns true when this Command APDU is an extended command APDU
         /// </summary>
-        public bool IsExtended => _commandCase == CommandCase.CC2E || _commandCase == CommandCase.CC3E || _commandCase == CommandCase.CC4E;
+        public bool IsExtended => _commandCase.IsExtended();
 
         /// <summary>
         /// Accessor to the UDC of the C-APDU.
@@ -616,6 +608,30 @@ namespace WSCT.ISO7816
         public void AppendUdc(byte[] udcPart)
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Enforces the extended status of the C-APDU.<br/>
+        /// It allows Nc,Ne being <= 0xFF but Le,Lc to be extended. Neither Lc nor Le are modified during the process.
+        /// </summary>
+        /// <returns></returns>
+        public CommandAPDU EnforceExtended()
+        {
+            if (IsExtended)
+            {
+                return this;
+            }
+
+            _commandCase = _commandCase switch
+            {
+                CommandCase.CC1 => CommandCase.CC1,
+                CommandCase.CC2 => CommandCase.CC2E,
+                CommandCase.CC3 => CommandCase.CC3E,
+                CommandCase.CC4 => CommandCase.CC4E,
+                _ => _commandCase
+            };
+
+            return this;
         }
 
         #endregion
