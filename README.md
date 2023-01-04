@@ -70,8 +70,8 @@ context.Release();
 Some extensions methods located in WSCT.Core.Fluent.Helpers namespace can be used to ease prototyping (fail fast fail safe while writing less code):
 
 ```csharp
-CardContext? cardContext;
-CardChannel? cardChannel;
+CardContext? cardContext = null;
+CardChannel? cardChannel = null;
 try
 {
   // Connect to PC/SC
@@ -89,7 +89,7 @@ try
     .ListReaders(cardContext.Groups[0])
     .ThrowIfNotSuccess();
   
-  cardChannel = new CardChannelObservable(new CardChannel(cardContext, cardContext.Readers[0]));
+  cardChannel = new CardChannel(cardContext, cardContext.Readers[0]);
   
   new CommandAPDU("00 A4 04 00 07 F0 57 53 43 54 2E 30")
     .Transmit(cardChannel)
@@ -107,7 +107,7 @@ finally
   cardChannel?
     .Disconnect(Disposition.UnpowerCard);
 
-  cardContext
+  cardContext?
     .Release();
 }
 ```
