@@ -1,3 +1,4 @@
+using System;
 using WSCT.Core;
 using WSCT.Core.APDU;
 using WSCT.Wrapper;
@@ -7,9 +8,10 @@ namespace WSCT.ISO7816
     /// <summary>
     /// 
     /// </summary>
+    [Obsolete("This class is a relic of the past and should be safely removed. Use the Protocol property instead of ProtocolT.")]
     public class CardChannelIso7816 : ICardChannel
     {
-        private readonly ICardChannel cardChannel;
+        protected readonly ICardChannel _cardChannel;
 
         #region >> Construtors
 
@@ -29,7 +31,7 @@ namespace WSCT.ISO7816
         /// <param name="protocolT"></param>
         public CardChannelIso7816(ICardChannel cardChannel, ProtocolT protocolT)
         {
-            this.cardChannel = cardChannel;
+            this._cardChannel = cardChannel;
             ProtocolT = protocolT;
         }
 
@@ -49,55 +51,55 @@ namespace WSCT.ISO7816
         /// <inheritdoc/>
         public Protocol Protocol
         {
-            get { return cardChannel.Protocol; }
+            get { return _cardChannel.Protocol; }
         }
 
         /// <inheritdoc/>
         public string ReaderName
         {
-            get { return cardChannel.ReaderName; }
+            get { return _cardChannel.ReaderName; }
         }
 
         /// <inheritdoc/>
         public void Attach(ICardContext context, string readerName)
         {
-            cardChannel.Attach(context, readerName);
+            _cardChannel.Attach(context, readerName);
         }
 
         /// <inheritdoc/>
         public ErrorCode Connect(ShareMode shareMode, Protocol preferedProtocol)
         {
-            return cardChannel.Connect(shareMode, preferedProtocol);
+            return _cardChannel.Connect(shareMode, preferedProtocol);
         }
 
         /// <inheritdoc/>
         public ErrorCode Disconnect(Disposition disposition)
         {
-            return cardChannel.Disconnect(disposition);
+            return _cardChannel.Disconnect(disposition);
         }
 
         /// <inheritdoc/>
         public ErrorCode GetAttrib(Attrib attrib, ref byte[] buffer)
         {
-            return cardChannel.GetAttrib(attrib, ref buffer);
+            return _cardChannel.GetAttrib(attrib, ref buffer);
         }
 
         /// <inheritdoc/>
         public State GetStatus()
         {
-            return cardChannel.GetStatus();
+            return _cardChannel.GetStatus();
         }
 
         /// <inheritdoc/>
         public ErrorCode Reconnect(ShareMode shareMode, Protocol preferedProtocol, Disposition initialization)
         {
-            return cardChannel.Reconnect(shareMode, preferedProtocol, initialization);
+            return _cardChannel.Reconnect(shareMode, preferedProtocol, initialization);
         }
 
         /// <inheritdoc/>
         public ErrorCode Transmit(ICardCommand command, ICardResponse response)
         {
-            return cardChannel.Transmit(command, response);
+            return _cardChannel.Transmit(command, response);
         }
 
         #endregion
