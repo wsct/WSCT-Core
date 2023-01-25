@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net462;net6.0</TargetFrameworks>
-    <Version>1.3.0</Version>
+    <Version>1.3.1</Version>
     <Copyright>Copyright © ENSICAEN / GREYC 2014</Copyright>
     <Product>WSCT</Product>
     <Company>ENSICAEN</Company>
@@ -15,7 +15,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>WSCT.Core updated</PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <Optimize>true</Optimize>
