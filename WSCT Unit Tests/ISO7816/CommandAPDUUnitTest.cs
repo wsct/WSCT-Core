@@ -3,9 +3,8 @@ using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 using NUnit.Framework;
-using WSCT.ISO7816;
 
-namespace WSCT_Unit_Tests.ISO7816
+namespace WSCT.ISO7816
 {
     [TestFixture]
     public class CommandCaseUnitTest
@@ -400,7 +399,7 @@ namespace WSCT_Unit_Tests.ISO7816
             // extended > none
             command.HasLc = false; // CC2
 
-            Assert.AreEqual(CommandCase.CC2, command.CommandCase);
+            Assert.AreEqual(CommandCase.CC2E, command.CommandCase); // Extended status unchanged
         }
 
         [Test]
@@ -429,8 +428,8 @@ namespace WSCT_Unit_Tests.ISO7816
             // extended > short
             command.Le = ShortLe; // CC2
 
-            Assert.AreEqual(1, command.LeFieldSize);
-            Assert.AreEqual(CommandCase.CC2, command.CommandCase);
+            Assert.AreEqual(3, command.LeFieldSize);
+            Assert.AreEqual(CommandCase.CC2E, command.CommandCase); // Extended status unchanged
         }
 
         [Test]
@@ -463,8 +462,8 @@ namespace WSCT_Unit_Tests.ISO7816
             command.Udc = ShortUdc; // CC3
 
             Assert.AreEqual(ShortLc, command.Lc);
-            Assert.AreEqual(1, command.LcFieldSize);
-            Assert.AreEqual(CommandCase.CC3, command.CommandCase);
+            Assert.AreEqual(3, command.LcFieldSize);
+            Assert.AreEqual(CommandCase.CC3E, command.CommandCase); // Extended status unchanged
         }
 
         [Test]
@@ -496,7 +495,7 @@ namespace WSCT_Unit_Tests.ISO7816
             // extended > none
             command.HasLe = false; // CC3
 
-            Assert.AreEqual(CommandCase.CC3, command.CommandCase);
+            Assert.AreEqual(CommandCase.CC3E, command.CommandCase); // Extended status unchanged
         }
 
         [Test]
@@ -535,10 +534,10 @@ namespace WSCT_Unit_Tests.ISO7816
             command.Udc = ShortUdc; // CC4
 
             Assert.AreEqual(ShortLc, command.Lc);
-            Assert.AreEqual(1, command.LcFieldSize);
+            Assert.AreEqual(3, command.LcFieldSize);
             Assert.AreEqual(ShortLe, command.Le);
-            Assert.AreEqual(1, command.LeFieldSize);
-            Assert.AreEqual(CommandCase.CC4, command.CommandCase);
+            Assert.AreEqual(2, command.LeFieldSize);
+            Assert.AreEqual(CommandCase.CC4E, command.CommandCase); // Extended status unchanged
         }
 
         [Test]
@@ -577,10 +576,76 @@ namespace WSCT_Unit_Tests.ISO7816
             command.Le = ShortLe; // CC4
 
             Assert.AreEqual(ShortLc, command.Lc);
-            Assert.AreEqual(1, command.LcFieldSize);
+            Assert.AreEqual(3, command.LcFieldSize);
             Assert.AreEqual(ShortLe, command.Le);
-            Assert.AreEqual(1, command.LeFieldSize);
-            Assert.AreEqual(CommandCase.CC4, command.CommandCase);
+            Assert.AreEqual(2, command.LeFieldSize);
+            Assert.AreEqual(CommandCase.CC4E, command.CommandCase); // Extended status unchanged
+        }
+
+        [Test]
+        public void Le00UpdatesTo000100WhenCC4BecomesCC4E()
+        {
+            var command = new CommandAPDU(0x00, 0xA4, 0x00, 0x00, 0x00)
+            {
+                Udc = ShortUdc // CC4
+            };
+
+            command.Udc = ExtendedUdc; // CC4E
+
+            Assert.AreEqual(0x0100, command.Le);
+            Assert.AreEqual(2, command.LeFieldSize);
+        }
+
+        [Test]
+        public void EnforceCC2ToCC2E()
+        {
+            var command = new CommandAPDU(0x00, 0xC0, 0x00, 0x00, ShortLe); // CC2
+
+            command.EnforceExtended();
+
+            Assert.AreEqual(CommandCase.CC2E, command.CommandCase);
+
+            Assert.False(command.HasLc);
+
+            Assert.AreEqual(ShortLe, command.Le);
+            Assert.AreEqual(3, command.LeFieldSize);
+        }
+
+        [Test]
+        public void EnforceCC3ToCC3E()
+        {
+            var command = new CommandAPDU(0x00, 0xC0, 0x00, 0x00)
+            {
+                Udc = ShortUdc // CC3
+            };
+
+            command.EnforceExtended();
+
+            Assert.AreEqual(CommandCase.CC3E, command.CommandCase);
+
+            Assert.AreEqual(ShortLc, command.Lc);
+            Assert.AreEqual(3, command.LcFieldSize);
+
+            Assert.False(command.HasLe);
+        }
+
+        [Test]
+        public void EnforceCC4ToCC4E()
+        {
+            var command = new CommandAPDU(0x00, 0xC0, 0x00, 0x00, ShortLe)
+            {
+                Udc = ShortUdc // CC4
+            };
+
+            command.EnforceExtended();
+
+            Assert.AreEqual(CommandCase.CC4E, command.CommandCase);
+
+            Assert.AreEqual(ShortLc, command.Lc);
+            Assert.AreEqual(3, command.LcFieldSize);
+
+            Assert.AreEqual(ShortLe, command.Le);
+            Assert.AreEqual(2, command.LeFieldSize);
         }
     }
 }
