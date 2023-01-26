@@ -25,12 +25,12 @@ This package seamlessly wraps native PC/SC libraries.
 
 **Supported OS :**
 
-* From *Windows XP* to *Windows 10* using *Microsoft .NET Framework 4.6.2* or *Mono 3+*
-* *Linux* 32 and 64 bits based OS using *Mono 3+*
-* *Mac OSX* using *Mono 3+*
+* From *Windows XP* to *Windows 11* using *.NET 6+* or *Microsoft .NET Framework 4.6.2+* or *Mono 3+*
+* *Linux* 32 and 64 bits based OS using *.NET 6+* or *Mono 3+*
+* *Mac OSX* using *.NET 6+* or *Mono 3+*
 
 ## Example code
-
+  
 ```csharp
 // Connect to PC/SC
 var context = new CardContext();
@@ -41,8 +41,7 @@ context.ListReaders("");
 var allReaders = context.Readers;
 
 // Connect to an ISO7816-4 card in the last reader found
-var rawChannel = new CardChannel(context, context.Readers.Last());
-var channel = new CardChannelIso7816(rawChannel);
+var channel = new CardChannel(context, context.Readers.Last());
 channel.Connect(ShareMode.Exclusive, Protocol.Any);
 
 // Build a SELECT command
@@ -111,7 +110,6 @@ finally
     .Release();
 }
 ```
-
 
 ## External contributors
 
