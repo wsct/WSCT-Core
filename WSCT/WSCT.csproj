@@ -22,11 +22,6 @@ Warning: this package alone does not allow to connect to a smartcard reader: use
     <DefineConstants>TRACE;DEBUG</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Properties\**" />
-    <EmbeddedResource Remove="Properties\**" />
-    <None Remove="Properties\**" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ISO7816\Dictionary.StatusWord.xml">
       <Visible>False</Visible>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
