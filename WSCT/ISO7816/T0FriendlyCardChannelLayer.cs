@@ -11,7 +11,6 @@ namespace WSCT.ISO7816
     /// </summary>
     public class T0FriendlyCardChannelLayer : ICardChannelLayer
     {
-        private readonly string _layerId;
         private ICardChannelStack _stack;
 
         #region >> Constructors
@@ -69,8 +68,7 @@ namespace WSCT.ISO7816
         #region >> ICardChannelLayer
 
         /// <inheritdoc />
-        public string LayerId =>
-            _layerId;
+        public string LayerId => "T0 Adapter";
 
         /// <inheritdoc />
         public void SetStack(ICardChannelStack stack)

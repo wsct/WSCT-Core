@@ -14,7 +14,7 @@ namespace WSCT.ISO7816
         /// <returns></returns>
         internal static ErrorCode T0Transmit(this ICardChannel cardChannel, CommandAPDU command, ResponseAPDU response)
         {
-            if (command.HasLe is false)
+            if (command.HasLe is false || (command.HasLe && (command.HasLc is false)))
             {
                 return cardChannel.Transmit(command, response);
             }
@@ -38,7 +38,8 @@ namespace WSCT.ISO7816
 
                 return cardChannel.Transmit(getResponse, response);
             }
-            else if (response.Sw1 == 0x6C && initialLe == 0x00)
+
+            if (response.Sw1 == 0x6C && initialLe == 0x00)
             {
                 command.Le = response.Sw2;
 
@@ -48,10 +49,8 @@ namespace WSCT.ISO7816
 
                 return error;
             }
-            else
-            {
-                return error;
-            }
+
+            return error;
         }
     }
 }
