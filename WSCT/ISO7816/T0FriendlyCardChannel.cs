@@ -61,7 +61,7 @@ namespace WSCT.ISO7816
         /// <inheritdoc />
         public ErrorCode Transmit(ICardCommand command, ICardResponse response)
         {
-            return Protocol switch
+            return _cardChannel.Protocol switch
             {
                 Protocol.T0 => _cardChannel.T0Transmit(command as CommandAPDU, response as ResponseAPDU),
                 _ => _cardChannel.Transmit(command, response)

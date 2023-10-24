@@ -8,7 +8,7 @@ Warning: this package alone does not allow to connect to a smartcard reader: use
     <Company>ENSICAEN</Company>
     <Copyright>Copyright © ENSICAEN 2006-2023</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>6.5.3</Version>
+    <Version>6.5.4</Version>
     <Authors>Sylvain Vernois</Authors>
     <PackageProjectUrl>https://github.com/wsct/WSCT-Core</PackageProjectUrl>
     <RepositoryUrl>https://github.com/wsct/WSCT-Core</RepositoryUrl>
