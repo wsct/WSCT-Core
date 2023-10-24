@@ -8,7 +8,7 @@ namespace WSCT.ISO7816
     /// <summary>
     /// Channel allowing APDU adaptation for T=0 smartcards.
     /// </summary>
-    public class T0AutoAdapterCardChannel : ICardChannel
+    public class T0FriendlyCardChannel : ICardChannel
     {
         private readonly ICardChannel _cardChannel;
 
@@ -18,7 +18,7 @@ namespace WSCT.ISO7816
         /// Initialize a new instance.
         /// </summary>
         /// <param name="cardChannel"></param>
-        public T0AutoAdapterCardChannel(ICardChannel cardChannel)
+        public T0FriendlyCardChannel(ICardChannel cardChannel)
         {
             _cardChannel = cardChannel ?? throw new ArgumentNullException(nameof(cardChannel));
         }
@@ -28,7 +28,8 @@ namespace WSCT.ISO7816
         #region >> ICardChannel
 
         /// <inheritdoc />
-        public Protocol Protocol => _cardChannel.Protocol;
+        public Protocol Protocol =>
+            _cardChannel.Protocol == Protocol.T0 ? Protocol.T1 : _cardChannel.Protocol;
 
         /// <inheritdoc />
         public string ReaderName => _cardChannel.ReaderName;

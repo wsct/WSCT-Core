@@ -1,4 +1,5 @@
 ﻿using WSCT.Core;
+using WSCT.ISO7816;
 
 namespace WSCT.Linq
 {
@@ -18,5 +19,8 @@ namespace WSCT.Linq
 
             return observable ?? new CardChannelObservable(channel);
         }
+
+        public static ICardChannel ToT0Friendly(this ICardChannel channel)
+            => new T0FriendlyCardChannel(channel);
     }
 }
