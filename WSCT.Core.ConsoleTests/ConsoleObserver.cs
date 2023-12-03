@@ -124,11 +124,11 @@ namespace WSCT.Core.ConsoleTests
         {
             if (eventArgs.ReturnValue == ErrorCode.Success)
             {
-                WriteInfo(sender, String.Format(">> Error: {0}", eventArgs.ReturnValue));
+                WriteInfo(sender, $">> Error: {eventArgs.ReturnValue}");
             }
             else
             {
-                WriteWarning(sender, String.Format(">> Error: {0}", eventArgs.ReturnValue));
+                WriteWarning(sender, $">> Error: {eventArgs.ReturnValue}");
             }
         }
 
@@ -136,11 +136,11 @@ namespace WSCT.Core.ConsoleTests
         {
             if (eventArgs.ReturnValue == ErrorCode.Success)
             {
-                WriteInfo(sender, String.Format(">> Error: {0}", eventArgs.ReturnValue));
+                WriteInfo(sender, $">> Error: {eventArgs.ReturnValue}");
             }
             else
             {
-                WriteWarning(sender, String.Format(">> Error: {0}", eventArgs.ReturnValue));
+                WriteWarning(sender, $">> Error: {eventArgs.ReturnValue}");
             }
         }
 
@@ -148,21 +148,21 @@ namespace WSCT.Core.ConsoleTests
         {
             if (eventArgs.ReturnValue == ErrorCode.Success)
             {
-                WriteInfo(sender, String.Format(">> Error: {0}", eventArgs.ReturnValue));
-                WriteInfo(sender, String.Format(">> byte[]: [{0}]", eventArgs.Buffer.ToHexa()));
+                WriteInfo(sender, $">> Error: {eventArgs.ReturnValue}");
+                WriteInfo(sender, $">> byte[]: [{eventArgs.Buffer.ToHexa()}]");
                 if (eventArgs.Attrib == Attrib.AtrString)
                 {
                     var atr = new Atr(eventArgs.Buffer);
-                    WriteInfo(sender, String.Format(">> ATR: [{0}]", atr));
+                    WriteInfo(sender, $">> ATR: [{atr}]");
                 }
                 else if (eventArgs.Attrib != Attrib.AtrString)
                 {
-                    WriteInfo(sender, String.Format(">> string: \"{0}\"", eventArgs.Buffer.ToAsciiString()));
+                    WriteInfo(sender, $">> string: \"{eventArgs.Buffer.ToAsciiString()}\"");
                 }
             }
             else
             {
-                WriteWarning(sender, String.Format(">> Error: {0}", eventArgs.ReturnValue));
+                WriteWarning(sender, $">> Error: {eventArgs.ReturnValue}");
             }
         }
 
@@ -170,11 +170,11 @@ namespace WSCT.Core.ConsoleTests
         {
             if (eventArgs.ReturnValue == ErrorCode.Success)
             {
-                WriteInfo(sender, String.Format(">> Error: {0}", eventArgs.ReturnValue));
+                WriteInfo(sender, $">> Error: {eventArgs.ReturnValue}");
             }
             else
             {
-                WriteWarning(sender, String.Format(">> Error: {0}", eventArgs.ReturnValue));
+                WriteWarning(sender, $">> Error: {eventArgs.ReturnValue}");
             }
         }
 
@@ -182,12 +182,12 @@ namespace WSCT.Core.ConsoleTests
         {
             if (eventArgs.ReturnValue == ErrorCode.Success)
             {
-                WriteInfo(sender, String.Format(">> Error: {0}", eventArgs.ReturnValue));
-                WriteInfo(sender, String.Format(">> RAPDU: [{0}]", eventArgs.Response));
+                WriteInfo(sender, $">> Error: {eventArgs.ReturnValue}");
+                WriteInfo(sender, $">> RAPDU: [{eventArgs.Response}]");
             }
             else
             {
-                WriteWarning(sender, String.Format(">> Error: {0}", eventArgs.ReturnValue));
+                WriteWarning(sender, $">> Error: {eventArgs.ReturnValue}");
             }
         }
 
@@ -195,35 +195,35 @@ namespace WSCT.Core.ConsoleTests
         {
             var cardChannel = (ICardChannel)sender;
             Console.ForegroundColor = HighlightColor;
-            WriteInfo(sender, String.Format("Connect(\"{0}\",{1},{2})", cardChannel.ReaderName, eventArgs.ShareMode, eventArgs.PreferedProtocol));
+            WriteInfo(sender, $"Connect(\"{cardChannel.ReaderName}\",{eventArgs.ShareMode},{eventArgs.PreferedProtocol})");
             Console.ForegroundColor = StandardColor;
         }
 
         public void BeforeDisconnect(object sender, BeforeDisconnectEventArgs eventArgs)
         {
             Console.ForegroundColor = HighlightColor;
-            WriteInfo(sender, String.Format("Disconnect({0})", eventArgs.Disposition));
+            WriteInfo(sender, $"Disconnect({eventArgs.Disposition})");
             Console.ForegroundColor = StandardColor;
         }
 
         public void BeforeGetAttrib(object sender, BeforeGetAttribEventArgs eventArgs)
         {
             Console.ForegroundColor = HighlightColor;
-            WriteInfo(sender, String.Format("GetAttrib({0})", eventArgs.Attrib));
+            WriteInfo(sender, $"GetAttrib({eventArgs.Attrib})");
             Console.ForegroundColor = StandardColor;
         }
 
         public void BeforeReconnect(object sender, BeforeReconnectEventArgs eventArgs)
         {
             Console.ForegroundColor = HighlightColor;
-            WriteInfo(sender, String.Format("Reconnect({0},{1},{2})", eventArgs.ShareMode, eventArgs.PreferedProtocol, eventArgs.Initialization));
+            WriteInfo(sender, $"Reconnect({eventArgs.ShareMode},{eventArgs.PreferedProtocol},{eventArgs.Initialization})");
             Console.ForegroundColor = StandardColor;
         }
 
         public void BeforeTransmit(object sender, BeforeTransmitEventArgs eventArgs)
         {
             Console.ForegroundColor = HighlightColor;
-            WriteInfo(sender, String.Format("Transmit({0})", eventArgs.Command));
+            WriteInfo(sender, $"Transmit({eventArgs.Command})");
             Console.ForegroundColor = StandardColor;
         }
 
@@ -235,21 +235,21 @@ namespace WSCT.Core.ConsoleTests
         {
             var context = sender as ICardContext;
             Console.ForegroundColor = HighlightColor;
-            WriteInfo(context, String.Format("Establish(): {0}", eventArgs.ReturnValue));
+            WriteInfo(context, $"Establish(): {eventArgs.ReturnValue}");
             Console.ForegroundColor = StandardColor;
         }
 
         private void NotifyGetStatusChange(object sender, AfterGetStatusChangeEventArgs eventArgs)
         {
             Console.ForegroundColor = HighlightColor;
-            WriteInfo(sender, String.Format("GetStatusChange(): {0}", eventArgs.ReturnValue));
+            WriteInfo(sender, $"GetStatusChange(): {eventArgs.ReturnValue}");
             Console.ForegroundColor = StandardColor;
 
             if (eventArgs.ReturnValue == ErrorCode.Success)
             {
                 foreach (var readerState in eventArgs.ReaderStates)
                 {
-                    WriteInfo(sender, String.Format(">> {0}", readerState.EventState));
+                    WriteInfo(sender, $">> {readerState.EventState}");
                 }
             }
         }
@@ -266,7 +266,7 @@ namespace WSCT.Core.ConsoleTests
             {
                 foreach (var reader in cardContext.Readers)
                 {
-                    WriteInfo(sender, String.Format(">> Reader description Found: {0}", reader));
+                    WriteInfo(sender, $">> Reader description Found: {reader}");
                 }
             }
         }
@@ -274,7 +274,7 @@ namespace WSCT.Core.ConsoleTests
         private void NotifyListReaderGroups(object sender, AfterListReaderGroupsEventArgs eventArgs)
         {
             Console.ForegroundColor = HighlightColor;
-            WriteInfo(sender, String.Format("ListReaderGroups(): {0}", eventArgs.ReturnValue));
+            WriteInfo(sender, $"ListReaderGroups(): {eventArgs.ReturnValue}");
             Console.ForegroundColor = StandardColor;
 
             var cardContext = (ICardContext)sender;
@@ -283,7 +283,7 @@ namespace WSCT.Core.ConsoleTests
             {
                 foreach (var group in cardContext.Groups)
                 {
-                    WriteInfo(sender, String.Format(">> Reader groups found: {0}", group));
+                    WriteInfo(sender, $">> Reader groups found: {group}");
                 }
             }
         }
@@ -291,7 +291,7 @@ namespace WSCT.Core.ConsoleTests
         private void NotifyRelease(object sender, AfterReleaseEventArgs eventArgs)
         {
             Console.ForegroundColor = HighlightColor;
-            WriteInfo(sender, String.Format("Release(): {0}", eventArgs.ReturnValue));
+            WriteInfo(sender, $"Release(): {eventArgs.ReturnValue}");
             Console.ForegroundColor = StandardColor;
         }
 
@@ -312,5 +312,25 @@ namespace WSCT.Core.ConsoleTests
         }
 
         #endregion
+
+        public void BeforeControl(object sender, BeforeControlEventArgs eventArgs)
+        {
+            Console.ForegroundColor = HighlightColor;
+            WriteInfo(sender, $"Control({eventArgs.ControlCode},{eventArgs.Command.ToHexa()})");
+            Console.ForegroundColor = StandardColor;
+        }
+
+        public void NotifyControl(object sender, AfterControlEventArgs eventArgs)
+        {
+            if (eventArgs.ReturnValue == ErrorCode.Success)
+            {
+                WriteInfo(sender, $">> Error: {eventArgs.ReturnValue}");
+                WriteInfo(sender, $">> RAPDU: [{eventArgs.Response.ToHexa()}]");
+            }
+            else
+            {
+                WriteWarning(sender, $">> Error: {eventArgs.ReturnValue}");
+            }
+        }
     }
 }

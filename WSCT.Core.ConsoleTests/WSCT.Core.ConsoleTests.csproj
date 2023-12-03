@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net462;net6.0</TargetFrameworks>
-    <Version>3.1.0</Version>
+    <Version>3.2.0</Version>
     <Copyright>Copyright © Sylvain Vernois 2007</Copyright>
     <Product>WSCT</Product>
     <Company>ENSICAEN</Company>

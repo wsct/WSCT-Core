@@ -9,6 +9,7 @@ using WSCT.Linq;
 using WSCT.Stack;
 using WSCT.Wrapper;
 using WSCT.Wrapper.Desktop.Core;
+using WSCT.Wrapper.Desktop.Core.SCardControl;
 using WSCT.Wrapper.Desktop.Stack;
 
 namespace WSCT.Core.ConsoleTests
@@ -49,14 +50,13 @@ namespace WSCT.Core.ConsoleTests
 
             #endregion
 
-            Console.WriteLine();
-            Console.WriteLine("=========== C a r d C o n t e x t");
-
             ICardContext context = null;
             ICardChannel cardChannel = null;
 
             try
             {
+                Console.WriteLine();
+                Console.WriteLine("=========== C a r d C o n t e x t");
 
                 #region >> CardContext
 
@@ -104,12 +104,8 @@ namespace WSCT.Core.ConsoleTests
 
                 cardChannel.Connect(ShareMode.Shared, Protocol.Any);
 
-                byte[] controlResponse = new byte[4];
-                var error = cardChannel.Control((0x31 << 16 | (3058) << 2), "11".FromHexa(), ref controlResponse);
-
-                Console.WriteLine($"Error: {error}");
-
-                return;
+                // try to query for GET_FEATURE_REQUEST (PC/SC 2.02.09 §2.2)
+                var controlError = cardChannel.Control(ControlCode.Get(3400), "".FromHexa(), out var controlResponse, logger.BeforeControl, logger.NotifyControl);
 
                 //Console.WriteLine(cardChannel.getStatus());
 
@@ -132,7 +128,7 @@ namespace WSCT.Core.ConsoleTests
                 cardChannel.Transmit(cAPDU, rAPDU);
                 if (((ResponseAPDU)rAPDU).Sw1 == 0x61)
                 {
-                    cAPDU = new CommandAPDU(String.Format("00C00000{0:X2}", ((ResponseAPDU)rAPDU).Sw2));
+                    cAPDU = new CommandAPDU($"00C00000{((ResponseAPDU)rAPDU).Sw2:X2}");
                     rAPDU = new ResponseAPDU();
                     cardChannel.Transmit(cAPDU, rAPDU);
                 }
@@ -144,7 +140,7 @@ namespace WSCT.Core.ConsoleTests
                 cardChannel.Transmit(cAPDU, rAPDU);
                 if (((ResponseAPDU)rAPDU).Sw1 == 0x61)
                 {
-                    cAPDU = new CommandAPDU(String.Format("00C00000{0:X2}", ((ResponseAPDU)rAPDU).Sw2));
+                    cAPDU = new CommandAPDU($"00C00000{((ResponseAPDU)rAPDU).Sw2:X2}");
                     rAPDU = new ResponseAPDU();
                     cardChannel.Transmit(cAPDU, rAPDU);
                 }
@@ -154,7 +150,7 @@ namespace WSCT.Core.ConsoleTests
                 cardChannel.Transmit(cAPDU, rAPDU);
                 if (((ResponseAPDU)rAPDU).Sw1 == 0x61)
                 {
-                    cAPDU = new CommandAPDU(String.Format("00C00000{0:X2}", ((ResponseAPDU)rAPDU).Sw2));
+                    cAPDU = new CommandAPDU($"00C00000{((ResponseAPDU)rAPDU).Sw2:X2}");
                     rAPDU = new ResponseAPDU();
                     cardChannel.Transmit(cAPDU, rAPDU);
                 }
@@ -211,6 +207,7 @@ namespace WSCT.Core.ConsoleTests
             }
             finally
             {
+                cardChannel?.Disconnect(Disposition.UnpowerCard);
                 context?.Release();
             }
         }

@@ -102,6 +102,10 @@ namespace WSCT.Wrapper.WinSCard
                     {
                         Array.Resize(ref recvBuffer, (int)returnedSize);
                     }
+                    else
+                    {
+                        recvBuffer = Array.Empty<byte>();
+                    }
                 }
                 else
                 {

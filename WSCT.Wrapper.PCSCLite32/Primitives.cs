@@ -91,38 +91,42 @@ namespace WSCT.Wrapper.PCSCLite32
                     recvSize = DefaultBufferSize;
                     recvBuffer = new byte[recvSize];
                     fixed (byte* psendBuffer = sendBuffer)
-                    fixed (uint* precvSize = &returnedSize)
+                    fixed (uint* preturnedSize = &returnedSize)
                     fixed (byte* precvBuffer = recvBuffer)
                     {
                         ret = UnsafePrimitives.SCardControl(
-                            card,
+                            (void*)card,
                             controlCode,
-                            sendBuffer,
+                            psendBuffer,
                             sendSize,
-                            ref recvBuffer,
+                            precvBuffer,
                             recvSize,
-                            ref returnedSize);
+                            preturnedSize);
                     }
                     if (ret == ErrorCode.Success)
                     {
                         Array.Resize(ref recvBuffer, (int)recvSize);
+                    }
+                    else
+                    {
+                        recvBuffer = Array.Empty<byte>();
                     }
                 }
                 else
                 {
                     //TODO Seems to be problems with pcsclite in this case...
                     fixed (byte* psendBuffer = sendBuffer)
-                    fixed (uint* precvSize = &returnedSize)
+                    fixed (uint* preturnedSize = &returnedSize)
                     fixed (byte* precvBuffer = recvBuffer)
                     {
                         ret = UnsafePrimitives.SCardControl(
-                            card,
+                            (void*)card,
                             controlCode,
-                            sendBuffer,
+                            psendBuffer,
                             sendSize,
-                            ref recvBuffer,
+                            precvBuffer,
                             recvSize,
-                            ref returnedSize);
+                            preturnedSize);
                     }
                 }
             }

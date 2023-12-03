@@ -94,21 +94,24 @@ namespace WSCT.Wrapper.PCSCLite64
                     recvBuffer = new byte[ulrecvSize];
                     fixed (byte* psendBuffer = sendBuffer)
                     fixed (byte* precvBuffer = recvBuffer)
+                    fixed (uint* preturnedSize = &returnedSize)
                     {
-                        ulong ulreturnedSize = returnedSize;
                         ret = UnsafePrimitives.SCardControl(
-                            card,
+                            (void*)card,
                             controlCode,
-                            sendBuffer,
+                            psendBuffer,
                             sendSize,
-                            ref recvBuffer,
+                            precvBuffer,
                             recvSize,
-                            ref ulreturnedSize);
-                        returnedSize = (uint)ulreturnedSize;
+                            preturnedSize);
                     }
                     if (ret == ErrorCode.Success)
                     {
                         Array.Resize(ref recvBuffer, (int)ulrecvSize);
+                    }
+                    else
+                    {
+                        recvBuffer = Array.Empty<byte>();
                     }
                 }
                 else
@@ -116,17 +119,16 @@ namespace WSCT.Wrapper.PCSCLite64
                     //TODO Seems to be problems with pcsclite in this case...
                     fixed (byte* psendBuffer = sendBuffer)
                     fixed (byte* precvBuffer = recvBuffer)
+                    fixed (uint* preturnedSize = &returnedSize)
                     {
-                        ulong ulreturnedSize = returnedSize;
                         ret = UnsafePrimitives.SCardControl(
-                            card,
+                            (void*)card,
                             controlCode,
-                            sendBuffer,
+                            psendBuffer,
                             sendSize,
-                            ref recvBuffer,
+                            precvBuffer,
                             recvSize,
-                            ref ulreturnedSize);
-                        returnedSize = (uint)ulreturnedSize;
+                            preturnedSize);
                     }
                 }
             }
