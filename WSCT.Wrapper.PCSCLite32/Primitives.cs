@@ -79,7 +79,55 @@ namespace WSCT.Wrapper.PCSCLite32
         /// <inheritdoc />
         public ErrorCode SCardControl(IntPtr card, uint controlCode, byte[] sendBuffer, uint sendSize, ref byte[] recvBuffer, uint recvSize, ref uint returnedSize)
         {
-            return UnsafePrimitives.SCardControl(card, controlCode, sendBuffer, sendSize, ref recvBuffer, recvSize, ref returnedSize);
+            ErrorCode ret;
+
+            unsafe
+            {
+                if (recvSize == AutoAllocate)
+                {
+                    // winscard.dll supports SCARD_AUTOALLOCATE only since Windows vista; winscard.dll is able to propose l recvSize to be used with all versions (XP+)
+                    // pcsclite does not support recvBuffer = null, so no automatic discovery of recvSize
+                    // For more portability: Wrapper don't use the native winscard.dll's SCARD_AUTOALLOCATE
+                    recvSize = DefaultBufferSize;
+                    recvBuffer = new byte[recvSize];
+                    fixed (byte* psendBuffer = sendBuffer)
+                    fixed (uint* precvSize = &returnedSize)
+                    fixed (byte* precvBuffer = recvBuffer)
+                    {
+                        ret = UnsafePrimitives.SCardControl(
+                            card,
+                            controlCode,
+                            sendBuffer,
+                            sendSize,
+                            ref recvBuffer,
+                            recvSize,
+                            ref returnedSize);
+                    }
+                    if (ret == ErrorCode.Success)
+                    {
+                        Array.Resize(ref recvBuffer, (int)recvSize);
+                    }
+                }
+                else
+                {
+                    //TODO Seems to be problems with pcsclite in this case...
+                    fixed (byte* psendBuffer = sendBuffer)
+                    fixed (uint* precvSize = &returnedSize)
+                    fixed (byte* precvBuffer = recvBuffer)
+                    {
+                        ret = UnsafePrimitives.SCardControl(
+                            card,
+                            controlCode,
+                            sendBuffer,
+                            sendSize,
+                            ref recvBuffer,
+                            recvSize,
+                            ref returnedSize);
+                    }
+                }
+            }
+
+            return ret;
         }
 
         /// <inheritdoc />

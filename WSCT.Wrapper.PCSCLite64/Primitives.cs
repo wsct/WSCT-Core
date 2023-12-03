@@ -79,9 +79,59 @@ namespace WSCT.Wrapper.PCSCLite64
         /// <inheritdoc />
         public ErrorCode SCardControl(IntPtr card, uint controlCode, byte[] sendBuffer, uint sendSize, ref byte[] recvBuffer, uint recvSize, ref uint returnedSize)
         {
-            ulong ulreturnedSize = returnedSize;
-            var ret = UnsafePrimitives.SCardControl(card, controlCode, sendBuffer, sendSize, ref recvBuffer, recvSize, ref ulreturnedSize);
-            returnedSize = (uint)ulreturnedSize;
+            ErrorCode ret;
+
+            ulong ulrecvSize = recvSize;
+
+            unsafe
+            {
+                if (recvSize == AutoAllocate)
+                {
+                    // winscard.dll supports SCARD_AUTOALLOCATE only since Windows vista; winscard.dll is able to propose l recvSize to be used with all versions (XP+)
+                    // pcsclite does not support recvBuffer = null, so no automatic discovery of recvSize
+                    // For more portability: Wrapper don't use the native winscard.dll's SCARD_AUTOALLOCATE
+                    ulrecvSize = DefaultBufferSize;
+                    recvBuffer = new byte[ulrecvSize];
+                    fixed (byte* psendBuffer = sendBuffer)
+                    fixed (byte* precvBuffer = recvBuffer)
+                    {
+                        ulong ulreturnedSize = returnedSize;
+                        ret = UnsafePrimitives.SCardControl(
+                            card,
+                            controlCode,
+                            sendBuffer,
+                            sendSize,
+                            ref recvBuffer,
+                            recvSize,
+                            ref ulreturnedSize);
+                        returnedSize = (uint)ulreturnedSize;
+                    }
+                    if (ret == ErrorCode.Success)
+                    {
+                        Array.Resize(ref recvBuffer, (int)ulrecvSize);
+                    }
+                }
+                else
+                {
+                    //TODO Seems to be problems with pcsclite in this case...
+                    fixed (byte* psendBuffer = sendBuffer)
+                    fixed (byte* precvBuffer = recvBuffer)
+                    {
+                        ulong ulreturnedSize = returnedSize;
+                        ret = UnsafePrimitives.SCardControl(
+                            card,
+                            controlCode,
+                            sendBuffer,
+                            sendSize,
+                            ref recvBuffer,
+                            recvSize,
+                            ref ulreturnedSize);
+                        returnedSize = (uint)ulreturnedSize;
+                    }
+                }
+            }
+
+            recvSize = (uint)ulrecvSize;
 
             return ret;
         }

@@ -479,22 +479,18 @@ namespace WSCT.Wrapper.MacOSX
                     recvSize = DefaultBufferSize;
                     recvBuffer = new byte[recvSize];
                     fixed (byte* psendBuffer = sendBuffer)
+                    fixed (uint* precvSize = &recvSize)
+                    fixed (byte* precvBuffer = recvBuffer)
                     {
-                        fixed (uint* precvSize = &recvSize)
-                        {
-                            fixed (byte* precvBuffer = recvBuffer)
-                            {
-                                ret = UnsafePrimitives.SCardTransmit(
-                                    (void*)card,
-                                    (void*)ptrsendPci,
-                                    psendBuffer,
-                                    sendSize,
-                                    (void*)ptrrecvPci,
-                                    precvBuffer,
-                                    precvSize
-                                    );
-                            }
-                        }
+                        ret = UnsafePrimitives.SCardTransmit(
+                            (void*)card,
+                            (void*)ptrsendPci,
+                            psendBuffer,
+                            sendSize,
+                            (void*)ptrrecvPci,
+                            precvBuffer,
+                            precvSize
+                            );
                     }
                     if (ret == ErrorCode.Success)
                     {
@@ -505,22 +501,18 @@ namespace WSCT.Wrapper.MacOSX
                 {
                     //TODO Seems to be problems with pcsclite in this case...
                     fixed (byte* psendBuffer = sendBuffer)
+                    fixed (uint* precvSize = &recvSize)
+                    fixed (byte* precvBuffer = recvBuffer)
                     {
-                        fixed (uint* precvSize = &recvSize)
-                        {
-                            fixed (byte* precvBuffer = recvBuffer)
-                            {
-                                ret = UnsafePrimitives.SCardTransmit(
-                                    (void*)card,
-                                    (void*)ptrsendPci,
-                                    psendBuffer,
-                                    sendSize,
-                                    (void*)ptrrecvPci,
-                                    precvBuffer,
-                                    precvSize
-                                    );
-                            }
-                        }
+                        ret = UnsafePrimitives.SCardTransmit(
+                            (void*)card,
+                            (void*)ptrsendPci,
+                            psendBuffer,
+                            sendSize,
+                            (void*)ptrrecvPci,
+                            precvBuffer,
+                            precvSize
+                            );
                     }
                 }
             }

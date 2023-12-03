@@ -36,14 +36,14 @@ namespace WSCT.Wrapper.WinSCard
         #region SCardControl
 
         [DllImport(PcscLib, CharSet = CharSet.Auto)]
-        public static extern ErrorCode SCardControl(
-            [In] IntPtr card,
-            [In] UInt32 controlCode,
-            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] [In] byte[] sendBuffer,
-            [In] UInt32 sendSize,
-            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 5)] [In, Out] ref byte[] recvBuffer,
-            [In] UInt32 recvSize,
-            [In, Out] ref UInt32 returnedSize
+        public static extern unsafe ErrorCode SCardControl(
+            [In] void* card,
+            [In] uint controlCode,
+            [In] byte* sendBuffer,
+            [In] uint sendSize,
+            [In, Out] byte* recvBuffer,
+            [In] uint recvSize,
+            [In, Out] uint* returnedSize
             );
 
         #endregion

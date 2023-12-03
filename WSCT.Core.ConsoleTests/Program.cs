@@ -52,150 +52,167 @@ namespace WSCT.Core.ConsoleTests
             Console.WriteLine();
             Console.WriteLine("=========== C a r d C o n t e x t");
 
-            #region >> CardContext
+            ICardContext context = null;
+            ICardChannel cardChannel = null;
 
-            ICardContext context = new CardContext();
-            logger.ObserveContext((ICardContextObservable)context);
-
-            context.Establish();
-            context.ListReaderGroups();
-            context.ListReaders(context.Groups[0]);
-
-            #endregion
-
-            Console.WriteLine();
-            Console.WriteLine("=========== C a r d   i n s e r t i o n   d e t e c t i o n");
-
-            #region >> StatusChangeMonitor
-
-            var monitor = new StatusChangeMonitor(context);
-
-            logger.ObserveMonitor(monitor);
-
-            var readerState = monitor.WaitForCardPresence(0);
-            if (readerState == null)
+            try
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(">> Insert a card in one of the {0} readers (time out in 15s)", context.ReadersCount);
-                readerState = monitor.WaitForCardPresence(15000);
-            }
 
-            if (readerState == null)
-            {
-                Console.WriteLine(">> Time Out! No card found");
+                #region >> CardContext
+
+                context = new CardContext();
+                logger.ObserveContext((ICardContextObservable)context);
+
+                context.Establish();
+                context.ListReaderGroups();
+                context.ListReaders(context.Groups[0]);
+
+                #endregion
+
+                Console.WriteLine();
+                Console.WriteLine("=========== C a r d   i n s e r t i o n   d e t e c t i o n");
+
+                #region >> StatusChangeMonitor
+
+                var monitor = new StatusChangeMonitor(context);
+
+                logger.ObserveMonitor(monitor);
+
+                var readerState = monitor.WaitForCardPresence(0);
+                if (readerState == null)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine(">> Insert a card in one of the {0} readers (time out in 15s)", context.ReadersCount);
+                    readerState = monitor.WaitForCardPresence(15000);
+                }
+
+                if (readerState == null)
+                {
+                    Console.WriteLine(">> Time Out! No card found");
+                    return;
+                }
+
+                #endregion
+
+                Console.WriteLine();
+                Console.WriteLine("=========== C a r d C h a n n e l");
+
+                #region >> CardChannel
+
+                cardChannel = new CardChannel(context, readerState.ReaderName);
+                logger.ObserveChannel((ICardChannelObservable)cardChannel);
+
+                cardChannel.Connect(ShareMode.Shared, Protocol.Any);
+
+                byte[] controlResponse = new byte[4];
+                var error = cardChannel.Control((0x31 << 16 | (3058) << 2), "11".FromHexa(), ref controlResponse);
+
+                Console.WriteLine($"Error: {error}");
+
                 return;
-            }
 
-            #endregion
+                //Console.WriteLine(cardChannel.getStatus());
 
-            Console.WriteLine();
-            Console.WriteLine("=========== C a r d C h a n n e l");
+                byte[] recvBuffer = null;
+                cardChannel.GetAttrib(Attrib.AtrString, ref recvBuffer);
 
-            #region >> CardChannel
+                recvBuffer = null;
+                cardChannel.GetAttrib(Attrib.DeviceFriendlyName, ref recvBuffer);
 
-            ICardChannel cardChannel = new CardChannel(context, readerState.ReaderName);
-            logger.ObserveChannel((ICardChannelObservable)cardChannel);
+                recvBuffer = null;
+                cardChannel.GetAttrib(Attrib.AtrString, ref recvBuffer);
 
-            cardChannel.Connect(ShareMode.Shared, Protocol.Any);
+                cardChannel.Reconnect(ShareMode.Shared, Protocol.Any, Disposition.ResetCard);
 
-            //Console.WriteLine(cardChannel.getStatus());
+                Console.WriteLine();
 
-            byte[] recvBuffer = null;
-            cardChannel.GetAttrib(Attrib.AtrString, ref recvBuffer);
+                var cAPDU = new CommandAPDU("00A4040005A000000069");
+                ICardResponse rAPDU = new ResponseAPDU();
 
-            recvBuffer = null;
-            cardChannel.GetAttrib(Attrib.DeviceFriendlyName, ref recvBuffer);
+                cardChannel.Transmit(cAPDU, rAPDU);
+                if (((ResponseAPDU)rAPDU).Sw1 == 0x61)
+                {
+                    cAPDU = new CommandAPDU(String.Format("00C00000{0:X2}", ((ResponseAPDU)rAPDU).Sw2));
+                    rAPDU = new ResponseAPDU();
+                    cardChannel.Transmit(cAPDU, rAPDU);
+                }
 
-            recvBuffer = null;
-            cardChannel.GetAttrib(Attrib.AtrString, ref recvBuffer);
+                Console.WriteLine();
 
-            cardChannel.Reconnect(ShareMode.Shared, Protocol.Any, Disposition.ResetCard);
-
-            Console.WriteLine();
-
-            var cAPDU = new CommandAPDU("00A4040005A000000069");
-            ICardResponse rAPDU = new ResponseAPDU();
-
-            cardChannel.Transmit(cAPDU, rAPDU);
-            if (((ResponseAPDU)rAPDU).Sw1 == 0x61)
-            {
-                cAPDU = new CommandAPDU(String.Format("00C00000{0:X2}", ((ResponseAPDU)rAPDU).Sw2));
+                cAPDU = new CommandAPDU("00A404000E315041592E5359532E4444463031");
                 rAPDU = new ResponseAPDU();
                 cardChannel.Transmit(cAPDU, rAPDU);
-            }
+                if (((ResponseAPDU)rAPDU).Sw1 == 0x61)
+                {
+                    cAPDU = new CommandAPDU(String.Format("00C00000{0:X2}", ((ResponseAPDU)rAPDU).Sw2));
+                    rAPDU = new ResponseAPDU();
+                    cardChannel.Transmit(cAPDU, rAPDU);
+                }
 
-            Console.WriteLine();
-
-            cAPDU = new CommandAPDU("00A404000E315041592E5359532E4444463031");
-            rAPDU = new ResponseAPDU();
-            cardChannel.Transmit(cAPDU, rAPDU);
-            if (((ResponseAPDU)rAPDU).Sw1 == 0x61)
-            {
-                cAPDU = new CommandAPDU(String.Format("00C00000{0:X2}", ((ResponseAPDU)rAPDU).Sw2));
+                cAPDU = new CommandAPDU(0x00, 0xA4, 0x00, 0x00, 0x02, new byte[] { 0x3F, 0x00 });
                 rAPDU = new ResponseAPDU();
                 cardChannel.Transmit(cAPDU, rAPDU);
-            }
+                if (((ResponseAPDU)rAPDU).Sw1 == 0x61)
+                {
+                    cAPDU = new CommandAPDU(String.Format("00C00000{0:X2}", ((ResponseAPDU)rAPDU).Sw2));
+                    rAPDU = new ResponseAPDU();
+                    cardChannel.Transmit(cAPDU, rAPDU);
+                }
 
-            cAPDU = new CommandAPDU(0x00, 0xA4, 0x00, 0x00, 0x02, new byte[] { 0x3F, 0x00 });
-            rAPDU = new ResponseAPDU();
-            cardChannel.Transmit(cAPDU, rAPDU);
-            if (((ResponseAPDU)rAPDU).Sw1 == 0x61)
+                cardChannel.Disconnect(Disposition.UnpowerCard);
+
+                #endregion
+
+                Console.WriteLine();
+                Console.WriteLine("=========== C a r d C h a n n e l S t a c k");
+
+                #region >> CardChannelStack
+
+                var layers = new List<ICardChannelLayer> { new CardChannelLayer61(), new CardChannelLayer() }
+                    .ToObservableLayers()
+                    .ForEach(l => logger.ObserveChannel(l));
+
+                ICardChannelStack cardStack = new CardChannelStack(layers);
+
+                cardStack.Attach(context, readerState.ReaderName);
+
+                cardStack.Connect(ShareMode.Shared, Protocol.Any);
+
+                cardStack.Reconnect(ShareMode.Shared, Protocol.Any, Disposition.ResetCard);
+
+                // Use of a CommandResponsePair object to manage the dialog
+                cAPDU = new SelectCommand(SelectCommand.SelectionMode.SelectDFName, SelectCommand.FileOccurrence.FirstOrOnly, SelectCommand.FileControlInformation.ReturnFci, "A000000069".FromHexa(), 0xFF);
+                var crp = new CommandResponsePair(cAPDU);
+                crp.Transmit(cardStack);
+
+                cardStack.Disconnect(Disposition.UnpowerCard);
+
+                #endregion
+
+                Console.WriteLine();
+                Console.WriteLine("=========== C a r d   r e m o v a l   d e t e c t i o n");
+
+                #region >> StatusChangeMonitor
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(">> Waiting for a change since last call (time out in 10s)");
+                // "unpower" change should be fired for the previously used reader
+                monitor.WaitForChange(10000);
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(">> Remove the card in one of the readers {0} (time out in 10s)", readerState.ReaderName);
+                // Wait for another change
+                monitor.WaitForChange(10000);
+
+                #endregion
+
+                Console.WriteLine();
+
+            }
+            finally
             {
-                cAPDU = new CommandAPDU(String.Format("00C00000{0:X2}", ((ResponseAPDU)rAPDU).Sw2));
-                rAPDU = new ResponseAPDU();
-                cardChannel.Transmit(cAPDU, rAPDU);
+                context?.Release();
             }
-
-            cardChannel.Disconnect(Disposition.UnpowerCard);
-
-            #endregion
-
-            Console.WriteLine();
-            Console.WriteLine("=========== C a r d C h a n n e l S t a c k");
-
-            #region >> CardChannelStack
-
-            var layers = new List<ICardChannelLayer> { new CardChannelLayer61(), new CardChannelLayer() }
-                .ToObservableLayers()
-                .ForEach(l => logger.ObserveChannel(l));
-
-            ICardChannelStack cardStack = new CardChannelStack(layers);
-
-            cardStack.Attach(context, readerState.ReaderName);
-
-            cardStack.Connect(ShareMode.Shared, Protocol.Any);
-
-            cardStack.Reconnect(ShareMode.Shared, Protocol.Any, Disposition.ResetCard);
-
-            // Use of a CommandResponsePair object to manage the dialog
-            cAPDU = new SelectCommand(SelectCommand.SelectionMode.SelectDFName, SelectCommand.FileOccurrence.FirstOrOnly, SelectCommand.FileControlInformation.ReturnFci, "A000000069".FromHexa(), 0xFF);
-            var crp = new CommandResponsePair(cAPDU);
-            crp.Transmit(cardStack);
-
-            cardStack.Disconnect(Disposition.UnpowerCard);
-
-            #endregion
-
-            Console.WriteLine();
-            Console.WriteLine("=========== C a r d   r e m o v a l   d e t e c t i o n");
-
-            #region >> StatusChangeMonitor
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(">> Waiting for a change since last call (time out in 10s)");
-            // "unpower" change should be fired for the previously used reader
-            monitor.WaitForChange(10000);
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(">> Remove the card in one of the readers {0} (time out in 10s)", readerState.ReaderName);
-            // Wait for another change
-            monitor.WaitForChange(10000);
-
-            #endregion
-
-            Console.WriteLine();
-
-            context.Release();
         }
     }
 }
