@@ -313,10 +313,12 @@ namespace WSCT.Core.ConsoleTests
 
         #endregion
 
+        #region >> SCardControl delegates
+
         public void BeforeControl(object sender, BeforeControlEventArgs eventArgs)
         {
             Console.ForegroundColor = HighlightColor;
-            WriteInfo(sender, $"Control({eventArgs.ControlCode},{eventArgs.Command.ToHexa()})");
+            WriteInfo(sender, $"Control(0x{eventArgs.ControlCode:X8},[{eventArgs.Command.ToHexa()}])");
             Console.ForegroundColor = StandardColor;
         }
 
@@ -325,12 +327,14 @@ namespace WSCT.Core.ConsoleTests
             if (eventArgs.ReturnValue == ErrorCode.Success)
             {
                 WriteInfo(sender, $">> Error: {eventArgs.ReturnValue}");
-                WriteInfo(sender, $">> RAPDU: [{eventArgs.Response.ToHexa()}]");
+                WriteInfo(sender, $">> Response: [{eventArgs.Response.ToHexa()}]");
             }
             else
             {
                 WriteWarning(sender, $">> Error: {eventArgs.ReturnValue}");
             }
         }
+
+        #endregion
     }
 }
