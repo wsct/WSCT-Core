@@ -12,8 +12,8 @@ namespace WSCT.Helpers.Linq
         [Test]
         public void Following()
         {
-            Assert.AreEqual(2, source.Following(i => i == 1));
-            Assert.AreEqual(5, source.Following(i => i == 4));
+            Assert.That(source.Following(i => i == 1), Is.EqualTo(2));
+            Assert.That(source.Following(i => i == 4), Is.EqualTo(5));
             Assert.Throws<InvalidOperationException>(() => source.Following(i => i == 5));
             Assert.Throws<InvalidOperationException>(() => source.Following(i => i == 6));
         }
@@ -21,8 +21,8 @@ namespace WSCT.Helpers.Linq
         [Test]
         public void Preceding()
         {
-            Assert.AreEqual(1, source.Preceding(i => i == 2));
-            Assert.AreEqual(4, source.Preceding(i => i == 5));
+            Assert.That(source.Preceding(i => i == 2), Is.EqualTo(1));
+            Assert.That(source.Preceding(i => i == 5), Is.EqualTo(4));
             Assert.Throws<InvalidOperationException>(() => source.Preceding(i => i == 1));
             Assert.Throws<InvalidOperationException>(() => source.Preceding(i => i == 6));
         }

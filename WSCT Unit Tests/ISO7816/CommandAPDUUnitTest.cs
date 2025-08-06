@@ -60,20 +60,20 @@ namespace WSCT.ISO7816
         {
             // Test decoding
             var commandApdu = new CommandAPDU(Case1Apdu);
-            Assert.AreEqual(CommandCase.CC1, commandApdu.CommandCase);
-            Assert.IsTrue(commandApdu.IsCc1);
-            Assert.IsFalse(commandApdu.IsCc2);
-            Assert.IsFalse(commandApdu.IsCc3);
-            Assert.IsFalse(commandApdu.IsCc4);
-            Assert.IsFalse(commandApdu.IsCc2E);
-            Assert.IsFalse(commandApdu.IsCc3E);
-            Assert.IsFalse(commandApdu.IsCc4E);
-            Assert.IsFalse(commandApdu.IsExtended);
+            Assert.That(commandApdu.CommandCase, Is.EqualTo(CommandCase.CC1));
+            Assert.That(commandApdu.IsCc1, Is.True);
+            Assert.That(commandApdu.IsCc2, Is.False);
+            Assert.That(commandApdu.IsCc3, Is.False);
+            Assert.That(commandApdu.IsCc4, Is.False);
+            Assert.That(commandApdu.IsCc2E, Is.False);
+            Assert.That(commandApdu.IsCc3E, Is.False);
+            Assert.That(commandApdu.IsCc4E, Is.False);
+            Assert.That(commandApdu.IsExtended, Is.False);
 
             // Test encoding
-            Assert.AreEqual(Case1ApduByte, commandApdu.BinaryCommand);
-            Assert.AreEqual(0x00, commandApdu.LeFieldSize);
-            Assert.AreEqual(0x00, commandApdu.LcFieldSize);
+            Assert.That(commandApdu.BinaryCommand, Is.EqualTo(Case1ApduByte));
+            Assert.That(commandApdu.LeFieldSize, Is.EqualTo(0x00));
+            Assert.That(commandApdu.LcFieldSize, Is.EqualTo(0x00));
 
             // Test XML serialization
             var memoryStream = new MemoryStream();
@@ -81,13 +81,13 @@ namespace WSCT.ISO7816
             XmlSerializer.Serialize(writer, commandApdu);
             writer.Flush();
             var outputXml = Encoding.UTF8.GetString(memoryStream.ToArray());
-            Assert.AreEqual(Case1Xml, outputXml);
+            Assert.That(outputXml, Is.EqualTo(Case1Xml));
 
             // Test XML deserialization
             using (TextReader textReader = new StringReader(outputXml))
             {
                 var unserializedApdu = (CommandAPDU)XmlSerializer.Deserialize(textReader);
-                Assert.AreEqual(commandApdu, unserializedApdu);
+                Assert.That(unserializedApdu, Is.EqualTo(commandApdu));
             }
         }
 
@@ -96,21 +96,21 @@ namespace WSCT.ISO7816
         {
             // Test decoding
             var commandApdu = new CommandAPDU(Case2Apdu);
-            Assert.AreEqual(CommandCase.CC2, commandApdu.CommandCase);
-            Assert.IsFalse(commandApdu.IsCc1);
-            Assert.IsTrue(commandApdu.IsCc2);
-            Assert.IsFalse(commandApdu.IsCc3);
-            Assert.IsFalse(commandApdu.IsCc4);
-            Assert.IsFalse(commandApdu.IsCc2E);
-            Assert.IsFalse(commandApdu.IsCc3E);
-            Assert.IsFalse(commandApdu.IsCc4E);
-            Assert.IsFalse(commandApdu.IsExtended);
+            Assert.That(commandApdu.CommandCase, Is.EqualTo(CommandCase.CC2));
+            Assert.That(commandApdu.IsCc1, Is.False);
+            Assert.That(commandApdu.IsCc2, Is.True);
+            Assert.That(commandApdu.IsCc3, Is.False);
+            Assert.That(commandApdu.IsCc4, Is.False);
+            Assert.That(commandApdu.IsCc2E, Is.False);
+            Assert.That(commandApdu.IsCc3E, Is.False);
+            Assert.That(commandApdu.IsCc4E, Is.False);
+            Assert.That(commandApdu.IsExtended, Is.False);
 
 
             // Test encoding
-            Assert.AreEqual(Case2ApduByte, commandApdu.BinaryCommand);
-            Assert.AreEqual(0x01, commandApdu.LeFieldSize);
-            Assert.AreEqual(0x00, commandApdu.LcFieldSize);
+            Assert.That(commandApdu.BinaryCommand, Is.EqualTo(Case2ApduByte));
+            Assert.That(commandApdu.LeFieldSize, Is.EqualTo(0x01));
+            Assert.That(commandApdu.LcFieldSize, Is.EqualTo(0x00));
 
             // Test XML serialization
             var memoryStream = new MemoryStream();
@@ -118,13 +118,13 @@ namespace WSCT.ISO7816
             XmlSerializer.Serialize(writer, commandApdu);
             writer.Flush();
             var outputXml = Encoding.UTF8.GetString(memoryStream.ToArray());
-            Assert.AreEqual(Case2Xml, outputXml);
+            Assert.That(outputXml, Is.EqualTo(Case2Xml));
 
             // Test XML deserialization
             using (TextReader textReader = new StringReader(outputXml))
             {
                 var unserializedApdu = (CommandAPDU)XmlSerializer.Deserialize(textReader);
-                Assert.AreEqual(commandApdu, unserializedApdu);
+                Assert.That(unserializedApdu, Is.EqualTo(commandApdu));
             }
         }
 
@@ -133,20 +133,20 @@ namespace WSCT.ISO7816
         {
             // Test decoding
             var commandApdu = new CommandAPDU(Case2EApdu);
-            Assert.AreEqual(CommandCase.CC2E, commandApdu.CommandCase);
-            Assert.IsFalse(commandApdu.IsCc1);
-            Assert.IsFalse(commandApdu.IsCc2);
-            Assert.IsFalse(commandApdu.IsCc3);
-            Assert.IsFalse(commandApdu.IsCc4);
-            Assert.IsTrue(commandApdu.IsCc2E);
-            Assert.IsFalse(commandApdu.IsCc3E);
-            Assert.IsFalse(commandApdu.IsCc4E);
-            Assert.IsTrue(commandApdu.IsExtended);
+            Assert.That(commandApdu.CommandCase, Is.EqualTo(CommandCase.CC2E));
+            Assert.That(commandApdu.IsCc1, Is.False);
+            Assert.That(commandApdu.IsCc2, Is.False);
+            Assert.That(commandApdu.IsCc3, Is.False);
+            Assert.That(commandApdu.IsCc4, Is.False);
+            Assert.That(commandApdu.IsCc2E, Is.True);
+            Assert.That(commandApdu.IsCc3E, Is.False);
+            Assert.That(commandApdu.IsCc4E, Is.False);
+            Assert.That(commandApdu.IsExtended, Is.True);
 
             // Test encoding
-            Assert.AreEqual(Case2EApduByte, commandApdu.BinaryCommand);
-            Assert.AreEqual(0x03, commandApdu.LeFieldSize);
-            Assert.AreEqual(0x00, commandApdu.LcFieldSize);
+            Assert.That(commandApdu.BinaryCommand, Is.EqualTo(Case2EApduByte));
+            Assert.That(commandApdu.LeFieldSize, Is.EqualTo(0x03));
+            Assert.That(commandApdu.LcFieldSize, Is.EqualTo(0x00));
 
             // Test XML serialization
             var memoryStream = new MemoryStream();
@@ -154,13 +154,13 @@ namespace WSCT.ISO7816
             XmlSerializer.Serialize(writer, commandApdu);
             writer.Flush();
             var outputXml = Encoding.UTF8.GetString(memoryStream.ToArray());
-            Assert.AreEqual(Case2EXml, outputXml);
+            Assert.That(outputXml, Is.EqualTo(Case2EXml));
 
             // Test XML deserialization
             using (TextReader textReader = new StringReader(outputXml))
             {
                 var unserializedApdu = (CommandAPDU)XmlSerializer.Deserialize(textReader);
-                Assert.AreEqual(commandApdu, unserializedApdu);
+                Assert.That(unserializedApdu, Is.EqualTo(commandApdu));
             }
         }
 
@@ -169,20 +169,20 @@ namespace WSCT.ISO7816
         {
             // Test decoding
             var commandApdu = new CommandAPDU(Case3Apdu);
-            Assert.AreEqual(CommandCase.CC3, commandApdu.CommandCase);
-            Assert.IsFalse(commandApdu.IsCc1);
-            Assert.IsFalse(commandApdu.IsCc2);
-            Assert.IsTrue(commandApdu.IsCc3);
-            Assert.IsFalse(commandApdu.IsCc4);
-            Assert.IsFalse(commandApdu.IsCc2E);
-            Assert.IsFalse(commandApdu.IsCc3E);
-            Assert.IsFalse(commandApdu.IsCc4E);
-            Assert.IsFalse(commandApdu.IsExtended);
+            Assert.That(commandApdu.CommandCase, Is.EqualTo(CommandCase.CC3));
+            Assert.That(commandApdu.IsCc1, Is.False);
+            Assert.That(commandApdu.IsCc2, Is.False);
+            Assert.That(commandApdu.IsCc3, Is.True);
+            Assert.That(commandApdu.IsCc4, Is.False);
+            Assert.That(commandApdu.IsCc2E, Is.False);
+            Assert.That(commandApdu.IsCc3E, Is.False);
+            Assert.That(commandApdu.IsCc4E, Is.False);
+            Assert.That(commandApdu.IsExtended, Is.False);
 
             // Test encoding
-            Assert.AreEqual(Case3ApduByte, commandApdu.BinaryCommand);
-            Assert.AreEqual(0x00, commandApdu.LeFieldSize);
-            Assert.AreEqual(0x01, commandApdu.LcFieldSize);
+            Assert.That(commandApdu.BinaryCommand, Is.EqualTo(Case3ApduByte));
+            Assert.That(commandApdu.LeFieldSize, Is.EqualTo(0x00));
+            Assert.That(commandApdu.LcFieldSize, Is.EqualTo(0x01));
 
             // Test XML serialization
             var memoryStream = new MemoryStream();
@@ -190,13 +190,13 @@ namespace WSCT.ISO7816
             XmlSerializer.Serialize(writer, commandApdu);
             writer.Flush();
             var outputXml = Encoding.UTF8.GetString(memoryStream.ToArray());
-            Assert.AreEqual(Case3Xml, outputXml);
+            Assert.That(outputXml, Is.EqualTo(Case3Xml));
 
             // Test XML deserialization
             using (TextReader textReader = new StringReader(outputXml))
             {
                 var unserializedApdu = (CommandAPDU)XmlSerializer.Deserialize(textReader);
-                Assert.AreEqual(commandApdu, unserializedApdu);
+                Assert.That(unserializedApdu, Is.EqualTo(commandApdu));
             }
         }
 
@@ -205,20 +205,20 @@ namespace WSCT.ISO7816
         {
             // Test decoding
             var commandApdu = new CommandAPDU(Case3EApdu);
-            Assert.AreEqual(CommandCase.CC3E, commandApdu.CommandCase);
-            Assert.IsFalse(commandApdu.IsCc1);
-            Assert.IsFalse(commandApdu.IsCc2);
-            Assert.IsFalse(commandApdu.IsCc3);
-            Assert.IsFalse(commandApdu.IsCc4);
-            Assert.IsFalse(commandApdu.IsCc2E);
-            Assert.IsTrue(commandApdu.IsCc3E);
-            Assert.IsFalse(commandApdu.IsCc4E);
-            Assert.IsTrue(commandApdu.IsExtended);
+            Assert.That(commandApdu.CommandCase, Is.EqualTo(CommandCase.CC3E));
+            Assert.That(commandApdu.IsCc1, Is.False);
+            Assert.That(commandApdu.IsCc2, Is.False);
+            Assert.That(commandApdu.IsCc3, Is.False);
+            Assert.That(commandApdu.IsCc4, Is.False);
+            Assert.That(commandApdu.IsCc2E, Is.False);
+            Assert.That(commandApdu.IsCc3E, Is.True);
+            Assert.That(commandApdu.IsCc4E, Is.False);
+            Assert.That(commandApdu.IsExtended, Is.True);
 
             // Test encoding
-            Assert.AreEqual(Case3EApduByte, commandApdu.BinaryCommand);
-            Assert.AreEqual(0x00, commandApdu.LeFieldSize);
-            Assert.AreEqual(0x03, commandApdu.LcFieldSize);
+            Assert.That(commandApdu.BinaryCommand, Is.EqualTo(Case3EApduByte));
+            Assert.That(commandApdu.LeFieldSize, Is.EqualTo(0x00));
+            Assert.That(commandApdu.LcFieldSize, Is.EqualTo(0x03));
 
             // Test XML serialization
             var memoryStream = new MemoryStream();
@@ -226,13 +226,13 @@ namespace WSCT.ISO7816
             XmlSerializer.Serialize(writer, commandApdu);
             writer.Flush();
             var outputXml = Encoding.UTF8.GetString(memoryStream.ToArray());
-            Assert.AreEqual(Case3EXml, outputXml);
+            Assert.That(outputXml, Is.EqualTo(Case3EXml));
 
             // Test XML deserialization
             using (TextReader textReader = new StringReader(outputXml))
             {
                 var unserializedApdu = (CommandAPDU)XmlSerializer.Deserialize(textReader);
-                Assert.AreEqual(commandApdu, unserializedApdu);
+                Assert.That(unserializedApdu, Is.EqualTo(commandApdu));
             }
         }
 
@@ -241,20 +241,20 @@ namespace WSCT.ISO7816
         {
             // Test decoding
             var commandApdu = new CommandAPDU(Case4Apdu);
-            Assert.AreEqual(CommandCase.CC4, commandApdu.CommandCase);
-            Assert.IsFalse(commandApdu.IsCc1);
-            Assert.IsFalse(commandApdu.IsCc2);
-            Assert.IsFalse(commandApdu.IsCc3);
-            Assert.IsTrue(commandApdu.IsCc4);
-            Assert.IsFalse(commandApdu.IsCc2E);
-            Assert.IsFalse(commandApdu.IsCc3E);
-            Assert.IsFalse(commandApdu.IsCc4E);
-            Assert.IsFalse(commandApdu.IsExtended);
+            Assert.That(commandApdu.CommandCase, Is.EqualTo(CommandCase.CC4));
+            Assert.That(commandApdu.IsCc1, Is.False);
+            Assert.That(commandApdu.IsCc2, Is.False);
+            Assert.That(commandApdu.IsCc3, Is.False);
+            Assert.That(commandApdu.IsCc4, Is.True);
+            Assert.That(commandApdu.IsCc2E, Is.False);
+            Assert.That(commandApdu.IsCc3E, Is.False);
+            Assert.That(commandApdu.IsCc4E, Is.False);
+            Assert.That(commandApdu.IsExtended, Is.False);
 
             // Test encoding
-            Assert.AreEqual(Case4ApduByte, commandApdu.BinaryCommand);
-            Assert.AreEqual(0x01, commandApdu.LeFieldSize);
-            Assert.AreEqual(0x01, commandApdu.LcFieldSize);
+            Assert.That(commandApdu.BinaryCommand, Is.EqualTo(Case4ApduByte));
+            Assert.That(commandApdu.LeFieldSize, Is.EqualTo(0x01));
+            Assert.That(commandApdu.LcFieldSize, Is.EqualTo(0x01));
 
             // Test XML serialization
             var memoryStream = new MemoryStream();
@@ -262,21 +262,21 @@ namespace WSCT.ISO7816
             XmlSerializer.Serialize(writer, commandApdu);
             writer.Flush();
             var outputXml = Encoding.UTF8.GetString(memoryStream.ToArray());
-            Assert.AreEqual(Case4Xml, outputXml);
+            Assert.That(outputXml, Is.EqualTo(Case4Xml));
 
             // Test XML deserialization
             using (TextReader textReader = new StringReader(outputXml))
             {
                 var unserializedApdu = (CommandAPDU)XmlSerializer.Deserialize(textReader);
-                Assert.AreEqual(commandApdu, unserializedApdu);
+                Assert.That(unserializedApdu, Is.EqualTo(commandApdu));
             }
 
             // Test automatic conversion to extended
             commandApdu.Lc = 0xF00D;
-            Assert.AreEqual(CommandCase.CC4E, commandApdu.CommandCase);
+            Assert.That(commandApdu.CommandCase, Is.EqualTo(CommandCase.CC4E));
             commandApdu = new CommandAPDU(Case4Apdu);
             commandApdu.Le = 0xF00D;
-            Assert.AreEqual(CommandCase.CC4E, commandApdu.CommandCase);
+            Assert.That(commandApdu.CommandCase, Is.EqualTo(CommandCase.CC4E));
         }
 
         [Test(Description = "Case 4 Extended C-APDU")]
@@ -284,20 +284,20 @@ namespace WSCT.ISO7816
         {
             // Test decoding
             var commandApdu = new CommandAPDU(Case4EApdu);
-            Assert.AreEqual(CommandCase.CC4E, commandApdu.CommandCase);
-            Assert.IsFalse(commandApdu.IsCc1);
-            Assert.IsFalse(commandApdu.IsCc2);
-            Assert.IsFalse(commandApdu.IsCc3);
-            Assert.IsFalse(commandApdu.IsCc4);
-            Assert.IsFalse(commandApdu.IsCc2E);
-            Assert.IsFalse(commandApdu.IsCc3E);
-            Assert.IsTrue(commandApdu.IsCc4E);
-            Assert.IsTrue(commandApdu.IsExtended);
+            Assert.That(commandApdu.CommandCase, Is.EqualTo(CommandCase.CC4E));
+            Assert.That(commandApdu.IsCc1, Is.False);
+            Assert.That(commandApdu.IsCc2, Is.False);
+            Assert.That(commandApdu.IsCc3, Is.False);
+            Assert.That(commandApdu.IsCc4, Is.False);
+            Assert.That(commandApdu.IsCc2E, Is.False);
+            Assert.That(commandApdu.IsCc3E, Is.False);
+            Assert.That(commandApdu.IsCc4E, Is.True);
+            Assert.That(commandApdu.IsExtended, Is.True);
 
             // Test encoding
-            Assert.AreEqual(Case4EApduByte, commandApdu.BinaryCommand);
-            Assert.AreEqual(0x02, commandApdu.LeFieldSize);
-            Assert.AreEqual(0x03, commandApdu.LcFieldSize);
+            Assert.That(commandApdu.BinaryCommand, Is.EqualTo(Case4EApduByte));
+            Assert.That(commandApdu.LeFieldSize, Is.EqualTo(0x02));
+            Assert.That(commandApdu.LcFieldSize, Is.EqualTo(0x03));
 
             // Test XML serialization
             var memoryStream = new MemoryStream();
@@ -305,13 +305,13 @@ namespace WSCT.ISO7816
             XmlSerializer.Serialize(writer, commandApdu);
             writer.Flush();
             var outputXml = Encoding.UTF8.GetString(memoryStream.ToArray());
-            Assert.AreEqual(Case4EXml, outputXml);
+            Assert.That(outputXml, Is.EqualTo(Case4EXml));
 
             // Test XML deserialization
             using (TextReader textReader = new StringReader(outputXml))
             {
                 var unserializedApdu = (CommandAPDU)XmlSerializer.Deserialize(textReader);
-                Assert.AreEqual(commandApdu, unserializedApdu);
+                Assert.That(unserializedApdu, Is.EqualTo(commandApdu));
             }
         }
 
@@ -323,25 +323,25 @@ namespace WSCT.ISO7816
             // none > short
             command.Udc = ShortUdc; // CC3
 
-            Assert.AreEqual(ShortLc, command.Lc);
-            Assert.AreEqual(1, command.LcFieldSize);
-            Assert.AreEqual(CommandCase.CC3, command.CommandCase);
+            Assert.That(command.Lc, Is.EqualTo(ShortLc));
+            Assert.That(command.LcFieldSize, Is.EqualTo(1));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC3));
 
             // short > none
             command.HasLc = false; // CC1
-            Assert.AreEqual(CommandCase.CC1, command.CommandCase);
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC1));
 
             // none > extended
             command.Udc = ExtendedUdc; // CC3E
 
-            Assert.AreEqual(ExtendedLc, command.Lc);
-            Assert.AreEqual(3, command.LcFieldSize);
-            Assert.AreEqual(CommandCase.CC3E, command.CommandCase);
+            Assert.That(command.Lc, Is.EqualTo(ExtendedLc));
+            Assert.That(command.LcFieldSize, Is.EqualTo(3));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC3E));
 
             // extended > none
             command.HasLc = false; // 1
 
-            Assert.AreEqual(CommandCase.CC1, command.CommandCase);
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC1));
         }
 
         [Test]
@@ -352,24 +352,24 @@ namespace WSCT.ISO7816
             // none > short
             command.Le = ShortLe; // CC2
 
-            Assert.AreEqual(1, command.LeFieldSize);
-            Assert.AreEqual(CommandCase.CC2, command.CommandCase);
+            Assert.That(command.LeFieldSize, Is.EqualTo(1));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC2));
 
             // short > none
             command.HasLe = false; // CC1
 
-            Assert.AreEqual(CommandCase.CC1, command.CommandCase);
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC1));
 
             // none > extended
             command.Le = ExtendedLe; // CC2E
 
-            Assert.AreEqual(3, command.LeFieldSize);
-            Assert.AreEqual(CommandCase.CC2E, command.CommandCase);
+            Assert.That(command.LeFieldSize, Is.EqualTo(3));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC2E));
 
             // extended > none
             command.HasLe = false; // CC1
 
-            Assert.AreEqual(CommandCase.CC1, command.CommandCase);
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC1));
         }
 
         [Test]
@@ -380,26 +380,26 @@ namespace WSCT.ISO7816
             // none > short
             command.Udc = ShortUdc; // CC4
 
-            Assert.AreEqual(ShortLc, command.Lc);
-            Assert.AreEqual(1, command.LcFieldSize);
-            Assert.AreEqual(CommandCase.CC4, command.CommandCase);
+            Assert.That(command.Lc, Is.EqualTo(ShortLc));
+            Assert.That(command.LcFieldSize, Is.EqualTo(1));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC4));
 
             // short > none
             command.HasLc = false; // CC2
 
-            Assert.AreEqual(CommandCase.CC2, command.CommandCase);
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC2));
 
             // none > extended
             command.Udc = ExtendedUdc; // CC4E
 
-            Assert.AreEqual(ExtendedLc, command.Lc);
-            Assert.AreEqual(3, command.LcFieldSize);
-            Assert.AreEqual(CommandCase.CC4E, command.CommandCase);
+            Assert.That(command.Lc, Is.EqualTo(ExtendedLc));
+            Assert.That(command.LcFieldSize, Is.EqualTo(3));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC4E));
 
             // extended > none
             command.HasLc = false; // CC2
 
-            Assert.AreEqual(CommandCase.CC2E, command.CommandCase); // Extended status unchanged
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC2E)); // Extended status unchanged
         }
 
         [Test]
@@ -410,26 +410,26 @@ namespace WSCT.ISO7816
             // short > short
             command.Le = ShortLe; // CC2
 
-            Assert.AreEqual(1, command.LeFieldSize);
-            Assert.AreEqual(CommandCase.CC2, command.CommandCase);
+            Assert.That(command.LeFieldSize, Is.EqualTo(1));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC2));
 
             // short > extended
             command.Le = ExtendedLe; // CC2E
 
-            Assert.AreEqual(3, command.LeFieldSize);
-            Assert.AreEqual(CommandCase.CC2E, command.CommandCase);
+            Assert.That(command.LeFieldSize, Is.EqualTo(3));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC2E));
 
             // extended > extended
             command.Le = ExtendedLe; // CC2E
 
-            Assert.AreEqual(3, command.LeFieldSize);
-            Assert.AreEqual(CommandCase.CC2E, command.CommandCase);
+            Assert.That(command.LeFieldSize, Is.EqualTo(3));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC2E));
 
             // extended > short
             command.Le = ShortLe; // CC2
 
-            Assert.AreEqual(3, command.LeFieldSize);
-            Assert.AreEqual(CommandCase.CC2E, command.CommandCase); // Extended status unchanged
+            Assert.That(command.LeFieldSize, Is.EqualTo(3));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC2E)); // Extended status unchanged
         }
 
         [Test]
@@ -440,30 +440,30 @@ namespace WSCT.ISO7816
             // short > short
             command.Udc = ShortUdc; // CC3
 
-            Assert.AreEqual(ShortLc, command.Lc);
-            Assert.AreEqual(1, command.LcFieldSize);
-            Assert.AreEqual(CommandCase.CC3, command.CommandCase);
+            Assert.That(command.Lc, Is.EqualTo(ShortLc));
+            Assert.That(command.LcFieldSize, Is.EqualTo(1));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC3));
 
             // short > extended
             command.Udc = ExtendedUdc; // CC3E
 
-            Assert.AreEqual(ExtendedLc, command.Lc);
-            Assert.AreEqual(3, command.LcFieldSize);
-            Assert.AreEqual(CommandCase.CC3E, command.CommandCase);
+            Assert.That(command.Lc, Is.EqualTo(ExtendedLc));
+            Assert.That(command.LcFieldSize, Is.EqualTo(3));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC3E));
 
             // extended > extended
             command.Udc = ExtendedUdc; // CC3E
 
-            Assert.AreEqual(ExtendedLc, command.Lc);
-            Assert.AreEqual(3, command.LcFieldSize);
-            Assert.AreEqual(CommandCase.CC3E, command.CommandCase);
+            Assert.That(command.Lc, Is.EqualTo(ExtendedLc));
+            Assert.That(command.LcFieldSize, Is.EqualTo(3));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC3E));
 
             // extended > short
             command.Udc = ShortUdc; // CC3
 
-            Assert.AreEqual(ShortLc, command.Lc);
-            Assert.AreEqual(3, command.LcFieldSize);
-            Assert.AreEqual(CommandCase.CC3E, command.CommandCase); // Extended status unchanged
+            Assert.That(command.Lc, Is.EqualTo(ShortLc));
+            Assert.That(command.LcFieldSize, Is.EqualTo(3));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC3E)); // Extended status unchanged
         }
 
         [Test]
@@ -474,28 +474,28 @@ namespace WSCT.ISO7816
             // none > short
             command.Le = ShortLe; // CC4
 
-            Assert.AreEqual(ShortLe, command.Le);
-            Assert.AreEqual(1, command.LeFieldSize);
-            Assert.AreEqual(CommandCase.CC4, command.CommandCase);
+            Assert.That(command.Le, Is.EqualTo(ShortLe));
+            Assert.That(command.LeFieldSize, Is.EqualTo(1));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC4));
 
             // short > none
             command.HasLe = false; // CC3
 
-            Assert.AreEqual(CommandCase.CC3, command.CommandCase);
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC3));
 
             // extended > extended
             command.Le = ExtendedLe; // CC4E
 
-            Assert.AreEqual(ShortLc, command.Lc);
-            Assert.AreEqual(3, command.LcFieldSize);
-            Assert.AreEqual(ExtendedLe, command.Le);
-            Assert.AreEqual(2, command.LeFieldSize);
-            Assert.AreEqual(CommandCase.CC4E, command.CommandCase);
+            Assert.That(command.Lc, Is.EqualTo(ShortLc));
+            Assert.That(command.LcFieldSize, Is.EqualTo(3));
+            Assert.That(command.Le, Is.EqualTo(ExtendedLe));
+            Assert.That(command.LeFieldSize, Is.EqualTo(2));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC4E));
 
             // extended > none
             command.HasLe = false; // CC3
 
-            Assert.AreEqual(CommandCase.CC3E, command.CommandCase); // Extended status unchanged
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC3E)); // Extended status unchanged
         }
 
         [Test]
@@ -506,38 +506,38 @@ namespace WSCT.ISO7816
             // short > short
             command.Udc = ShortUdc; // CC4
 
-            Assert.AreEqual(ShortLc, command.Lc);
-            Assert.AreEqual(1, command.LcFieldSize);
-            Assert.AreEqual(ShortLe, command.Le);
-            Assert.AreEqual(1, command.LeFieldSize);
-            Assert.AreEqual(CommandCase.CC4, command.CommandCase);
+            Assert.That(command.Lc, Is.EqualTo(ShortLc));
+            Assert.That(command.LcFieldSize, Is.EqualTo(1));
+            Assert.That(command.Le, Is.EqualTo(ShortLe));
+            Assert.That(command.LeFieldSize, Is.EqualTo(1));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC4));
 
             // short > extended
             command.Udc = ExtendedUdc; // CC4E
 
-            Assert.AreEqual(ExtendedLc, command.Lc);
-            Assert.AreEqual(3, command.LcFieldSize);
-            Assert.AreEqual(ShortLe, command.Le);
-            Assert.AreEqual(2, command.LeFieldSize);
-            Assert.AreEqual(CommandCase.CC4E, command.CommandCase);
+            Assert.That(command.Lc, Is.EqualTo(ExtendedLc));
+            Assert.That(command.LcFieldSize, Is.EqualTo(3));
+            Assert.That(command.Le, Is.EqualTo(ShortLe));
+            Assert.That(command.LeFieldSize, Is.EqualTo(2));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC4E));
 
             // extended > extended
             command.Udc = ExtendedUdc; // CC4E
 
-            Assert.AreEqual(ExtendedLc, command.Lc);
-            Assert.AreEqual(3, command.LcFieldSize);
-            Assert.AreEqual(ShortLe, command.Le);
-            Assert.AreEqual(2, command.LeFieldSize);
-            Assert.AreEqual(CommandCase.CC4E, command.CommandCase);
+            Assert.That(command.Lc, Is.EqualTo(ExtendedLc));
+            Assert.That(command.LcFieldSize, Is.EqualTo(3));
+            Assert.That(command.Le, Is.EqualTo(ShortLe));
+            Assert.That(command.LeFieldSize, Is.EqualTo(2));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC4E));
 
             // extended > short
             command.Udc = ShortUdc; // CC4
 
-            Assert.AreEqual(ShortLc, command.Lc);
-            Assert.AreEqual(3, command.LcFieldSize);
-            Assert.AreEqual(ShortLe, command.Le);
-            Assert.AreEqual(2, command.LeFieldSize);
-            Assert.AreEqual(CommandCase.CC4E, command.CommandCase); // Extended status unchanged
+            Assert.That(command.Lc, Is.EqualTo(ShortLc));
+            Assert.That(command.LcFieldSize, Is.EqualTo(3));
+            Assert.That(command.Le, Is.EqualTo(ShortLe));
+            Assert.That(command.LeFieldSize, Is.EqualTo(2));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC4E)); // Extended status unchanged
         }
 
         [Test]
@@ -548,38 +548,38 @@ namespace WSCT.ISO7816
             // short > short
             command.Le = ShortLe; // CC4
 
-            Assert.AreEqual(ShortLc, command.Lc);
-            Assert.AreEqual(1, command.LcFieldSize);
-            Assert.AreEqual(ShortLe, command.Le);
-            Assert.AreEqual(1, command.LeFieldSize);
-            Assert.AreEqual(CommandCase.CC4, command.CommandCase);
+            Assert.That(command.Lc, Is.EqualTo(ShortLc));
+            Assert.That(command.LcFieldSize, Is.EqualTo(1));
+            Assert.That(command.Le, Is.EqualTo(ShortLe));
+            Assert.That(command.LeFieldSize, Is.EqualTo(1));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC4));
 
             // short > extended
             command.Le = ExtendedLe; // CC4E
 
-            Assert.AreEqual(ShortLc, command.Lc);
-            Assert.AreEqual(3, command.LcFieldSize);
-            Assert.AreEqual(ExtendedLe, command.Le);
-            Assert.AreEqual(2, command.LeFieldSize);
-            Assert.AreEqual(CommandCase.CC4E, command.CommandCase);
+            Assert.That(command.Lc, Is.EqualTo(ShortLc));
+            Assert.That(command.LcFieldSize, Is.EqualTo(3));
+            Assert.That(command.Le, Is.EqualTo(ExtendedLe));
+            Assert.That(command.LeFieldSize, Is.EqualTo(2));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC4E));
 
             // extended > extended
             command.Le = ExtendedLe; // CC4E
 
-            Assert.AreEqual(ShortLc, command.Lc);
-            Assert.AreEqual(3, command.LcFieldSize);
-            Assert.AreEqual(ExtendedLe, command.Le);
-            Assert.AreEqual(2, command.LeFieldSize);
-            Assert.AreEqual(CommandCase.CC4E, command.CommandCase);
+            Assert.That(command.Lc, Is.EqualTo(ShortLc));
+            Assert.That(command.LcFieldSize, Is.EqualTo(3));
+            Assert.That(command.Le, Is.EqualTo(ExtendedLe));
+            Assert.That(command.LeFieldSize, Is.EqualTo(2));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC4E));
 
             // extended > short
             command.Le = ShortLe; // CC4
 
-            Assert.AreEqual(ShortLc, command.Lc);
-            Assert.AreEqual(3, command.LcFieldSize);
-            Assert.AreEqual(ShortLe, command.Le);
-            Assert.AreEqual(2, command.LeFieldSize);
-            Assert.AreEqual(CommandCase.CC4E, command.CommandCase); // Extended status unchanged
+            Assert.That(command.Lc, Is.EqualTo(ShortLc));
+            Assert.That(command.LcFieldSize, Is.EqualTo(3));
+            Assert.That(command.Le, Is.EqualTo(ShortLe));
+            Assert.That(command.LeFieldSize, Is.EqualTo(2));
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC4E)); // Extended status unchanged
         }
 
         [Test]
@@ -592,8 +592,8 @@ namespace WSCT.ISO7816
 
             command.Udc = ExtendedUdc; // CC4E
 
-            Assert.AreEqual(0x0100, command.Le);
-            Assert.AreEqual(2, command.LeFieldSize);
+            Assert.That(command.Le, Is.EqualTo(0x0100));
+            Assert.That(command.LeFieldSize, Is.EqualTo(2));
         }
 
         [Test]
@@ -603,12 +603,12 @@ namespace WSCT.ISO7816
 
             command.EnforceExtended();
 
-            Assert.AreEqual(CommandCase.CC2E, command.CommandCase);
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC2E));
 
-            Assert.False(command.HasLc);
+            Assert.That(command.HasLc, Is.False);
 
-            Assert.AreEqual(ShortLe, command.Le);
-            Assert.AreEqual(3, command.LeFieldSize);
+            Assert.That(command.Le, Is.EqualTo(ShortLe));
+            Assert.That(command.LeFieldSize, Is.EqualTo(3));
         }
 
         [Test]
@@ -621,12 +621,12 @@ namespace WSCT.ISO7816
 
             command.EnforceExtended();
 
-            Assert.AreEqual(CommandCase.CC3E, command.CommandCase);
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC3E));
 
-            Assert.AreEqual(ShortLc, command.Lc);
-            Assert.AreEqual(3, command.LcFieldSize);
+            Assert.That(command.Lc, Is.EqualTo(ShortLc));
+            Assert.That(command.LcFieldSize, Is.EqualTo(3));
 
-            Assert.False(command.HasLe);
+            Assert.That(command.HasLe, Is.False);
         }
 
         [Test]
@@ -639,13 +639,13 @@ namespace WSCT.ISO7816
 
             command.EnforceExtended();
 
-            Assert.AreEqual(CommandCase.CC4E, command.CommandCase);
+            Assert.That(command.CommandCase, Is.EqualTo(CommandCase.CC4E));
 
-            Assert.AreEqual(ShortLc, command.Lc);
-            Assert.AreEqual(3, command.LcFieldSize);
+            Assert.That(command.Lc, Is.EqualTo(ShortLc));
+            Assert.That(command.LcFieldSize, Is.EqualTo(3));
 
-            Assert.AreEqual(ShortLe, command.Le);
-            Assert.AreEqual(2, command.LeFieldSize);
+            Assert.That(command.Le, Is.EqualTo(ShortLe));
+            Assert.That(command.LeFieldSize, Is.EqualTo(2));
         }
     }
 }

@@ -12,21 +12,21 @@ namespace WSCT.Helpers.Security
 
         private static void KeyCheck(PuTTyPrivateKeyBody key)
         {
-            Assert.AreEqual(0x100, key.D.Length);
-            Assert.AreEqual(new[] { 0x0A, 0xCF }, key.D.Take(2));
-            Assert.AreEqual(0x61, key.D.Last());
+            Assert.That(key.D.Length, Is.EqualTo(0x100));
+            Assert.That(key.D.Take(2), Is.EqualTo(new[] { 0x0A, 0xCF }));
+            Assert.That(key.D.Last(), Is.EqualTo(0x61));
 
-            Assert.AreEqual(0x81, key.P.Length);
-            Assert.AreEqual(new[] { 0x00, 0xD8 }, key.P.Take(2));
-            Assert.AreEqual(0x68, key.P.Last());
+            Assert.That(key.P.Length, Is.EqualTo(0x81));
+            Assert.That(key.P.Take(2), Is.EqualTo(new[] { 0x00, 0xD8 }));
+            Assert.That(key.P.Last(), Is.EqualTo(0x68));
 
-            Assert.AreEqual(0x81, key.Q.Length);
-            Assert.AreEqual(new[] { 0x00, 0x8F }, key.Q.Take(2));
-            Assert.AreEqual(0x37, key.Q.Last());
+            Assert.That(key.Q.Length, Is.EqualTo(0x81));
+            Assert.That(key.Q.Take(2), Is.EqualTo(new[] { 0x00, 0x8F }));
+            Assert.That(key.Q.Last(), Is.EqualTo(0x37));
 
-            Assert.AreEqual(0x81, key.Iqmp.Length);
-            Assert.AreEqual(new[] { 0x00, 0xEE }, key.Iqmp.Take(2));
-            Assert.AreEqual(0x63, key.Iqmp.Last());
+            Assert.That(key.Iqmp.Length, Is.EqualTo(0x81));
+            Assert.That(key.Iqmp.Take(2), Is.EqualTo(new[] { 0x00, 0xEE }));
+            Assert.That(key.Iqmp.Last(), Is.EqualTo(0x63));
         }
 
         [Test]

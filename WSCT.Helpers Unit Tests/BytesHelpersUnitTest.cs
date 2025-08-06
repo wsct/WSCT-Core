@@ -14,7 +14,7 @@ namespace WSCT.Helpers
 
             var result = source.SetBits(mask, true);
 
-            Assert.AreEqual(0xDB, result);
+            Assert.That(result, Is.EqualTo(0xDB));
         }
 
         [Test]
@@ -25,7 +25,7 @@ namespace WSCT.Helpers
 
             var result = source.SetBits(mask, false);
 
-            Assert.AreEqual(0x48, result);
+            Assert.That(result, Is.EqualTo(0x48));
         }
 
         [Test]
@@ -35,7 +35,7 @@ namespace WSCT.Helpers
 
             var result = source.ToByteArray();
 
-            Assert.AreEqual(new byte[] { 0x83 }, result);
+            Assert.That(result, Is.EqualTo(new byte[] { 0x83 }));
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace WSCT.Helpers
 
             var result = source.ToByteArray(1);
 
-            Assert.AreEqual(new byte[] { 0x78 }, result);
+            Assert.That(result, Is.EqualTo(new byte[] { 0x78 }));
         }
 
         [Test]
@@ -55,7 +55,7 @@ namespace WSCT.Helpers
 
             var result = source.ToByteArray(2);
 
-            Assert.AreEqual(new byte[] { 0x56, 0x78 }, result);
+            Assert.That(result, Is.EqualTo(new byte[] { 0x56, 0x78 }));
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace WSCT.Helpers
 
             var result = source.ToByteArray(3);
 
-            Assert.AreEqual(new byte[] { 0x34, 0x56, 0x78 }, result);
+            Assert.That(result, Is.EqualTo(new byte[] { 0x34, 0x56, 0x78 }));
         }
 
         [Test]
@@ -75,7 +75,7 @@ namespace WSCT.Helpers
 
             var result = source.ToByteArray(4);
 
-            Assert.AreEqual(new byte[] { 0x12, 0x34, 0x56, 0x78 }, result);
+            Assert.That(result, Is.EqualTo(new byte[] { 0x12, 0x34, 0x56, 0x78 }));
         }
 
         [Test]
@@ -85,7 +85,7 @@ namespace WSCT.Helpers
 
             var result = source.FromHexa();
 
-            Assert.AreEqual(new byte[] { 0x01, 0x23, 0x45, 0x67 }, result);
+            Assert.That(result, Is.EqualTo(new byte[] { 0x01, 0x23, 0x45, 0x67 }));
         }
 
         [Test]
@@ -95,7 +95,7 @@ namespace WSCT.Helpers
 
             var result = source.FromHexa();
 
-            Assert.AreEqual(new byte[] { 0x08, 0x01, 0x23, 0x45, 0x67 }, result);
+            Assert.That(result, Is.EqualTo(new byte[] { 0x08, 0x01, 0x23, 0x45, 0x67 }));
         }
 
         [Test]
@@ -105,7 +105,7 @@ namespace WSCT.Helpers
 
             var result = source.FromString();
 
-            Assert.AreEqual(new byte[] { 0x31, 0x50, 0x41, 0x59, 0x2E, 0x53, 0x59, 0x53, 0x2E, 0x44, 0x44, 0x46, 0x30, 0x31 }, result);
+            Assert.That(result, Is.EqualTo(new byte[] { 0x31, 0x50, 0x41, 0x59, 0x2E, 0x53, 0x59, 0x53, 0x2E, 0x44, 0x44, 0x46, 0x30, 0x31 }));
         }
 
         [Test]
@@ -116,8 +116,8 @@ namespace WSCT.Helpers
             var result = source.ToAsciiString();
             var spanResult = source.AsSpan().ToAsciiString();
 
-            Assert.AreEqual("1PAY.SYS.DDF01", result);
-            Assert.AreEqual("1PAY.SYS.DDF01", spanResult);
+            Assert.That(result, Is.EqualTo("1PAY.SYS.DDF01"));
+            Assert.That(spanResult, Is.EqualTo("1PAY.SYS.DDF01"));
         }
 
         [Test]
@@ -128,8 +128,8 @@ namespace WSCT.Helpers
             var result = source.FromBcd();
             var spanResult = source.AsSpan().FromBcd();
 
-            Assert.AreEqual(new byte[] { 0x01, 0x02, 0x03, 0x04 }, result);
-            Assert.AreEqual(new byte[] { 0x01, 0x02, 0x03, 0x04 }, spanResult);
+            Assert.That(result, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03, 0x04 }));
+            Assert.That(spanResult, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03, 0x04 }));
         }
 
         [Test]
@@ -140,8 +140,8 @@ namespace WSCT.Helpers
             var result = source.FromBcd(3);
             var spanResult = source.AsSpan().FromBcd(3);
 
-            Assert.AreEqual(new byte[] { 0x01, 0x02, 0x03 }, result);
-            Assert.AreEqual(new byte[] { 0x01, 0x02, 0x03 }, spanResult);
+            Assert.That(result, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03 }));
+            Assert.That(spanResult, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03 }));
         }
 
         [Test]
@@ -152,8 +152,8 @@ namespace WSCT.Helpers
             var result = source.ToBcd();
             var spanResult = source.AsSpan().ToBcd();
 
-            Assert.AreEqual(new byte[] { 0x12, 0x34 }, result);
-            Assert.AreEqual(new byte[] { 0x12, 0x34 }, spanResult);
+            Assert.That(result, Is.EqualTo(new byte[] { 0x12, 0x34 }));
+            Assert.That(spanResult, Is.EqualTo(new byte[] { 0x12, 0x34 }));
         }
 
         [Test]
@@ -164,8 +164,8 @@ namespace WSCT.Helpers
             var result = source.ToBcd(0xF);
             var spanResult = source.AsSpan().ToBcd(0xF);
 
-            Assert.AreEqual(new byte[] { 0x12, 0x3F }, result);
-            Assert.AreEqual(new byte[] { 0x12, 0x3F }, spanResult);
+            Assert.That(result, Is.EqualTo(new byte[] { 0x12, 0x3F }));
+            Assert.That(spanResult, Is.EqualTo(new byte[] { 0x12, 0x3F }));
         }
     }
 }

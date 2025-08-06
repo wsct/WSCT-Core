@@ -1,19 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net6.0;net9.0</TargetFrameworks>
 	<LangVersion>latest</LangVersion>
 	<PackageId>WSCT.Core</PackageId>
     <Description>Main API for WSCT (WinSCard Tools).
 Warning: this package alone does not allow to connect to a smartcard reader: use WSCT.Wrapper.Desktop for that.</Description>
     <Company>ENSICAEN</Company>
-    <Copyright>Copyright © ENSICAEN 2006-2023</Copyright>
+    <Copyright>Copyright © ENSICAEN 2006-2025</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>6.6.0</Version>
+    <Version>6.7.0</Version>
     <Authors>Sylvain Vernois</Authors>
     <PackageProjectUrl>https://github.com/wsct/WSCT-Core</PackageProjectUrl>
     <RepositoryUrl>https://github.com/wsct/WSCT-Core</RepositoryUrl>
     <PackageTags>smartcard, pc/sc, winscard, wsct</PackageTags>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>- new: ChainIf extensions for CommandResponsePair</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Title>WSCT Core API</Title>
     <PackageReadmeFile>README.md</PackageReadmeFile>

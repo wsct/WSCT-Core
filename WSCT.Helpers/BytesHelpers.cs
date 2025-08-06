@@ -258,7 +258,7 @@ namespace WSCT.Helpers
         /// </example>
         public static string ToAsciiString(this ReadOnlySpan<byte> buffer)
         {
-            if (buffer == null)
+            if (buffer.IsEmpty)
             {
                 return String.Empty;
             }
@@ -510,7 +510,7 @@ namespace WSCT.Helpers
         /// <returns></returns>
         public static byte[] Get4BytesPrefixedArray(this ReadOnlySpan<byte> bytes, ref int offset)
         {
-            if (bytes == null)
+            if (bytes.IsEmpty)
             {
                 throw new ArgumentNullException(nameof(bytes));
             }

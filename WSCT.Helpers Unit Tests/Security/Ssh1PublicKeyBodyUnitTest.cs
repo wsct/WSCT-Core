@@ -12,13 +12,13 @@ namespace WSCT.Helpers.Security
 
         private static void KeyCheck(Ssh1PublicKeyBody key)
         {
-            Assert.AreEqual("ssh-rsa", key.Type);
+            Assert.That(key.Type, Is.EqualTo("ssh-rsa"));
 
-            Assert.AreEqual(new[] { 0x25 }, key.E);
+            Assert.That(key.E, Is.EqualTo(new[] { 0x25 }));
 
-            Assert.AreEqual(0x101, key.N.Length);
-            Assert.AreEqual(new[] { 0x00, 0x85 }, key.N.Take(2));
-            Assert.AreEqual(0x45, key.N.Last());
+            Assert.That(key.N.Length, Is.EqualTo(0x101));
+            Assert.That(key.N.Take(2), Is.EqualTo(new[] { 0x00, 0x85 }));
+            Assert.That(key.N.Last(), Is.EqualTo(0x45));
         }
 
         [Test]

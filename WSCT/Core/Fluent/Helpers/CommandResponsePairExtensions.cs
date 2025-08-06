@@ -1,10 +1,45 @@
 ﻿using System;
 using WSCT.ISO7816;
+using WSCT.Wrapper;
 
 namespace WSCT.Core.Fluent.Helpers
 {
     public static class CommandResponsePairExtensions
     {
+        /// <summary>
+        /// Transmits the <paramref name="cardCommand"/> on <paramref name="cardChannel"/> when <paramref name="crp"/> ErrorCode is successful and <paramref name="predicate"/> is true.
+        /// </summary>
+        /// <return>
+        /// The new CRP is <paramref name="predicate"/> was true or the source CRP.
+        /// </return>
+        public static CommandResponsePair ChainIf(this CommandResponsePair crp, Func<ResponseAPDU, bool> predicate, Func<ResponseAPDU, CommandAPDU> cardCommandBuilder, ICardChannel cardChannel)
+        {
+            if (crp.ErrorCode == ErrorCode.Success && predicate(crp.RApdu))
+            {
+                return cardCommandBuilder(crp.RApdu)
+                    .Transmit(cardChannel);
+            }
+
+            return crp;
+        }
+
+        /// <summary>
+        /// Transmits the <paramref name="cardCommand"/> on <paramref name="cardChannel"/> when <paramref name="crp"/> ErrorCode is successful and <paramref name="predicate"/> is true.
+        /// </summary>
+        /// <return>
+        /// The new CRP is <paramref name="predicate"/> was true or the source CRP.
+        /// </return>
+        public static CommandResponsePair ChainIf(this CommandResponsePair crp, Func<ResponseAPDU, bool> predicate, Func<CommandAPDU, ResponseAPDU, CommandAPDU> cardCommandBuilder, ICardChannel cardChannel)
+        {
+            if (crp.ErrorCode == ErrorCode.Success && predicate(crp.RApdu))
+            {
+                return cardCommandBuilder(crp.CApdu, crp.RApdu)
+                    .Transmit(cardChannel);
+            }
+
+            return crp;
+        }
+
         /// <summary>
         /// Executes the <paramref name="action"/> when <paramref name="predicate"/> is true.
         /// </summary>

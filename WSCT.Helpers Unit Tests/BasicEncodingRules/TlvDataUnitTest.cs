@@ -12,9 +12,9 @@ namespace WSCT.Helpers.BasicEncodingRules
             const string data = "88 01 0F";
             var tlv = new TlvData(data);
 
-            Assert.AreEqual(0x88, tlv.Tag);
-            Assert.AreEqual(0, tlv.InnerTlvs.Count);
-            Assert.AreEqual(data, tlv.ToByteArray().ToHexa());
+            Assert.That(tlv.Tag, Is.EqualTo(0x88));
+            Assert.That(tlv.InnerTlvs.Count, Is.EqualTo(0));
+            Assert.That(tlv.ToByteArray().ToHexa(), Is.EqualTo(data));
         }
 
         [Test]
@@ -24,9 +24,9 @@ namespace WSCT.Helpers.BasicEncodingRules
 
             var tlv = new TlvData(data);
 
-            Assert.AreEqual(0x70, tlv.Tag);
-            Assert.AreEqual(2, tlv.InnerTlvs.Count);
-            Assert.AreEqual(data, tlv.ToByteArray().ToHexa());
+            Assert.That(tlv.Tag, Is.EqualTo(0x70));
+            Assert.That(tlv.InnerTlvs.Count, Is.EqualTo(2));
+            Assert.That(tlv.ToByteArray().ToHexa(), Is.EqualTo(data));
         }
 
         [Test]
@@ -36,11 +36,11 @@ namespace WSCT.Helpers.BasicEncodingRules
 
             var tlv = new TlvData(data);
 
-            Assert.AreEqual(0x88, tlv.Tag);
-            Assert.AreEqual(0x80, tlv.Length);
-            Assert.AreEqual(0, tlv.InnerTlvs.Count);
-            Assert.AreEqual(data, tlv.ToByteArray().ToHexa());
-            Assert.AreEqual("T:88 L:8180 V:" + new Byte[0x80].ToHexa(), String.Format("{0}", tlv));
+            Assert.That(tlv.Tag, Is.EqualTo(0x88));
+            Assert.That(tlv.Length, Is.EqualTo(0x80));
+            Assert.That(tlv.InnerTlvs.Count, Is.EqualTo(0));
+            Assert.That(tlv.ToByteArray().ToHexa(), Is.EqualTo(data));
+            Assert.That(String.Format("{0}", tlv), Is.EqualTo("T:88 L:8180 V:" + new Byte[0x80].ToHexa()));
         }
 
         [Test]
@@ -50,11 +50,11 @@ namespace WSCT.Helpers.BasicEncodingRules
 
             var tlv = new TlvData(data);
 
-            Assert.AreEqual(0x70, tlv.Tag);
-            Assert.AreEqual(0x89, tlv.Length);
-            Assert.AreEqual(2, tlv.InnerTlvs.Count);
-            Assert.AreEqual(0x82, tlv.InnerTlvs[0].Length);
-            Assert.AreEqual(data, tlv.ToByteArray().ToHexa());
+            Assert.That(tlv.Tag, Is.EqualTo(0x70));
+            Assert.That(tlv.Length, Is.EqualTo(0x89));
+            Assert.That(tlv.InnerTlvs.Count, Is.EqualTo(2));
+            Assert.That(tlv.InnerTlvs[0].Length, Is.EqualTo(0x82));
+            Assert.That(tlv.ToByteArray().ToHexa(), Is.EqualTo(data));
         }
     }
 }
