@@ -8,7 +8,7 @@
         /// <summary>
         /// Unknown state.
         /// </summary>
-        Unknown = 1,
+        Unknown = 0,
 
         /// <summary>
         /// There is no card in the reader.
