@@ -18,6 +18,6 @@
         /// <summary>
         /// Direct use.
         /// </summary>
-        Direct = 0x0004
+        Direct = 0x0003
     }
 }
