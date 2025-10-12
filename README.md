@@ -8,7 +8,7 @@ WSCT Core API documentation is available from this url: http://wsct.github.io/WS
 
 ## Nuget packages
 
-### WSCT Core  [![NuGet Badge](https://buildstats.info/nuget/WSCT.Core)](https://www.nuget.org/packages/WSCT.Core/)
+### WSCT Core  [![NuGet](https://img.shields.io/nuget/v/WSCT.Core.svg)](https://www.nuget.org/packages/WSCT.Core/)
 
 This is the main API of this project.
 It defines:
@@ -19,7 +19,7 @@ It defines:
 
 > Warning: this package alone doesn't give access to a concrete smart card reader. Use next package for that.
 
-### WSCT Wrapper for Desktop [![NuGet Badge](https://buildstats.info/nuget/WSCT.Wrapper.Desktop)](https://www.nuget.org/packages/WSCT.Wrapper.Desktop/)
+### WSCT Wrapper for Desktop [![NuGet](https://img.shields.io/nuget/v/WSCT.Wrapper.Desktop.svg)](https://www.nuget.org/packages/WSCT.Wrapper.Desktop/)
 
 This package seamlessly wraps native PC/SC libraries.
 
