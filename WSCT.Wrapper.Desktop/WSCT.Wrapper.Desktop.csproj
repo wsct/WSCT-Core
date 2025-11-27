@@ -16,6 +16,7 @@
 	<PackageReleaseNotes>WSCT.Core updated</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <LangVersion>Latest</LangVersion>
+    <PackageOutputPath>../nuget/$(Configuration)</PackageOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\WSCT.Wrapper.MacOSX\WSCT.Wrapper.MacOSX.csproj" />

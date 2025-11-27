@@ -8,15 +8,16 @@ Warning: this package alone does not allow to connect to a smartcard reader: use
     <Company>ENSICAEN</Company>
     <Copyright>Copyright © ENSICAEN 2006-2025</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>6.7.0</Version>
+    <Version>6.7.1</Version>
     <Authors>Sylvain Vernois</Authors>
     <PackageProjectUrl>https://github.com/wsct/WSCT-Core</PackageProjectUrl>
     <RepositoryUrl>https://github.com/wsct/WSCT-Core</RepositoryUrl>
     <PackageTags>smartcard, pc/sc, winscard, wsct</PackageTags>
-    <PackageReleaseNotes>- new: ChainIf extensions for CommandResponsePair</PackageReleaseNotes>
+    <PackageReleaseNotes>- fix: Some enum values in WSCT.Wrapper [thanks knbedgm]</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Title>WSCT Core API</Title>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageOutputPath>../nuget/$(Configuration)</PackageOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG</DefineConstants>
