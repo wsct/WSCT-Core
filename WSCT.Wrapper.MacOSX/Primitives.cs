@@ -60,10 +60,12 @@ namespace WSCT.Wrapper.MacOSX
                 {
                     fixed (void* pcard = &card)
                     {
+                        // pcsclite defines SCARD_SHARE_DIRECT as 0x0003 (Windows uses 0x0004).
+                        var nativeShareMode = shareMode == ShareMode.Direct ? 0x0003u : (uint)shareMode;
                         ret = UnsafePrimitives.SCardConnect(
                             (void*)context,
                             (char*)preaderName,
-                            (uint)shareMode,
+                            nativeShareMode,
                             (uint)preferedProtocol,
                             (void**)pcard,
                             &uactiveProtocol
@@ -374,9 +376,11 @@ namespace WSCT.Wrapper.MacOSX
             unsafe
             {
                 var protocol = (uint)activeProtocol;
+                // pcsclite defines SCARD_SHARE_DIRECT as 0x0003 (Windows uses 0x0004).
+                var nativeShareMode = shareMode == ShareMode.Direct ? 0x0003u : (uint)shareMode;
                 err = UnsafePrimitives.SCardReconnect(
                     (void*)card,
-                    (uint)shareMode,
+                    nativeShareMode,
                     (uint)preferedProtocol,
                     (uint)initialisation,
                     &protocol
